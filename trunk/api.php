@@ -1,17 +1,40 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category GN2_Newsletterconnect
+ * @package  GN2_Newsletterconnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
  */
 
-require_once('copyprotect.php');
+if (!ob_start('ob_gzhandler')) {
+    ob_start();
+}
 
-class gn2_newsletterconnect_api
+require_once 'copyprotect.php';
+
+/**
+ * GN2_Newsletterconnect_Api - Main API Initialization Class
+ *
+ * @category GN2_Newsletterconnect
+ * @package  GN2_Newsletterconnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  Release: <package_version>
+ * @link     http://www.gn2-netwerk.de/
+ */
+class GN2_Newsletterconnect_Api
 {
+    /**
+     * Initializes the API. Parses URL and starts mapper/output classes.
+     *
+     * @return void
+     */
     static public function init()
     {
         $subject = $_SERVER['REQUEST_URI'];
@@ -50,25 +73,32 @@ class gn2_newsletterconnect_api
 }
 
 if (!function_exists('getShopBasePath')) {
+    /**
+     * Returns OXID base path
+     *
+     * @return string OXID Base Path
+     */
     function getShopBasePath()
     {
-        return $_SERVER['DOCUMENT_ROOT'].'/'.dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
+        return $_SERVER['DOCUMENT_ROOT'].'/'
+        . dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
     }
-    require getShopBasePath() . 'modules/functions.php';
-    require_once getShopBasePath() . 'core/oxfunctions.php';
+    include_once getShopBasePath() . 'modules/functions.php';
+    include_once getShopBasePath() . 'core/oxfunctions.php';
     oxUtils::getInstance()->stripGpcMagicQuotes();
 }
 
 
 $valid = false;
 try {
-    # Fix for PHP-CGI
+    /* Fix for PHP-CGI */
     if (!isset($_SERVER['PHP_AUTH_USER'])) {
-        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])
+            = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
     }
 
     $oUser = oxNew('oxuser');
-    $oUser->login( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'] );
+    $oUser->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
     $oGroups = $oUser->getUserGroups();
 
     foreach ($oGroups as $group) {
@@ -86,3 +116,4 @@ while ( !$valid ) {
     exit;
 }
 gn2_newsletterconnect_api::init();
+ob_end_flush();

@@ -1,14 +1,32 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category   GN2_Newsletterconnect
+ * @package    GN2_Newsletterconnect
+ * @subpackage Output
+ * @author     Dave Holloway <dh@gn2-netwerk.de>
+ * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version    GIT: <git_id>
+ * @link       http://www.gn2-netwerk.de/
  */
 
-abstract class gn2_newsletterconnect_Output_Abstract
+/**
+ * GN2_Newsletterconnect_Output_Abstract - Abstract class for data
+ * output. Can be extended for different output formats.
+ *
+ * @category   GN2_Newsletterconnect
+ * @package    GN2_Newsletterconnect
+ * @subpackage Output
+ * @author     Dave Holloway <dh@gn2-netwerk.de>
+ * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version    Release: <package_version>
+ * @link       http://www.gn2-netwerk.de/
+ * @abstract
+ */
+abstract class GN2_Newsletterconnect_Output_Abstract
 {
     private $data;
 
@@ -30,12 +48,8 @@ abstract class gn2_newsletterconnect_Output_Abstract
     }
 
     public function show() {
-        if (!ob_start('ob_gzhandler')) {
-            ob_start();
-        }
         header('Content-Type:' . $this->getContentType() . '; charset=utf-8');
         echo $this->displayData();
-        ob_end_flush();
     }
 
 }
