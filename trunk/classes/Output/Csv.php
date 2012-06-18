@@ -10,11 +10,21 @@
 
 class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abstract
 {
+    /**
+     * Returns Content Type
+     * @return string
+     */
     public function getContentType()
     {
         return 'text/plain';
     }
 
+    /**
+     * Converts any data into a CSV line. Works recursively.
+     * @param array $tree
+     * @param int $level
+     * @return string
+     */
     public function displayLine($tree,$level=0)
     {   $line = '';
         foreach ($tree as $branch) {
@@ -41,6 +51,10 @@ class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abst
         return $line;
     }
 
+    /**
+     * Returns formatted output
+     * @return string
+     */
     public function displayData() {
         $data = $this->getData();
         return $this->displayLine($data->results);

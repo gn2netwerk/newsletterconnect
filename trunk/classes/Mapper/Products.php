@@ -10,6 +10,10 @@
 
 class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper_Abstract
 {
+    /**
+     * Returns the LIMIT sql string, depending on URL Parameters
+     * @return string
+     */
     public function getLimit()
     {
         $start = intVal(oxConfig::getParameter('start'));
@@ -17,6 +21,10 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
         return 'LIMIT '.$start.',50';
     }
 
+    /**
+     * Returns the WHERE sql string, depending on URL Parameters
+     * @return string
+     */
     public function getWhere()
     {
         $where = 'WHERE (1';
@@ -44,6 +52,10 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
         return $where;
     }
 
+    /**
+     * Executes SQL and returns results
+     * @return gn2_newsletterconnect_Data_Result
+     */
     public function getResults()
     {
         $qsql = '

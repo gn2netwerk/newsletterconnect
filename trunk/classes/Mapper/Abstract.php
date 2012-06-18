@@ -12,6 +12,12 @@ abstract class gn2_newsletterconnect_Mapper_Abstract
 {
     protected $entity;
     abstract function getResults();
+
+    /**
+     * Restricts the mapper to one entity
+     * TODO: Not implemented at the moment.
+     * @param string $entity
+     */
     public function restrictEntity($entity)
     {
         $this->entity = $entity;

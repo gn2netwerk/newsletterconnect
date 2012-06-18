@@ -12,6 +12,13 @@ require_once('copyprotect.php');
 
 class gn2_newsletterconnect_api
 {
+    /**
+     * Initializes the gn2_newsletterconnect-API
+     * and processes the URL via RegEx. The found mapper is
+     * then instantiated, control is given to the mapper class
+     * and the output is processed by the output class.
+     * @return void
+     */
     static public function init()
     {
         $subject = $_SERVER['REQUEST_URI'];
@@ -50,10 +57,18 @@ class gn2_newsletterconnect_api
 }
 
 if (!function_exists('getShopBasePath')) {
+    /**
+     * Returns the OXID-Shop Base Path. The function returns
+     * the correct folder name, even if the module folder has been
+     * symlinked.
+     * @return void
+     */
     function getShopBasePath()
     {
         return $_SERVER['DOCUMENT_ROOT'].'/'.dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
     }
+
+    # Include OXID Core Classes
     require getShopBasePath() . 'modules/functions.php';
     require_once getShopBasePath() . 'core/oxfunctions.php';
     oxUtils::getInstance()->stripGpcMagicQuotes();
@@ -67,6 +82,7 @@ try {
         list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
     }
 
+    # Authenticate User via the OXID oxuser Classes
     $oUser = oxNew('oxuser');
     $oUser->login( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'] );
     $oGroups = $oUser->getUserGroups();
@@ -80,9 +96,12 @@ try {
 catch (Exception $e) {
 }
 
+# Constantly ask for username & password via HTTP-Authentification
 while ( !$valid ) {
     header('WWW-Authenticate: Basic realm="NewsletterConnect"');
     header('HTTP/1.0 401 Unauthorized');
     exit;
 }
+
+# If Authenticated, init() the API
 gn2_newsletterconnect_api::init();

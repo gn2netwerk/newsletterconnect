@@ -13,7 +13,7 @@ require_once('copyprotect.php');
 
 class gn2_newsletterconnect
 {
-    /*
+    /**
      * looplink($directory);
      * Automatically symlink every file in a specified folder
      * within the module folder to a file with the same path
@@ -66,6 +66,7 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
 {
 }
 
+# Looplink subfolders of this module
 if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
     gn2_newsletterconnect::looplink('core');
     gn2_newsletterconnect::looplink('admin');

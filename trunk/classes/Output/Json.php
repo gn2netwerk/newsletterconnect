@@ -10,11 +10,19 @@
 
 class gn2_newsletterconnect_Output_Json extends gn2_newsletterconnect_Output_Abstract
 {
+    /**
+     * Returns Content Type
+     * @return string
+     */
     public function getContentType()
     {
         return 'application/json';
     }
 
+    /**
+     * Returns JSON-Encoded string
+     * @return string
+     */
     public function displayData() {
         $data = json_encode($this->getData());
         return $data;

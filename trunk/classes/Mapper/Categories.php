@@ -10,6 +10,11 @@
 
 class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapper_Abstract
 {
+    /**
+     * Builds the category tree and converts to a friendlier format
+     * @param mixed $tree
+     * @return array
+     */
     private function buildTree($tree)
     {
         $data = array();
@@ -26,6 +31,10 @@ class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapp
         return $data;
     }
 
+    /**
+     * Calls the OXID Classes and generates a tree of objects
+     * @return gn2_newsletterconnect_Data_Result
+     */
     public function getResults()
     {
         $oCategoryTree = oxNew( 'oxcategorylist' );

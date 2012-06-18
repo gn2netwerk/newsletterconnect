@@ -15,6 +15,11 @@ abstract class gn2_newsletterconnect_Output_Abstract
     abstract function displayData();
     abstract function getContentType();
 
+    /**
+     * Expects an instance of gn2_newsletterconnect_Data_Result
+     * @param object $data
+     * @return boolean
+     */
     public function setData($data)
     {
         if (is_object($data)) {
@@ -24,11 +29,20 @@ abstract class gn2_newsletterconnect_Output_Abstract
         return false;
     }
 
+    /**
+     * Returns intance of gn2_newsletterconnect_Data_Result
+     * @return object
+     */
     public function getData()
     {
         return $this->data->get();
     }
 
+    /**
+     * Outputs the content, including any headers.
+     * Compresses content, if accepted by the client.
+     * @return void
+     */
     public function show() {
         if (!ob_start('ob_gzhandler')) {
             ob_start();
