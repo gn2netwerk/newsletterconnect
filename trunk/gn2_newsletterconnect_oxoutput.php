@@ -1,23 +1,41 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
- * @license gn2_newsletterconnect_oxoutput.php - MIT License
+ *
+ * PHP version 5
+ *
+ * @category GN2_Newsletterconnect
+ * @package  GN2_Newsletterconnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
  */
 
-require_once('copyprotect.php');
+require_once 'copyprotect.php';
 
-class gn2_newsletterconnect
+/**
+ * GN2_Newsletterconnect - Main OXID Module Initialization Class
+ *
+ * @category GN2_Newsletterconnect
+ * @package  GN2_Newsletterconnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  Release: <package_version>
+ * @link     http://www.gn2-netwerk.de/
+ */
+class GN2_Newsletterconnect
 {
-    /*
+    /**
      * looplink($directory);
      * Automatically symlink every file in a specified folder
      * within the module folder to a file with the same path
      * in the root OXID directory.
+     *
+     * @param string  $dir    Folder to link
+     * @param boolean $append Prepend module folder to path yes/no
+     *
+     * @return void
      */
     function looplink($dir = '',$append=true)
     {
@@ -30,7 +48,7 @@ class gn2_newsletterconnect
         if ($append) {
             $me .= $moduleSlug;
         }
-        $me .= str_replace(getCwd(),'',$dir);
+        $me .= str_replace(getCwd(), '', $dir);
 
         if (!file_exists($me)) {
             return false;
@@ -42,11 +60,15 @@ class gn2_newsletterconnect
             while (false !== ($file = readdir($handle))) {
                 $path = $me.'/'. $file;
                 if (filetype($path) == "dir" && $file != "." && $file != "..") {
-                    self::looplink($path,false);
+                    self::looplink($path, false);
                 } else if ($file != "." && $file != "..") {
-                    if ( !in_array(basename($file),array('.DS_Store','.project','.git','.gitignore')) ) {
+                    if ( !in_array(
+                        basename($file),
+                        array('.DS_Store','.project','.git','.gitignore')
+                    )
+                    ) {
                         $src = $path;
-                        $dest = str_replace($moduleSlug,'/',$src);
+                        $dest = str_replace($moduleSlug, '/', $src);
 
                         if (!is_link($dest)) {
                             @symlink($src, $dest);
@@ -59,10 +81,18 @@ class gn2_newsletterconnect
     }
 }
 
+
 /**
- * Dummy Class. We're only loading OXOUTPUT as a bootstrap.
+ * GN2_Newsletterconnect - Dummy Class. We're only loading OXOUTPUT as a bootstrap.
+ *
+ * @category GN2_Newsletterconnect
+ * @package  GN2_Newsletterconnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  Release: <package_version>
+ * @link     http://www.gn2-netwerk.de/
  */
-class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_parent
+class GN2_Newsletterconnect_Oxoutput extends GN2_Newsletterconnect_Oxoutput_Parent
 {
 }
 

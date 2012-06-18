@@ -1,20 +1,50 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category   GN2_Newsletterconnect
+ * @package    GN2_Newsletterconnect
+ * @subpackage Output
+ * @author     Dave Holloway <dh@gn2-netwerk.de>
+ * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version    GIT: <git_id>
+ * @link       http://www.gn2-netwerk.de/
  */
 
-class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abstract
+/**
+ * GN2_Newsletterconnect_Output_Csv - CSV Output Class
+ *
+ * @category   GN2_Newsletterconnect
+ * @package    GN2_Newsletterconnect
+ * @subpackage Output
+ * @author     Dave Holloway <dh@gn2-netwerk.de>
+ * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version    Release: <package_version>
+ * @link       http://www.gn2-netwerk.de/
+ * @abstract
+ */
+class GN2_Newsletterconnect_Output_Csv extends GN2_Newsletterconnect_Output_Abstract
 {
+    /**
+     * Gets the output, prepared for the browser.
+     *
+     * @return string Data output
+     */
     public function getContentType()
     {
         return 'text/plain';
     }
 
+    /**
+     * Displays one CSV line per array entry.
+     *
+     * @param array $tree  Array of output data.
+     * @param int   $level Level of tree
+     *
+     * @return string
+     */
     public function displayLine($tree,$level=0)
     {   $line = '';
         foreach ($tree as $branch) {
@@ -23,7 +53,7 @@ class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abst
             foreach ($branch as $k=>$v) {
                 if ($k=='childElements') {
                     $newlevel = $level+1;
-                    $line .= "\n".$this->displayLine($v,$newlevel);
+                    $line .= "\n".$this->displayLine($v, $newlevel);
                     $newline = false;
                 } else {
                     $line .= '"'.addSlashes($v).'"';
@@ -41,7 +71,13 @@ class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abst
         return $line;
     }
 
-    public function displayData() {
+    /**
+     * Gets the CSV output, prepared for the browser.
+     *
+     * @return string Data output
+     */
+    public function displayData()
+    {
         $data = $this->getData();
         return $this->displayLine($data->results);
     }

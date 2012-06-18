@@ -27,18 +27,29 @@
 class GN2_Newsletterconnect_Mapper_Products
 extends GN2_Newsletterconnect_Mapper_Abstract
 {
+    /**
+     * Builds the MySQL-Limit, depending on URL parameters.
+     *
+     * @todo Maybe restructure to get parameter from api.php?
+     * @return string SQL LIMIT String
+     */
     public function getLimit()
     {
         $start = intVal(oxConfig::getParameter('start'));
-
         return 'LIMIT '.$start.',50';
     }
 
+    /**
+     * Builds the MySQL-Where string, depending on URL parameters.
+     *
+     * @todo Maybe restructure to get parameters from api.php?
+     * @return string SQL WHERE String
+     */
     public function getWhere()
     {
         $where = 'WHERE (1';
 
-        # Fulltext search
+        /* Fulltext search */
         $q = mysql_real_escape_string(oxConfig::getParameter('q'));
         if ($q != '') {
             $where .='
@@ -50,14 +61,14 @@ extends GN2_Newsletterconnect_Mapper_Abstract
             ';
         }
 
-        # Category Search
+        /* Category Search */
         $cat = oxConfig::getParameter('cat');
         if ($cat != "") {
             $where .='
             && ( o2c.OXCATNID = "'.$cat.'" )';
         }
 
-        # Restrict entity
+        /* Restrict entity */
         if ($this->entity != "") {
             $where .= ' && a.OXID = "'.$this->entity.'" ';
         }
@@ -66,7 +77,13 @@ extends GN2_Newsletterconnect_Mapper_Abstract
         return $where;
     }
 
-    protected function getQuery($count=false) {
+    /**
+     * Builds the MySQL-Query for the mapper.
+     *
+     * @return string MySQL-Query
+     */
+    protected function getQuery()
+    {
         $qsql = '
         SELECT
             SQL_CALC_FOUND_ROWS
@@ -87,21 +104,26 @@ extends GN2_Newsletterconnect_Mapper_Abstract
         $LIMIT$
         ';
 
-        $qsql = str_replace('$WHERE$',$this->getWhere(),$qsql);
-        $qsql = str_replace('$LIMIT$',$this->getLimit(),$qsql);
+        $qsql = str_replace('$WHERE$', $this->getWhere(), $qsql);
+        $qsql = str_replace('$LIMIT$', $this->getLimit(), $qsql);
         return $qsql;
     }
 
+    /**
+     * Returns results from the mapper
+     *
+     * @return GN2_Newsletterconnect_Data_Result Meta & result data
+     */
     public function getResults()
     {
         $qsql = $this->getQuery();
-        $rows = oxDb::getDb(true)->Execute( $qsql );
+        $rows = oxDb::getDb(true)->Execute($qsql);
 
         $total = oxDb::getDb(true)->Execute('SELECT FOUND_ROWS() as rows');
 
         $data = array();
-        if( $rows != false && $rows->recordCount() > 0 ) {
-            while ( !$rows->EOF ) {
+        if ($rows != false && $rows->recordCount() > 0) {
+            while (!$rows->EOF) {
                 $article = oxNew('oxarticle');
                 $article->disableLazyLoading();
                 $article->load($rows->fields["OXID"]);
@@ -116,18 +138,18 @@ extends GN2_Newsletterconnect_Mapper_Abstract
 
                 $product->longdesc = $article->getLongDesc();
                 $product->pictures = array();
-                for($i=0;$i<12;$i++) {
+                for ($i=0;$i<12;$i++) {
                     $picture = $article->getPictureUrl($i+1);
-                    if (strpos($picture,'nopic.jpg') === false) {
+                    if (strpos($picture, 'nopic.jpg') === false) {
                         $product->pictures[] = $picture;
                     }
                 }
 
                 /* Product Thumbnails */
                 $product->thumbnails = array();
-                for($i=0;$i<12;$i++) {
+                for ($i=0;$i<12;$i++) {
                     $picture = $article->getThumbnailUrl($i+1);
-                    if (strpos($picture,'nopic.jpg') === false) {
+                    if (strpos($picture, 'nopic.jpg') === false) {
                         $product->thumbnails[] = $picture;
                     }
                 }
@@ -137,9 +159,12 @@ extends GN2_Newsletterconnect_Mapper_Abstract
                 $attributes = $article->getAttributes();
                 foreach ($attributes as $attribute) {
                     $attributeEntry = array();
-                    $attributeEntry['title'] = $attribute->oxattribute__oxtitle->rawValue;
-                    $attributeEntry['value'] = $attribute->oxattribute__oxvalue->rawValue;
-                    $product->attributes[] = $attributeEntry;
+                    $attributeEntry['title']
+                        = $attribute->oxattribute__oxtitle->rawValue;
+                    $attributeEntry['value']
+                        = $attribute->oxattribute__oxvalue->rawValue;
+                    $product->attributes[]
+                        = $attributeEntry;
                 }
 
                 $data[] = $product;
@@ -147,7 +172,7 @@ extends GN2_Newsletterconnect_Mapper_Abstract
             }
         }
 
-        $dataresult = new gn2_newsletterconnect_Data_Result;
+        $dataresult = new GN2_Newsletterconnect_Data_Result;
         $dataresult->setMeta('rows', $total->fields['rows']);
         $dataresult->setResult($data);
         return $dataresult;
