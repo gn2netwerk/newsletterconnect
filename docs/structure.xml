@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a2" title="GN2 NewsletterConnect">
+  <file path="api.php" hash="64582d1006bf3b25921f4a9bec1cc5fb" package="GN2\Newsletterconnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <include line="19" type="Require Once" package="Default">
+      <name>copyprotect.php</name>
+    </include>
+    <include line="86" type="Include Once" package="Default">
+      <name>modules/functions.php</name>
+    </include>
+    <include line="87" type="Include Once" package="Default">
+      <name>core/oxfunctions.php</name>
+    </include>
+    <function namespace="default" line="81" package="GN2\Newsletterconnect">
+      <name>getShopBasePath</name>
+      <type>function</type>
+      <docblock line="76">
+        <description><![CDATA[Returns OXID base path]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="76" name="return" description="OXID Base Path" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+      </docblock>
+    </function>
+    <class final="false" abstract="false" namespace="default" line="31" package="GN2\Newsletterconnect">
+      <name>GN2_Newsletterconnect_Api</name>
+      <full_name>\GN2_Newsletterconnect_Api</full_name>
+      <extends/>
+      <docblock line="21">
+        <description><![CDATA[GN2_Newsletterconnect_Api - Main API Initialization Class]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="21" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="21" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="21" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="21" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="21" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="21" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="38" package="">
+        <name>init</name>
+        <type>function</type>
+        <docblock line="33">
+          <description><![CDATA[Initializes the API. Parses URL and starts mapper/output classes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Data/Result.php" hash="9f9ba9876634fb2b678face7230241e6" package="GN2\Newsletterconnect\Data">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Data"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <parse_markers>
+      <error line="30" code="50018">No DocBlock was found for property $_data</error>
+      <error line="31" code="50018">No DocBlock was found for property $_meta</error>
+    </parse_markers>
+    <class final="false" abstract="false" namespace="default" line="28" package="GN2\Newsletterconnect\Data">
+      <name>GN2_Newsletterconnect_Data_Result</name>
+      <full_name>\GN2_Newsletterconnect_Data_Result</full_name>
+      <extends/>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Data_Result - Wrapper class to contain
+an output array and metadata about the output. Used by the output classes.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Data"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="30" package="Default">
+        <name>$_data</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="31" package="Default">
+        <name>$_meta</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="41" package="">
+        <name>setMeta</name>
+        <type>function</type>
+        <docblock line="33">
+          <description><![CDATA[Sets meta data. Expects key/value pairs.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="param" description="Key" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="33" name="param" description="Value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="33" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="41">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="41">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="55" package="">
+        <name>setResult</name>
+        <type>function</type>
+        <docblock line="48">
+          <description><![CDATA[Sets the result]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="param" description="Array of data. Can be multidimensional." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="48" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="65" package="">
+        <name>get</name>
+        <type>function</type>
+        <docblock line="60">
+          <description><![CDATA[Gets a wrapped class of meta/result data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="return" description="Meta &amp; result data" type="\stdClass">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Mapper/Abstract.php" hash="6ad9898d6bf11b49e9e3217a7a28b361" package="GN2\Newsletterconnect\Mapper">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Mapper"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <parse_markers>
+      <error line="31" code="50018">No DocBlock was found for property $entity</error>
+    </parse_markers>
+    <class final="false" abstract="true" namespace="default" line="29" package="GN2\Newsletterconnect\Mapper">
+      <name>GN2_Newsletterconnect_Mapper_Abstract</name>
+      <full_name>\GN2_Newsletterconnect_Mapper_Abstract</full_name>
+      <extends/>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Mapper_Abstract - Abstract data mapper class.]]></description>
+        <long-description><![CDATA[<p>Can be extended for different types of mapper.</p>]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Mapper"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="abstract" description=""/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" package="Default">
+        <name>$entity</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="default" line="38" package="">
+        <name>getResults</name>
+        <type>function</type>
+        <docblock line="33">
+          <description><![CDATA[Returns results from the mapper]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="return" description="Meta &amp; result data" type="\GN2_Newsletterconnect_Data_Result">
+            <type by_reference="false">\GN2_Newsletterconnect_Data_Result</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="47" package="">
+        <name>restrictEntity</name>
+        <type>function</type>
+        <docblock line="40">
+          <description><![CDATA[Restrict the mapper to one specific entity/id.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="e.g. Record ID" type="string" variable="$entity">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$entity</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Mapper/Categories.php" hash="b1130348518baca67fa7c8baa1e7145b" package="GN2\Newsletterconnect\Mapper">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Mapper"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="default" line="27" package="GN2\Newsletterconnect\Mapper">
+      <name>GN2_Newsletterconnect_Mapper_Categories</name>
+      <full_name>\GN2_Newsletterconnect_Mapper_Categories</full_name>
+      <extends>\GN2_Newsletterconnect_Mapper_Abstract</extends>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Mapper_Categories - Category Mapper]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Mapper"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="37" package="">
+        <name>_buildTree</name>
+        <type>function</type>
+        <docblock line="30">
+          <description><![CDATA[Recursively builds up a tree of categories]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="param" description="OXID CategoryList Object" type="\oxcategorylist" variable="$tree">
+            <type by_reference="false">\oxcategorylist</type>
+          </tag>
+          <tag line="30" name="return" description="Array containing tree data" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="37">
+          <name>$tree</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="58" package="">
+        <name>getResults</name>
+        <type>function</type>
+        <docblock line="53">
+          <description><![CDATA[Returns results from the mapper]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="return" description="Meta &amp; result data" type="\GN2_Newsletterconnect_Data_Result">
+            <type by_reference="false">\GN2_Newsletterconnect_Data_Result</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Mapper/Products.php" hash="7374fbf365b48b3baec08b6e3a9b6edf" package="GN2\Newsletterconnect\Mapper">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Mapper"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="default" line="27" package="GN2\Newsletterconnect\Mapper">
+      <name>GN2_Newsletterconnect_Mapper_Products</name>
+      <full_name>\GN2_Newsletterconnect_Mapper_Products</full_name>
+      <extends>\GN2_Newsletterconnect_Mapper_Abstract</extends>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Mapper_Products - Product Mapper]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Mapper"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="36" package="">
+        <name>getLimit</name>
+        <type>function</type>
+        <docblock line="30">
+          <description><![CDATA[Builds the MySQL-Limit, depending on URL parameters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="todo" description="Maybe restructure to get parameter from api.php?"/>
+          <tag line="30" name="return" description="SQL LIMIT String" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="48" package="">
+        <name>getWhere</name>
+        <type>function</type>
+        <docblock line="42">
+          <description><![CDATA[Builds the MySQL-Where string, depending on URL parameters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="todo" description="Maybe restructure to get parameters from api.php?"/>
+          <tag line="42" name="return" description="SQL WHERE String" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="default" line="85" package="">
+        <name>getQuery</name>
+        <type>function</type>
+        <docblock line="80">
+          <description><![CDATA[Builds the MySQL-Query for the mapper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="return" description="MySQL-Query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="117" package="">
+        <name>getResults</name>
+        <type>function</type>
+        <docblock line="112">
+          <description><![CDATA[Returns results from the mapper]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="112" name="return" description="Meta &amp; result data" type="\GN2_Newsletterconnect_Data_Result">
+            <type by_reference="false">\GN2_Newsletterconnect_Data_Result</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Output/Abstract.php" hash="4fea8051e92b7e5a75d856de60460706" package="GN2\Newsletterconnect\Output">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Output"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <parse_markers>
+      <error line="31" code="50018">No DocBlock was found for property $_data</error>
+    </parse_markers>
+    <class final="false" abstract="true" namespace="default" line="29" package="GN2\Newsletterconnect\Output">
+      <name>GN2_Newsletterconnect_Output_Abstract</name>
+      <full_name>\GN2_Newsletterconnect_Output_Abstract</full_name>
+      <extends/>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Output_Abstract - Abstract class for data
+output. Can be extended for different output formats.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Output"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="abstract" description=""/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" package="Default">
+        <name>$_data</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="default" line="38" package="">
+        <name>displayData</name>
+        <type>function</type>
+        <docblock line="33">
+          <description><![CDATA[Gets the output, prepared for the browser.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="return" description="Data output" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="default" line="45" package="">
+        <name>getContentType</name>
+        <type>function</type>
+        <docblock line="40">
+          <description><![CDATA[Gets the content-type for any HTTP-Headers.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="return" description="Content type" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="54" package="">
+        <name>setData</name>
+        <type>function</type>
+        <docblock line="47">
+          <description><![CDATA[Sets the data for the output]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="param" description="Meta &amp; result data" type="\GN2_Newsletterconnect_Data_Result" variable="$data">
+            <type by_reference="false">\GN2_Newsletterconnect_Data_Result</type>
+          </tag>
+          <tag line="47" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="54">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="68" package="">
+        <name>getData</name>
+        <type>function</type>
+        <docblock line="63">
+          <description><![CDATA[Gets the data from the GN2_Newsletterconnect_Data_Result object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="63" name="return" description="Meta &amp; result data" type="\stdClass">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="78" package="">
+        <name>show</name>
+        <type>function</type>
+        <docblock line="73">
+          <description><![CDATA[Sets HTTP-Headers and sends output to the browser.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="73" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Output/Csv.php" hash="1d0da413e0eae0761842e27c4e9acd86" package="GN2\Newsletterconnect\Output">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Output"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="default" line="27" package="GN2\Newsletterconnect\Output">
+      <name>GN2_Newsletterconnect_Output_Csv</name>
+      <full_name>\GN2_Newsletterconnect_Output_Csv</full_name>
+      <extends>\GN2_Newsletterconnect_Output_Abstract</extends>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Output_Csv - CSV Output Class]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Output"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="35" package="">
+        <name>getContentType</name>
+        <type>function</type>
+        <docblock line="30">
+          <description><![CDATA[Gets the output, prepared for the browser.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="return" description="Data output" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="48" package="">
+        <name>displayLine</name>
+        <type>function</type>
+        <docblock line="40">
+          <description><![CDATA[Displays one CSV line per array entry.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="Array of output data." type="array" variable="$tree">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="40" name="param" description="Level of tree" type="int" variable="$level">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="40" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="48">
+          <name>$tree</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="48">
+          <name>$level</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="79" package="">
+        <name>displayData</name>
+        <type>function</type>
+        <docblock line="74">
+          <description><![CDATA[Gets the CSV output, prepared for the browser.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="74" name="return" description="Data output" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="classes/Output/Json.php" hash="71eb9fa684b66f565aeca3dbded2aaca" package="GN2\Newsletterconnect\Output">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="subpackage" description="Output"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="default" line="27" package="GN2\Newsletterconnect\Output">
+      <name>GN2_Newsletterconnect_Output_Json</name>
+      <full_name>\GN2_Newsletterconnect_Output_Json</full_name>
+      <extends>\GN2_Newsletterconnect_Output_Abstract</extends>
+      <docblock line="16">
+        <description><![CDATA[GN2_Newsletterconnect_Output_Csv - CSV Output Class]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="16" name="subpackage" description="Output"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="34" package="">
+        <name>getContentType</name>
+        <type>function</type>
+        <docblock line="29">
+          <description><![CDATA[Gets the output, prepared for the browser.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="29" name="return" description="Data output" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="44" package="">
+        <name>displayData</name>
+        <type>function</type>
+        <docblock line="39">
+          <description><![CDATA[Gets the JSON-encoded output, prepared for the browser.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="39" name="return" description="Data output" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="copyprotect.php" hash="02d5b35ddad3992a53797f8dcf31855e" package="GN2\Newsletterconnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <include line="43" type="Include Once" package="Default">
+      <name>classes/Mapper/Abstract.php</name>
+    </include>
+    <include line="44" type="Include Once" package="Default">
+      <name>classes/Mapper/Categories.php</name>
+    </include>
+    <include line="45" type="Include Once" package="Default">
+      <name>classes/Mapper/Products.php</name>
+    </include>
+    <include line="46" type="Include Once" package="Default">
+      <name>classes/Output/Abstract.php</name>
+    </include>
+    <include line="47" type="Include Once" package="Default">
+      <name>classes/Output/Json.php</name>
+    </include>
+    <include line="48" type="Include Once" package="Default">
+      <name>classes/Output/Csv.php</name>
+    </include>
+    <include line="49" type="Include Once" package="Default">
+      <name>classes/Data/Result.php</name>
+    </include>
+    <include line="50" type="Include Once" package="Default">
+      <name>api.php</name>
+    </include>
+    <constant namespace="default" line="41" package="Default">
+      <name>GN2_NEWSLETTERCONNECT_LOADED</name>
+      <value><![CDATA[1]]></value>
+    </constant>
+  </file>
+  <file path="gn2_newsletterconnect_oxoutput.php" hash="680d4ae88f3a0efd14f4aac605d9ebfb" package="GN2\Newsletterconnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <include line="15" type="Require Once" package="GN2\Newsletterconnect">
+      <name>copyprotect.php</name>
+      <docblock line="2">
+        <description><![CDATA[GN2_NewsletterConnect]]></description>
+        <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+        <tag line="2" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="2" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+        <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+    </include>
+    <class final="false" abstract="false" namespace="default" line="27" package="GN2\Newsletterconnect">
+      <name>GN2_Newsletterconnect</name>
+      <full_name>\GN2_Newsletterconnect</full_name>
+      <extends/>
+      <docblock line="17">
+        <description><![CDATA[GN2_Newsletterconnect - Main OXID Module Initialization Class]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="17" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="17" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="17" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="17" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="17" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="40" package="">
+        <name>looplink</name>
+        <type>function</type>
+        <docblock line="29">
+          <description><![CDATA[looplink($directory);
+Automatically symlink every file in a specified folder
+within the module folder to a file with the same path
+in the root OXID directory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="29" name="param" description="Folder to link" type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="29" name="param" description="Prepend module folder to path yes/no" type="boolean" variable="$append">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="29" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$dir</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="40">
+          <name>$append</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="default" line="95" package="GN2\Newsletterconnect">
+      <name>GN2_Newsletterconnect_Oxoutput</name>
+      <full_name>\GN2_Newsletterconnect_Oxoutput</full_name>
+      <extends>\GN2_Newsletterconnect_Oxoutput_Parent</extends>
+      <docblock line="85">
+        <description><![CDATA[GN2_Newsletterconnect_Oxoutput - Dummy Class. We're only loading OXOUTPUT as a bootstrap.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="85" name="category" description="GN2_Newsletterconnect"/>
+        <tag line="85" name="package" description="GN2_Newsletterconnect"/>
+        <tag line="85" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="85" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="85" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="85" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+      </docblock>
+    </class>
+  </file>
+  <package name="" full_name=""/>
+  <package name="Default" full_name="Default"/>
+  <package name="GN2" full_name="GN2">
+    <package name="Newsletterconnect" full_name="GN2\Newsletterconnect">
+      <package name="Data" full_name="GN2\Newsletterconnect\Data"/>
+      <package name="Mapper" full_name="GN2\Newsletterconnect\Mapper"/>
+      <package name="Output" full_name="GN2\Newsletterconnect\Output"/>
+    </package>
+  </package>
+  <namespace name="default" full_name="default"/>
+  <marker count="2">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
