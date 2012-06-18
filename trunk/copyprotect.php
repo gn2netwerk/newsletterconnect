@@ -30,6 +30,14 @@ if (!in_array($_SERVER['HTTP_HOST'],$_Z)) {
     die();
 } else {
     define('GN2_NEWSLETTERCONNECT_LOADED',1);
-    require_once('api.php');
+    if (strpos($_SERVER['SCRIPT_NAME'],'api.php') !== false) {
+        require_once('classes/Mapper/Abstract.php');
+        require_once('classes/Mapper/Categories.php');
+        require_once('classes/Output/Abstract.php');
+        require_once('classes/Output/Json.php');
+        require_once('classes/Output/Csv.php');
+        require_once('classes/Data/Result.php');
+        require_once('api.php');
+    }
 
 }

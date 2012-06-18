@@ -1,0 +1,8 @@
+Allow From All
+Satisfy Any
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} (\/modules\/gn2_newsletterconnect\/)
+RewriteRule (.*)$ api.php?%{QUERY_STRING} [L]
+</IfModule>
