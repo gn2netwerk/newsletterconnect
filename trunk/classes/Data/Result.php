@@ -1,55 +1,62 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
  */
 
-/**
- * Container for any results from mappers
- */
-class gn2_newsletterconnect_Data_Result
+class GN2_Newsletterconnect_Data_Result
 {
     /**
      * Contains a formatted string result
      * @var string
      */
-    private $data = null;
+    private $_data = null;
 
     /**
      * Array of optional result meta information
      * @var array
      */
-    private $meta = array();
+    private $_meta = array();
 
     /**
      * Adds any metadata to the result
-     * @param string $key
-     * @param string $value
+     *
+     * @param string $key   Key e.g. Count
+     * @param string $value Value e.g. 45
+     *
+     * @return null
      */
     public function setMeta($key,$value)
     {
         if ($key!='' && $value!='') {
-            $this->meta[$key] = $value;
+            $this->_meta[$key] = $value;
         }
     }
 
     /**
      * Adds data to the result
-     * @param $data
+     *
+     * @param array $data Array of data. Can be anything.
+     *
      * @return void
      */
     public function setResult($data)
     {
-        $this->data = $data;
+        $this->_data = $data;
     }
 
     /**
      * Returns a stdClass with meta and result keys
-     * @return object
+     *
+     * @return stdClass
      */
     public function get()
     {

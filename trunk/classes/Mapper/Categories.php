@@ -1,24 +1,38 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
  */
 
 /**
- * OXID Category Mapper
+ * GN2_Newsletterconnect_Mapper_Categories - OXID Category Mapper
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  Release: <package_version>
+ * @link     http://www.gn2-netwerk.de/
  */
-class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapper_Abstract
+class GN2_Newsletterconnect_Mapper_Categories
+extends GN2_Newsletterconnect_Mapper_Abstract
 {
     /**
      * Builds the category tree and converts to a friendlier format
-     * @param mixed $tree
+     *
+     * @param mixed $tree Tree array
+     *
      * @return array
      */
-    private function buildTree($tree)
+    private function _buildTree($tree)
     {
         $data = array();
         foreach ($tree as $branch) {
@@ -27,7 +41,7 @@ class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapp
             $entry->name = $branch->oxcategories__oxtitle->rawValue;
             $subcats = $branch->getSubCats();
             if (count($subcats) > 0) {
-                $entry->childElements = $this->buildtree($subcats);
+                $entry->childElements = $this->_buildTree($subcats);
             }
             $data[] = $entry;
         }
@@ -36,15 +50,16 @@ class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapp
 
     /**
      * Calls the OXID Classes and generates a tree of objects
+     *
      * @return gn2_newsletterconnect_Data_Result
      */
     public function getResults()
     {
-        $oCategoryTree = oxNew( 'oxcategorylist' );
-        $oCategoryTree->buildTree( null, true, true, true );
-        $data = $this->buildTree($oCategoryTree);
+        $oCategoryTree = oxNew('oxcategorylist');
+        $oCategoryTree->buildTree(null, true, true, true);
+        $data = $this->_buildTree($oCategoryTree);
 
-        $dataresult = new gn2_newsletterconnect_Data_Result;
+        $dataresult = new GN2_Newsletterconnect_Data_Result;
         $dataresult->setResult($data);
 
         return $dataresult;

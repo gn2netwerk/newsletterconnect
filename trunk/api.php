@@ -1,26 +1,37 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
  */
 
-require_once('copyprotect.php');
+require_once 'copyprotect.php';
 
 /**
- * Main Class to process API-Requests
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
+ * GN2_Newsletterconnect_Api - Main Class to process API-Requests
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  Release: <package_version>
+ * @link     http://www.gn2-netwerk.de/
  */
-class gn2_newsletterconnect_Api
+class GN2_Newsletterconnect_Api
 {
     /**
      * Initializes the gn2_newsletterconnect-API
      * and processes the URL via RegEx. The found mapper is
      * then instantiated, control is given to the mapper class
      * and the output is processed by the output class.
+     *
      * @return void
      */
     static public function init()
@@ -65,30 +76,34 @@ if (!function_exists('getShopBasePath')) {
      * Returns the OXID-Shop Base Path. The function returns
      * the correct folder name, even if the module folder has been
      * symlinked.
+     *
      * @return void
      */
     function getShopBasePath()
     {
-        return $_SERVER['DOCUMENT_ROOT'].'/'.dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
+        return $_SERVER['DOCUMENT_ROOT'].'/'.
+            dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
     }
 
-    # Include OXID Core Classes
-    require getShopBasePath() . 'modules/functions.php';
-    require_once getShopBasePath() . 'core/oxfunctions.php';
+    /* Include OXID Core Classes */
+    include getShopBasePath() . 'modules/functions.php';
+    include getShopBasePath() . 'core/oxfunctions.php';
     oxUtils::getInstance()->stripGpcMagicQuotes();
 }
 
 
 $valid = false;
 try {
-    # Fix for PHP-CGI
+    /* Fix for PHP-CGI */
     if (!isset($_SERVER['PHP_AUTH_USER'])) {
-        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(
+            ':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6))
+        );
     }
 
-    # Authenticate User via the OXID oxuser Classes
+    /* Authenticate User via the OXID oxuser Classes */
     $oUser = oxNew('oxuser');
-    $oUser->login( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'] );
+    $oUser->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
     $oGroups = $oUser->getUserGroups();
 
     foreach ($oGroups as $group) {
@@ -100,12 +115,12 @@ try {
 catch (Exception $e) {
 }
 
-# Constantly ask for username & password via HTTP-Authentification
+/* Constantly ask for username & password via HTTP-Authentification */
 while ( !$valid ) {
     header('WWW-Authenticate: Basic realm="NewsletterConnect"');
     header('HTTP/1.0 401 Unauthorized');
     exit;
 }
 
-# If Authenticated, init() the API
+/* If Authenticated, init() the API */
 gn2_newsletterconnect_Api::init();

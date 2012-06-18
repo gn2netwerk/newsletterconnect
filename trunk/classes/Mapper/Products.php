@@ -1,20 +1,33 @@
 <?php
 /**
  * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @license GN2 Commercial Addon License
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
  */
 
 /**
- * OXID Product Mapper
+ * GN2_Newsletterconnect_Mapper_Products - OXID Product Mapper
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de
+ * @version  Release: <package_version>
+ * @link     http://www.gn2-netwerk.de/
  */
-class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper_Abstract
+class GN2_Newsletterconnect_Mapper_Products
+extends GN2_Newsletterconnect_Mapper_Abstract
 {
     /**
      * Returns the LIMIT sql string, depending on URL Parameters
+     *
      * @return string
      */
     public function getLimit()
@@ -26,13 +39,14 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
 
     /**
      * Returns the WHERE sql string, depending on URL Parameters
+     *
      * @return string
      */
     public function getWhere()
     {
         $where = 'WHERE (1';
 
-        # Fulltext search
+        /* Fulltext search */
         $q = oxConfig::getParameter('q');
         if ($q != '') {
             $where .='
@@ -44,7 +58,7 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
             ';
         }
 
-        # Category Search
+        /* Category Search */
         $cat = oxConfig::getParameter('cat');
         if ($cat != "") {
             $where .='
@@ -57,6 +71,7 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
 
     /**
      * Executes SQL and returns results
+     *
      * @return gn2_newsletterconnect_Data_Result
      */
     public function getResults()
@@ -80,13 +95,13 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
         $LIMIT$
         ';
 
-        $qsql = str_replace('$WHERE$',$this->getWhere(),$qsql);
-        $qsql = str_replace('$LIMIT$',$this->getLimit(),$qsql);
+        $qsql = str_replace('$WHERE$', $this->getWhere(), $qsql);
+        $qsql = str_replace('$LIMIT$', $this->getLimit(), $qsql);
 
-        $rows = oxDb::getDb(true)->Execute( $qsql );
+        $rows = oxDb::getDb(true)->Execute($qsql);
         $data = array();
-        if( $rows != false && $rows->recordCount() > 0 ) {
-            while ( !$rows->EOF ) {
+        if ($rows != false && $rows->recordCount() > 0) {
+            while (!$rows->EOF) {
                 $article = oxNew('oxarticle');
                 $article->disableLazyLoading();
                 $article->load($rows->fields["OXID"]);
@@ -99,9 +114,9 @@ class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper
 
                 $product->longdesc = $article->getLongDesc();
                 $product->pictures = array();
-                for($i=0;$i<12;$i++) {
+                for ($i=0;$i<12;$i++) {
                     $picture = $article->getPictureUrl($i+1);
-                    if (strpos($picture,'nopic.jpg') === false) {
+                    if (strpos($picture, 'nopic.jpg') === false) {
                         $product->pictures[] = $picture;
                     }
                 }
