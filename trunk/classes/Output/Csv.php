@@ -19,15 +19,20 @@ class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abst
     {   $line = '';
         foreach ($tree as $branch) {
             $line .= '"'.$level.'";';
+            $j = 0;
             foreach ($branch as $k=>$v) {
                 if ($k=='childElements') {
                     $newlevel = $level+1;
                     $line .= "\n".$this->displayLine($v,$newlevel);
                     $newline = false;
                 } else {
-                    $line .= '"'.addSlashes($v).'"'.';';
+                    $line .= '"'.addSlashes($v).'"';
+                    if ($j < count($branch)) {
+                        $line .= ';';
+                    }
                     $newline = true;
                 }
+                $j++;
             }
             if ($newline) {
                 $line .="\n";

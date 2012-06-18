@@ -33,6 +33,7 @@ if (!in_array($_SERVER['HTTP_HOST'],$_Z)) {
     if (strpos($_SERVER['SCRIPT_NAME'],'api.php') !== false) {
         require_once('classes/Mapper/Abstract.php');
         require_once('classes/Mapper/Categories.php');
+        require_once('classes/Mapper/Products.php');
         require_once('classes/Output/Abstract.php');
         require_once('classes/Output/Json.php');
         require_once('classes/Output/Csv.php');

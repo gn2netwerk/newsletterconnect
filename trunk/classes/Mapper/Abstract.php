@@ -10,5 +10,11 @@
 
 abstract class gn2_newsletterconnect_Mapper_Abstract
 {
+    protected $entity;
     abstract function getResults();
+    public function restrictEntity($entity)
+    {
+        $this->entity = $entity;
+    }
+
 }

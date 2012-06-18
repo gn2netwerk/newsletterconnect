@@ -56,6 +56,7 @@ if (!function_exists('getShopBasePath')) {
     }
     require getShopBasePath() . 'modules/functions.php';
     require_once getShopBasePath() . 'core/oxfunctions.php';
+    oxUtils::getInstance()->stripGpcMagicQuotes();
 }
 
 

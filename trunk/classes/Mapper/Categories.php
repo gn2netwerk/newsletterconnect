@@ -10,10 +10,9 @@
 
 class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapper_Abstract
 {
-    private $entity;
-
     private function buildTree($tree)
     {
+        $data = array();
         foreach ($tree as $branch) {
             $entry = new stdClass();
             $entry->id = $branch->oxcategories__oxid->rawValue;
@@ -39,8 +38,4 @@ class gn2_newsletterconnect_Mapper_Categories extends gn2_newsletterconnect_Mapp
         return $dataresult;
     }
 
-    public function restrictEntity($entity)
-    {
-        $this->entity = $entity;
-    }
 }
