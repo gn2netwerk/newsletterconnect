@@ -83,7 +83,7 @@ class GN2_Newsletterconnect
 
 
 /**
- * GN2_Newsletterconnect - Dummy Class. We're only loading OXOUTPUT as a bootstrap.
+ * GN2_Newsletterconnect_Oxoutput - Dummy Class. We're only loading OXOUTPUT as a bootstrap.
  *
  * @category GN2_Newsletterconnect
  * @package  GN2_Newsletterconnect

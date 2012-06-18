@@ -23,9 +23,8 @@
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
- * @abstract
  */
-class GN2_Newsletterconnect_Output_Json extends gn2_newsletterconnect_Output_Abstract
+class GN2_Newsletterconnect_Output_Json extends GN2_Newsletterconnect_Output_Abstract
 {
     /**
      * Gets the output, prepared for the browser.
