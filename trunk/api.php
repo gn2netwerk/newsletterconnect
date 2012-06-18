@@ -62,6 +62,11 @@ if (!function_exists('getShopBasePath')) {
 
 $valid = false;
 try {
+    # Fix for PHP-CGI
+    if (!isset($_SERVER['PHP_AUTH_USER'])) {
+        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+    }
+
     $oUser = oxNew('oxuser');
     $oUser->login( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'] );
     $oGroups = $oUser->getUserGroups();
