@@ -8,9 +8,21 @@
  * @license GN2 Commercial Addon License
  */
 
+/**
+ * Container for any results from mappers
+ */
 class gn2_newsletterconnect_Data_Result
 {
-    private $data = array();
+    /**
+     * Contains a formatted string result
+     * @var string
+     */
+    private $data = null;
+
+    /**
+     * Array of optional result meta information
+     * @var array
+     */
     private $meta = array();
 
     /**

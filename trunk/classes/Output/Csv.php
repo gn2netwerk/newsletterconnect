@@ -8,6 +8,9 @@
  * @license GN2 Commercial Addon License
  */
 
+/**
+ * CSV Output-Class Implementation
+ */
 class gn2_newsletterconnect_Output_Csv extends gn2_newsletterconnect_Output_Abstract
 {
     /**

@@ -8,11 +8,31 @@
  * @license GN2 Commercial Addon License
  */
 
+/**
+ * Abstract class for various output formats
+ * @abstract
+ */
 abstract class gn2_newsletterconnect_Output_Abstract
 {
+    /**
+     * Contains an instance of gn2_newsletterconnect_Data_Result,
+     * which is sent to the browser via send()
+     * @var gn2_newsletterconnect_Data_Result
+     */
     private $data;
 
+    /**
+     * Method for child-classes to convert the data result
+     * to a string.
+     * @return string
+     */
     abstract function displayData();
+
+    /**
+     * Method for child-classes to return the correct http content type
+     * e.g. application/json or text/plain etc.
+     * @return string
+     */
     abstract function getContentType();
 
     /**

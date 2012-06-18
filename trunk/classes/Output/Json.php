@@ -8,6 +8,9 @@
  * @license GN2 Commercial Addon License
  */
 
+/**
+ * JSON Output-Class Implementation
+ */
 class gn2_newsletterconnect_Output_Json extends gn2_newsletterconnect_Output_Abstract
 {
     /**

@@ -8,6 +8,9 @@
  * @license GN2 Commercial Addon License
  */
 
+/**
+ * OXID Product Mapper
+ */
 class gn2_newsletterconnect_Mapper_Products extends gn2_newsletterconnect_Mapper_Abstract
 {
     /**

@@ -11,13 +11,19 @@
 
 require_once('copyprotect.php');
 
-class gn2_newsletterconnect
+/**
+ * Generic Linker Class. Contains functions to symlink
+ * parts of the module into specific OXID core folders
+ */
+class gn2_newsletterconnect_Linker
 {
     /**
      * looplink($directory);
      * Automatically symlink every file in a specified folder
      * within the module folder to a file with the same path
      * in the root OXID directory.
+     * @param string $dir Folder to looplink
+     * @param string $append Appends correct parent path to $dir
      */
     function looplink($dir = '',$append=true)
     {
@@ -62,14 +68,14 @@ class gn2_newsletterconnect
 /**
  * Dummy Class. We're only loading OXOUTPUT as a bootstrap.
  */
-class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_parent
+class gn2_newsletterconnect_Oxoutput extends gn2_newsletterconnect_Oxoutput_parent
 {
 }
 
 # Looplink subfolders of this module
 if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
-    gn2_newsletterconnect::looplink('core');
-    gn2_newsletterconnect::looplink('admin');
-    gn2_newsletterconnect::looplink('out');
-    gn2_newsletterconnect::looplink('views');
+    gn2_newsletterconnect_Linker::looplink('core');
+    gn2_newsletterconnect_Linker::looplink('admin');
+    gn2_newsletterconnect_Linker::looplink('out');
+    gn2_newsletterconnect_Linker::looplink('views');
 }

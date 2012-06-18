@@ -10,7 +10,11 @@
 
 require_once('copyprotect.php');
 
-class gn2_newsletterconnect_api
+/**
+ * Main Class to process API-Requests
+ * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
+ */
+class gn2_newsletterconnect_Api
 {
     /**
      * Initializes the gn2_newsletterconnect-API
@@ -104,4 +108,4 @@ while ( !$valid ) {
 }
 
 # If Authenticated, init() the API
-gn2_newsletterconnect_api::init();
+gn2_newsletterconnect_Api::init();

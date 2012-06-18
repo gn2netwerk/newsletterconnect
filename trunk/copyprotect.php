@@ -29,7 +29,11 @@ if (!in_array($_SERVER['HTTP_HOST'],$_Z)) {
     echo '<p>Please write to <a href="mailto:kontakt@gn2-netwerk.de?subject='.$subject.'">kontakt@gn2-netwerk.de</a> for license information.</div>';
     die();
 } else {
-    define('GN2_NEWSLETTERCONNECT_LOADED',1);
+    /**
+     * Defined when all the dependencies are loaded.
+     * @var boolean
+     */
+    define('GN2_NEWSLETTERCONNECT_LOADED',true);
     if (strpos($_SERVER['SCRIPT_NAME'],'api.php') !== false) {
         require_once('classes/Mapper/Abstract.php');
         require_once('classes/Mapper/Categories.php');
@@ -39,6 +43,6 @@ if (!in_array($_SERVER['HTTP_HOST'],$_Z)) {
         require_once('classes/Output/Csv.php');
         require_once('classes/Data/Result.php');
         require_once('api.php');
+        $x = new gn2_newsletterconnect_Mapper_Products;
     }
-
 }
