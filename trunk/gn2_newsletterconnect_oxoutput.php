@@ -6,6 +6,7 @@
  * @link http://www.gn2-netwerk.de/
  * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
  * @license GN2 Commercial Addon License
+ * @license gn2_newsletterconnect_oxoutput.php - MIT License
  */
 
 require_once('copyprotect.php');
@@ -65,7 +66,7 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
 {
 }
 
-if (is_defined('GN2_NEWSLETTERCONNECT_LOADED')) {
+if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
     gn2_newsletterconnect::looplink('core');
     gn2_newsletterconnect::looplink('admin');
     gn2_newsletterconnect::looplink('out');

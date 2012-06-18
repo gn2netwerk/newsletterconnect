@@ -30,6 +30,6 @@ if (!in_array($_SERVER['HTTP_HOST'],$_Z)) {
     die();
 } else {
     define('GN2_NEWSLETTERCONNECT_LOADED',1);
-
+    require_once('api.php');
 
 }
