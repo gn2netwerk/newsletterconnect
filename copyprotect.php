@@ -11,9 +11,10 @@
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
+ob_start();
 
 $_Z = array(
-    '192.168.1.78',
+    '192.168.1.71',
     '127.0.0.1',
     'mailingwork.gn2-dev.de',
     'localhost'
@@ -22,10 +23,17 @@ $_Z = array(
 if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
     header('HTTP/1.0 401 Unauthorized');
     header('Content-Type:text/html');
-    while (ob_end_clean()) {
+    while (@ob_end_clean()) {
     }
 
-    $prefix = ($_SERVER['HTTP_PORT'] == 443) ? 'https://' : 'http://';
+    $httpport = '80';
+    if (isset($_SERVER['HTTP_PORT'])) {
+        $httpport = $_SERVER['HTTP_PORT'];
+    } elseif (isset($_SERVER['SERVER_PORT'])) {
+        $httpport = $_SERVER['SERVER_PORT'];
+    }
+
+    $prefix = ($httpport == 443) ? 'https://' : 'http://';
     $prefix .= $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI'];
     $subject = '['.$prefix.'] - gn2_newsletterconnect license';
     echo '<p><img src="http://www.gn2-netwerk.de/img/gn2-netwerk.png"></p>';
@@ -49,5 +57,4 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
         include_once 'classes/Data/Result.php';
         include_once 'api.php';
     }
-
 }

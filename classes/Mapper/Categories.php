@@ -59,7 +59,7 @@ extends GN2_Newsletterconnect_Mapper_Abstract
     {
         $oCategoryTree = oxNew('oxcategorylist');
         $oCategoryTree->buildTree(null, true, true, true);
-        $data = $this->buildTree($oCategoryTree);
+        $data = $this->_buildTree($oCategoryTree);
 
         $dataresult = new GN2_Newsletterconnect_Data_Result;
         $dataresult->setResult($data);

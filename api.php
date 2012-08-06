@@ -11,10 +11,7 @@
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
-
-if (!ob_start('ob_gzhandler')) {
-    ob_start();
-}
+$er = error_reporting(E_ALL ^E_NOTICE);
 
 require_once 'copyprotect.php';
 
@@ -92,11 +89,10 @@ if (!function_exists('getShopBasePath')) {
 $valid = false;
 try {
     /* Fix for PHP-CGI */
-    if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']=="") {
         list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])
             = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
     }
-
     $oUser = oxNew('oxuser');
     $oUser->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
     $oGroups = $oUser->getUserGroups();
@@ -117,3 +113,4 @@ while ( !$valid ) {
 }
 gn2_newsletterconnect_api::init();
 ob_end_flush();
+error_reporting($er);
