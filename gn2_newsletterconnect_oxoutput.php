@@ -94,6 +94,19 @@ class GN2_Newsletterconnect
  */
 class GN2_Newsletterconnect_Oxoutput extends GN2_Newsletterconnect_Oxoutput_Parent
 {
+    public function __construct()
+    {
+        $class = oxConfig::getParameter('cl');
+        switch ($class) {
+        case 'register':
+
+            echo 'on the registration page';
+
+            break;
+        }
+
+        parent::__construct();
+    }
 }
 
 if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {

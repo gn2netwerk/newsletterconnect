@@ -28,4 +28,5 @@
  */
 interface GN2_Newsletterconnect_MailingService_Interface
 {
+    public function getLists();
 }

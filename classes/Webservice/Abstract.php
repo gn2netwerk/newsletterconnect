@@ -30,7 +30,24 @@ abstract class GN2_Newsletterconnect_Webservice_Abstract
 {
     private $_params = array();
 
-    public function addParam($key, $value) {
-
+    public function addParam($key, $value)
+    {
+        if (!is_null($key)) {
+            if (is_null($value) && array_key_exists($key, $this->_params)) {
+                /* Unset */
+                $this->removeParam($key);
+            } elseif (!is_null($value)) {
+                /* Set */
+                $this->_params[$key] = $value;
+            }
+        }
     }
+
+    public function removeParam($key)
+    {
+        if (array_key_exists($key, $this->_params)) {
+            unset($this->_params[$key]);
+        }
+    }
+
 }
