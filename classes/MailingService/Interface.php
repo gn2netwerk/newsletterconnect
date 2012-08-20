@@ -28,6 +28,33 @@
  */
 interface GN2_Newsletterconnect_MailingService_Interface
 {
+    /**
+     * Gets current lists from the MailingService
+     *
+     * @abstract
+     * @return array Array of GN2_NewsletterConnect_Mailing_List Objects
+     */
     public function getLists();
-    public function createList($list);
+
+    /**
+     * Creates a new list on the MailingService
+     *
+     * @param string $listName List Name
+     *
+     * @abstract
+     * @return mixed
+     */
+    public function createList($listName);
+
+    /**
+     * Creates a new recipient on the MailingService
+     *
+     * @param mixed                                   $listId    List Id
+     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     *
+     * @return void
+     */
+    public function createRecipient($listId, $recipient);
+
+    public function getRecipientByEmail($email);
 }

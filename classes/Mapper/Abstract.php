@@ -28,7 +28,7 @@
  */
 abstract class GN2_Newsletterconnect_Mapper_Abstract
 {
-    protected $entity;
+    protected $_entity;
 
     /**
      * Returns results from the mapper
@@ -40,13 +40,13 @@ abstract class GN2_Newsletterconnect_Mapper_Abstract
     /**
      * Restrict the mapper to one specific entity/id.
      *
-     * @param string $entity e.g. Record ID
+     * @param string $_entity e.g. Record ID
      *
      * @return void
      */
-    public function restrictEntity($entity)
+    public function restrictEntity($_entity)
     {
-        $this->entity = $entity;
+        $this->entity = $_entity;
     }
 
 }

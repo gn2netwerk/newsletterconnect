@@ -24,7 +24,7 @@
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
  */
-class GN2_Newsletterconnect_Mailing_List
+class GN2_NewsletterConnect_Mailing_List
 {
     /**
      * @var List identification ID;

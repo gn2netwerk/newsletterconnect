@@ -31,7 +31,14 @@ abstract class GN2_Newsletterconnect_Webservice_Curl
     private $_post = false;
     private $_url = null;
 
-    protected function _setPost($post = false)
+    /**
+     * Sets the curl mode to post or get
+     *
+     * @param bool $post True/False
+     *
+     * @return void
+     */
+    protected function setPost($post = false)
     {
         if ($post === true) {
             $this->_post = true;
@@ -40,11 +47,23 @@ abstract class GN2_Newsletterconnect_Webservice_Curl
         }
     }
 
+    /**
+     * Sets the API-Url
+     *
+     * @param string $url API-Url
+     *
+     * @return void
+     */
     final public function setUrl($url)
     {
         $this->_url = $url;
     }
 
+    /**
+     * Contacts the webservice, sets parameters and returns response
+     *
+     * @return string API-Response
+     */
     final public function getResponse()
     {
         $ch = curl_init();
@@ -52,11 +71,22 @@ abstract class GN2_Newsletterconnect_Webservice_Curl
         if ($this->_returnTransfer) {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, $this->_returnTransfer);
         }
+
+        $query = http_build_query($this->_params);
+
+        echo $this->_url.'?'.urldecode($query).'<br>';
+
         if ($this->_post) {
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($this->_params));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
         }
         $result = curl_exec($ch);
+
+        $error = curl_error($ch);
+        print_r($error);
+        $result = $result;
+        print_r($result);
+        echo '<hr>';
         return $result;
     }
 
