@@ -13,5 +13,6 @@
     'author'        => 'GN2 netwerk',
     'extend'        => array(
                         'oxoutput' => 'gn2_newsletterconnect/gn2_newsletterconnect_oxoutput',
+                        'oxuser'   => 'gn2_newsletterconnect/gn2_newsletterconnect_oxuser',
     )
 );

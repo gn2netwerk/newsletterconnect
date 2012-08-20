@@ -24,11 +24,12 @@
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
  */
-class GN2_Newsletterconnect_Webservice_Curl
+abstract class GN2_Newsletterconnect_Webservice_Curl
     extends GN2_Newsletterconnect_Webservice_Abstract
 {
     private $_returnTransfer = true;
     private $_post = false;
+    private $_url = null;
 
     protected function _setPost($post = false)
     {
@@ -39,16 +40,25 @@ class GN2_Newsletterconnect_Webservice_Curl
         }
     }
 
-    protected function send()
+    final public function setUrl($url)
+    {
+        $this->_url = $url;
+    }
+
+    final public function getResponse()
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->_url);
         if ($this->_returnTransfer) {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, $this->_returnTransfer);
         }
-        if ($this->_mode == 'post') {
+        if ($this->_post) {
             curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($this->_params));
         }
-
+        $result = curl_exec($ch);
+        return $result;
     }
+
+
 }

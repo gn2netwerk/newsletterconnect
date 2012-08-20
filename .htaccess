@@ -4,7 +4,7 @@ Satisfy Any
 <IfModule mod_rewrite.c>
 RewriteEngine On
 #RewriteBase /modules/gn2_newsletterconnect/
-#RewriteCond %{REQUEST_URI} !^.*(.jpg|.png|.gif)
+RewriteCond %{REQUEST_URI} !^.*(.jpg|.png|.gif)
 RewriteCond %{REQUEST_URI} (\/modules\/gn2_newsletterconnect\/)
 RewriteRule (.*)$ api.php?%{QUERY_STRING} [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 </IfModule>

@@ -28,7 +28,18 @@
  */
 abstract class GN2_Newsletterconnect_Webservice_Abstract
 {
-    private $_params = array();
+    protected $_params = array();
+    protected $_config = array();
+
+    public function __construct($config = array())
+    {
+        if (is_array($config)) {
+            $this->_config = $config;
+        }
+        $this->init();
+    }
+
+    abstract public function init();
 
     public function addParam($key, $value)
     {
@@ -41,6 +52,11 @@ abstract class GN2_Newsletterconnect_Webservice_Abstract
                 $this->_params[$key] = $value;
             }
         }
+    }
+
+    public function resetParams()
+    {
+        $this->_params = array();
     }
 
     public function removeParam($key)

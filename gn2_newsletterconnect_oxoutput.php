@@ -24,8 +24,18 @@ require_once 'copyprotect.php';
  * @version  Release: <package_version>
  * @link     http://www.gn2-netwerk.de/
  */
-class GN2_Newsletterconnect
+class GN2_NewsletterConnect
 {
+    public static $config = array();
+
+    private function __construct()
+    {
+        $this->looplink('core');
+        $this->looplink('admin');
+        $this->looplink('out');
+        $this->looplink('views');
+    }
+
     /**
      * looplink($directory);
      * Automatically symlink every file in a specified folder
@@ -60,7 +70,7 @@ class GN2_Newsletterconnect
             while (false !== ($file = readdir($handle))) {
                 $path = $me.'/'. $file;
                 if (filetype($path) == "dir" && $file != "." && $file != "..") {
-                    self::looplink($path, false);
+                    $this->looplink($path, false);
                 } else if ($file != "." && $file != "..") {
                     if ( !in_array(
                         basename($file),
@@ -79,6 +89,33 @@ class GN2_Newsletterconnect
             closedir($handle);
         }
     }
+
+    public static function main()
+    {
+        try {
+            include_once dirname(__FILE__).'/settings.php';
+            $newsletterConnect = new self;
+        } catch (Exception $e) {
+            echo '<pre><strong>gn2_newsletterconnect:</strong> Error:<br>';
+            print_r($e);
+            echo '</pre>';
+            die();
+        }
+    }
+
+    public static function getMailingService()
+    {
+        if (isset(self::$config['mailingService'])) {
+            $key = self::$config['mailingService'];
+            $className = 'GN2_NewsletterConnect_MailingService_'.$key;
+            if (class_exists($className)) {
+                $config = (isset(self::$config['service_'.$key])) ? self::$config['service_'.$key] : array();
+                return new $className($config);
+            }
+            throw new Exception('gn2_newsletterConnect- Cannot find class:'.$className);
+        }
+    }
+
 }
 
 
@@ -96,6 +133,7 @@ class GN2_Newsletterconnect_Oxoutput extends GN2_Newsletterconnect_Oxoutput_Pare
 {
     public function __construct()
     {
+        /*
         $class = oxConfig::getParameter('cl');
         switch ($class) {
         case 'register':
@@ -103,15 +141,12 @@ class GN2_Newsletterconnect_Oxoutput extends GN2_Newsletterconnect_Oxoutput_Pare
             echo 'on the registration page';
 
             break;
-        }
+        }*/
 
         parent::__construct();
     }
 }
 
 if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
-    gn2_newsletterconnect::looplink('core');
-    gn2_newsletterconnect::looplink('admin');
-    gn2_newsletterconnect::looplink('out');
-    gn2_newsletterconnect::looplink('views');
+    GN2_Newsletterconnect::main();
 }
