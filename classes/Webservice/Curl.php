@@ -74,19 +74,15 @@ abstract class GN2_Newsletterconnect_Webservice_Curl
 
         $query = http_build_query($this->_params);
 
-        echo $this->_url.'?'.urldecode($query).'<br>';
-
         if ($this->_post) {
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
         }
         $result = curl_exec($ch);
-
+        //echo $this->_url.'<br>';
+        //echo $result.'<br><hr>';
         $error = curl_error($ch);
-        print_r($error);
-        $result = $result;
-        print_r($result);
-        echo '<hr>';
+
         return $result;
     }
 

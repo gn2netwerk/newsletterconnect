@@ -49,12 +49,16 @@ interface GN2_Newsletterconnect_MailingService_Interface
     /**
      * Creates a new recipient on the MailingService
      *
-     * @param mixed                                   $listId    List Id
+     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
      */
-    public function createRecipient($listId, $recipient);
+    public function optInRecipient($list, $recipient);
+
+    public function subscribeRecipient($list, $recipient);
+
+    public function unsubscribeRecipient($list, $recipient);
 
     public function getRecipientByEmail($email);
 }

@@ -27,6 +27,7 @@
 
 class GN2_NewsletterConnect_Mailing_Recipient
 {
+    private $_id;
     private $_salutation;
     private $_title;
     private $_firstName;
@@ -45,6 +46,29 @@ class GN2_NewsletterConnect_Mailing_Recipient
     private $_faxNumber;
     private $_mobPrefix;
     private $_mobNumber;
+
+    /**
+     * Sets Id
+     *
+     * @param mixed $id ID
+     *
+     * @return void
+     */
+    public function setId($id)
+    {
+        $this->_id = $id;
+    }
+
+    /**
+     * Gets Id
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
 
     /**
      * Sets Company

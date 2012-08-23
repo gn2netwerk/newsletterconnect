@@ -21,7 +21,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
      *
      * @return GN2_NewsletterConnect_Mailing_Recipient
      */
-    private function _gn2NewsletterConnectOxid2Recipient($email, $userInfo)
+    protected function _gn2NewsletterConnectOxid2Recipient($email, $userInfo)
     {
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
 
@@ -57,9 +57,6 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
             /* Get user preference */
             $oNewsSubscription = $this->getNewsSubscription();
 
-            /* Get main shop list */
-            $list = $mailingService->getMainShopList();
-
             /* Create a recipient from the OXID user-data */
             $email = oxConfig::getParameter('lgn_usr');
             $userinfo = oxConfig::getParameter('invadr');
@@ -67,13 +64,11 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
 
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
-                    $mailingService->createRecipient($list->getId(), $newRecipient);
+                    $mailingService->optInRecipient($mailingService->getMainShopList(), $newRecipient);
                 }
             } catch (Exception $e) {
                 //TODO: Live Exceptions?
             }
         }
-        die('died');
-
     }
 }

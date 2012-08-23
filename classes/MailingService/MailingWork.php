@@ -142,35 +142,70 @@ class GN2_Newsletterconnect_MailingService_Mailingwork
      * @return void
      * @throws Exception
      */
-    public function createRecipient($listId, $recipient)
+    public function optInRecipient($list, $recipient)
     {
         if (is_object($recipient)) {
             $this->_setMailingworkUrl('optinRecipient');
 
             $this->addParam('optinSetupId', $this->_config['api_signupsetup']);
 
-            $advanced = array(
-                'lists' => array($listId=>1),
-            );
-            $this->addParam('advanced', $advanced);
-
             $fields = array();
-            $fields['E-Mail']   = $recipient->getEmail();
-            $fields['Anrede']   = $recipient->getSalutation();
-            $fields['Vorname']  = $recipient->getFirstName();
-            $fields['Nachname'] = $recipient->getLastName();
+            $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
+            $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
+            $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+            $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
 
             $this->addParam('fields', $fields);
-
             $recipientResponse = $this->_getDecodedResponse();
-            var_dump($recipientResponse['error']);
             if ($recipientResponse['error']!==0) {
-                throw new Exception('createRecipient failed: '.$recipientResponse);
+                throw new Exception('optInRecipient failed: '.$recipientResponse);
             }
         } else {
-            throw new Exception('createRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object');
+            throw new Exception('optInRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object');
         }
     }
+
+    public function subscribeRecipient($list, $recipient)
+    {
+        if (is_object($recipient)) {
+            $fields = array();
+            $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
+            $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
+            $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+            $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
+
+            $this->_setMailingworkUrl('createRecipient');
+            $this->addParam('listId', $list->getId());
+            $this->addParam('fields', $fields);
+            $recipientResponse = $this->_getDecodedResponse();
+
+            if ($recipientResponse['error']!==0) {
+                throw new Exception('optInRecipient failed: '.$recipientResponse);
+            }
+        } else {
+            throw new Exception('optInRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object');
+        }
+    }
+
+    public function unsubscribeRecipient($list, $recipient)
+    {
+        if (is_object($recipient)) {
+            $recipient = $this->getRecipientByEmail($recipient->getEmail());
+            if ($recipient) {
+                $this->_setMailingworkUrl('deleteRecipientById');
+                $this->addParam('recipientId', $recipient->getId());
+                $recipientResponse = $this->_getDecodedResponse();
+                //$this->addParam('listId', $list->getId()); //TODO: doesn't exist :-(
+                if ($recipientResponse['error']!==0) {
+                    throw new Exception('optInRecipient failed: '.$recipientResponse);
+                }
+            }
+        } else {
+            throw new Exception('optInRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object');
+        }
+    }
+
+
 
     private function _getFields()
     {
@@ -189,6 +224,22 @@ class GN2_Newsletterconnect_MailingService_Mailingwork
         return $this->_fields;
     }
 
+    public function getFieldName($id=0) {
+        $fields = $this->_getFields();
+        if (array_key_exists($id, $fields)) {
+            return $fields[$id];
+        }
+        return '';
+    }
+
+    public function getFieldId($name='') {
+        $fields = $this->_getFields();
+        $pos = array_search($name, $fields);
+        if ($pos !== false) {
+            return $pos;
+        }
+        return '';
+    }
 
     public function getRecipientByEmail($email)
     {   $fields = $this->_getFields();
@@ -199,7 +250,8 @@ class GN2_Newsletterconnect_MailingService_Mailingwork
         if ($recipientResponse['error']===0) {
             if (isset($recipientResponse['result'][0])) {
                 try {
-                    return $this->getRecipientById($recipientResponse['result'][0]);
+                    $recipient = $this->getRecipientById($recipientResponse['result'][0]);
+                    return $recipient;
                 } catch (Exception $e) {
                 }
             }
@@ -213,7 +265,11 @@ class GN2_Newsletterconnect_MailingService_Mailingwork
         $this->addParam('recipientId', $id);
         $recipientResponse = $this->_getDecodedResponse();
         if ($recipientResponse['error']===0) {
-            return  $this->_mailingworkRecipient2Recipient($recipientResponse['result']);
+            $recipient = $this->_mailingworkRecipient2Recipient($recipientResponse['result']);
+            if (is_object($recipient)) {
+                $recipient->setId($id);
+            }
+            return $recipient;
         } else {
             throw new Exception('Cannot load recipient: '.$id);
         }
