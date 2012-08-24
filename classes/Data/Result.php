@@ -27,7 +27,14 @@
  */
 class GN2_NewsletterConnect_Data_Result
 {
+    /**
+     * @var array Multidimensional key-value pairs
+     */
     private $_data = array();
+
+    /**
+     * @var array Metadata about the data result
+     */
     private $_meta = array();
 
     /**

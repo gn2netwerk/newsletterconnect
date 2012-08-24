@@ -47,7 +47,7 @@ interface GN2_NewsletterConnect_MailingService_Interface
     public function createList($listName);
 
     /**
-     * Creates a new recipient on the MailingService
+     * Creates a new recipient on the MailingServicem starts OptIn process
      *
      * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
@@ -56,9 +56,42 @@ interface GN2_NewsletterConnect_MailingService_Interface
      */
     public function optInRecipient($list, $recipient);
 
+    /**
+     * Subscribes a recipient directly to a mailing list
+     *
+     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     *
+     * @return void
+     */
     public function subscribeRecipient($list, $recipient);
 
+    /**
+     * Unsubscribes a recipient directly from a mailing list
+     *
+     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     *
+     * @return void
+     */
     public function unsubscribeRecipient($list, $recipient);
 
+    /**
+     * Finds a recipient by their E-Mail address, returns null if not found
+     *
+     * @param string $email E-Mail Address
+     *
+     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     */
     public function getRecipientByEmail($email);
+
+    /**
+     * Finds a recipient by their id, returns null if not found
+     *
+     * @param mixed $id ID
+     *
+     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     */
+    public function getRecipientById($id);
+
 }

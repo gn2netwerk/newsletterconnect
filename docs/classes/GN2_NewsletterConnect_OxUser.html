@@ -31,10 +31,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">54</span></a></li>
+                <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">12</span>
+                <span class="label label-info">13</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -58,8 +58,7 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#gn2NewsletterConnectOxid2Recipient" title="gn2NewsletterConnectOxid2Recipient :: Converts the current oxUser-Object into an GN2_NewsletterConnect_Mailing_Recipient Object"><span class="description">Converts the current oxUser-Object into an GN2_NewsletterConnect_Mailing_Recipient Object</span><pre>gn2NewsletterConnectOxid2Recipient()</pre></a></li>
-<li class="method public "><a href="#setNewsSubscription" title="setNewsSubscription :: "><span class="description">setNewsSubscription()
-        </span><pre>setNewsSubscription()</pre></a></li>
+<li class="method public "><a href="#setNewsSubscription" title="setNewsSubscription :: Opts In the recipient"><span class="description">Opts In the recipient</span><pre>setNewsSubscription()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -115,15 +114,19 @@
 </div></div>
 </div>
 <a name="setNewsSubscription" id="setNewsSubscription"></a><div class="element clickable method public setNewsSubscription" data-toggle="collapse" data-target=".setNewsSubscription .collapse">
-<h2>setNewsSubscription()
-        </h2>
-<pre>setNewsSubscription($blSubscribe, $blSendOptIn) </pre>
+<h2>Opts In the recipient</h2>
+<pre>setNewsSubscription(boolean $blSubscribe, boolean $blSendOptIn) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$blSubscribe</h4></div>
-<div class="subelement argument"><h4>$blSendOptIn</h4></div>
+<div class="subelement argument">
+<h4>$blSubscribe</h4>
+<code>boolean</code><p>Subscribe yes/no</p>
+</div>
+<div class="subelement argument">
+<h4>$blSendOptIn</h4>
+<code>boolean</code><p>Unused in this implementation, inherited from overridden function</p></div>
 </div></div>
 </div>
 </div>
@@ -133,7 +136,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-08-24T13:19:16+02:00.<br></footer></div>
+            generated on 2012-08-24T17:10:10+02:00.<br></footer></div>
 </div>
 </body>
 </html>

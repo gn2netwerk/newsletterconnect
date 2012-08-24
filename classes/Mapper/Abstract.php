@@ -28,6 +28,9 @@
  */
 abstract class GN2_NewsletterConnect_Mapper_Abstract
 {
+    /**
+     * @var $_entity Unused //TODO: Remove
+     */
     protected $_entity;
 
     /**

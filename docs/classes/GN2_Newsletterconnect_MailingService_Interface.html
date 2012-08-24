@@ -31,10 +31,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">54</span></a></li>
+                <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">12</span>
+                <span class="label label-info">13</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -59,13 +59,11 @@
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#createList" title="createList :: Creates a new list on the MailingService"><span class="description">Creates a new list on the MailingService</span><pre>createList()</pre></a></li>
 <li class="method public "><a href="#getLists" title="getLists :: Gets current lists from the MailingService"><span class="description">Gets current lists from the MailingService</span><pre>getLists()</pre></a></li>
-<li class="method public "><a href="#getRecipientByEmail" title="getRecipientByEmail :: "><span class="description">getRecipientByEmail()
-        </span><pre>getRecipientByEmail()</pre></a></li>
-<li class="method public "><a href="#optInRecipient" title="optInRecipient :: Creates a new recipient on the MailingService"><span class="description">Creates a new recipient on the MailingService</span><pre>optInRecipient()</pre></a></li>
-<li class="method public "><a href="#subscribeRecipient" title="subscribeRecipient :: "><span class="description">subscribeRecipient()
-        </span><pre>subscribeRecipient()</pre></a></li>
-<li class="method public "><a href="#unsubscribeRecipient" title="unsubscribeRecipient :: "><span class="description">unsubscribeRecipient()
-        </span><pre>unsubscribeRecipient()</pre></a></li>
+<li class="method public "><a href="#getRecipientByEmail" title="getRecipientByEmail :: Finds a recipient by their E-Mail address, returns null if not found"><span class="description">Finds a recipient by their E-Mail address, returns null if not found</span><pre>getRecipientByEmail()</pre></a></li>
+<li class="method public "><a href="#getRecipientById" title="getRecipientById :: Finds a recipient by their id, returns null if not found"><span class="description">Finds a recipient by their id, returns null if not found</span><pre>getRecipientById()</pre></a></li>
+<li class="method public "><a href="#optInRecipient" title="optInRecipient :: Creates a new recipient on the MailingServicem starts OptIn process"><span class="description">Creates a new recipient on the MailingServicem starts OptIn process</span><pre>optInRecipient()</pre></a></li>
+<li class="method public "><a href="#subscribeRecipient" title="subscribeRecipient :: Subscribes a recipient directly to a mailing list"><span class="description">Subscribes a recipient directly to a mailing list</span><pre>subscribeRecipient()</pre></a></li>
+<li class="method public "><a href="#unsubscribeRecipient" title="unsubscribeRecipient :: Unsubscribes a recipient directly from a mailing list"><span class="description">Unsubscribes a recipient directly from a mailing list</span><pre>unsubscribeRecipient()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -153,18 +151,38 @@ Should be implemented for different types of webservice.</p>
 </div></div>
 </div>
 <a name="getRecipientByEmail" id="getRecipientByEmail"></a><div class="element clickable method public getRecipientByEmail" data-toggle="collapse" data-target=".getRecipientByEmail .collapse">
-<h2>getRecipientByEmail()
-        </h2>
-<pre>getRecipientByEmail($email) </pre>
+<h2>Finds a recipient by their E-Mail address, returns null if not found</h2>
+<pre>getRecipientByEmail(string $email) : mixed</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$email</h4></div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>string</code><p>E-Mail Address</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>GN2_NewsletterConnect_Mailing_Recipient or null</div>
+</div></div>
+</div>
+<a name="getRecipientById" id="getRecipientById"></a><div class="element clickable method public getRecipientById" data-toggle="collapse" data-target=".getRecipientById .collapse">
+<h2>Finds a recipient by their id, returns null if not found</h2>
+<pre>getRecipientById(mixed $id) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>mixed</code><p>ID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>GN2_NewsletterConnect_Mailing_Recipient or null</div>
 </div></div>
 </div>
 <a name="optInRecipient" id="optInRecipient"></a><div class="element clickable method public optInRecipient" data-toggle="collapse" data-target=".optInRecipient .collapse">
-<h2>Creates a new recipient on the MailingService</h2>
+<h2>Creates a new recipient on the MailingServicem starts OptIn process</h2>
 <pre>optInRecipient(<a href="../classes/GN2_NewsletterConnect_Mailing_List.html">\GN2_NewsletterConnect_Mailing_List</a> $list, <a href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html">\GN2_NewsletterConnect_Mailing_Recipient</a> $recipient) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -179,27 +197,33 @@ Should be implemented for different types of webservice.</p>
 </div></div>
 </div>
 <a name="subscribeRecipient" id="subscribeRecipient"></a><div class="element clickable method public subscribeRecipient" data-toggle="collapse" data-target=".subscribeRecipient .collapse">
-<h2>subscribeRecipient()
-        </h2>
-<pre>subscribeRecipient($list, $recipient) </pre>
+<h2>Subscribes a recipient directly to a mailing list</h2>
+<pre>subscribeRecipient(<a href="../classes/GN2_NewsletterConnect_Mailing_List.html">\GN2_NewsletterConnect_Mailing_List</a> $list, <a href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html">\GN2_NewsletterConnect_Mailing_Recipient</a> $recipient) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$list</h4></div>
-<div class="subelement argument"><h4>$recipient</h4></div>
+<div class="subelement argument">
+<h4>$list</h4>
+<code><a href="../classes/GN2_NewsletterConnect_Mailing_List.html">\GN2_NewsletterConnect_Mailing_List</a></code><p>List Object</p></div>
+<div class="subelement argument">
+<h4>$recipient</h4>
+<code><a href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html">\GN2_NewsletterConnect_Mailing_Recipient</a></code><p>Recipient Object</p></div>
 </div></div>
 </div>
 <a name="unsubscribeRecipient" id="unsubscribeRecipient"></a><div class="element clickable method public unsubscribeRecipient" data-toggle="collapse" data-target=".unsubscribeRecipient .collapse">
-<h2>unsubscribeRecipient()
-        </h2>
-<pre>unsubscribeRecipient($list, $recipient) </pre>
+<h2>Unsubscribes a recipient directly from a mailing list</h2>
+<pre>unsubscribeRecipient(<a href="../classes/GN2_NewsletterConnect_Mailing_List.html">\GN2_NewsletterConnect_Mailing_List</a> $list, <a href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html">\GN2_NewsletterConnect_Mailing_Recipient</a> $recipient) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$list</h4></div>
-<div class="subelement argument"><h4>$recipient</h4></div>
+<div class="subelement argument">
+<h4>$list</h4>
+<code><a href="../classes/GN2_NewsletterConnect_Mailing_List.html">\GN2_NewsletterConnect_Mailing_List</a></code><p>List Object</p></div>
+<div class="subelement argument">
+<h4>$recipient</h4>
+<code><a href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html">\GN2_NewsletterConnect_Mailing_Recipient</a></code><p>Recipient Object</p></div>
 </div></div>
 </div>
 </div>
@@ -209,7 +233,7 @@ Should be implemented for different types of webservice.</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-08-24T13:19:16+02:00.<br></footer></div>
+            generated on 2012-08-24T17:10:10+02:00.<br></footer></div>
 </div>
 </body>
 </html>

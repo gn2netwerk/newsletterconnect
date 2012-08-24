@@ -1,4 +1,16 @@
 <?php
+/**
+ * GN2_NewsletterConnect
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
+ */
 
 self::$config = array(
     'mailingService' => 'Mailingwork',

@@ -28,6 +28,9 @@
  */
 abstract class GN2_NewsletterConnect_Output_Abstract
 {
+    /**
+     * @var $_data GN2_NewsletterConnect_Data_Result Object
+     */
     private $_data;
 
     /**

@@ -1,4 +1,16 @@
 <?php
+/**
+ * GN2_NewsletterConnect
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
+ */
 require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
 
 /**
@@ -53,6 +65,14 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
         return $recipient;
     }
 
+    /**
+     * Opts In the recipient
+     *
+     * @param boolean $blSubscribe Subscribe yes/no
+     * @param boolean $blSendOptIn Unused in this implementation, inherited from overridden function
+     *
+     * @return void
+     */
     public function setNewsSubscription($blSubscribe, $blSendOptIn)
     {
         /* Get existing MailingService */

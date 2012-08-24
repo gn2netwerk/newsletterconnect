@@ -27,24 +27,99 @@
 
 class GN2_NewsletterConnect_Mailing_Recipient
 {
+    /**
+     * @var string ID
+     */
     private $_id;
+
+    /**
+     * @var string Salutation
+     */
     private $_salutation;
+
+    /**
+     * @var string Title
+     */
     private $_title;
+
+    /**
+     * @var string First Name
+     */
     private $_firstName;
+
+    /**
+     * @var string Last Name
+     */
     private $_lastName;
+
+    /**
+     * @var string Company
+     */
     private $_company;
+
+    /**
+     * @var string Street Name
+     */
     private $_street;
+
+    /**
+     * @var string House Number
+     */
     private $_houseNumber;
+
+    /**
+     * @var string Zip/Postal Code
+     */
     private $_zipCode;
+
+    /**
+     * @var string Town/City
+     */
     private $_city;
+
+    /**
+     * @var string State/Region
+     */
     private $_state;
+
+    /**
+     * @var string Country
+     */
     private $_country;
+
+    /**
+     * @var string E-Mail Address
+     */
     private $_email;
+
+    /**
+     * @var string Telephone Prefix
+     */
     private $_telPrefix;
+
+    /**
+     * @var string Telephone Number without prefix
+     */
     private $_telNumber;
+
+    /**
+     * @var string Fax Prefix
+     */
     private $_faxPrefix;
+
+    /**
+     * @var string Fax Number without prefix
+     */
     private $_faxNumber;
+
+    /**
+     * @var string Mobile prefix
+     */
     private $_mobPrefix;
+
+    /**
+     * @var string Mobile Number without prefix
+     */
     private $_mobNumber;
 
     /**
@@ -68,7 +143,6 @@ class GN2_NewsletterConnect_Mailing_Recipient
     {
         return $this->_id;
     }
-
 
     /**
      * Sets Company

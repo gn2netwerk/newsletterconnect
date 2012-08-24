@@ -194,22 +194,22 @@
 <text text-anchor="middle" x="1065" y="-335.6" font-family="Courier,monospace" font-size="11.00">GN2_NewsletterConnect</text>
 </a>
 </g>
-<!-- \\gn2_newsletterconnect_oxoutput -->
-<g id="node19" class="node"><title>\\gn2_newsletterconnect_oxoutput</title>
-<a xlink:href="gn2_newsletterconnect_oxoutput.html" xlink:title="gn2_newsletterconnect_oxoutput" target="_parent">
+<!-- \\GN2_NewsletterConnect_OxOutput -->
+<g id="node19" class="node"><title>\\GN2_NewsletterConnect_OxOutput</title>
+<a xlink:href="gn2_newsletterconnect_oxoutput.html" xlink:title="GN2_NewsletterConnect_OxOutput" target="_parent">
 <polygon fill="none" stroke="black" points="1172.03,-304 957.968,-304 957.968,-268 1172.03,-268 1172.03,-304"/>
-<text text-anchor="middle" x="1065" y="-281.6" font-family="Courier,monospace" font-size="11.00">gn2_newsletterconnect_oxoutput</text>
+<text text-anchor="middle" x="1065" y="-281.6" font-family="Courier,monospace" font-size="11.00">GN2_NewsletterConnect_OxOutput</text>
 </a>
 </g>
-<!-- \\gn2_newsletterconnect_oxoutput_parent -->
-<g id="node32" class="node"><title>\\gn2_newsletterconnect_oxoutput_parent</title>
-<ellipse fill="none" stroke="black" cx="601" cy="-72" rx="170.733" ry="18"/>
-<text text-anchor="middle" x="601" y="-66.4" font-family="Times,serif" font-size="14.00" fill="gray">\gn2_newsletterconnect_oxoutput_parent</text>
+<!-- \\GN2_NewsletterConnect_OxOutput_parent -->
+<g id="node32" class="node"><title>\\GN2_NewsletterConnect_OxOutput_parent</title>
+<ellipse fill="none" stroke="black" cx="601" cy="-72" rx="183.998" ry="18"/>
+<text text-anchor="middle" x="601" y="-66.4" font-family="Times,serif" font-size="14.00" fill="gray">\GN2_NewsletterConnect_OxOutput_parent</text>
 </g>
-<!-- \\gn2_newsletterconnect_oxoutput&#45;&gt;\\gn2_newsletterconnect_oxoutput_parent -->
-<g id="edge19" class="edge"><title>\\gn2_newsletterconnect_oxoutput&#45;&gt;\\gn2_newsletterconnect_oxoutput_parent</title>
-<path fill="none" stroke="black" d="M957.583,-284.411C936.242,-279.961 915.14,-272.155 898,-259 836.139,-211.523 888.828,-145.19 826,-99 812.606,-89.1528 797.496,-81.8286 781.608,-76.4614"/>
-<polygon fill="none" stroke="black" points="782.211,-72.9841 771.623,-73.3675 780.139,-79.6705 782.211,-72.9841"/>
+<!-- \\GN2_NewsletterConnect_OxOutput&#45;&gt;\\GN2_NewsletterConnect_OxOutput_parent -->
+<g id="edge19" class="edge"><title>\\GN2_NewsletterConnect_OxOutput&#45;&gt;\\GN2_NewsletterConnect_OxOutput_parent</title>
+<path fill="none" stroke="black" d="M957.583,-284.411C936.242,-279.961 915.14,-272.155 898,-259 836.139,-211.523 888.828,-145.19 826,-99 814.953,-90.8784 802.739,-84.4731 789.884,-79.4664"/>
+<polygon fill="none" stroke="black" points="791.012,-76.1527 780.417,-76.0635 788.644,-82.74 791.012,-76.1527"/>
 </g>
 <!-- \\GN2_NewsletterConnect_OxUser -->
 <g id="node20" class="node"><title>\\GN2_NewsletterConnect_OxUser</title>

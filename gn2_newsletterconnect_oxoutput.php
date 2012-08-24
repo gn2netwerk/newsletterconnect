@@ -26,8 +26,15 @@ require_once 'copyprotect.php';
  */
 class GN2_NewsletterConnect
 {
+    /**
+     * @var array Configuration Array
+     */
     public static $config = array();
 
+    /**
+     * Starts looplinker
+     *
+     */
     private function __construct()
     {
         $this->looplink('core');
@@ -90,6 +97,13 @@ class GN2_NewsletterConnect
         }
     }
 
+    /**
+     * Main bootstrap function
+     *
+     * @static
+     *
+     * @return void
+     */
     public static function main()
     {
         try {
@@ -100,6 +114,13 @@ class GN2_NewsletterConnect
         }
     }
 
+    /**
+     * Generates the relevant child instance of GN2_NewsletterConnect_MailingService, depending on settings.php
+     *
+     * @static
+     * @return mixed
+     * @throws Exception
+     */
     public static function getMailingService()
     {
         if (isset(self::$config['mailingService'])) {
@@ -126,7 +147,7 @@ class GN2_NewsletterConnect
  * @version  Release: <package_version>
  * @link     http://www.gn2-netwerk.de/
  */
-class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_parent
+class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_parent
 {
 
 }

@@ -1,5 +1,16 @@
 <?php
-#require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
+/**
+ * GN2_NewsletterConnect
+ *
+ * PHP version 5
+ *
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
+ */
 
 /**
  * GN2_NewsletterConnect_OxNewsletterSubscribed
@@ -13,6 +24,11 @@
  */
 class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Account_Newsletter_parent
 {
+    /**
+     * Gets the current user as a recipient object
+     *
+     * @return GN2_NewsletterConnect_Mailing_Recipient Recipient
+     */
     private function _getNewsletterConnectUser()
     {
         /* Get existing MailingService */
@@ -22,6 +38,11 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
         return $mailingServiceUser;
     }
 
+    /**
+     * Checks if the current recipient is signed up for the newsletter
+     *
+     * @return bool
+     */
     public function isNewsletter()
     {
         if ($this->_getNewsletterConnectUser() !== null) {
@@ -31,6 +52,11 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
     }
 
 
+    /**
+     * Subscribes a recipient directly, without opt-in
+     *
+     * @return void
+     */
     public function subscribe()
     {
         $status = oxConfig::getParameter('status');

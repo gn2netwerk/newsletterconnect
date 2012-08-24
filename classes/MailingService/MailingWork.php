@@ -28,6 +28,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     extends GN2_NewsletterConnect_Webservice_Curl
     implements GN2_NewsletterConnect_MailingService_Interface
 {
+    /**
+     * @var Set of fields to send to the MailingService
+     */
     private $_fields;
 
     /**
@@ -136,11 +139,11 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * Creates a new recipient on the MailingService
      *
-     * @param mixed                                   $listId    List Id
+     * @param GN2_NewsletterConnect_Mailing_List      $list      List
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
-     * @throws Exception
+     * @throws GN2_NewsletterConnect_Exception_MailingService
      */
     public function optInRecipient($list, $recipient)
     {
@@ -167,6 +170,15 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         }
     }
 
+    /**
+     * Subscribes a recipient directly to a mailing list
+     *
+     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     *
+     * @return void
+     * @throws GN2_NewsletterConnect_Exception_MailingService
+     */
     public function subscribeRecipient($list, $recipient)
     {
         if (is_object($recipient)) {
@@ -191,6 +203,15 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         }
     }
 
+    /**
+     * Unsubscribes a recipient directly from a mailing list
+     *
+     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     *
+     * @return void
+     * @throws GN2_NewsletterConnect_Exception_MailingService
+     */
     public function unsubscribeRecipient($list, $recipient)
     {
         if (is_object($recipient)) {
@@ -214,7 +235,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     }
 
 
-
+    /**
+     * Gets fields associated with the MailingWork user table
+     *
+     * @return array Array of id=>field Names
+     * @throws GN2_NewsletterConnect_Exception_MailingService
+     */
     private function _getFields()
     {
         if ($this->_fields === null) {
@@ -232,7 +258,15 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return $this->_fields;
     }
 
-    public function getFieldName($id=0) {
+    /**
+     * Finds the fieldname associated with a field ID
+     *
+     * @param int $id Id of field
+     *
+     * @return string Name of field
+     */
+    public function getFieldName($id=0)
+    {
         $fields = $this->_getFields();
         if (array_key_exists($id, $fields)) {
             return $fields[$id];
@@ -240,7 +274,15 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return '';
     }
 
-    public function getFieldId($name='') {
+    /**
+     * Finds the field ID associated with a field name
+     *
+     * @param string $name Name of field
+     *
+     * @return int Id of field
+     */
+    public function getFieldId($name='')
+    {
         $fields = $this->_getFields();
         $pos = array_search($name, $fields);
         if ($pos !== false) {
@@ -249,6 +291,13 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return '';
     }
 
+    /**
+     * Finds a recipient by their E-Mail address, returns null if not found
+     *
+     * @param string $email E-Mail Address
+     *
+     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     */
     public function getRecipientByEmail($email)
     {   $fields = $this->_getFields();
 
@@ -267,6 +316,14 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return null;
     }
 
+    /**
+     * Finds a recipient by their id, returns null if not found
+     *
+     * @param mixed $id ID
+     *
+     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     * @throws GN2_NewsletterConnect_Exception_MailingService
+     */
     public function getRecipientById($id)
     {
         $this->_setMailingworkUrl('getRecipientFieldsById');
@@ -283,6 +340,13 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         }
     }
 
+    /**
+     * Converts a MailingWork Recipient to a GN2_NewsletterConnect_Mailing_Recipient
+     *
+     * @param array $mailingWorkUserFields MailingWork fields array
+     *
+     * @return GN2_NewsletterConnect_Mailing_Recipient
+     */
     protected function _mailingworkRecipient2Recipient($mailingWorkUserFields)
     {
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;

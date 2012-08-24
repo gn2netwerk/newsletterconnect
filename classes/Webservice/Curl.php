@@ -27,8 +27,17 @@
 abstract class GN2_NewsletterConnect_Webservice_Curl
     extends GN2_NewsletterConnect_Webservice_Abstract
 {
+    /**
+     * @var bool Curl Parameter to return response from server or not
+     */
     private $_returnTransfer = true;
+    /**
+     * @var bool Curl Parameter GET/POST
+     */
     private $_post = false;
+    /**
+     * @var null URL to the WebService
+     */
     private $_url = null;
 
     /**

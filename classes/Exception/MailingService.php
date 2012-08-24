@@ -27,9 +27,21 @@
  */
 class GN2_NewsletterConnect_Exception_MailingService extends Exception
 {
+
+    /**
+     * @var array of observer objects
+     */
     private $_observers;
 
-    public function addObserver($observer) {
+    /**
+     * Unused
+     *
+     * @param object $observer Unused
+     *
+     * @return void
+     */
+    public function addObserver($observer)
+    {
         if (is_object($observer)) {
             if (method_exists($observer, 'notify')) {
                 if (!is_array($this->_observers)) {

@@ -59,7 +59,7 @@
     </class>
     <source>eJzdVm1z2jgQ/s6vUDNMbWeK3XZ6nTlISLiEJswkgRJobtrkPIq9YLVG8klyIL3kv9/KL+AQyNzdx/MwYKR9fXb1aPcOkiipebu7NbJLTi7e+xcwVzFoDfJIcA6Bxg2zNzgdkDuQiglOfinWDgOqYSrk/VZNcpjQ4AedAnlBhKY6EpIQckzvgJyKOBZzek/2wuhwyt83OOg5yB9uCO1MPGYBcJVbJEdiNgMZMBqTThhibGfFbqR10vS8+XzuPjXiZUbKVMhJb9Qke1OmfRaW9vkPYp4XTXi1OkiyT0BKIX0JiZCa8and9TtnZ+SPrn/RH/WOuk6rVpPwZ8ok+IIHQKxAJPeJFBqzdxF7CwVegt/vJIw0yDllnHQGPdLjTGO27CfVJv6jmCr1PyrHEGKgCrAkRaR+sfXvahMYWLYDWvurZoxkuJtndwUrKKIjMFC7ZEClwv/j4RmhPCRKU6kVmdEkAemJVCepJpknUG5hqLR3KEGnkpM7wcJizct+0YhmAUnSWwSOTFIeZHVk6N92Mok8NvPUVXr7HUPGNqv7l93hl+7wmzXsfh53L0f+eNizblor2YSaJDnKWp7lLtcrj2W7u861NxNhGoO69hA4ny/hCXJ4rrcqHwz28tTb2L5hGmj1UDQcA+Vs0br2DowicM30fftbp/GVNn6+bfx6s+scbHN07RqVHN/2dyX4Q6DunIOtCp61giGRMPVnVAeRXSLyZokjvmVbGC6euhVyEiZsYYDbiIhfMV/PEchOnalKrupa59myb7lpMGFSabt09M3KNaybqks2IfYrhn1TFcwTRkGn0gKF0zURE6sBphLZYyWhXOxZkP1seWOQS99rQWbd7cOCKa3savIOef2aPN2teM1SWM/B6GI4iO8TGFtP5IzTdWDy5tkATMVwoy1BackC3c2kN6k/9fS4FmBxnosAK8m0Nsk12hjjMdXUXgYwBT0ElcaIheNsU4rE3HY2Vi1kUO7gKn6yJikJokTZQi+XkUh+Q5IcUB1ZS1AqZDbMuEeR/u+9Y3KLkgSPQrSFoQxqfJrLGqtksJLNKWtJUmu+n/FVYXHFVcf9o/F592LkD/v9kXXj4lFdCruYseR0Bvb670r/8mjYG4z8i85515TfcZdn/TH7ZjyI07C4WZ9Fhy6sguy8MgdV3Ln/TDsQEjyx2KQsFmPNYtVsomKPI6ujEdvBCiOcyUkSnNMpCz6neM8rU1asZ61+hxdMiB02obGCVk3jTV3WjnxCBprgtYtzVuPopFdiX2WKJSwo43fGo1N/jCsIDHl4IFt39/d3dqoHJ2bqBVtvNhkaXKGTJw2Nc88iiUUIttW03mQ99vGDH0JglpBtEYWKj9PRKLfUH/a+dka9/oVx9NFxnGox62KsMoYQC7y0bUssUvxvFTL5bqMdiynj/yX+0syJFGmS8WJhEQtoXvJ1u2RArAXQICL2UoMqUp+a1yqapj75aqMtFtmL8n2xQMqJAUmJzr/QOAWyv092VqMIDkczxneeEX3ZIFqmUCWJ/PuxFhhOI3Z3EUCSncg6GBvYXPOIxUBs8qqwUZqOgIYgbevq6qrRwcHOkKG5tZvmrOMAgknGs/2dZ1PSTol7acDU0HvnviUf3r4jY54PiTguhaUgEpQ2fb75DqUJazbzIadVE7c+8NCfxKmKzP/1GRona6f1N+t/u8o=</source>
   </file>
-  <file path="classes/Data/Result.php" hash="655b5512dbc7ff309645c22716e60f87" package="GN2\NewsletterConnect\Data">
+  <file path="classes/Data/Result.php" hash="4609673f144670763c4f809daa6c937e" package="GN2\NewsletterConnect\Data">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -87,79 +87,89 @@ an output array and metadata about the output.]]></description>
         <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="30" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="33" namespace="global" package="Default">
         <name>$_data</name>
         <default><![CDATA[array()]]></default>
+        <docblock line="30">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="var" description="Multidimensional key-value pairs" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="38" namespace="global" package="Default">
         <name>$_meta</name>
         <default><![CDATA[array()]]></default>
+        <docblock line="35">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="Metadata about the data result" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="41" package="GN2\NewsletterConnect\Data">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="GN2\NewsletterConnect\Data">
         <name>setMeta</name>
         <full_name>setMeta</full_name>
-        <docblock line="33">
+        <docblock line="40">
           <description><![CDATA[Sets meta data.]]></description>
           <long-description><![CDATA[<p>Expects key/value pairs.</p>]]></long-description>
-          <tag line="33" name="param" description="Key" type="string" variable="$key">
+          <tag line="40" name="param" description="Key" type="string" variable="$key">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="33" name="param" description="Value" type="string" variable="$value">
+          <tag line="40" name="param" description="Value" type="string" variable="$value">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="33" name="return" description="" type="void">
+          <tag line="40" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="41">
+        <argument line="48">
           <name>$key</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="41">
+        <argument line="48">
           <name>$value</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="55" package="GN2\NewsletterConnect\Data">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="GN2\NewsletterConnect\Data">
         <name>setResult</name>
         <full_name>setResult</full_name>
-        <docblock line="48">
+        <docblock line="55">
           <description><![CDATA[Sets the result]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="48" name="param" description="Array of data. Can be multidimensional." type="array" variable="$data">
+          <tag line="55" name="param" description="Array of data. Can be multidimensional." type="array" variable="$data">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="48" name="return" description="" type="void">
+          <tag line="55" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="55">
+        <argument line="62">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="65" package="GN2\NewsletterConnect\Data">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="72" package="GN2\NewsletterConnect\Data">
         <name>get</name>
         <full_name>get</full_name>
-        <docblock line="60">
+        <docblock line="67">
           <description><![CDATA[Gets a wrapped class of meta/result data.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="60" name="return" description="Meta &amp; result data" type="\stdClass">
+          <tag line="67" name="return" description="Meta &amp; result data" type="\stdClass">
             <type by_reference="false">\stdClass</type>
           </tag>
         </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="30" code="50018">No DocBlock was found for property $_data</error>
-      <error line="31" code="50018">No DocBlock was found for property $_meta</error>
-    </parse_markers>
-    <source>eJzlVNtq20AQfddXTME4tqktCPQlvtTBLUlpG0J6eyhFrKWxtFhaid2RFVPy792bUtWxA3nuPviyc+Zyzhlp9rbKqiAcjQIYwdXNeXSDjcqRCOWqFAJj0gETu72+hR1KxUsBb/zdMmaEaSn3ACdzYVmxeMtShGdBql63uHeMmL1jNWWlNHn6bodwXeZ52bA9zJJsmYrzsUBqUG4nCS5sQs5jFKrtBKuyKFDGnOVwmSR67k8+nhFVF2HYNM3k3zKhLdPSNGU+fL2AWcop4knbQ2zBnWfLhEGr6g/JqgolxDlTCqiEuBTEuDAxJqCsqaoJmJSaGRMJFEgs0RoAW+sYUIYeM4FvChNY7zt3riqqyX9jyR3myBRqW/x0kQ++1B/nx1H+kSEc3aGqcwp+B6ZYJflOSwu9yHozd4YNhtODqHGvG7VhuwnmjOALkrIWg6kzgff3lW6oYIv7cMfyGqFiXBo/Lb5N05ZJVoAiyUUKPY3W1x9xfyLuKn03n4eFJFItBexKnvi70FGo19os2NQiJiO1QvqsxxyYXq9dwaEFOj3M4Ruw4VfzszPo931b82/YQZnTo4yr8cKq89Ok/NIaOfj0EfgQuM+jkpmVl86Qo8q456dnzbm0v8uNl3iln7I1QqFzecILvW+aH8ufSPwCZdxqDGy7Q1Varn5PLGZ6gtqVocagsa+IxL8i9OBGp9DRdSROzKooWdkcYxX0oZPyLIUUafBkbp88B4HNY+XpYXy88Cve9fQIyn2rDvCvEOZ4Bh7fCvTwB8Bg888=</source>
+    <source>eJzlVNtq20AQfddXTME4tqklCPQlvtTBLUlpG0J6eyjFrKWxtVheid2RVVPy792bXPkKee4+6LIzc3bOOSMN3xZpEUS9XgA9uHu4nj1gpTIkQjnNhcCYdMDEHu8fYYNS8VzAG783iRnhMpdbgLO1MClYvGJLhItJqpzXee8YMbvHSkpzaer03gbhPs+yvGJbGCbpZCmu+wKpQrkKExzbgozHKFR9Ekzz9RplzFkGt0mi+/7k4ylRcRNFVVWF+zCRhalpGpgPX29guOQ040l9hliBWxdhoqBW9YdkRYES4owpBZRDnAtiXJgYE5CXVJQETErNjIkE1kgs0RoAm+sYUIo+J4RvChOYbxt7DhVV+N9Y8oQZMoXaFt/dzAdf6o/z4yT/mSE8e0JVZhT8CQyYNdMs0w2T3q/POoEnfK056A40qxVu+xuWlQgF41L5ksjeC8k32h1ozay9I4fR6Q6CSyccT4N9la650/hmhC7hf0FSds4sVgjvfxeatTLdR43uQ5+/a6tgkq1BkeRiCS2drbc/4vZM3CF9N9dDIIlUSgGbnCf7FMq5nhhYlCIm47dCMgJ0zFmvHWDXJjpTzOILsOFXo6sraLf9seat28gyq0UpV/2xVeenKfmlNXLpg13ic+CuJyUz6u8Jf8DcWdayBt3a53zhJZ7qT32OsD4YmCOJX6CMm8+OPe5QlZqrnzSbMzhD7c5QY1DZ/1Ti/1O6caNT5Og6Emd6VZRMbY2xCtrQKLlIYYnUOerbF49AYLVDHhzG+2M/4k1PT2S5u2ok/hPCLM/A59cCPf8F9hMZhg==</source>
   </file>
-  <file path="classes/Exception/MailingService.php" hash="6d9ecafc59335c30e909f26b5f9d7e2d" package="GN2\NewsletterConnect\Exception">
+  <file path="classes/Exception/MailingService.php" hash="b9a3ab43d3b47e41ad02f88bc13a4478" package="GN2\NewsletterConnect\Exception">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -187,25 +197,38 @@ an output array and metadata about the output.]]></description>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
         <tag line="16" name="abstract" description=""/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="30" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="34" namespace="global" package="Default">
         <name>$_observers</name>
         <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="of observer objects" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="32" package="GN2\NewsletterConnect\Exception">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="43" package="GN2\NewsletterConnect\Exception">
         <name>addObserver</name>
         <full_name>addObserver</full_name>
-        <argument line="32">
+        <docblock line="36">
+          <description><![CDATA[Unused]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="param" description="Unused" type="object" variable="$observer">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="36" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="43">
           <name>$observer</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <parse_markers>
-      <error line="30" code="50018">No DocBlock was found for property $_observers</error>
-      <error line="32" code="50010">No DocBlock was found for method addObserver()</error>
-    </parse_markers>
-    <source>eJzlUU1LAzEQve+vGKFgLdYFwYtWrVRRwS/Um8iSJtPd2G2yJGnXIv3vzn7EtmwteHZOIfPemzdveudZkgVhpxNAB64fDqMHzG2KzqEZaKWQO2oUvaebJ5ihsVIrOKr/+pw5jLWZA/zKhX7G+JjFCFtBdjr0uKtPjpmjOWWDTV2iTUGGSzZDuNFpqnM2h55I+rE67Cp0OZrxgcCzkpBKjsr6cTDQkwkaLlkKF0KQ+bu6nziXHYdhnucH6zJhKeN3LWRuX4+hF0sXSeFnqDFUtVUmDHy0g5RZC05DwpRIEe6ZJJH4Bc2M/HRthlyOJAf0y9v/lfEzpsgsUs61xahu/i1w2mVonWHlxmHAy9Q3JhL9RBCt34JO4FAJu5LRV1AMzoyc0S2gFemhJSz5OwmqznRIicBoqniBBybEYw1ptzx4DyqZouQI2tKSzgc5WYGsYjxugnQcEeGntM4usfuwq7STo/lug+WZOzSCGcPm7ZZLpO2eLY1v5BTVQMIpVBp7Jw3CovHToL+9k8CP6XWJJb16LYLFN6cCZ2Q=</source>
+    <source>eJzlUt1r2zAQf/dfcYNAk7DUUNhLm3UZ2VgHW1f28TSGUaSzrcWRjE62G0r+98mK5SQ4K+x5erGt+33c/c7zN2VeRvF0GsEUPtxfJffYUIHWollqpZBbV2hrD3cPUKMhqRW86u4WnFnMtNkC/JULi5LxNcsQngVRtQq4948cS+t8fIFVNtemJcM7ViPc6aLQDdvCXOSLTF3NFNoGzfpS4K0nFJKjomAHS73ZoOGSFfBWCNf8p66eW1tex3HTNJenMrGXCbO2Mh+/X8M8kzaRInioNezPszJxFKJdFowIrIacKVEgfGbSiWTf0NSunxmVyGUqOWAYnv6vjL9igYzQ5dy1mHTFfwvczbIia5ifOI64T/1sIkkfQXK6C7cCi0rQUUZPUdQ6+1W2p22dGWDGuIx0CnpFjovGvfx20tShYv8sjazdCmGUBBjdDPR+qIpQdF+9SckM23SiMOpdzoMN2sooqLUUp/7Vyq0L0krxdhhgQnzplMa95sRDn6IuY5ApjCUle+sj2OQIE3AbdH+PSPBRkqUD9iVcKG1lur0YsALzhbPwIY5HNpc0uz1EdJbTngESXu8XMZ7cDAi7wc2A/vOXE+ibPpU40Pdvu2j3B44Ajw0=</source>
   </file>
   <file path="classes/Mailing/List.php" hash="c8121708e2743d5b4e27dc52ece03d7c" package="GN2\NewsletterConnect\Mailing">
     <docblock line="2">
@@ -361,7 +384,7 @@ Can be a string or an integer, depending on system]]></description>
     </class>
     <source>eJzlUztv2zAQ3vUrbvDgGk0EBOiS2KkLu0gMtEaQdBdo8SwRliiBpKwaRf57eRRVO4kk9zGWiwDe3fc6cfqxTMsgnEwCmMDd+ipaY60zNAbVopASY2MLVHu4f4A9Ki0KCR/83TxmBpNCHQB6Z2FesnjHEoTBJl1t2r6vTGRCJu6aVSYtFI3Cku0R7ossK2p2gClP54m8upBoalS7S463biATMUrdksGiyHNUsWAZfOLcSv/i66kx5XUY1nV9+RImdDCtU4JZfbuGaSJMJHjLIXfQnEGYMGiD9ZYsuzbwWRphDrDImNb/U5CPmCHTaMP0AiNf/NNUY0quO4LIe44o6eBHQGhuB3RIDlPNEgRHu4atsMGTvNXyxveE7lsqsbcrgZFd+k3QCbNmOUKxhYyYumelbemZXqKOlSgd+TAIt51vQZ7QgEnRCvc3v9BLplgOufiOHEaCw4q/7lBoKiVhXwj+krPa2K3DtpKx06XRrPjYYrxz5SZNOiOTCn1xa7OBGXE02T2/EXnnRZK7o1JYMAkbBAbaKHoV9r+0N0LaJ4DqPXAsUXJXsBoO2mDe48CZHLSQOAuv9fvxo40+AzZl3ajnx311B+69jKjxdLv/ED6hjB1g3wIc2awh7fPw6Ai1W8SAC6+rsXEuU6fsTKpDmp5Ofwx6JcOZUkfXe/ubUAlm7BD7QnVss4Z16M+W5wX9XppO0pk0T8U8/wQSjivm</source>
   </file>
-  <file path="classes/Mailing/Recipient.php" hash="700314bafded7a40ce837d86500f3d51" package="GN2\NewsletterConnect\Mailing">
+  <file path="classes/Mailing/Recipient.php" hash="3bad7e98679d7d7fa4af3d8b91f6b578" package="GN2\NewsletterConnect\Mailing">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -388,677 +411,789 @@ Can be a string or an integer, depending on system]]></description>
         <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="30" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="33" namespace="global" package="Default">
         <name>$_id</name>
         <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
-        <name>$_salutation</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="32" namespace="global" package="Default">
-        <name>$_title</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="33" namespace="global" package="Default">
-        <name>$_firstName</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="34" namespace="global" package="Default">
-        <name>$_lastName</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="35" namespace="global" package="Default">
-        <name>$_company</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="36" namespace="global" package="Default">
-        <name>$_street</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="37" namespace="global" package="Default">
-        <name>$_houseNumber</name>
-        <default><![CDATA[]]></default>
+        <docblock line="30">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="var" description="ID" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
       </property>
       <property final="false" static="false" visibility="private" line="38" namespace="global" package="Default">
-        <name>$_zipCode</name>
+        <name>$_salutation</name>
         <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="39" namespace="global" package="Default">
-        <name>$_city</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="40" namespace="global" package="Default">
-        <name>$_state</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="41" namespace="global" package="Default">
-        <name>$_country</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="42" namespace="global" package="Default">
-        <name>$_email</name>
-        <default><![CDATA[]]></default>
+        <docblock line="35">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="Salutation" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
       </property>
       <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
-        <name>$_telPrefix</name>
+        <name>$_title</name>
         <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="44" namespace="global" package="Default">
-        <name>$_telNumber</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="45" namespace="global" package="Default">
-        <name>$_faxPrefix</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="46" namespace="global" package="Default">
-        <name>$_faxNumber</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="47" namespace="global" package="Default">
-        <name>$_mobPrefix</name>
-        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="Title" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
       </property>
       <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
+        <name>$_firstName</name>
+        <default><![CDATA[]]></default>
+        <docblock line="45">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="var" description="First Name" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="53" namespace="global" package="Default">
+        <name>$_lastName</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="Last Name" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="58" namespace="global" package="Default">
+        <name>$_company</name>
+        <default><![CDATA[]]></default>
+        <docblock line="55">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="var" description="Company" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="63" namespace="global" package="Default">
+        <name>$_street</name>
+        <default><![CDATA[]]></default>
+        <docblock line="60">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="var" description="Street Name" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="68" namespace="global" package="Default">
+        <name>$_houseNumber</name>
+        <default><![CDATA[]]></default>
+        <docblock line="65">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="65" name="var" description="House Number" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="73" namespace="global" package="Default">
+        <name>$_zipCode</name>
+        <default><![CDATA[]]></default>
+        <docblock line="70">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="var" description="Zip/Postal Code" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="78" namespace="global" package="Default">
+        <name>$_city</name>
+        <default><![CDATA[]]></default>
+        <docblock line="75">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="75" name="var" description="Town/City" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="83" namespace="global" package="Default">
+        <name>$_state</name>
+        <default><![CDATA[]]></default>
+        <docblock line="80">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="var" description="State/Region" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="88" namespace="global" package="Default">
+        <name>$_country</name>
+        <default><![CDATA[]]></default>
+        <docblock line="85">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="var" description="Country" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="93" namespace="global" package="Default">
+        <name>$_email</name>
+        <default><![CDATA[]]></default>
+        <docblock line="90">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="90" name="var" description="E-Mail Address" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="98" namespace="global" package="Default">
+        <name>$_telPrefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="95">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="var" description="Telephone Prefix" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="103" namespace="global" package="Default">
+        <name>$_telNumber</name>
+        <default><![CDATA[]]></default>
+        <docblock line="100">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="100" name="var" description="Telephone Number without prefix" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="108" namespace="global" package="Default">
+        <name>$_faxPrefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="105">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="105" name="var" description="Fax Prefix" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="113" namespace="global" package="Default">
+        <name>$_faxNumber</name>
+        <default><![CDATA[]]></default>
+        <docblock line="110">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="110" name="var" description="Fax Number without prefix" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="118" namespace="global" package="Default">
+        <name>$_mobPrefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="115">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="115" name="var" description="Mobile prefix" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="123" namespace="global" package="Default">
         <name>$_mobNumber</name>
         <default><![CDATA[]]></default>
+        <docblock line="120">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="120" name="var" description="Mobile Number without prefix" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="132" package="GN2\NewsletterConnect\Mailing">
         <name>setId</name>
         <full_name>setId</full_name>
-        <docblock line="50">
+        <docblock line="125">
           <description><![CDATA[Sets Id]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="50" name="param" description="ID" type="mixed" variable="$id">
+          <tag line="125" name="param" description="ID" type="mixed" variable="$id">
             <type by_reference="false">mixed</type>
           </tag>
-          <tag line="50" name="return" description="" type="void">
+          <tag line="125" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="57">
+        <argument line="132">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="67" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="142" package="GN2\NewsletterConnect\Mailing">
         <name>getId</name>
         <full_name>getId</full_name>
-        <docblock line="62">
+        <docblock line="137">
           <description><![CDATA[Gets Id]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="62" name="return" description="" type="mixed">
+          <tag line="137" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="80" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="154" package="GN2\NewsletterConnect\Mailing">
         <name>setCompany</name>
         <full_name>setCompany</full_name>
-        <docblock line="73">
+        <docblock line="147">
           <description><![CDATA[Sets Company]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="73" name="param" description="Company Name" type="string" variable="$company">
+          <tag line="147" name="param" description="Company Name" type="string" variable="$company">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="73" name="return" description="" type="void">
+          <tag line="147" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="80">
+        <argument line="154">
           <name>$company</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="90" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="164" package="GN2\NewsletterConnect\Mailing">
         <name>getCompany</name>
         <full_name>getCompany</full_name>
-        <docblock line="85">
+        <docblock line="159">
           <description><![CDATA[Gets Company]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="85" name="return" description="" type="mixed">
+          <tag line="159" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="102" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="176" package="GN2\NewsletterConnect\Mailing">
         <name>setCountry</name>
         <full_name>setCountry</full_name>
-        <docblock line="95">
+        <docblock line="169">
           <description><![CDATA[Sets Country]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="95" name="param" description="Country Name" type="string" variable="$country">
+          <tag line="169" name="param" description="Country Name" type="string" variable="$country">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="95" name="return" description="" type="void">
+          <tag line="169" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="102">
+        <argument line="176">
           <name>$country</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="112" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="186" package="GN2\NewsletterConnect\Mailing">
         <name>getCountry</name>
         <full_name>getCountry</full_name>
-        <docblock line="107">
+        <docblock line="181">
           <description><![CDATA[Gets Country]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="107" name="return" description="" type="mixed">
+          <tag line="181" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="124" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="198" package="GN2\NewsletterConnect\Mailing">
         <name>setEmail</name>
         <full_name>setEmail</full_name>
-        <docblock line="117">
+        <docblock line="191">
           <description><![CDATA[Sets E-Mail]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="117" name="param" description="E-Mail Address" type="string" variable="$email">
+          <tag line="191" name="param" description="E-Mail Address" type="string" variable="$email">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="117" name="return" description="" type="void">
+          <tag line="191" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="124">
+        <argument line="198">
           <name>$email</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="134" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="208" package="GN2\NewsletterConnect\Mailing">
         <name>getEmail</name>
         <full_name>getEmail</full_name>
-        <docblock line="129">
+        <docblock line="203">
           <description><![CDATA[Gets E-Mail]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="129" name="return" description="" type="mixed">
+          <tag line="203" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="146" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="220" package="GN2\NewsletterConnect\Mailing">
         <name>setFaxNumber</name>
         <full_name>setFaxNumber</full_name>
-        <docblock line="139">
+        <docblock line="213">
           <description><![CDATA[Sets Fax Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="139" name="param" description="Fax Number" type="string" variable="$faxNumber">
+          <tag line="213" name="param" description="Fax Number" type="string" variable="$faxNumber">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="139" name="return" description="" type="void">
+          <tag line="213" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="146">
+        <argument line="220">
           <name>$faxNumber</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="156" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="230" package="GN2\NewsletterConnect\Mailing">
         <name>getFaxNumber</name>
         <full_name>getFaxNumber</full_name>
-        <docblock line="151">
+        <docblock line="225">
           <description><![CDATA[Gets Fax Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="151" name="return" description="" type="mixed">
+          <tag line="225" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="168" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="242" package="GN2\NewsletterConnect\Mailing">
         <name>setFaxPrefix</name>
         <full_name>setFaxPrefix</full_name>
-        <docblock line="161">
+        <docblock line="235">
           <description><![CDATA[Sets Fax Prefix]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="161" name="param" description="Fax Prefix" type="string" variable="$faxPrefix">
+          <tag line="235" name="param" description="Fax Prefix" type="string" variable="$faxPrefix">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="161" name="return" description="" type="void">
+          <tag line="235" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="168">
+        <argument line="242">
           <name>$faxPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="178" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="252" package="GN2\NewsletterConnect\Mailing">
         <name>getFaxPrefix</name>
         <full_name>getFaxPrefix</full_name>
-        <docblock line="173">
+        <docblock line="247">
           <description><![CDATA[Gets Fax Prefix]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="173" name="return" description="" type="mixed">
+          <tag line="247" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="190" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="264" package="GN2\NewsletterConnect\Mailing">
         <name>setFirstName</name>
         <full_name>setFirstName</full_name>
-        <docblock line="183">
+        <docblock line="257">
           <description><![CDATA[Sets First Name]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="183" name="param" description="First Name" type="string" variable="$firstName">
+          <tag line="257" name="param" description="First Name" type="string" variable="$firstName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="183" name="return" description="" type="void">
+          <tag line="257" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="190">
+        <argument line="264">
           <name>$firstName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="200" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="274" package="GN2\NewsletterConnect\Mailing">
         <name>getFirstName</name>
         <full_name>getFirstName</full_name>
-        <docblock line="195">
+        <docblock line="269">
           <description><![CDATA[Gets First Name]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="195" name="return" description="" type="mixed">
+          <tag line="269" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="212" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="286" package="GN2\NewsletterConnect\Mailing">
         <name>setHouseNumber</name>
         <full_name>setHouseNumber</full_name>
-        <docblock line="205">
+        <docblock line="279">
           <description><![CDATA[Sets House Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="205" name="param" description="House Number" type="string" variable="$houseNumber">
+          <tag line="279" name="param" description="House Number" type="string" variable="$houseNumber">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="205" name="return" description="" type="void">
+          <tag line="279" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="212">
+        <argument line="286">
           <name>$houseNumber</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="222" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="296" package="GN2\NewsletterConnect\Mailing">
         <name>getHouseNumber</name>
         <full_name>getHouseNumber</full_name>
-        <docblock line="217">
+        <docblock line="291">
           <description><![CDATA[Gets House Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="217" name="return" description="" type="mixed">
+          <tag line="291" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="234" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="308" package="GN2\NewsletterConnect\Mailing">
         <name>setLastName</name>
         <full_name>setLastName</full_name>
-        <docblock line="227">
+        <docblock line="301">
           <description><![CDATA[Sets Last Name]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="227" name="param" description="Last Name" type="string" variable="$lastName">
+          <tag line="301" name="param" description="Last Name" type="string" variable="$lastName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="227" name="return" description="" type="void">
+          <tag line="301" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="234">
+        <argument line="308">
           <name>$lastName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="244" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="318" package="GN2\NewsletterConnect\Mailing">
         <name>getLastName</name>
         <full_name>getLastName</full_name>
-        <docblock line="239">
+        <docblock line="313">
           <description><![CDATA[Gets Last Name]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="239" name="return" description="" type="mixed">
+          <tag line="313" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="256" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="330" package="GN2\NewsletterConnect\Mailing">
         <name>setMobNumber</name>
         <full_name>setMobNumber</full_name>
-        <docblock line="249">
+        <docblock line="323">
           <description><![CDATA[Sets Mobile Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="249" name="param" description="Mobile Number" type="string" variable="$mobNumber">
+          <tag line="323" name="param" description="Mobile Number" type="string" variable="$mobNumber">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="249" name="return" description="" type="void">
+          <tag line="323" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="256">
+        <argument line="330">
           <name>$mobNumber</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="266" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="340" package="GN2\NewsletterConnect\Mailing">
         <name>getMobNumber</name>
         <full_name>getMobNumber</full_name>
-        <docblock line="261">
+        <docblock line="335">
           <description><![CDATA[Gets Mobile Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="261" name="return" description="" type="mixed">
+          <tag line="335" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="278" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="352" package="GN2\NewsletterConnect\Mailing">
         <name>setMobPrefix</name>
         <full_name>setMobPrefix</full_name>
-        <docblock line="271">
+        <docblock line="345">
           <description><![CDATA[Sets Mobile Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="271" name="param" description="Mobile Number Prefix" type="string" variable="$mobPrefix">
+          <tag line="345" name="param" description="Mobile Number Prefix" type="string" variable="$mobPrefix">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="271" name="return" description="" type="void">
+          <tag line="345" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="278">
+        <argument line="352">
           <name>$mobPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="288" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="362" package="GN2\NewsletterConnect\Mailing">
         <name>getMobPrefix</name>
         <full_name>getMobPrefix</full_name>
-        <docblock line="283">
+        <docblock line="357">
           <description><![CDATA[Gets Mobile Prefix]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="283" name="return" description="" type="mixed">
+          <tag line="357" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="300" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="374" package="GN2\NewsletterConnect\Mailing">
         <name>setSalutation</name>
         <full_name>setSalutation</full_name>
-        <docblock line="293">
+        <docblock line="367">
           <description><![CDATA[Sets Salutation]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="293" name="param" description="Salutation" type="string" variable="$salutation">
+          <tag line="367" name="param" description="Salutation" type="string" variable="$salutation">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="293" name="return" description="" type="void">
+          <tag line="367" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="300">
+        <argument line="374">
           <name>$salutation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="310" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="384" package="GN2\NewsletterConnect\Mailing">
         <name>getSalutation</name>
         <full_name>getSalutation</full_name>
-        <docblock line="305">
+        <docblock line="379">
           <description><![CDATA[Gets Salutation]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="305" name="return" description="" type="mixed">
+          <tag line="379" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="322" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="396" package="GN2\NewsletterConnect\Mailing">
         <name>setState</name>
         <full_name>setState</full_name>
-        <docblock line="315">
+        <docblock line="389">
           <description><![CDATA[Sets State]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="315" name="param" description="State" type="string" variable="$state">
+          <tag line="389" name="param" description="State" type="string" variable="$state">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="315" name="return" description="" type="void">
+          <tag line="389" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="322">
+        <argument line="396">
           <name>$state</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="332" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="406" package="GN2\NewsletterConnect\Mailing">
         <name>getState</name>
         <full_name>getState</full_name>
-        <docblock line="327">
+        <docblock line="401">
           <description><![CDATA[Gets State]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="327" name="return" description="" type="mixed">
+          <tag line="401" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="344" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="418" package="GN2\NewsletterConnect\Mailing">
         <name>setStreet</name>
         <full_name>setStreet</full_name>
-        <docblock line="337">
+        <docblock line="411">
           <description><![CDATA[Sets Street]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="337" name="param" description="Street" type="string" variable="$street">
+          <tag line="411" name="param" description="Street" type="string" variable="$street">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="337" name="return" description="" type="void">
+          <tag line="411" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="344">
+        <argument line="418">
           <name>$street</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="354" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="428" package="GN2\NewsletterConnect\Mailing">
         <name>getStreet</name>
         <full_name>getStreet</full_name>
-        <docblock line="349">
+        <docblock line="423">
           <description><![CDATA[Gets Street]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="349" name="return" description="" type="mixed">
+          <tag line="423" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="366" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="440" package="GN2\NewsletterConnect\Mailing">
         <name>setTelNumber</name>
         <full_name>setTelNumber</full_name>
-        <docblock line="359">
+        <docblock line="433">
           <description><![CDATA[Sets Telephone Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="359" name="param" description="Telephone Number" type="string" variable="$telNumber">
+          <tag line="433" name="param" description="Telephone Number" type="string" variable="$telNumber">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="359" name="return" description="" type="void">
+          <tag line="433" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="366">
+        <argument line="440">
           <name>$telNumber</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="376" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="450" package="GN2\NewsletterConnect\Mailing">
         <name>getTelNumber</name>
         <full_name>getTelNumber</full_name>
-        <docblock line="371">
+        <docblock line="445">
           <description><![CDATA[Gets Telephone Number]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="371" name="return" description="" type="mixed">
+          <tag line="445" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="388" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="462" package="GN2\NewsletterConnect\Mailing">
         <name>setTelPrefix</name>
         <full_name>setTelPrefix</full_name>
-        <docblock line="381">
+        <docblock line="455">
           <description><![CDATA[Sets Telephone Prefix]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="381" name="param" description="Telephone Prefix" type="string" variable="$telPrefix">
+          <tag line="455" name="param" description="Telephone Prefix" type="string" variable="$telPrefix">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="381" name="return" description="" type="void">
+          <tag line="455" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="388">
+        <argument line="462">
           <name>$telPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="398" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="472" package="GN2\NewsletterConnect\Mailing">
         <name>getTelPrefix</name>
         <full_name>getTelPrefix</full_name>
-        <docblock line="393">
+        <docblock line="467">
           <description><![CDATA[Gets Telephone Prefix]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="393" name="return" description="" type="mixed">
+          <tag line="467" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="410" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="484" package="GN2\NewsletterConnect\Mailing">
         <name>setTitle</name>
         <full_name>setTitle</full_name>
-        <docblock line="403">
+        <docblock line="477">
           <description><![CDATA[Sets Title e.g.]]></description>
           <long-description><![CDATA[<p>Dr.</p>]]></long-description>
-          <tag line="403" name="param" description="Title" type="string" variable="$title">
+          <tag line="477" name="param" description="Title" type="string" variable="$title">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="403" name="return" description="" type="void">
+          <tag line="477" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="410">
+        <argument line="484">
           <name>$title</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="420" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="494" package="GN2\NewsletterConnect\Mailing">
         <name>getTitle</name>
         <full_name>getTitle</full_name>
-        <docblock line="415">
+        <docblock line="489">
           <description><![CDATA[Gets Title]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="415" name="return" description="" type="mixed">
+          <tag line="489" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="432" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="506" package="GN2\NewsletterConnect\Mailing">
         <name>setZipCode</name>
         <full_name>setZipCode</full_name>
-        <docblock line="425">
+        <docblock line="499">
           <description><![CDATA[Sets Zip Code]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="425" name="param" description="Zip Code" type="string" variable="$zipCode">
+          <tag line="499" name="param" description="Zip Code" type="string" variable="$zipCode">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="425" name="return" description="" type="void">
+          <tag line="499" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="432">
+        <argument line="506">
           <name>$zipCode</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="442" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="516" package="GN2\NewsletterConnect\Mailing">
         <name>getZipCode</name>
         <full_name>getZipCode</full_name>
-        <docblock line="437">
+        <docblock line="511">
           <description><![CDATA[Gets Zip Code]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="437" name="return" description="" type="mixed">
+          <tag line="511" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="454" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="528" package="GN2\NewsletterConnect\Mailing">
         <name>setCity</name>
         <full_name>setCity</full_name>
-        <docblock line="447">
+        <docblock line="521">
           <description><![CDATA[Sets City]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="447" name="param" description="City" type="string" variable="$city">
+          <tag line="521" name="param" description="City" type="string" variable="$city">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="447" name="return" description="" type="void">
+          <tag line="521" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="454">
+        <argument line="528">
           <name>$city</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="464" package="GN2\NewsletterConnect\Mailing">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="538" package="GN2\NewsletterConnect\Mailing">
         <name>getCity</name>
         <full_name>getCity</full_name>
-        <docblock line="459">
+        <docblock line="533">
           <description><![CDATA[Gets City]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="459" name="return" description="" type="mixed">
+          <tag line="533" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
         </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="30" code="50018">No DocBlock was found for property $_id</error>
-      <error line="31" code="50018">No DocBlock was found for property $_salutation</error>
-      <error line="32" code="50018">No DocBlock was found for property $_title</error>
-      <error line="33" code="50018">No DocBlock was found for property $_firstName</error>
-      <error line="34" code="50018">No DocBlock was found for property $_lastName</error>
-      <error line="35" code="50018">No DocBlock was found for property $_company</error>
-      <error line="36" code="50018">No DocBlock was found for property $_street</error>
-      <error line="37" code="50018">No DocBlock was found for property $_houseNumber</error>
-      <error line="38" code="50018">No DocBlock was found for property $_zipCode</error>
-      <error line="39" code="50018">No DocBlock was found for property $_city</error>
-      <error line="40" code="50018">No DocBlock was found for property $_state</error>
-      <error line="41" code="50018">No DocBlock was found for property $_country</error>
-      <error line="42" code="50018">No DocBlock was found for property $_email</error>
-      <error line="43" code="50018">No DocBlock was found for property $_telPrefix</error>
-      <error line="44" code="50018">No DocBlock was found for property $_telNumber</error>
-      <error line="45" code="50018">No DocBlock was found for property $_faxPrefix</error>
-      <error line="46" code="50018">No DocBlock was found for property $_faxNumber</error>
-      <error line="47" code="50018">No DocBlock was found for property $_mobPrefix</error>
-      <error line="48" code="50018">No DocBlock was found for property $_mobNumber</error>
-    </parse_markers>
-    <source>eJzlmc1u2zgURvd+Ci6yUAPEBgp004naDJy0CZAEQZtVNwZtMTYRWRIkOk5m0Hcf/oqKLN5L1cvxpqjI+92jE1q06fOv1aaazE5PJ+SUfL//uLhn+yZnQrB6XhYFWwk5oMYerh/IC6sbXhbkk712saKCrcv6jZBgLbmo6OqZrhkBJzW7pZt3R3nOi7W+THdiU9aqlFzSF0auyzwv9/SNnGebi3Xx8axgYs/q52nGvuiCnK9Y0bhmZF5ut6xecZqTv7NMot/a8Y0Q1efZbL/fT9/HzHSMu1MVc/P4mZyvuVjwzPUonol5gTGziRNrb4n8YCtecVYIclUILt7IPKdN83+y+YPljDZMGrWACzs4Wu1KqRt2sLA3vWh9T/6dqMyq5i9SMjmRf8u/elcamu8EFRKlPyL/UjnrX3zidSPu6fZgQGINXl+V24oWbwdtRc2Y6F/dlLuG3e+2S1b3h/7h1bzMDuPlcjrMlv8ecuwKUR/MZVvp7ODOWf5Qsyf+OjAwTPdEX4cr5MBwxbZcDlfIAVehR/R7Sb1OyU8mGnKT2f+6q/K9UdMt2fJXlpETnpGby/6MmoldXZCXkrvimem6W8q1Tp52xUqtANIwcZMlMuODHjarR71OxIY3Z1/k+iGp6mGgfx8Qfh8mtP01Igiw1gD97rbcQ7TtBw3NzZIb1iQXnnokndh16SYTtXaP0GZjEpcbEujapi0BqDJwK2N8OjJEKkJjxer3ECZWT3KTjxerYxKXGxZr2qUtASJ28FbGiTVkqFiQRou9OlOPbtirflLZmWofqpnaQv/Y65WKS0xqyKlpmdreoM/hOxij0wAhMkEQrfIbfSXm+QnrbB/MQMUInd9cXOKTQ1p967TDAepFGaMUe0hEMwrVqjZ7GKraTAMqxqk2GYlPBlTb1mmHA1UNMsaqtpC4ahjKqFYfuwYfpT3V7uMZUDFGtYtLfHJQdds67XDAqjHGONUtJKYag9Kqr9Vn0KhHSOfTKlg1Qvi1j0y6+SHpXYT0HREoPoI2Sn0XF5Efgab139Kohe6+boTnj7B+S90qd7Eh323b1COApjG8KM0tH+IYI9KC78olz+MWePtVBC4aYfrOJSY+POTad087KKDtGMwo454TUY5y/YFzu2O9Kzp+27xzwYnvAaj322bvmyqs/vid03Pi6iN2zp/t+Qbs3Z+DACUjdPuQpJMdEt7pnnZZQOUoZ5TvDigiHMcyxtXxCyJbTRmeOEaxqk9MWFCs7pTalrBOACfOpObBJEIc1p86GsMEqjmBqaMUqoDE5oUl6m6p64toBJgiPWooVCSEok0+spxVm7KIe/K2h3to3QjBjy408fkhzR4g7dCAsiNJo7R7VMQ8itaTH/MdsT1yRevGyXdbXpsPyPdbXu8AGJV//K7nUXH5Ebveozq7J2y6npLLeoqo13N1xTGuVX1iwoKOdafUtoTdAjhxQjUPJhPi0CJ/8Yqo3x1ghfbHieDsER5/majEZYZcupZp2x30iZBFKXVoiFQEx5wkc4EdI+vfCQemjTk7luWJTgqeGqsuqekGnxeHSeIOixUKdlLcgfg9+Q8i+XTJ</source>
+    <source>eJzlmU9P4zgYh+/9FD5wyCLRSiPtZYbMsiowIAFCDCculZuY1iJNosShsKv57uu/cdqp39eB4/aCqO3f++RJasvO6V/1up7Mjo8n5Jj8uPuyuGPbtmBCsGZelSXLhGxQbfdX9+SVNS2vSvKn/e4so4KtquadkOBYclbT7IWuGAE7td3S9bulvODlSn9NO7GuGjWUnNNXRq6qoqi29J2c5uuzVfnlpGRiy5qXac6+6wEFz1jZumJkXm02rMk4LcjfeS7Rb2z7Woj662y23W6nuzEzHeOuVMVcP34lpysuFjx3NcoXYj5gzGzixNpLIg8s4zVnpSAXpeDincwL2rb/J5sPrGC0ZdKoBVzYxtFqM6XusIOFvehF73vy70Rl6tuhPgqKNqQVjbot1+f225n+Wzf8Vd4KciTv+LcJNPAnLTpBhcQPBLR9BzjokYuCBTKEaoOHX/KmFeSObkIZz6qDaodzbigcI5VHpMjHpKbleyAjM62IWNEwBqK0ugecclV18uG86zZL1gRi1qqL6QFnPfF6dl+1Qj778yoPUf3Da9WK3OxqW87m8ucfMiSbMD2y5+yBrYAnT3XB7lNXiiZ8n3QrHHFxon5qajZomJrIDiaxjeyDKJHTQr2uSkbuG/bM30I/BVaY9tg0c2fJlsuJrxMyCQ6PeRAu6RsM+UzfYiBVzhg8GRuDd1stecHgqE21jCG0UWMgZXII8icTLbnO7b99vZo2dEM2/I3l5Ijnfi7uezRMdE1JXiue71btlnJ9Is9dmakJlrRMXOeJzPhDN5sZX32OxJq3J9/lbE5SVeObbvn1G+GPw4S2vkYEAVYaYL+6He4hQuW1oN25c8+SvS9Hdgp1nYfT5Ees2ZjE5Yb8ubJpTwCaDFzKGJ2ODHGK0Fixw8kuKFZ3cp0/L1bHJC43LNaUS3sCROzBSxkn1pChYkEaLdYsAbBXvQIcXiw+4vVCxSUmNeTUlExtbdDn4SsYo9MAITJBEK3SLwmwzn4pAEaM0Hnp4hKfHNLqS6cDDlAvyhil2EMimlGoXvXOKh5WbboBI8apNhmJTwZU29LpgANVDTLGqraQuGoYyqje35yEVLs9CjBijGoXl/jkoOq+dDrggFVjjHGqe0hMNQalVR/Y8ARkD/Y94KgRwq98ZDLMD0kfIqQ7RKD4CNoo9UNcRH4Emta/v30OuHe76HD/EdZvqHvKXWzId1829QigaQwvSnPPhzjGiLTgnR0JLLnficCDRpi+dYmJDw+59tXTAQpoOwYzyrjnRJSjXB9wbles3a3jp5fNWxec+BqAer9sDna6uPrPr5yeE1cfsXL+drwY8O5PGYEhI3T7kGSQHRI+qJ4OWUDlKGeU7wEoIhzHMsbVqRkiW3U53HGMYjU+MWFBsbpSakvCOgGcOJOaB5MIcVh/6lQWE6jPdg93HaVQBSQ2LyxRV0tdXUQjwBTpUUOhIiEUbXL/DBN22p9douNGCH50oYnPD2n2AOmABpQdSRql3aMi5lG0Pfkxe8T+VBodN06+W/L6fEC+X/IGZ+RR8j+/6nlUXH7EqqffhRE2XU3JeTNF1Ou+w7dnH3KtxicmLOhYV0ptSdgtgBMnVPNgMiEOLfKJ18N3VQGF9pVVsPcIj08mKnGZIZeuZNpXB30iZFFKHRoiFcExJ8n+zV1AaaZf7R/oNubsWA5PdFLw1FhVSU01+Lw4TBJ3WKxQsJPiAcSvyX9APF9/</source>
   </file>
-  <file path="classes/MailingService/Interface.php" hash="d91a62f64ba11114fab74c6a154f584f" package="GN2\NewsletterConnect\MailingService">
+  <file path="classes/MailingService/Interface.php" hash="63bbf8fe9c61ef56ef631830fa543631" package="GN2\NewsletterConnect\MailingService">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -1122,7 +1257,7 @@ Should be implemented for different types of webservice.]]></description>
         <name>optInRecipient</name>
         <full_name>optInRecipient</full_name>
         <docblock line="49">
-          <description><![CDATA[Creates a new recipient on the MailingService]]></description>
+          <description><![CDATA[Creates a new recipient on the MailingServicem starts OptIn process]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="49" name="param" description="List Object" type="\GN2_NewsletterConnect_Mailing_List" variable="$list">
             <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
@@ -1145,52 +1280,102 @@ Should be implemented for different types of webservice.]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="59" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="67" package="GN2\NewsletterConnect\MailingService">
         <name>subscribeRecipient</name>
         <full_name>subscribeRecipient</full_name>
-        <argument line="59">
+        <docblock line="59">
+          <description><![CDATA[Subscribes a recipient directly to a mailing list]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="param" description="List Object" type="\GN2_NewsletterConnect_Mailing_List" variable="$list">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
+          </tag>
+          <tag line="59" name="param" description="Recipient Object" type="\GN2_NewsletterConnect_Mailing_Recipient" variable="$recipient">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
+          </tag>
+          <tag line="59" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="67">
           <name>$list</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="59">
+        <argument line="67">
           <name>$recipient</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="61" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="77" package="GN2\NewsletterConnect\MailingService">
         <name>unsubscribeRecipient</name>
         <full_name>unsubscribeRecipient</full_name>
-        <argument line="61">
+        <docblock line="69">
+          <description><![CDATA[Unsubscribes a recipient directly from a mailing list]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="69" name="param" description="List Object" type="\GN2_NewsletterConnect_Mailing_List" variable="$list">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
+          </tag>
+          <tag line="69" name="param" description="Recipient Object" type="\GN2_NewsletterConnect_Mailing_Recipient" variable="$recipient">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
+          </tag>
+          <tag line="69" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="77">
           <name>$list</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="61">
+        <argument line="77">
           <name>$recipient</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="63" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="86" package="GN2\NewsletterConnect\MailingService">
         <name>getRecipientByEmail</name>
         <full_name>getRecipientByEmail</full_name>
-        <argument line="63">
+        <docblock line="79">
+          <description><![CDATA[Finds a recipient by their E-Mail address, returns null if not found]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="79" name="param" description="E-Mail Address" type="string" variable="$email">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="79" name="return" description="GN2_NewsletterConnect_Mailing_Recipient or null" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="86">
           <name>$email</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="95" package="GN2\NewsletterConnect\MailingService">
+        <name>getRecipientById</name>
+        <full_name>getRecipientById</full_name>
+        <docblock line="88">
+          <description><![CDATA[Finds a recipient by their id, returns null if not found]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="88" name="param" description="ID" type="mixed" variable="$id">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="88" name="return" description="GN2_NewsletterConnect_Mailing_Recipient or null" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="95">
+          <name>$id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
     </interface>
-    <parse_markers>
-      <error line="59" code="50010">No DocBlock was found for method subscribeRecipient()</error>
-      <error line="61" code="50010">No DocBlock was found for method unsubscribeRecipient()</error>
-      <error line="63" code="50010">No DocBlock was found for method getRecipientByEmail()</error>
-    </parse_markers>
-    <source>eJzlVMGO0zAQvecr5tBDqaCRVuKyVNClILbSUla73CPHmSSmiW3ZTkOF+HfGbtJtC5vdwhEfmsTj92bee0ln73Spo3gyiWACn1YXyQpbW6FzaBZKSuSOCr52e30LGzRWKAmvu705Zw4LZbYAj2JhrhlfswJh8JBt0v7cZyYqIYt7NBvBMVRZ40plPAN8YBuEa1VVqmVbmGXlvJAXryS6Fs16muHbAKgIKW3fExaqrtFwwSq4yjJScNPVS+f0ZRy3bTs9pokDTS/Y0yy/XsKsEC4RWd9DrmG3BmniqPf3WFmylGRCznYa70vVVBmkCKLWFdZIxQxyUp2JPEdDz+C2Gi2oHFpM7Y5k+h9GcYcVMosURzdn0hXPy4W0pNYZFmTHkejT+LM1yaPh/Yh8qxCxX/QZobPAGxMyq4Slp9yoGlz5u6MB0QMPBuo2DLrGSGDGkMNX4ZfiHxwwuaGO8CX9Rnu2I4rDVTcphQF5I7nzVhbo/Fk7fvEmOtWwMEgvlAUGEtsgAgjxtALNDKuBVNARGHncitUIYSZ/91zFtfiO2eD0PEzoicf7Pk8KMciFFj6XM9Q8w+6wwhi724MMziK72883ehj1YfOI8dSyjRLDjintlnJPtnPt5UGj3r1THP0hWG5Ein+BbeS/oOkN3aPebz/W5NJ4hP5CiJ+/AEpwJGU=</source>
+    <source>eJzlVVtv2jAUfudXnAceGGqJVGkvXbXBaLcidbQq2zNy4hPwcOzIdsjQtP++Y4dw6bjuZdKaB0hsn+98l9i5+ZBP80bUbjegDZ+HV+Mhllaic2j6WilMHE34uaf7J5ijsUIreLsc6ybM4USbBcDeWujmLJmxCcLBRbaI63VfmJBCTUZo5iLBMMsKN9XGI8AtmyPcayl1yRZww6fdibq6VOhKNLMOx/ehQFKlsnVP6OssQ5MIJqHHOSl4WM5Pncuvo6gsy842TBRgasEeZvD1Gm4mwo0Fr3uoGVTXQZioUfu7rWw8UGRCyiqNo6kuJIcYQWS5xAxpkkNKqrlIUzT0DG6RowWdQomxrUA6rzCKZ5TILFIcS57j5eR5uZCW2DrDguyoIeo0dlsz3hvez4ZvFSL2F20jdBaSwoTMpLD0lBqdgZv+6WioqAs3CC0HDLrCKGDGkMO98EvxHyQ4fqCO8Bh/pzG7BIrCf17EFAakhUqct3KCzq+1rTfvGi819A3SC2WBgcIyiACqOK4gZ4ZlQCpoCTR93ZBlCIGTvztVcSZ+ID/IPgkMPXBr1eeoEIOJyIXPZacaz5wZyusxdwMFudEJWrtb4wkhhCuQq243kjkL7HnFurkWsB7cQnxp5FyLwz5qL3UFVnl5sdFoh6ejIraJEXGwdc2IC7p3cgFO03hWkQ/vzv/toK3tOM/Fb8oe8TGcGq/JyUL9pZefhOLbJsYLv7+FgbtLTx0Y54b28gVUXCyoQkoQKSjt6DNbKL7b2vooQ59CDdarwPbIDGfXyTbSx9RTOXZSrwo+Lu48lVbF6DwvBD9bfyWmKTgMbv+R3gFvUX+v9NdvAfpbfw==</source>
   </file>
-  <file path="classes/MailingService/MailingWork.php" hash="10f5b5d4ca2329c3471861a03805fa51" package="GN2\NewsletterConnect\MailingService">
+  <file path="classes/MailingService/MailingWork.php" hash="fed66b8f7fd1149e0e4c2ec5b0e143ab" package="GN2\NewsletterConnect\MailingService">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -1218,198 +1403,300 @@ Should be implemented for different types of webservice.]]></description>
         <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="34" namespace="global" package="Default">
         <name>$_fields</name>
         <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="of fields to send to the MailingService" type="\Set">
+            <type by_reference="false">\Set</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="38" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="41" package="GN2\NewsletterConnect\MailingService">
         <name>init</name>
         <full_name>init</full_name>
-        <docblock line="33">
+        <docblock line="36">
           <description><![CDATA[General API-Specific Initialization]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="33" name="return" description="" type="void">
+          <tag line="36" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="52" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="55" package="GN2\NewsletterConnect\MailingService">
         <name>_setMailingworkUrl</name>
         <full_name>_setMailingworkUrl</full_name>
-        <docblock line="45">
+        <docblock line="48">
           <description><![CDATA[Sets the current JSON-API Url-Key and prepares the param array]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="45" name="param" description="Url-Key from the Mailingwork Api. e.g. getLists, CreateRecipient" type="string" variable="$param">
+          <tag line="48" name="param" description="Url-Key from the Mailingwork Api. e.g. getLists, CreateRecipient" type="string" variable="$param">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="45" name="return" description="" type="void">
+          <tag line="48" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="52">
+        <argument line="55">
           <name>$param</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="62" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="65" package="GN2\NewsletterConnect\MailingService">
         <name>_getDecodedResponse</name>
         <full_name>_getDecodedResponse</full_name>
-        <docblock line="57">
+        <docblock line="60">
           <description><![CDATA[Decodes the returned JSON-String into an array]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="57" name="return" description="JSON Array" type="array">
+          <tag line="60" name="return" description="JSON Array" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="74" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="77" package="GN2\NewsletterConnect\MailingService">
         <name>getLists</name>
         <full_name>getLists</full_name>
-        <docblock line="68">
+        <docblock line="71">
           <description><![CDATA[Gets current lists from the MailingService]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="68" name="abstract" description=""/>
-          <tag line="68" name="return" description="Array of GN2_NewsletterConnect_Mailing_List Objects" type="array">
+          <tag line="71" name="abstract" description=""/>
+          <tag line="71" name="return" description="Array of GN2_NewsletterConnect_Mailing_List Objects" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="98" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="101" package="GN2\NewsletterConnect\MailingService">
         <name>getMainShopList</name>
         <full_name>getMainShopList</full_name>
-        <docblock line="92">
+        <docblock line="95">
           <description><![CDATA[Returns the default shop-list, creating if necessary.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="92" name="return" description="" type="\GN2_NewsletterConnect_Mailing_List">
+          <tag line="95" name="return" description="" type="\GN2_NewsletterConnect_Mailing_List">
             <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="121" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="124" package="GN2\NewsletterConnect\MailingService">
         <name>createList</name>
         <full_name>createList</full_name>
-        <docblock line="113">
+        <docblock line="116">
           <description><![CDATA[Creates a new list on the MailingService]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="113" name="param" description="List Name" type="string" variable="$listName">
+          <tag line="116" name="param" description="List Name" type="string" variable="$listName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="113" name="return" description="" type="mixed">
+          <tag line="116" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
-          <tag line="113" name="throws" description="" type="\Exception">
+          <tag line="116" name="throws" description="" type="\Exception">
             <type by_reference="false">\Exception</type>
           </tag>
         </docblock>
-        <argument line="121">
+        <argument line="124">
           <name>$listName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="145" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="148" package="GN2\NewsletterConnect\MailingService">
         <name>optInRecipient</name>
         <full_name>optInRecipient</full_name>
-        <docblock line="136">
+        <docblock line="139">
           <description><![CDATA[Creates a new recipient on the MailingService]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="136" name="param" description="List Id" type="mixed" variable="$listId">
-            <type by_reference="false">mixed</type>
+          <tag line="139" name="param" description="List" type="\GN2_NewsletterConnect_Mailing_List" variable="$list">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
           </tag>
-          <tag line="136" name="param" description="Recipient Object" type="\GN2_NewsletterConnect_Mailing_Recipient" variable="$recipient">
+          <tag line="139" name="param" description="Recipient Object" type="\GN2_NewsletterConnect_Mailing_Recipient" variable="$recipient">
             <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
           </tag>
-          <tag line="136" name="return" description="" type="void">
+          <tag line="139" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
-          <tag line="136" name="throws" description="" type="\Exception">
-            <type by_reference="false">\Exception</type>
+          <tag line="139" name="throws" description="" type="\GN2_NewsletterConnect_Exception_MailingService">
+            <type by_reference="false">\GN2_NewsletterConnect_Exception_MailingService</type>
           </tag>
         </docblock>
-        <argument line="145">
+        <argument line="148">
           <name>$list</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="145">
+        <argument line="148">
           <name>$recipient</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="170" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="182" package="GN2\NewsletterConnect\MailingService">
         <name>subscribeRecipient</name>
         <full_name>subscribeRecipient</full_name>
-        <argument line="170">
+        <docblock line="173">
+          <description><![CDATA[Subscribes a recipient directly to a mailing list]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="173" name="param" description="List Object" type="\GN2_NewsletterConnect_Mailing_List" variable="$list">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
+          </tag>
+          <tag line="173" name="param" description="Recipient Object" type="\GN2_NewsletterConnect_Mailing_Recipient" variable="$recipient">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
+          </tag>
+          <tag line="173" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="173" name="throws" description="" type="\GN2_NewsletterConnect_Exception_MailingService">
+            <type by_reference="false">\GN2_NewsletterConnect_Exception_MailingService</type>
+          </tag>
+        </docblock>
+        <argument line="182">
           <name>$list</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="170">
+        <argument line="182">
           <name>$recipient</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="194" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="215" package="GN2\NewsletterConnect\MailingService">
         <name>unsubscribeRecipient</name>
         <full_name>unsubscribeRecipient</full_name>
-        <argument line="194">
+        <docblock line="206">
+          <description><![CDATA[Unsubscribes a recipient directly from a mailing list]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="206" name="param" description="List Object" type="\GN2_NewsletterConnect_Mailing_List" variable="$list">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_List</type>
+          </tag>
+          <tag line="206" name="param" description="Recipient Object" type="\GN2_NewsletterConnect_Mailing_Recipient" variable="$recipient">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
+          </tag>
+          <tag line="206" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="206" name="throws" description="" type="\GN2_NewsletterConnect_Exception_MailingService">
+            <type by_reference="false">\GN2_NewsletterConnect_Exception_MailingService</type>
+          </tag>
+        </docblock>
+        <argument line="215">
           <name>$list</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="194">
+        <argument line="215">
           <name>$recipient</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="218" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="244" package="GN2\NewsletterConnect\MailingService">
         <name>_getFields</name>
         <full_name>_getFields</full_name>
+        <docblock line="238">
+          <description><![CDATA[Gets fields associated with the MailingWork user table]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="238" name="return" description="Array of id=&gt;field Names" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="238" name="throws" description="" type="\GN2_NewsletterConnect_Exception_MailingService">
+            <type by_reference="false">\GN2_NewsletterConnect_Exception_MailingService</type>
+          </tag>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="235" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="268" package="GN2\NewsletterConnect\MailingService">
         <name>getFieldName</name>
         <full_name>getFieldName</full_name>
-        <argument line="235">
+        <docblock line="261">
+          <description><![CDATA[Finds the fieldname associated with a field ID]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="261" name="param" description="Id of field" type="int" variable="$id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="261" name="return" description="Name of field" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="268">
           <name>$id</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="243" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="284" package="GN2\NewsletterConnect\MailingService">
         <name>getFieldId</name>
         <full_name>getFieldId</full_name>
-        <argument line="243">
+        <docblock line="277">
+          <description><![CDATA[Finds the field ID associated with a field name]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="277" name="param" description="Name of field" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="277" name="return" description="Id of field" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="284">
           <name>$name</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="252" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="301" package="GN2\NewsletterConnect\MailingService">
         <name>getRecipientByEmail</name>
         <full_name>getRecipientByEmail</full_name>
-        <argument line="252">
+        <docblock line="294">
+          <description><![CDATA[Finds a recipient by their E-Mail address, returns null if not found]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="294" name="param" description="E-Mail Address" type="string" variable="$email">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="294" name="return" description="GN2_NewsletterConnect_Mailing_Recipient or null" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="301">
           <name>$email</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="270" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="327" package="GN2\NewsletterConnect\MailingService">
         <name>getRecipientById</name>
         <full_name>getRecipientById</full_name>
-        <argument line="270">
+        <docblock line="319">
+          <description><![CDATA[Finds a recipient by their id, returns null if not found]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="319" name="param" description="ID" type="mixed" variable="$id">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="319" name="return" description="GN2_NewsletterConnect_Mailing_Recipient or null" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="319" name="throws" description="" type="\GN2_NewsletterConnect_Exception_MailingService">
+            <type by_reference="false">\GN2_NewsletterConnect_Exception_MailingService</type>
+          </tag>
+        </docblock>
+        <argument line="327">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="286" package="GN2\NewsletterConnect\MailingService">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="350" package="GN2\NewsletterConnect\MailingService">
         <name>_mailingworkRecipient2Recipient</name>
         <full_name>_mailingworkRecipient2Recipient</full_name>
-        <argument line="286">
+        <docblock line="343">
+          <description><![CDATA[Converts a MailingWork Recipient to a GN2_NewsletterConnect_Mailing_Recipient]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="343" name="param" description="MailingWork fields array" type="array" variable="$mailingWorkUserFields">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="343" name="return" description="" type="\GN2_NewsletterConnect_Mailing_Recipient">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
+          </tag>
+        </docblock>
+        <argument line="350">
           <name>$mailingWorkUserFields</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -1417,24 +1704,11 @@ Should be implemented for different types of webservice.]]></description>
       </method>
     </class>
     <markers>
-      <todo line="202">doesn't exist :-(</todo>
+      <todo line="223">doesn't exist :-(</todo>
     </markers>
-    <parse_markers>
-      <error line="31" code="50018">No DocBlock was found for property $_fields</error>
-      <error line="136" code="50014">Name of argument $list does not match with the DocBlock's name $listId in optInRecipient()</error>
-      <notice line="136" code="50013">Parameter $listId could not be found in optInRecipient()</notice>
-      <error line="170" code="50010">No DocBlock was found for method subscribeRecipient()</error>
-      <error line="194" code="50010">No DocBlock was found for method unsubscribeRecipient()</error>
-      <error line="218" code="50010">No DocBlock was found for method _getFields()</error>
-      <error line="235" code="50010">No DocBlock was found for method getFieldName()</error>
-      <error line="243" code="50010">No DocBlock was found for method getFieldId()</error>
-      <error line="252" code="50010">No DocBlock was found for method getRecipientByEmail()</error>
-      <error line="270" code="50010">No DocBlock was found for method getRecipientById()</error>
-      <error line="286" code="50010">No DocBlock was found for method _mailingworkRecipient2Recipient()</error>
-    </parse_markers>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <file path="classes/Mapper/Abstract.php" hash="331dd1d1c7fb7c729fff6eccd77bf9c7" package="GN2\NewsletterConnect\Mapper">
+  <file path="classes/Mapper/Abstract.php" hash="82cdce70c41fc7a8cdaa0a55dd1a2221" package="GN2\NewsletterConnect\Mapper">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -1462,45 +1736,52 @@ Should be implemented for different types of webservice.]]></description>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
         <tag line="16" name="abstract" description=""/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="31" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="34" namespace="global" package="Default">
         <name>$_entity</name>
         <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="Unused //TODO: Remove" type="\$_entity">
+            <type by_reference="false">\$_entity</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="38" package="GN2\NewsletterConnect\Mapper">
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="41" package="GN2\NewsletterConnect\Mapper">
         <name>getResults</name>
         <full_name>getResults</full_name>
-        <docblock line="33">
+        <docblock line="36">
           <description><![CDATA[Returns results from the mapper]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="33" name="return" description="Meta &amp; result data" type="\GN2_NewsletterConnect_Data_Result">
+          <tag line="36" name="return" description="Meta &amp; result data" type="\GN2_NewsletterConnect_Data_Result">
             <type by_reference="false">\GN2_NewsletterConnect_Data_Result</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="47" package="GN2\NewsletterConnect\Mapper">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="50" package="GN2\NewsletterConnect\Mapper">
         <name>restrictEntity</name>
         <full_name>restrictEntity</full_name>
-        <docblock line="40">
+        <docblock line="43">
           <description><![CDATA[Restrict the mapper to one specific entity/id.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="40" name="param" description="e.g. Record ID" type="string" variable="$_entity">
+          <tag line="43" name="param" description="e.g. Record ID" type="string" variable="$_entity">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="40" name="return" description="" type="void">
+          <tag line="43" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="47">
+        <argument line="50">
           <name>$_entity</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <parse_markers>
-      <error line="31" code="50018">No DocBlock was found for property $_entity</error>
-    </parse_markers>
-    <source>eJzlUsFq3DAQvfsr5hBKshAbAr2k23TDbmkCTQihd6OVxrZYWxLSeN2l5N8ryVLSlGyg5+pirPfmzZt5Wn4xnSmqxaKABXy7v6jvcXI9EqFda6WQkwcC9nDzAHu0TmoFH9PdijPCVtsDwNFaWBnGd6xFeJfkxm3m3TFj0MZbNlKnbaiEDdsj3Oi+1xM7wFJ0q1ZdnCukCe2uFHgVC3rJUbncC9Z6GNByyXq4FsI7/57wjshcVtU0TeVrmSrK5EGDzO2PS1i2kmopcg+1g/m8K1MVea/XW0eWcQLBiMEQ5wPeM+fKAK+Zgi0C/iRUAgU0fmQhmwYtKgI6GHSgm1RX/ke7f8QemUO//+SvTuC/BeFnSQHEVPLPnMDbe6nnRdQ5ueJXEdoYq8mjPqOT2mcj6fCpiEAMOpyFN02jVQ4surEnB43VA1CHKb9Ey+yVjfQjLjb+vdSPUQju0L+dD0k2vqSkUcXv81TNqDiFBbZIc6k7PXvLpudLz3+xBqRBKwRnkMtGcphHrKQo/3ZtmGUDBAXVPu8CsGxLL8y1FXC7OTLpXkvxyrkZt/7pvPi2ydnXKHqa1c8iec4hnBPqpDu/Sq0//5FIQJ+K4uk3dVaEog==</source>
+    <markers>
+      <todo line="32">Remove</todo>
+    </markers>
+    <source>eJzlUk1r4zAQvftXzKGUNlAbCnvJpt2UZNkWth+E7tko0tgWsSUjjeMNS//7SrLcbEpT2HN1Mda8efPmPc2+tVWbZJNJAhP48XCZP2BvayRCs9BKISdX8LWn2yfYorFSK/gS7+acEZba7ACO9sK8ZXzDSoQPQbZbj7h71rZowi3rqNLGd8KSbRFudV3rnu1gJqp5qS4vFFKPZpMKvA4NteSo7DgLFrpp0HDJargRwin/GesVUTvNsr7v00OaLNCMi3qau+cpzEpJuRTjDLWB4XxIkyWjrzdrS4ZxAsGIQRP2A14za1NfXjAFawT8TagECijcykIWBRpUBLRr0YIuYl/6ibxfYY3MovM/6stj8f+CcLvEAEIq48+QwPu+5IMR+Zhc8ifxY0Ke/nidzMBJ7hKStINfqrMuuSx7flw+Tp3wRm8xQrPwbY0mR+xAY9PX5C3nCqkzyoJB29VkoTC6AaowRh9hrwpMgB9ZYOmeWr4KRHCP7tmdRtrwCA+kvRpSdIqT975EGlrt2fl7Mh1eOvxeGpAGrRBsi1wWksOwYiZF+lZ1ywxrwDOocm8gpmXqiLk2Au6WRzbdaikOTe3W7tXtdZuo7HsgPRvZzwN4iNCfE6qkvbiOo6/+ScRXX5Lk5S9EWZN/</source>
   </file>
   <file path="classes/Mapper/Categories.php" hash="45476e9fb067a7fa8288dfe3ed76ae03" package="GN2\NewsletterConnect\Mapper">
     <docblock line="2">
@@ -1638,7 +1919,7 @@ Should be implemented for different types of webservice.]]></description>
     </class>
     <source>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</source>
   </file>
-  <file path="classes/Output/Abstract.php" hash="82f5d45ce508e6c382424fc3cda0490a" package="GN2\NewsletterConnect\Output">
+  <file path="classes/Output/Abstract.php" hash="c7edcc8f874540c1df2c068bafb55c5d" package="GN2\NewsletterConnect\Output">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -1667,78 +1948,82 @@ output.]]></description>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
         <tag line="16" name="abstract" description=""/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="34" namespace="global" package="Default">
         <name>$_data</name>
         <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="GN2_NewsletterConnect_Data_Result Object" type="\$_data">
+            <type by_reference="false">\$_data</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="38" package="GN2\NewsletterConnect\Output">
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="41" package="GN2\NewsletterConnect\Output">
         <name>displayData</name>
         <full_name>displayData</full_name>
-        <docblock line="33">
+        <docblock line="36">
           <description><![CDATA[Gets the output, prepared for the browser.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="33" name="return" description="Data output" type="string">
+          <tag line="36" name="return" description="Data output" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="45" package="GN2\NewsletterConnect\Output">
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="48" package="GN2\NewsletterConnect\Output">
         <name>getContentType</name>
         <full_name>getContentType</full_name>
-        <docblock line="40">
+        <docblock line="43">
           <description><![CDATA[Gets the content-type for any HTTP-Headers.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="40" name="return" description="Content type" type="string">
+          <tag line="43" name="return" description="Content type" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="54" package="GN2\NewsletterConnect\Output">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="GN2\NewsletterConnect\Output">
         <name>setData</name>
         <full_name>setData</full_name>
-        <docblock line="47">
+        <docblock line="50">
           <description><![CDATA[Sets the data for the output]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="47" name="param" description="Meta &amp; result data" type="\GN2_NewsletterConnect_Data_Result" variable="$data">
+          <tag line="50" name="param" description="Meta &amp; result data" type="\GN2_NewsletterConnect_Data_Result" variable="$data">
             <type by_reference="false">\GN2_NewsletterConnect_Data_Result</type>
           </tag>
-          <tag line="47" name="return" description="" type="boolean">
+          <tag line="50" name="return" description="" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="54">
+        <argument line="57">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="68" package="GN2\NewsletterConnect\Output">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="71" package="GN2\NewsletterConnect\Output">
         <name>getData</name>
         <full_name>getData</full_name>
-        <docblock line="63">
+        <docblock line="66">
           <description><![CDATA[Gets the data from the GN2_NewsletterConnect_Data_Result object]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="63" name="return" description="Meta &amp; result data" type="\stdClass">
+          <tag line="66" name="return" description="Meta &amp; result data" type="\stdClass">
             <type by_reference="false">\stdClass</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="78" package="GN2\NewsletterConnect\Output">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="81" package="GN2\NewsletterConnect\Output">
         <name>show</name>
         <full_name>show</full_name>
-        <docblock line="73">
+        <docblock line="76">
           <description><![CDATA[Sets HTTP-Headers and sends output to the browser.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="73" name="return" description="" type="void">
+          <tag line="76" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="31" code="50018">No DocBlock was found for property $_data</error>
-    </parse_markers>
-    <source>eJzlVF1v2jAUfc+vuA/VKNUCUqVJE6UdFZPGpK2rOt4jJ75JvAY7sm/I0NT/PttxWmBAt+f5AYTvh88951ymH+qyjsYXFxFcwKe7y+QOW1MhEeq5khIzsgEXu1/cwxq1EUrCu3A3yxhhofQG4GgtzGqWPbIC4WSSadI+71tDddPdsoZKpV0lfGRrhIWqKtWyDUx5OSvkZSyRWtSPI443vqASGUrTvwVztVqhzgSr4JZzi/xLiJdE9WQ8btt2tNtm7Nv0g7o2n5cTmBaCEsH7N+QjdOdkm3HU83qbGtIsI8gqZgzkdiTOiLmQ8sOOYM4kpAj4k1By5F2OyHPUKClkucsVIzP6j+h/wAqZQStBwJeE4L9pYWcJGnhh2K4gB3lJOiKSXrzoV+SeqbVYW9rhLHESXkX+0uvsjt0hJANUYtDsrS3AmukgqQukWrUG9ShU9IUzjdRoCfY1IQtLOLHQI2SM/fcz9LyRGTmWuDB1xTau4Hx4AlCmpDUXxbSp0YNhcgOL5fI+XiDjltVXEM27enD1r0AqkEL20iYfQvW9R+VYfKZmZ95nGJY+tjoikps6eUDTVARnvtdXtB9vQHd33Z4dHCtVynpL7oxSN6n18MsgBsnz6lsPfUpnA3dEDufCJCr9YZGElOFW3J0zKoWJb7xZ4LqDeLWTEdCQbvAl8BTthXNWmRB/Oi5xR6ZWK//rdcY66Edl53O/HkcZPcxZETjbpyu03WYkvrHJzh6H5/Im2XaotSy3mkhu+r9EUn+zU2sl+GmdS9X+Abj0j54PgpVj5+XJAEb9CPsut5HBFWQl09Y21w3l8fvB8EVTzErVl+7tbBj/KfoNST1Fzw==</source>
+    <source>eJzlVF1P2zAUfc+vuA9opWhpJaRJE18DFYlO2gCxvkdOfJN4pHZk3zSrJv47tuNAW9rCnueHVvX9Ovec4559q8s6Gh8dRXAEN7fHyS22pkIi1BMlJWZkAy52P72HBWojlIQv4e4yY4SF0kuAnbVwWbPskRUIe5NMk/Z5dw3VTXfLGiqVdpVwzRYIU1VVqmVLOOPlZSGPY4nUon4ccbzwBZXIUJp+FkzUfI46E6yCK84t8h8hXhLVJ+Nx27aj9TZj36Zf1LX5PjuBs0JQIng/Qz5Cd/a2GUc9r1epIc0ygqxixkBuV+KMmAspv+wIJkxCioB/CCVH3uWIPEeNkkKWu5wzMqP/iP4HrJAZtBIEfEkI/psWdpeggReGrQuylZekIyLpxYv+Rm6Ml9Qdh5NpOEiclDtaXNtQ8oCmqQju0t+ebV879t+1FgsrYehxGm0OuEEyQCUG/T/bAqyZDvZwgVSr1qAehYoXZBqp0RIsciELcDBCj7X5LzTkjczIMc6FqSu2dAWHwz2AMiWtUSmmZY0eDJNLmM5m9/EUGbcKvYNo0tWDq38HUoEUsmc2eRuqXz0qr0RPzdq+LzAsfWz+AbUOfK+faD8+ge7uuje7da1UKetTua5uk9r38LqIQfK8+tZDn9JZyh2Rw6EwifImCSnDlbg7B1QKE190hjvvIJ6uZQQ0pBt8DTxFG+GcVSbEn3ZL3JGp1dz/ep8xtervt7LziX9qOxndzlkRONukK7RdZSS+sMnOHtv38iZZdai1LLeaSG76v1dSH3lTCyX4fp1L1b4BXPqhh4Ng5dh5+WQAo36FTZfbyOAUspJpa5vzhvL462D4qilmpepLN95sWP8pegaY6VwE</source>
   </file>
   <file path="classes/Output/Csv.php" hash="445857a67909f32d8ebd190cab7bdefe" package="GN2\NewsletterConnect\Output">
     <docblock line="2">
@@ -2012,7 +2297,7 @@ output.]]></description>
     </class>
     <source>eJzlVMtq20AU3fsrbsEEOzQWBLpJ0jQhhaS0hBD3sShFjKUre7A8I2ZGdtzif++dh2Rblp02XXYWFvJ9nXvO0Vy8KyZFJzo+7sAx3N6fxve40Dkag+pGCoGJoYCNPdw9wByV5lLAm/DfVcIMjqVaAuythauCJVM2RjiYpMtRlfcNR0NUc56gi7DSTKSy1fCezRHuZJ7LBVvCRTq5GovTE4FmgWo6SPHSFeRUKXQ1D27kbIYq4SyH6zQl9J9CfGJMcRZFi8VisN0mcm2qZW2bD5/P4GLMTczTaoaYgj8H20SditvrkTaKJWZjPUhypvXARocTWeYpjBDwyaBIMYWMlk55lqFCYcAsC9Qgs43ywX+mwiPmyDSSEgFjHIJ/JwntEqRw+lQvXox2bmIiQ3sy4krHzq+OHeXUtcdiZQqYUkRKNy6YYjMND/aB1EmDkVZe7cSUYCYIi7praBG5Z6GkoaFkgbrNW9+31z/vHJyaSJHxMZFtH6VixlLngnsnhJIDE4ZoNCRbLTWxw8VYAxMpaMMUZXDBTa8fimp0boEK37Pw6jKFplQC5pKn28jLERkLslIkrji2+EmQMjG9bnMVD8brZA/PoMd17KMhu9/fSLCnayZcn1yueQmJ53XWqtPI9Zv7hNUOfbcoUJHtbRbZn//0a9crkBkSMrYoi6hQSHyhM0dQvpWdtYGfoas2d5O3CnITLH2bNNMPt7bdtepGLOfatOtNU8ke0J2ivZQ+4rIRn/EnMh905ywvEb7a35c6gKWp+8h6dtjr0LJN+VckvSjz3CXuyB684RN8Dzg68vTHVBDjE22rqynBJF6knWaeVPhC95upcLd4TOFMznGNvn++lbkCzDVuQ/fI9swbHpwWwH63k35YX7tejZENk++6+RG1vQ5qh+41wp/qp2xDx4HuNWXbRr55R+0DZwndNnCm5OxfLbw28AvWa2jc4syXmay07uq1idtv3lXE1Oo3OEnlPw==</source>
   </file>
-  <file path="classes/WebService/Curl.php" hash="6f7ff5ebc88bb06abfb71d06c359e489" package="GN2\NewsletterConnect\WebService">
+  <file path="classes/WebService/Curl.php" hash="81fc157edaaa57b1b8153d5a4f19e207" package="GN2\NewsletterConnect\WebService">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -2039,74 +2324,90 @@ output.]]></description>
         <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
         <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="30" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="33" namespace="global" package="Default">
         <name>$_returnTransfer</name>
         <default><![CDATA[true]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
-        <name>$_post</name>
-        <default><![CDATA[false]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="32" namespace="global" package="Default">
-        <name>$_url</name>
-        <default><![CDATA[null]]></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="41" package="GN2\NewsletterConnect\WebService">
-        <name>setPost</name>
-        <full_name>setPost</full_name>
-        <docblock line="34">
-          <description><![CDATA[Sets the curl mode to post or get]]></description>
+        <docblock line="30">
+          <description><![CDATA[]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="34" name="param" description="True/False" type="bool" variable="$post">
+          <tag line="30" name="var" description="Curl Parameter to return response from server or not" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="34" name="return" description="" type="void">
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="37" namespace="global" package="Default">
+        <name>$_post</name>
+        <default><![CDATA[false]]></default>
+        <docblock line="34">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="Curl Parameter GET/POST" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="41" namespace="global" package="Default">
+        <name>$_url</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="38">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="URL to the WebService" type="null">
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="50" package="GN2\NewsletterConnect\WebService">
+        <name>setPost</name>
+        <full_name>setPost</full_name>
+        <docblock line="43">
+          <description><![CDATA[Sets the curl mode to post or get]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="True/False" type="bool" variable="$post">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="43" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="41">
+        <argument line="50">
           <name>$post</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="true" abstract="false" static="false" visibility="public" namespace="global" line="57" package="GN2\NewsletterConnect\WebService">
+      <method final="true" abstract="false" static="false" visibility="public" namespace="global" line="66" package="GN2\NewsletterConnect\WebService">
         <name>setUrl</name>
         <full_name>setUrl</full_name>
-        <docblock line="50">
+        <docblock line="59">
           <description><![CDATA[Sets the API-Url]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="50" name="param" description="API-Url" type="string" variable="$url">
+          <tag line="59" name="param" description="API-Url" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="50" name="return" description="" type="void">
+          <tag line="59" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="57">
+        <argument line="66">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="true" abstract="false" static="false" visibility="public" namespace="global" line="67" package="GN2\NewsletterConnect\WebService">
+      <method final="true" abstract="false" static="false" visibility="public" namespace="global" line="76" package="GN2\NewsletterConnect\WebService">
         <name>getResponse</name>
         <full_name>getResponse</full_name>
-        <docblock line="62">
+        <docblock line="71">
           <description><![CDATA[Contacts the webservice, sets parameters and returns response]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="62" name="return" description="API-Response" type="string">
+          <tag line="71" name="return" description="API-Response" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="30" code="50018">No DocBlock was found for property $_returnTransfer</error>
-      <error line="31" code="50018">No DocBlock was found for property $_post</error>
-      <error line="32" code="50018">No DocBlock was found for property $_url</error>
-    </parse_markers>
-    <source>eJzlVMFu4jAQvecr5oBUQLTRVtpLgW4RbbdIFUWQao+RkwwkqrGztgOtqv772o4DAQrbPa8PRHjevJl585LejzzNPb/d9qANP8eX4RjXkqJSKIacMYyVDpjY5GECKxQy4wy+u7ubmChccPEGcDQXbnISv5AFwkmQLKIK9wujGYpVFqONkEKlXJhsuCUrhAdOKV+TN+gl6c2CXZ4zVGsULxcJXtsEqjOZrOrBkC+XKOKMUBgkie7+0cVTpfIr31+v1xe7NL6lqYY1NKPgCnqLTIVZUtVgL1CekzS+V2k7LAStjQajZU5xiUwRpav8Z4JOkSKRqEV1PYYu+K/qkkgqQWIFMSVSfi5HqOeX5fyh2YJnePFVIUu+kDFwFbx3m5eLbKV3BI1QoCoECwRhco4C+qBEgd09UM6l0qE5ofIgZgzRB1ZQ2vVsyDrFnDbMUElQKUJsUEueICgOlk2vboHKASu89oQgS4g4p9CwsEB349+buvvQsnFY8Sxxd77rjCs9PCYwL1hsXAkS1USTNRv1OVoWXcphTjaHCtAvVWjVouY0VJrJ8+tKja1Q5nwAatLTGTX9bIpX/h5VbTAZnT+7TR+IpPeZsQU0jLJHgMckmmdMuz4vIv1K7KikOZqGcF+bao5y1wbRPdK7tp7SNiv7X2/81zHsEmznqB0qgbAEyv6kfsqcs6MrdpOaIae7yFPjaHdV6ObBPHGq5zCmDDOWqWZruxR7qZvlufZLnHZg+Dx9fJoEoX506kLUcqx1XGT3fdq30FH26V3wPB0H08F4dn833Rbao6ubZzvN7wL1t7ZvvzJhVGQ0Ce3Vpimru2x1vU9bNu78cqOTp1nQgW+1Tv4Kvx/dPd7OOq7P1v4LYEfQFiioqpaCrxgbnhrW9zFOeX0BF2e9SFyfHUJKrjLcS3cgDRSCi00Z88fV2UCc6RzLxufexx+cuHjd</source>
+    <source>eJzlVcFu2kAQvfsr5oAUiEisRuolQBpESIIUEQRGPVqLPWArZtfdXUOiKv/e2bUNhsQ0PXcPWHjfvJn3Zga6P9IoddzzcwfO4WF85Y9xqxLUGuVAcI6BpgtzN3mcwAaligWH78W724BpXAn5BlAbC7cpC17YCuEkSGWLEvcTFzOUmzhAe8MyHQlpouGObRAeRZKILXuDbhjdrvjVBUe9RflyGeKNDUgokqsyHwzEeo0yiFkC/TCk6p+K+0jr9Np1t9vt5SGNa2lKsYZm5F1DdxVrPw7LHPwF8nOSxnVKbweZTCrSYLROE1wj10xTlv/M0CkmyBSSqUWNfnH5r+6yhdKSBRqChCn1uR0+6Ve5ft90wTG8+KqRh1+I6BcZnN82znbTHCOISVgIkeS9nTDJ1kgkoAVI1Jnk9FCpMNYspViDoaRr8p4LXbC49pnKeEOdh4afB3qScbUkbA+0zLDz5dQPQ8+dPM+8GvZUKE2cS5aoGlKeJQnMp09GhI4OZ+dTSpO/Z8M6zjHjDLWyLIFBrUWIhtYWQSassDRhV0FqhOTCGhbmkXr33pR7DC0c3og4PKpMaGohhrDMeGB2i3zXEyJrNqryWxadN9WceAkloJe73qrcmtPQUawubkoT940x5x2QSE9HVGy3IU7+WetafzK6mBfz+sEkmsqYr6BhnK0B1lm0jDntbpotaLEPXCKOpiE89qbUkffaIDo1tdMCaVqWvP7tbovahl1BWs6pAsbDYknUbktq6i+UGpHTQ+QpOTRdJbr5QU8QkQ4zlH7MY91s7ZtiX1KxIqV5CaI2DGgZnieeT4921YhKjB2d4uZwf49HqJZ9OvTm07E37Y9n98PpPtERXXV49mp+ZUj/GD37W+kvsjgJfftqV5T1XbU6zqclm+n8cqHmx6UN3yqV/BV+Pxo+3c3aRZ2t4wWwEmgEskSXTcFXDAxPBeu6GESi2oDLs+5C3px9hORc+XU3OoA0UEohd2nMlyLPDlIMXcGym3Pn/Q9AmK8v</source>
   </file>
   <file path="copyprotect.php" hash="9787dd2935d6f4434e4bf2f6c80191e4" package="GN2\NewsletterConnect">
     <docblock line="2">
@@ -2171,43 +2472,68 @@ output.]]></description>
     </constant>
     <source>eJyVVf9P4kgU/52/4q0xKRhtxXVv96CiBpvVi6sc1DM5s2nG9kHnbGeamQHkLv7v90pbFhEVIaF05n0+83lfxz3O4qzm7OzUYAe+Xx0EVzjVCRqDqiuFwNDQRr7XO+/BBJXmUsCXcu0kZAZHUs1eRcJJxsIHNkJ4w4SNTSwVAJyxCcK5TBI5ZTNwo/hkJA72BJopqgc7ws7cPOEhCl0wQlemKaqQswROo4i0XZa7sTFZy3Gm06n9nMSZk1SuwPcLvwXuiJuARxW/eID88yaFU5P3gTZMmXqjXattB3/DETCl2Kxey8FW8/cDu/nbN7tpf21au+XawVd7n76LhZRxOm40lcSbnxHhhPir3USGLImlNlYtP4MPof6Ji6A4ZTsYeP2/vP6dde77veD8euBbP3eBhDQa8N+cIEYWoarPDZymvQ+H+024EUW8+b8YWUS7bEhZMSjMnj/LsGXw0TixSZPKahrzBKF+Qo6jiIIwQSbqi8OeavPHdh61TCpD4bC+7VsFNJfOtUazKrt33SfZC5JVhrXWBeUTYKJxHXHx3Jz6mX37mTOZwiF/JOv6EvQIDg8/N+AYrHxNU4lY0Cpe8v/tZ1D7hRNFpsAGi3D20m7f+/PGG/jBTf+i0rGtx/f/UJ/kwbyz7JLUJvgeUL0EYtFQYdFQUHZHqQLDWILlZh2XpyPQKjzaer2qycRZXsrEaKvjOlnnOVnEJ6DNLMGjrZSpERet5n72CF/opz2kAtrTVFqt5ufqdchSnsxaqRRS0zTA9lZnVZ0f4yvupDIaU9FZixTmHwpd3dVGSTHqFAbaWQt3ndKq8ZKBa5AimcGvboAhTaExzQ6aC4YUDeeTiNoT8h7UrRcUcOdi2smTyNMskRHWrV2wih7M912Htn/aL0OYdXrUPHTSVHGDYCS4DGLKbR5SnhjZeqDIsQezMgCPy3I4WpVS1YltbXXWQ12HdeYOVuOTC3pLmaEpSAopqZXGiGM+0or+KpsnorIT5N58iHu3g0vP971+9/rqyuv6weX16Zl3Ro43G7/anSKfSb3clt3+Rc8Prk5/ePmgsljGbbp8rAZ8opYaMjptuVe5CJNxhIEUIeU/TBh1uXZ+sCxD5ZzeEz0jf3OC9maYbnFZcdQfQfUUFVhoNsNcj002Nh9TV2L+0JSHD9h39WQj8zNmmNNHPU7ellNlo5p/rzN6jyFmedlQiOa31wDVhIpqCb4eeIv3pem6CL2L6Y5V8q59Kcm55Pp98sq4jyHPOF18myIqSRd0Xaoh28D3FWD5epvf+wX06X/ENPBy</source>
   </file>
-  <file path="gn2_newsletterconnect_account_newsletter.php" hash="122304a90ec7488bb59aa33c7afceceb" package="Default">
-    <class final="false" abstract="false" namespace="global" line="14" package="GN2\NewsletterConnect">
+  <file path="gn2_newsletterconnect_account_newsletter.php" hash="5d8dc284ace4a82b2871f0ad5b549372" package="GN2\NewsletterConnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="package" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="25" package="GN2\NewsletterConnect">
       <extends>\GN2_NewsletterConnect_Account_Newsletter_parent</extends>
       <name>GN2_NewsletterConnect_Account_Newsletter</name>
       <full_name>\GN2_NewsletterConnect_Account_Newsletter</full_name>
-      <docblock line="4">
+      <docblock line="15">
         <description><![CDATA[GN2_NewsletterConnect_OxNewsletterSubscribed]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="4" name="category" description="GN2_NewsletterConnect"/>
-        <tag line="4" name="package" description="GN2_NewsletterConnect"/>
-        <tag line="4" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
-        <tag line="4" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
-        <tag line="4" name="version" description="Release: &lt;package_version&gt;"/>
-        <tag line="4" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+        <tag line="15" name="category" description="GN2_NewsletterConnect"/>
+        <tag line="15" name="package" description="GN2_NewsletterConnect"/>
+        <tag line="15" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="15" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="15" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="15" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="16" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="32" package="GN2\NewsletterConnect">
         <name>_getNewsletterConnectUser</name>
         <full_name>_getNewsletterConnectUser</full_name>
+        <docblock line="27">
+          <description><![CDATA[Gets the current user as a recipient object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="return" description="Recipient" type="\GN2_NewsletterConnect_Mailing_Recipient">
+            <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
+          </tag>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="25" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="46" package="GN2\NewsletterConnect">
         <name>isNewsletter</name>
         <full_name>isNewsletter</full_name>
+        <docblock line="41">
+          <description><![CDATA[Checks if the current recipient is signed up for the newsletter]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="34" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="60" package="GN2\NewsletterConnect">
         <name>subscribe</name>
         <full_name>subscribe</full_name>
+        <docblock line="55">
+          <description><![CDATA[Subscribes a recipient directly, without opt-in]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file gn2_newsletterconnect_account_newsletter.php</error>
-      <error line="16" code="50010">No DocBlock was found for method _getNewsletterConnectUser()</error>
-      <error line="25" code="50010">No DocBlock was found for method isNewsletter()</error>
-      <error line="34" code="50010">No DocBlock was found for method subscribe()</error>
-    </parse_markers>
-    <source>eJyVU9tu2kAQffdXTFQULiq4zSMBmjRNm0ppUgW1r6vFHswqZtfdCwZV/HvHF2wTSFT8sqvdM2fPOTMefUoWifdO4x8nNDIlA4RQaMmX2GHs6/f7W8a6g7YfyQsmMTUxWos6UFJiYJlaK2cTZwdE0r70PL/X86AH3x4u2EMFvinBj+v6bOpmJtBihiHhs5KrgFuMlN4cL84hCQ+eeYTwBoQ7u1AaAL7wFcKdimOV8g2MwsUVOehLtCnq50GIkxweiwClKRjhRi2XZE3wGK7DUEm4L28X1iZD30/TdLBP4uckK9RGEByeMEZucAijUikrr3aPyWfIvjf5fC+IuTGvZHgdBMpJ27gBXFuU4f8XsIRrlNb762VaEi1WlDzMnQxs5oJFaA9ofhnUnW5eUJRln0+NRkvvC2OFjOAHF2QxmqJeUXCZkx2ytdy7ythgfFzwcEjv7zN1uv0JHT5hIBJByj9vbjO+TkWfP2EXwuS4Qmt/otaOdowVazbQ/Ynm6W8eO6xKu5fVVqN1Wh7TWmC2XhGYm9HU1HkJU3s4iEjMoVMqeyNXOBuPQbo47jZKG5Ksdljr3L5UPOexwUrjUZFm97sdKGwZy60z1A61JlFzEeUd+Mk1BZZZaheAdiOplt61gsoOg6eZPjD6uBbhRdXBTpMspvE5fRroUE4XKrmn6oxuL/KzUtR+b+D8vLY7ho8v0z5FQRVo7Sk38r4RTsPkFpB6VIxDreBDU9FrM3CKKidP1VXOC63bf5On8A8=</source>
+    <source>eJzdVE1v2kAQvfMrJlKUQBRCi9QLDZQ0rZJKaRIlba/WYg/2FrNr7QcGVfz3ztrGHxBQudYXW7szb9+897zXn5IoafUuLlpwAXePfe8RUx2jMahupRDoG9pwe8/3z7BApbkU8KFYG/vMYCjVam8njBPmz1iIcKCEWRNJBQBf2ALhXsaxTNkKroNoHIp+V6BJUc2uAhxl5TH3UegcEW7lfI7K5yyGmyAgbg/FbmRMMuj10jS9aoL0MpDNKHD37ccArkNuPB5s8MUM3HMQotc6qJr3tKzWXu1E+4pPMPiPhHvBGJlGEq9g6hVbx6nox0zrPRre+L60wtR2AJcGRfDvDV7CFArT+tNyXDLH3EOuodFgIgTfKlcBVhM808BAoc8T7tbk5Hemdday6RwrNFaJPRS+M06jh95LCVJ+FQC97J0ovqAQwNQK3zhBvRDNDtxPItXuZA35BPkUjj1JwbWho6A48hXVgjzcHOCe03ljy6HB8G3igwGd30Rqd7ojWiz5f159dXjtEj47wkRcZ3U51+5ILp2Unpe/BZtjd6RY+ovFFsvWzsfys5DzDa55zbq17d1thP5MA582DKxs4xo0DwUGYBOY0h/iykQ58R4/J1LGTYvshH6ZyiGuK9V2TCEy7UKLA07CyXAIwsZxp9ZaE8Eoi5Uy622NpizWWKqyLUt5zTRDHHD6NvHqElJO94WlWCemy8UeGRaSBwdl0JtjdjQ41YYZqylickljT3mYpeqZKQqBE+08LzivuX9aER2+ESa6MnakfFryoF+msl0Hi+mXOD7htCheI5k8ULeDa5h6UpBqug9nZ9W4Q3i/7ecxDEpBq5myQS5r4tSGXANSCvLAVQze1RntS9kxrKw4lleRSHqv/wJ2aZ8n</source>
   </file>
-  <file path="gn2_newsletterconnect_oxoutput.php" hash="5bb6ee0697d9ad78c969e9849d28cb8b" package="GN2\NewsletterConnect">
+  <file path="gn2_newsletterconnect_oxoutput.php" hash="7e65b3cd5183e642d60f068626f88e3d" package="GN2\NewsletterConnect">
     <docblock line="2">
       <description><![CDATA[GN2_NewsletterConnect]]></description>
       <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
@@ -2221,7 +2547,7 @@ output.]]></description>
     <include line="15" type="Require Once" package="Default">
       <name>copyprotect.php</name>
     </include>
-    <include line="96" type="Include Once" package="Default">
+    <include line="110" type="Include Once" package="Default">
       <name/>
     </include>
     <class final="false" abstract="false" namespace="global" line="27" package="GN2\NewsletterConnect">
@@ -2238,117 +2564,164 @@ output.]]></description>
         <tag line="17" name="version" description="Release: &lt;package_version&gt;"/>
         <tag line="17" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <property final="false" static="true" visibility="public" line="29" namespace="global" package="Default">
+      <property final="false" static="true" visibility="public" line="32" namespace="global" package="Default">
         <name>$config</name>
         <default><![CDATA[array()]]></default>
+        <docblock line="29">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="29" name="var" description="Configuration Array" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="31" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="38" package="GN2\NewsletterConnect">
         <name>__construct</name>
         <full_name>__construct</full_name>
+        <docblock line="34">
+          <description><![CDATA[Starts looplinker]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="50" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="GN2\NewsletterConnect">
         <name>looplink</name>
         <full_name>looplink</full_name>
-        <docblock line="39">
+        <docblock line="46">
           <description><![CDATA[looplink($directory);
 Automatically symlink every file in a specified folder
 within the module folder to a file with the same path
 in the root OXID directory.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="39" name="param" description="Folder to link" type="string" variable="$dir">
+          <tag line="46" name="param" description="Folder to link" type="string" variable="$dir">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="39" name="param" description="Prepend module folder to path yes/no" type="boolean" variable="$append">
+          <tag line="46" name="param" description="Prepend module folder to path yes/no" type="boolean" variable="$append">
             <type by_reference="false">boolean</type>
           </tag>
-          <tag line="39" name="return" description="" type="void">
+          <tag line="46" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="50">
+        <argument line="57">
           <name>$dir</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
-        <argument line="50">
+        <argument line="57">
           <name>$append</name>
           <default><![CDATA[true]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="93" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="107" package="GN2\NewsletterConnect">
         <name>main</name>
         <full_name>main</full_name>
+        <docblock line="100">
+          <description><![CDATA[Main bootstrap function]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="100" name="static" description=""/>
+          <tag line="100" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="103" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="124" package="GN2\NewsletterConnect">
         <name>getMailingService</name>
         <full_name>getMailingService</full_name>
+        <docblock line="117">
+          <description><![CDATA[Generates the relevant child instance of GN2_NewsletterConnect_MailingService, depending on settings.php]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="117" name="static" description=""/>
+          <tag line="117" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="117" name="throws" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
       </method>
     </class>
-    <class final="false" abstract="false" namespace="global" line="129" package="GN2\NewsletterConnect">
-      <extends>\gn2_newsletterconnect_oxoutput_parent</extends>
-      <name>gn2_newsletterconnect_oxoutput</name>
-      <full_name>\gn2_newsletterconnect_oxoutput</full_name>
-      <docblock line="119">
+    <class final="false" abstract="false" namespace="global" line="150" package="GN2\NewsletterConnect">
+      <extends>\GN2_NewsletterConnect_OxOutput_parent</extends>
+      <name>GN2_NewsletterConnect_OxOutput</name>
+      <full_name>\GN2_NewsletterConnect_OxOutput</full_name>
+      <docblock line="140">
         <description><![CDATA[GN2_NewsletterConnect_Oxoutput - Dummy Class.]]></description>
         <long-description><![CDATA[<p>We're only loading OXOUTPUT as a bootstrap.</p>]]></long-description>
-        <tag line="119" name="category" description="GN2_NewsletterConnect"/>
-        <tag line="119" name="package" description="GN2_NewsletterConnect"/>
-        <tag line="119" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
-        <tag line="119" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
-        <tag line="119" name="version" description="Release: &lt;package_version&gt;"/>
-        <tag line="119" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+        <tag line="140" name="category" description="GN2_NewsletterConnect"/>
+        <tag line="140" name="package" description="GN2_NewsletterConnect"/>
+        <tag line="140" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="140" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="140" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="140" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
     </class>
     <markers>
-      <todo line="99">Live ErrorTracking</todo>
+      <todo line="113">Live ErrorTracking</todo>
     </markers>
-    <parse_markers>
-      <error line="29" code="50018">No DocBlock was found for property $config</error>
-      <error line="31" code="50010">No DocBlock was found for method __construct()</error>
-      <error line="93" code="50010">No DocBlock was found for method main()</error>
-      <error line="103" code="50010">No DocBlock was found for method getMailingService()</error>
-    </parse_markers>
-    <source>eJztV1Fv2zYQfvevuAZGJQeJBBTYixO3CWy3DZDGQeOiBYZBYKSzzUUmNZKy4w357ztSkmPJsofucRhRQLF4vPvuu4+n6+WHbJF1wtPTDpzCp7t30R2udYrGoBpKITA2tGH37j/fwwqV5lLAL+W7q5gZnEu1OXgSrjIWP7E5whETlpuFVAAwYiuEzzJN5Zpt4DJZXM3Fu3OBZo3qKUjwvTNPeYxCFx5hKJdLVDFnKVwnCWG7LXcXxmT9MFyv10HdSeicVKnAp5tpHy7n3EQ8qfyLJ7DrqIuw01H4R84VRlLECF4ss02mpKGsAuLUu+gcpRXO4QvjAiY/bkbwRSZ5inAjuKFM+J/MWGzDlGn9H6L6K6bINBLdJdKo3Po53mNLy4Ec/+pYB1n+SMhBG+Ixhm4sxYzPYQBMKbbxe1QZZ6X4ikiFWS5ix3cUkaU2Ko+N33MmhTu7umbB9fn7VMrM4vSp3Ao9cnXQgCVLLo5ayNwc3V9xyq+yeClAO0nZdQpbw25CKowNiaPydgrXuZFLmz5L0w3ozdKxi0T4BmactEbSY6AzjPmMYwIzmSaoqtNrTlgEmAXCspBmsQ9G0il33po4A82WCBkzi+pweVBJaQp1b+EFpUllSYpVbEl1UlzMiQAytBsft7Es6Ibxo5SkIgFdlmUoErhX6J57OC0k2KAOhWyGVWhyJWAleVK+C91zq4QatSQczzsr4w1IHtgUB5+Bz/W1Lbjf6+1s2FUGs+dea11W05Wd6BvAHM1wnfi7cigyekhzK10vLH7q0Ase6RIJYt0ncO4ZRR9vbsdR1OsFXuhd1HCVuJuobNRgsBtkF1zDigoUEc0pi9GvgJ5ZUlzJqvtURXxj9RHhM9dG++ThECMzlup2ShzuBRNJaqmRFj9Xra66Npbeu9rVWi+sVH0XCd4MBuTWiXdAGFjinBZhenuenXenIcsSWmKDItzFnp3Fa3fMJkPfHeoBBTuhACfw9m1xjOLDSdD8HZy0BXbBG+3A+T0rWOvtY3gBtEk66v5NOHsQ3nARFUy22ti1FZ/z2js7aFj48YLRQ/RgbLM88wL6Pv5OrcD+SV/c8sHnwvXSVk8H3h5Iwq6uVrGtmaVrn6atVYLaQF3aO5eB1B1aeZOvpqZ2l5M711HZK8hlq45211XZi33r+6zA0VLOar207uy/rb+p/4pTqXFX7M2rXl69+mdz2wyXzLa1Rssz9B2pJ8pFnOZJOQ3tdSa6P5q+1NTndTkd7Z7tir3xaAD0DjSmsx20QFNQvAB//Bxj5sB1sUl4GMJ0Mpr0aTyhEWeslFRTRfMGhf6ptKnR0YBGpZo/oFrRqLPHQdH2KS3fwuz3y0HjV29ZO+f9tt+2nnBjxXf8WIMjN/fcMfe58FrHn6gOOPICG6juxoJ2nrYdeuu3vQdup6f2XHUtlk31QzOvhgn0X7t1M1r5abClf8Xll54a9nWRm4WSa3dwKw7fo/Ex2pPWOQyZEDSczDjNDS5Kn6C90tByPejf0Wk+mjzTNJfldqwf5cvlphjeA/iOnkKQgoawVLLEzjmTH5Nv0/tvU2CahimaZww1IZYF/0/67ZN+vYhxSbisCMdnQ/PBP5lFND2isP9BsLW0lyBBqj8mfnGVxt8fbsfT6fjrcHJ3Nx5Oo9vJ9Wg88rZ3opXpfr9ojhedl78BcKlYrg==</source>
+    <source>eJztV21v2kgQ/s6vmEaoNhExUqV+IaVNBDSNlIaooWql08na2Avsxez6dtcQ7pT/fjNr42AbaHsfT7eK5OCdnZdnnp0Zv/uQLtJW7/S0BadwdfsmvOVrk3BruR4qKXlkcYP27j7dwYprI5SEt8W7i4hZPld6c/AkXKQsemRzDkdEWGYXSgPAiK04fFJJotZsA+/ixcVcvjmT3K65fgxi/t6JJyLi0uQaYaiWS64jwRK4jGP07abYXVib9nu99XodVJX0nJJtKHB1Pe3Du7mwoYi3+uUj0Dqqotdqaf5nJjQPlYw4eJFKN6lWFqMKEFPvvHUUVjiDz0xImHy/HsFnFWcJh2spLEYi/mKWfBsmzJj/ENRfeMKZ4Qh34WlYbP0a7hHBciDGv1ukwOFOi6wzDUxrDBJlZmKe6RzcS3pXSPXcM80eMF4wFgUiaEdOHAb5ab+D+azpvrdMWwOJUin5znWxUdWqxQpTB7NMRs5wGKJmY3UWWb/jRHKnabXtQpiz91uNPpJKcw9NHxRg8VLIoxIqs0f3VwJR3Eo8N4IsBdsxcj2ySMGttlO4zKxaElwsSTZgNkuXQ45p3cBMIKOR4AxMyiMxEzyGmUriEiZYC/RFgl1wWOYXIN8Hq/CUO08iTsCwJYeU2cX2cHFQK2XzO1S6F1TTQPdCsyXmVQs5RwBQkDY+lrbI6Zrwg1LIVQltlqZcxnCnuXs2/CSXYMNNT6q6Wc1tpiWslIgrjCiZUIEWieZ53cLeAOnB6+QQM/CFuaSE+53Ozgatwhide8l1kU2XdoRvAHNuh+vY36VDHtF9khHVvV7+0/S84AGvqkTUfXTOPcPw4/XNOAw7ncDreecVvwq/616R1WCwa2TXuZoUJihEmBMWcX/raJdAcSnb3r+txVfEj5A/CWONjxoOITJjidkPifN7wWScEDSK/Bd6r6o22TKNUrBd6wVR1XeW4NVggGodeQfoA4ud0txMp6HZaXccIpQ4ARvk5s4bcuQv7dhNyn13qANo7AQNnMDr1/kxtA8nQf13cLLPsDNeKwdObzdHrdP04Rk4Bemg+zfm6CC8EjLMkdwrQ6skn9Pa6R4UzPV4weg+vLdULLtegF34DywF9C/29eIh5tLV0r2aDrw9EAStttER5YzgasJUSsXcWKhSe+cyILt7RG/UVefU7nJ0FyYsagWq3Muj3XVR1GKfdHdzP/akc7ue9+4031bfVH9FiTJ8l+z1q97sLW4AwlJrER+WloWxXkjzjvyz5bXaxstiu2RUNmsl1WKfqgIpZJRkcTHTNSof3k+D8wb2EVPMeLtn27Ix5A0A34HhyWwHDcBZLlqAP36KeOqca/N6Qns9mE5Gkz4OWTiojbVWeqpxakLTP4T1ikuOUw5WLNchcepaMWkhwjIVY4CIDAWnZvtnqBCzgtSZ33O9wgGvC7FrfdQ70dPd8I/mqUzQUjzxuHxpF1qtDZSh/0zqsBlUfWrkMW+N6JtPUPf7xfD2m7esnPN+b5b2R76hC3r8WC3PbgK9Za6lej8DYugFZKiqhpx2msouVurd3yfKiXR/rKZii0L9UI+rJgL9l45Wt1Zkj+j74pdfaKrJVwuBS7E7WGbZ93CQDxvX4wyGTEoc4GYCZytnpY+uvcCwp4Tg39HvqnDyhBNvmtEH1ihbLjf5Z1QA37inkfUSB9VEMcfnyffJ1+nd1ykwgwNnWYiC/7+5fuGbCwGf5IDzJ4uF4kdiIU7YXNKnGuWSLkHMMf889vOrNP52fzOeTsdfhpPb2/FwGt5MLkfjkVfeib3q+/28wJ+3nv8BzC3D4w==</source>
   </file>
-  <file path="gn2_newsletterconnect_oxuser.php" hash="989f84e25dcc9ab23403ce872301701d" package="Default">
-    <include line="2" type="Require Once" package="Default">
+  <file path="gn2_newsletterconnect_oxuser.php" hash="61cae8a120cc646ee386e4087849317a" package="GN2\NewsletterConnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="package" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <include line="14" type="Require Once" package="Default">
       <name/>
     </include>
-    <class final="false" abstract="false" namespace="global" line="14" package="GN2\NewsletterConnect">
+    <class final="false" abstract="false" namespace="global" line="26" package="GN2\NewsletterConnect">
       <extends>\GN2_NewsletterConnect_OxUser_parent</extends>
       <name>GN2_NewsletterConnect_OxUser</name>
       <full_name>\GN2_NewsletterConnect_OxUser</full_name>
-      <docblock line="4">
+      <docblock line="16">
         <description><![CDATA[GN2_NewsletterConnect_OxUser]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="4" name="category" description="GN2_NewsletterConnect"/>
-        <tag line="4" name="package" description="GN2_NewsletterConnect"/>
-        <tag line="4" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
-        <tag line="4" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
-        <tag line="4" name="version" description="Release: &lt;package_version&gt;"/>
-        <tag line="4" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="category" description="GN2_NewsletterConnect"/>
+        <tag line="16" name="package" description="GN2_NewsletterConnect"/>
+        <tag line="16" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+        <tag line="16" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+        <tag line="16" name="version" description="Release: &lt;package_version&gt;"/>
+        <tag line="16" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="21" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="33" package="GN2\NewsletterConnect">
         <name>gn2NewsletterConnectOxid2Recipient</name>
         <full_name>gn2NewsletterConnectOxid2Recipient</full_name>
-        <docblock line="16">
+        <docblock line="28">
           <description><![CDATA[Converts the current oxUser-Object into an GN2_NewsletterConnect_Mailing_Recipient Object]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="16" name="return" description="" type="\GN2_NewsletterConnect_Mailing_Recipient">
+          <tag line="28" name="return" description="" type="\GN2_NewsletterConnect_Mailing_Recipient">
             <type by_reference="false">\GN2_NewsletterConnect_Mailing_Recipient</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="56" package="GN2\NewsletterConnect">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="76" package="GN2\NewsletterConnect">
         <name>setNewsSubscription</name>
         <full_name>setNewsSubscription</full_name>
-        <argument line="56">
+        <docblock line="68">
+          <description><![CDATA[Opts In the recipient]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="param" description="Subscribe yes/no" type="boolean" variable="$blSubscribe">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="68" name="param" description="Unused in this implementation, inherited from overridden function" type="boolean" variable="$blSendOptIn">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="68" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="76">
           <name>$blSubscribe</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="56">
+        <argument line="76">
           <name>$blSendOptIn</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -2356,26 +2729,29 @@ in the root OXID directory.]]></description>
       </method>
     </class>
     <markers>
-      <todo line="45">Resolve</todo>
-      <todo line="46">split &amp; save</todo>
-      <todo line="47">split &amp; save</todo>
-      <todo line="48">split &amp; save</todo>
-      <todo line="49">split &amp; save</todo>
-      <todo line="50">split &amp; save</todo>
-      <todo line="51">split &amp; save</todo>
-      <todo line="77">Live Exceptions?</todo>
+      <todo line="57">Resolve</todo>
+      <todo line="58">split &amp; save</todo>
+      <todo line="59">split &amp; save</todo>
+      <todo line="60">split &amp; save</todo>
+      <todo line="61">split &amp; save</todo>
+      <todo line="62">split &amp; save</todo>
+      <todo line="63">split &amp; save</todo>
+      <todo line="97">Live Exceptions?</todo>
     </markers>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file gn2_newsletterconnect_oxuser.php</error>
-      <error line="56" code="50010">No DocBlock was found for method setNewsSubscription()</error>
-    </parse_markers>
-    <source>eJydVm1v4kYQ/u5fMT1FBUdHLOUjJLlc89JE4sIpXKvqvliLPcAWs+vurgO04r93djHgF+B88Rdgd+aZmWfGz3D1KZ2mnsJ/Mq4wlCJCiLkSbI7tMHx87j+EoX/RCibiMhS40AkagyqSQmBkQrmUmUkzc0EYrZ7nBefnHpzD7y+X4cvO+C43Hiz/0Kjo3prcRszgRKrVYWNnkrJoxiYIJ0xYZqZSAcA9e0N4kkkiF2wFV/H0ljLuCDQLVLOLGG+cecIjFHqDCHdyPqdSOEvgcxxLAf38dmpM2g2CxWJxUQYJHMgbKs3JHF4xQaaxC1d5pmF+tQ0mZmCfk3iBFyVM65OcAS4Nivi0UZgyhcJ4/3k2puuEfc6pTkF5GQ1mihBlylqBdD6dwehvQgAujAQmjuB/YZxqmYSvGPGUW++NWx5gG+dWoclUY5DcLXCfaTai3sA4E5Gx3BJPNYjBkseXO/e27xw31drnTO3SuwYa1aZ59A4gdG40moc5mbbPzJTrzo1cZpbjcPNpX4/OjWKLP1mSoU+Tv8PQdGKYK+Iaas50u/fbR9YLbqIptLVRRtIIo2oXgHy/UGZEEwcf5upDd3dUj9t6QqVavZLFSCGb9Wo4ugCUn3GtT6M/KpadRl97x1gd7pBKJR7twiNX2rxYOaqROa614QhGnx2DSJpCkFikTKzqCNHmognG0ChEU4fQ7rwJwpMkn5dsPrIDchhGqCZA33l6J+MDhPzL00Z0cHOICzptRmYmjFq1Wy2/B0EA3wb3gy7JqZbJGx5z+obJV4Vjvqy46TThBn4FzU765qz9vO8jW747Lvm+O+4XOXp3XPL9cdydc67be4xN4/J3uCrNBG9VdZiNdKR4unmTR0n+e4Qfwf6idTVIzbOoqnRA/w7Q0ELj2pAMQy7HQ1RvtH2368CVNC9fXR8W9G53QvWWTNtFQeZjKKVX1NI8oUGmqnkYNkNNeqgQ5BjsnBdTc+kViqTcxizRWAhbqNW+HZBSK5E2b7lGBySrdO4Xx+QA1349yh2Jr0FgsF+BYyXnbuEP/nq+dyl0YmZYLThalimgXBKfYz5xdH5limTR2PFJJiLMtGr5Zbk/owX7Wti323wbrO1K+qQDlY5su/ZLZQIcHTug31b5fnYV+NW2HpkiUivbsH06h2LQLIjhVKZ9mtG2/7FcbIUI+6xLJ2saG7fMH5YRbvp5Vps617hg81L2Of113RnrT2U0r/xt7a3/B8xQmw0=</source>
+    <source>eJzdVttu4zYQffdXTBdBbQdxBATYFzvJps1lE8AbB3G2KPoi0NLYZiORKkn50sL/3qEky7rYqjeP1YsEknNm5sxoDi+/RPOo5ZyetuAUvj5fuM+41AEag+pWCoGeoQ279/L4AgtUmksBn7O1G48ZnEm1PmgJNxHz3tkMoeEIi81cKgC4YwuERxkEcsnWcOnPb2bioifQLFG9n/t4nRwPuIdCp4hwK8MQlcdZAL/4PsU2zHbnxkR9x1kul+dlECcB2aYCX5/e+nA548bl/hZfvIN9GiGclsK/Yq7QlcJD8LkSLMSO6z48De9dt3vedsjIFXnGXpqxK1cyNlFszon49qDVyL07Wn3XqP5HdL9igEwjUZ5F6mZbP8a9FzCtGzkDXBkUfvMhN2IKhWn907I+k0rY55TyFBSX0WDmCF6s7CmQiU1vNPmTEIALI4GJA/jfGKdcZu4rejzi1jo1yxxs/dwoNLE6GiQzc5J3FE+oNjCNhWcst8RTDWK04v5Fbt7pJoZptvY5UXl4V0Ctemwcgz0IvWuN5j6ko50TM+e6dy1XseXYTd/29+hdK7b8jQUxdqnzcwxNK4YlSVxBzZh2d3Y7z3rJjTeHjjbKSGphVJ0CULdbSNOjjoNPofrUz5fqftuPqFR7UDoxUcjeBzUcXQDK1rjWzegPisXN6JvWIVbHOVIpxYNVeOBKm2c7jmpkTmtlOIAxZIcggmMhaFhETKzrCF66cQzG2ChEU4fQyfoxCI+SbJ7jcGIbZD+MUMcA/cGjW+nvIeRvHh1FBzf7uKDV48iMhVHrTrvdHYDjwNvobtSncaplsMBDRm8YvCic8lXFTEcBN/AzaNZom7H247YPbPVhv2T7Yb/f5OTDfsn2v/3mxtnc3mGkhcv+4YKSjCJSkSeRCImqzPFcBUiGWAgTKUkcCXQSjOOJ9hSfIOy+1qgdIRtsSO7IG/n6Lqi7fFIosN0GPIwCDMltMjbOaH2Oihs6MVUyBElKp7jvo8i15IBKLST3GyWIaLTqkcUcpROrkM1ZKc6qGjl0C0JDws21IbmBTHbGqBZ0y9j6TEoXlreu9gtXvz+jupaOdorCw6dQCq+oGVlAo1hV4zDsHTXNfYUgpynDhdCS8IrFuIIpCzQW3BZytVMAImpZpBtGOccESFbp3AnkbA/X3bqXWxIZg8B2zZdW3fbj6PenuySEns8MqzlHyzI5lCvic8pnCZ0vtu3Q2N8kmAk31qrdLcvaCV0kXgv3im28R1xPKuHTvKtUZFu1nyodkNCRA/26zu4hSQbdalkPdBFNZVuwXTj7fFAviPFcRkPq0U73rJxshQj7bEorG2qb5NJyv/IwredJreuSwjnp8BlyuqLnh/WXMlqr/LVpbf4F2BhEcw==</source>
   </file>
-  <file path="index.php" hash="f704ae9332039db0bb3d71f08ef612b9" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file index.php</error>
-    </parse_markers>
-    <source>eJxVT9FKw0AQfM9XLEG4FmoCfWzFUmuUgk1CGn2xJZyXNTm47IW7qzV/77VK1bfZndmdmZtF3/ZBi7xGM2IrTQ7JXZdDjzOHny7uFZfExvMgQNFqCB/TaZXi0Sp0Do3XEwoHy3wNpB0ITe+yORisPTTGU2qIIFfILYIzg992nTeQ1IAk0AZEy6k5ja5FKPBopMO7k1pJQgjnP7ZeHHe6Pii0cUPTii4RxHeEOGodFwKt3dGOLne5tla+KYQPrg5oZ//I+C8Oo1oa4h2OrDOVQV9c4Oiq2ibFS1K8svts9bxJ0rIqsqxk+wkwNoFfersq1nlZPayfknS5Sdh+PI7C8/9gcfsFG0R3CA==</source>
+  <file path="index.php" hash="4cac7d660b4ee67e543d22c3e9617f96" package="GN2\NewsletterConnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="package" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <source>eJx9kNFr2zAQxt/9Vxxh4CS0FhT2koYtWeq1gTYxrreXtRhNvtkiyslIl7j57yenabfCVj2d9N19+n43/dw2bSTG4wjGcL26KFfYeYPM6BaWCBUHodeymwz26Ly2BB9PbzMlGWvrDv+dhFkr1UbWCO+0yB031gHAldwj3FhjbCcPMK2aWU0X54TcodskFX46thutkPyzIyzsdotOaWlgXlUh2+1JbZjbiRBd1yVvTcTR5AUFrpfFBKa15lJXL/60gf68ayGiqEFZoRvGgYWR+Lw4tDhhfGLRGqkpHl1GEarGwuCf7DDPlkCWQVn6peudwyqUzgXJHBLIDMrAwWG7qock1lSDJgirUo2kur9yg5Bj5zTjl747ZEcYXJ6+Dc1ia6udQS8CQUmvEdRzBJE0LJVC7x/ogV7nMuu9/mkQ9tLs0E/eiOLvepBU2pHc4tCzKx0GcIXDD+V9mn9P8x/x1Xrx7S5dFWW+Xhfx4xnE8Rn8ke8X+TIryq/L23Q1v0vjx9EoGRz9fwMvOdiv</source>
   </file>
   <file path="metadata.php" hash="730aa52ae067395ba76aafc466706b13" package="Default">
     <docblock line="3">
@@ -2384,11 +2760,18 @@ in the root OXID directory.]]></description>
     </docblock>
     <source>eJydkM1OwzAMx+95Ch+QzKpphV1hcODAib3CFFKzBjonch023p7BmqpDpRL4aP/+H/LtfayjMWVRGCjgKVSpIfD8EmRn1Qc+bktj4MJ2pxVYEftxaeA46CuEwazuALe83DDt24ZUSVxgJqc4P/HqtSE84x/XS1j3/MM5X1HrxMevItjxvVWdds9sfYPT0YvXuM2ad5K2s8qaq8V1vtqkdRD8WY5J9yRvmaKDEldDavCQscFwCEljUvy9ZDm63fTK+ZR7aknyd/7m/q2c8LbOhcQ60P4nZ8TllDkzs5tPq/q47A==</source>
   </file>
-  <file path="settings.php" hash="42b807ca9b835cfed4b9fb74ac210496" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file settings.php</error>
-    </parse_markers>
-    <source>eJxdzb0OwiAQwPGdp7hBgyamxI+pWo2Ji4OTD2DQXhGllHBU49tLrdEq0+X48WexcmfHGKEp0rR3qmyhFWQgvZePAYN4eCm10Vbt0d/0CTlkS+C7dnev/JWPWOuoBYfuXYM7rZeTTh+OkrD2hrerpngOwVEqhKmUtkn5bSQ5ijse3/XueKHKivj9T7mOt1aWyD9lZScBKfxDJ4liP//C8WQ6a2T/n5JWtnaEoXb8TfkIhIDtBnIkWNsSTRwaQK+nQzacsydjimaD</source>
+  <file path="settings.php" hash="43cb6d01430a0f1cbd4702489246e606" package="GN2\NewsletterConnect">
+    <docblock line="2">
+      <description><![CDATA[GN2_NewsletterConnect]]></description>
+      <long-description><![CDATA[<p>PHP version 5</p>]]></long-description>
+      <tag line="2" name="category" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="package" description="GN2_NewsletterConnect"/>
+      <tag line="2" name="author" description="Dave Holloway &lt;dh@gn2-netwerk.de&gt;"/>
+      <tag line="2" name="license" description="GN2 Commercial Addon License http://www.gn2-netwerk.de/"/>
+      <tag line="2" name="version" description="GIT: &lt;git_id&gt;"/>
+      <tag line="2" name="link" description="http://www.gn2-netwerk.de/" link="http://www.gn2-netwerk.de/"/>
+    </docblock>
+    <source>eJx9j11PwjAUhu/3K86FZkKQRdSbCQiBBEiUkOj9UrbDVte1S9vR8O9ttyEfifSqOe9znr4dvpdZ6QXdrgddWKwH0RqNYqg1ypngHGNtA5dtlhvYo1RUcHhtZ5OYaEyFPPy7CZOSxDlJEW4gpNKZkAAwJ3uEpWBMGHKAYZJNUj545KgNyryf4LjGGY2Rq8YIM1EUKGNKGEyTxHb7aNNM6zIMAmNM/1IS1JLjV2Cx+g5hmFId0eTo5zm4c1MReJ5CtgvDu1jwHU1hBERKcnjw3KpfEGo96RfKvS3kw2gM/mczM0Lmfs9rONUA0Xnm4DNXzZGSRluisJLMb0bO6BoqW5GJlPJ+cXK4kga3rf38+qMED+zzF+bKppwU6P+Z7Yc1Kn0NlkQp609O4NPg+cWR99eooimvSoW6Kv0W9XsQBLCaQ4IKprxAZi8OUPVqx+u8eb8dYcin</source>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="GN2" full_name="GN2">
@@ -2403,7 +2786,7 @@ in the root OXID directory.]]></description>
     </package>
   </package>
   <namespace name="global" full_name="global"/>
-  <marker count="12">todo</marker>
+  <marker count="13">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>
