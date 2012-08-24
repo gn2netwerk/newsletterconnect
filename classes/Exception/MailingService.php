@@ -6,7 +6,7 @@
  *
  * @category   GN2_NewsletterConnect
  * @package    GN2_NewsletterConnect
- * @subpackage Output
+ * @subpackage Exception
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version    GIT: <git_id>
@@ -14,37 +14,29 @@
  */
 
 /**
- * JSON Output Class
+ * Class to handle MailingService-specific exceptions
  *
  * @category   GN2_NewsletterConnect
  * @package    GN2_NewsletterConnect
- * @subpackage Output
+ * @subpackage Exception
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
+ * @abstract
  */
-class GN2_NewsletterConnect_Output_Json extends GN2_NewsletterConnect_Output_Abstract
+class GN2_NewsletterConnect_Exception_MailingService extends Exception
 {
-    /**
-     * Gets the output, prepared for the browser.
-     *
-     * @return string Data output
-     */
-    public function getContentType()
-    {
-        return 'application/json';
-    }
+    private $_observers;
 
-    /**
-     * Gets the JSON-encoded output, prepared for the browser.
-     *
-     * @return string Data output
-     */
-    public function displayData()
-    {
-        $data = json_encode($this->getData());
-        return $data;
+    public function addObserver($observer) {
+        if (is_object($observer)) {
+            if (method_exists($observer, 'notify')) {
+                if (!is_array($this->_observers)) {
+                    $this->_observers = array();
+                }
+                $this->_observers[] = $observer;
+            }
+        }
     }
-
 }

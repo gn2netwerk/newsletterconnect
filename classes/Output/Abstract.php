@@ -4,8 +4,8 @@
  *
  * PHP version 5
  *
- * @category   GN2_Newsletterconnect
- * @package    GN2_Newsletterconnect
+ * @category   GN2_NewsletterConnect
+ * @package    GN2_NewsletterConnect
  * @subpackage Output
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
@@ -14,11 +14,11 @@
  */
 
 /**
- * GN2_Newsletterconnect_Output_Abstract - Abstract class for data
+ * Abstract class for data
  * output. Can be extended for different output formats.
  *
- * @category   GN2_Newsletterconnect
- * @package    GN2_Newsletterconnect
+ * @category   GN2_NewsletterConnect
+ * @package    GN2_NewsletterConnect
  * @subpackage Output
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
@@ -26,7 +26,7 @@
  * @link       http://www.gn2-netwerk.de/
  * @abstract
  */
-abstract class GN2_Newsletterconnect_Output_Abstract
+abstract class GN2_NewsletterConnect_Output_Abstract
 {
     private $_data;
 
@@ -47,7 +47,7 @@ abstract class GN2_Newsletterconnect_Output_Abstract
     /**
      * Sets the data for the output
      *
-     * @param GN2_Newsletterconnect_Data_Result $data Meta & result data
+     * @param GN2_NewsletterConnect_Data_Result $data Meta & result data
      *
      * @return boolean
      */
@@ -61,7 +61,7 @@ abstract class GN2_Newsletterconnect_Output_Abstract
     }
 
     /**
-     * Gets the data from the GN2_Newsletterconnect_Data_Result object
+     * Gets the data from the GN2_NewsletterConnect_Data_Result object
      *
      * @return stdClass Meta & result data
      */

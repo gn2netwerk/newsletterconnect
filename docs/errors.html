@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>GN2 NewsletterConnect</title>
+<title>GN2_NewsletterConnect</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="css/template.css" rel="stylesheet" media="all">
@@ -15,12 +15,11 @@
 <body>
 <div class="navbar navbar-fixed-top">
 <div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">GN2 NewsletterConnect</a><div class="nav-collapse"><ul class="nav">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">GN2_NewsletterConnect</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
-<li><a href="packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="packages/GN2.html"><i class="icon-folder-open"></i> GN2</a></li>
 </ul>
 </li>
@@ -32,10 +31,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">4</span></a></li>
+                <span class="label label-info">54</span></a></li>
 <li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">2</span>
+                <span class="label label-info">12</span>
 </li></ul></a></li>
 <li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -58,8 +57,18 @@
 </div></li>
 <li class="nav-header">Navigation</li>
 <li><a href="#classes/Data/Result.php"><i class="icon-file"></i>classes/Data/Result.php</a></li>
+<li><a href="#classes/Exception/MailingService.php"><i class="icon-file"></i>classes/Exception/MailingService.php</a></li>
+<li><a href="#classes/Mailing/Recipient.php"><i class="icon-file"></i>classes/Mailing/Recipient.php</a></li>
+<li><a href="#classes/MailingService/Interface.php"><i class="icon-file"></i>classes/MailingService/Interface.php</a></li>
+<li><a href="#classes/MailingService/MailingWork.php"><i class="icon-file"></i>classes/MailingService/MailingWork.php</a></li>
 <li><a href="#classes/Mapper/Abstract.php"><i class="icon-file"></i>classes/Mapper/Abstract.php</a></li>
 <li><a href="#classes/Output/Abstract.php"><i class="icon-file"></i>classes/Output/Abstract.php</a></li>
+<li><a href="#classes/WebService/Curl.php"><i class="icon-file"></i>classes/WebService/Curl.php</a></li>
+<li><a href="#gn2_newsletterconnect_account_newsletter.php"><i class="icon-file"></i>gn2_newsletterconnect_account_newsletter.php</a></li>
+<li><a href="#gn2_newsletterconnect_oxoutput.php"><i class="icon-file"></i>gn2_newsletterconnect_oxoutput.php</a></li>
+<li><a href="#gn2_newsletterconnect_oxuser.php"><i class="icon-file"></i>gn2_newsletterconnect_oxuser.php</a></li>
+<li><a href="#index.php"><i class="icon-file"></i>index.php</a></li>
+<li><a href="#settings.php"><i class="icon-file"></i>settings.php</a></li>
 </ul></div>
 <div class="span8">
 <ul class="breadcrumb">
@@ -94,6 +103,238 @@
 </table></div>
 </div>
 <div class="package-contents">
+<a name="classes/Exception/MailingService.php" id="classes/Exception/MailingService.php"></a><h3>
+<i class="icon-file"></i>classes/Exception/MailingService.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $_observers</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for method addObserver()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="classes/Mailing/Recipient.php" id="classes/Mailing/Recipient.php"></a><h3>
+<i class="icon-file"></i>classes/Mailing/Recipient.php<small style="float: right;padding-right: 10px;">19</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $_id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $_salutation</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $_title</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for property $_firstName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $_lastName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for property $_company</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for property $_street</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for property $_houseNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for property $_zipCode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No DocBlock was found for property $_city</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No DocBlock was found for property $_state</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for property $_country</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for property $_email</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for property $_telPrefix</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for property $_telNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for property $_faxPrefix</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for property $_faxNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for property $_mobPrefix</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No DocBlock was found for property $_mobNumber</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/MailingService/Interface.php" id="classes/MailingService/Interface.php"></a><h3>
+<i class="icon-file"></i>classes/MailingService/Interface.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for method subscribeRecipient()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No DocBlock was found for method unsubscribeRecipient()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No DocBlock was found for method getRecipientByEmail()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/MailingService/MailingWork.php" id="classes/MailingService/MailingWork.php"></a><h3>
+<i class="icon-file"></i>classes/MailingService/MailingWork.php<small style="float: right;padding-right: 10px;">11</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $_fields</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>136</td>
+<td>Name of argument $list does not match with the DocBlock's name $listId in optInRecipient()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>136</td>
+<td>Parameter $listId could not be found in optInRecipient()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>170</td>
+<td>No DocBlock was found for method subscribeRecipient()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>194</td>
+<td>No DocBlock was found for method unsubscribeRecipient()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>218</td>
+<td>No DocBlock was found for method _getFields()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>235</td>
+<td>No DocBlock was found for method getFieldName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>243</td>
+<td>No DocBlock was found for method getFieldId()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>252</td>
+<td>No DocBlock was found for method getRecipientByEmail()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>270</td>
+<td>No DocBlock was found for method getRecipientById()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>286</td>
+<td>No DocBlock was found for method _mailingworkRecipient2Recipient()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
 <a name="classes/Mapper/Abstract.php" id="classes/Mapper/Abstract.php"></a><h3>
 <i class="icon-file"></i>classes/Mapper/Abstract.php<small style="float: right;padding-right: 10px;">1</small>
 </h3>
@@ -106,7 +347,7 @@
 <tbody><tr class="error">
 <td>error</td>
 <td>31</td>
-<td>No DocBlock was found for property $entity</td>
+<td>No DocBlock was found for property $_entity</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -132,13 +373,169 @@
 <div class="package-contents"></div>
 <div class="package-contents"></div>
 <div class="package-contents"></div>
+<div class="package-contents">
+<a name="classes/WebService/Curl.php" id="classes/WebService/Curl.php"></a><h3>
+<i class="icon-file"></i>classes/WebService/Curl.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $_returnTransfer</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $_post</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $_url</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 <div class="package-contents"></div>
+<div class="package-contents">
+<a name="gn2_newsletterconnect_account_newsletter.php" id="gn2_newsletterconnect_account_newsletter.php"></a><h3>
+<i class="icon-file"></i>gn2_newsletterconnect_account_newsletter.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file gn2_newsletterconnect_account_newsletter.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method _getNewsletterConnectUser()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for method isNewsletter()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for method subscribe()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="gn2_newsletterconnect_oxoutput.php" id="gn2_newsletterconnect_oxoutput.php"></a><h3>
+<i class="icon-file"></i>gn2_newsletterconnect_oxoutput.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $config</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>93</td>
+<td>No DocBlock was found for method main()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>No DocBlock was found for method getMailingService()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="gn2_newsletterconnect_oxuser.php" id="gn2_newsletterconnect_oxuser.php"></a><h3>
+<i class="icon-file"></i>gn2_newsletterconnect_oxuser.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file gn2_newsletterconnect_oxuser.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for method setNewsSubscription()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="index.php" id="index.php"></a><h3>
+<i class="icon-file"></i>index.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file index.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="settings.php" id="settings.php"></a><h3>
+<i class="icon-file"></i>settings.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file settings.php</td>
+</tr></tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-04-04T16:10:19+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-08-24T13:19:16+02:00.<br></footer></div>
 </div>
 </body>
 </html>

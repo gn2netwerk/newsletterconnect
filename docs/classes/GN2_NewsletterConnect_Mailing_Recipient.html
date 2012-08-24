@@ -1,0 +1,713 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>GN2_NewsletterConnect » \GN2_NewsletterConnect_Mailing_Recipient</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">GN2_NewsletterConnect</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/GN2.html"><i class="icon-folder-open"></i> GN2</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">54</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">12</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#getCity" title="getCity :: Gets City"><span class="description">Gets City</span><pre>getCity()</pre></a></li>
+<li class="method public "><a href="#getCompany" title="getCompany :: Gets Company"><span class="description">Gets Company</span><pre>getCompany()</pre></a></li>
+<li class="method public "><a href="#getCountry" title="getCountry :: Gets Country"><span class="description">Gets Country</span><pre>getCountry()</pre></a></li>
+<li class="method public "><a href="#getEmail" title="getEmail :: Gets E-Mail"><span class="description">Gets E-Mail</span><pre>getEmail()</pre></a></li>
+<li class="method public "><a href="#getFaxNumber" title="getFaxNumber :: Gets Fax Number"><span class="description">Gets Fax Number</span><pre>getFaxNumber()</pre></a></li>
+<li class="method public "><a href="#getFaxPrefix" title="getFaxPrefix :: Gets Fax Prefix"><span class="description">Gets Fax Prefix</span><pre>getFaxPrefix()</pre></a></li>
+<li class="method public "><a href="#getFirstName" title="getFirstName :: Gets First Name"><span class="description">Gets First Name</span><pre>getFirstName()</pre></a></li>
+<li class="method public "><a href="#getHouseNumber" title="getHouseNumber :: Gets House Number"><span class="description">Gets House Number</span><pre>getHouseNumber()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Gets Id"><span class="description">Gets Id</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getLastName" title="getLastName :: Gets Last Name"><span class="description">Gets Last Name</span><pre>getLastName()</pre></a></li>
+<li class="method public "><a href="#getMobNumber" title="getMobNumber :: Gets Mobile Number"><span class="description">Gets Mobile Number</span><pre>getMobNumber()</pre></a></li>
+<li class="method public "><a href="#getMobPrefix" title="getMobPrefix :: Gets Mobile Prefix"><span class="description">Gets Mobile Prefix</span><pre>getMobPrefix()</pre></a></li>
+<li class="method public "><a href="#getSalutation" title="getSalutation :: Gets Salutation"><span class="description">Gets Salutation</span><pre>getSalutation()</pre></a></li>
+<li class="method public "><a href="#getState" title="getState :: Gets State"><span class="description">Gets State</span><pre>getState()</pre></a></li>
+<li class="method public "><a href="#getStreet" title="getStreet :: Gets Street"><span class="description">Gets Street</span><pre>getStreet()</pre></a></li>
+<li class="method public "><a href="#getTelNumber" title="getTelNumber :: Gets Telephone Number"><span class="description">Gets Telephone Number</span><pre>getTelNumber()</pre></a></li>
+<li class="method public "><a href="#getTelPrefix" title="getTelPrefix :: Gets Telephone Prefix"><span class="description">Gets Telephone Prefix</span><pre>getTelPrefix()</pre></a></li>
+<li class="method public "><a href="#getTitle" title="getTitle :: Gets Title"><span class="description">Gets Title</span><pre>getTitle()</pre></a></li>
+<li class="method public "><a href="#getZipCode" title="getZipCode :: Gets Zip Code"><span class="description">Gets Zip Code</span><pre>getZipCode()</pre></a></li>
+<li class="method public "><a href="#setCity" title="setCity :: Sets City"><span class="description">Sets City</span><pre>setCity()</pre></a></li>
+<li class="method public "><a href="#setCompany" title="setCompany :: Sets Company"><span class="description">Sets Company</span><pre>setCompany()</pre></a></li>
+<li class="method public "><a href="#setCountry" title="setCountry :: Sets Country"><span class="description">Sets Country</span><pre>setCountry()</pre></a></li>
+<li class="method public "><a href="#setEmail" title="setEmail :: Sets E-Mail"><span class="description">Sets E-Mail</span><pre>setEmail()</pre></a></li>
+<li class="method public "><a href="#setFaxNumber" title="setFaxNumber :: Sets Fax Number"><span class="description">Sets Fax Number</span><pre>setFaxNumber()</pre></a></li>
+<li class="method public "><a href="#setFaxPrefix" title="setFaxPrefix :: Sets Fax Prefix"><span class="description">Sets Fax Prefix</span><pre>setFaxPrefix()</pre></a></li>
+<li class="method public "><a href="#setFirstName" title="setFirstName :: Sets First Name"><span class="description">Sets First Name</span><pre>setFirstName()</pre></a></li>
+<li class="method public "><a href="#setHouseNumber" title="setHouseNumber :: Sets House Number"><span class="description">Sets House Number</span><pre>setHouseNumber()</pre></a></li>
+<li class="method public "><a href="#setId" title="setId :: Sets Id"><span class="description">Sets Id</span><pre>setId()</pre></a></li>
+<li class="method public "><a href="#setLastName" title="setLastName :: Sets Last Name"><span class="description">Sets Last Name</span><pre>setLastName()</pre></a></li>
+<li class="method public "><a href="#setMobNumber" title="setMobNumber :: Sets Mobile Number"><span class="description">Sets Mobile Number</span><pre>setMobNumber()</pre></a></li>
+<li class="method public "><a href="#setMobPrefix" title="setMobPrefix :: Sets Mobile Number"><span class="description">Sets Mobile Number</span><pre>setMobPrefix()</pre></a></li>
+<li class="method public "><a href="#setSalutation" title="setSalutation :: Sets Salutation"><span class="description">Sets Salutation</span><pre>setSalutation()</pre></a></li>
+<li class="method public "><a href="#setState" title="setState :: Sets State"><span class="description">Sets State</span><pre>setState()</pre></a></li>
+<li class="method public "><a href="#setStreet" title="setStreet :: Sets Street"><span class="description">Sets Street</span><pre>setStreet()</pre></a></li>
+<li class="method public "><a href="#setTelNumber" title="setTelNumber :: Sets Telephone Number"><span class="description">Sets Telephone Number</span><pre>setTelNumber()</pre></a></li>
+<li class="method public "><a href="#setTelPrefix" title="setTelPrefix :: Sets Telephone Prefix"><span class="description">Sets Telephone Prefix</span><pre>setTelPrefix()</pre></a></li>
+<li class="method public "><a href="#setTitle" title="setTitle :: Sets Title e.g."><span class="description">Sets Title e.g.</span><pre>setTitle()</pre></a></li>
+<li class="method public "><a href="#setZipCode" title="setZipCode :: Sets Zip Code"><span class="description">Sets Zip Code</span><pre>setZipCode()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24_city" title="$_city :: "><span class="description">$_city</span><pre>$_city</pre></a></li>
+<li class="property private "><a href="#%24_company" title="$_company :: "><span class="description">$_company</span><pre>$_company</pre></a></li>
+<li class="property private "><a href="#%24_country" title="$_country :: "><span class="description">$_country</span><pre>$_country</pre></a></li>
+<li class="property private "><a href="#%24_email" title="$_email :: "><span class="description">$_email</span><pre>$_email</pre></a></li>
+<li class="property private "><a href="#%24_faxNumber" title="$_faxNumber :: "><span class="description">$_faxNumber</span><pre>$_faxNumber</pre></a></li>
+<li class="property private "><a href="#%24_faxPrefix" title="$_faxPrefix :: "><span class="description">$_faxPrefix</span><pre>$_faxPrefix</pre></a></li>
+<li class="property private "><a href="#%24_firstName" title="$_firstName :: "><span class="description">$_firstName</span><pre>$_firstName</pre></a></li>
+<li class="property private "><a href="#%24_houseNumber" title="$_houseNumber :: "><span class="description">$_houseNumber</span><pre>$_houseNumber</pre></a></li>
+<li class="property private "><a href="#%24_id" title="$_id :: "><span class="description">$_id</span><pre>$_id</pre></a></li>
+<li class="property private "><a href="#%24_lastName" title="$_lastName :: "><span class="description">$_lastName</span><pre>$_lastName</pre></a></li>
+<li class="property private "><a href="#%24_mobNumber" title="$_mobNumber :: "><span class="description">$_mobNumber</span><pre>$_mobNumber</pre></a></li>
+<li class="property private "><a href="#%24_mobPrefix" title="$_mobPrefix :: "><span class="description">$_mobPrefix</span><pre>$_mobPrefix</pre></a></li>
+<li class="property private "><a href="#%24_salutation" title="$_salutation :: "><span class="description">$_salutation</span><pre>$_salutation</pre></a></li>
+<li class="property private "><a href="#%24_state" title="$_state :: "><span class="description">$_state</span><pre>$_state</pre></a></li>
+<li class="property private "><a href="#%24_street" title="$_street :: "><span class="description">$_street</span><pre>$_street</pre></a></li>
+<li class="property private "><a href="#%24_telNumber" title="$_telNumber :: "><span class="description">$_telNumber</span><pre>$_telNumber</pre></a></li>
+<li class="property private "><a href="#%24_telPrefix" title="$_telPrefix :: "><span class="description">$_telPrefix</span><pre>$_telPrefix</pre></a></li>
+<li class="property private "><a href="#%24_title" title="$_title :: "><span class="description">$_title</span><pre>$_title</pre></a></li>
+<li class="property private "><a href="#%24_zipCode" title="$_zipCode :: "><span class="description">$_zipCode</span><pre>$_zipCode</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CGN2_NewsletterConnect_Mailing_Recipient" id="\GN2_NewsletterConnect_Mailing_Recipient"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html">GN2_NewsletterConnect_Mailing_Recipient</a>
+</li>
+</ul>
+<div href="../classes/GN2_NewsletterConnect_Mailing_Recipient.html" class="element class">
+<p class="short_description">Mailing Recipient Entity Class</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>GN2_NewsletterConnect</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/GN2.NewsletterConnect.Mailing.html">GN2_NewsletterConnect</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>Mailing</td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:dh@gn2-netwerk.de">Dave Holloway</a></td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="">GN2 Commercial Addon License http://www.gn2-netwerk.de/</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>Release: <package_version></td>
+</tr>
+<tr>
+<th>link</th>
+<td><a href="http://www.gn2-netwerk.de/">http://www.gn2-netwerk.de/</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="getCity" id="getCity"></a><div class="element clickable method public getCity" data-toggle="collapse" data-target=".getCity .collapse">
+<h2>Gets City</h2>
+<pre>getCity() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getCompany" id="getCompany"></a><div class="element clickable method public getCompany" data-toggle="collapse" data-target=".getCompany .collapse">
+<h2>Gets Company</h2>
+<pre>getCompany() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getCountry" id="getCountry"></a><div class="element clickable method public getCountry" data-toggle="collapse" data-target=".getCountry .collapse">
+<h2>Gets Country</h2>
+<pre>getCountry() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getEmail" id="getEmail"></a><div class="element clickable method public getEmail" data-toggle="collapse" data-target=".getEmail .collapse">
+<h2>Gets E-Mail</h2>
+<pre>getEmail() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getFaxNumber" id="getFaxNumber"></a><div class="element clickable method public getFaxNumber" data-toggle="collapse" data-target=".getFaxNumber .collapse">
+<h2>Gets Fax Number</h2>
+<pre>getFaxNumber() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getFaxPrefix" id="getFaxPrefix"></a><div class="element clickable method public getFaxPrefix" data-toggle="collapse" data-target=".getFaxPrefix .collapse">
+<h2>Gets Fax Prefix</h2>
+<pre>getFaxPrefix() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getFirstName" id="getFirstName"></a><div class="element clickable method public getFirstName" data-toggle="collapse" data-target=".getFirstName .collapse">
+<h2>Gets First Name</h2>
+<pre>getFirstName() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getHouseNumber" id="getHouseNumber"></a><div class="element clickable method public getHouseNumber" data-toggle="collapse" data-target=".getHouseNumber .collapse">
+<h2>Gets House Number</h2>
+<pre>getHouseNumber() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Gets Id</h2>
+<pre>getId() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getLastName" id="getLastName"></a><div class="element clickable method public getLastName" data-toggle="collapse" data-target=".getLastName .collapse">
+<h2>Gets Last Name</h2>
+<pre>getLastName() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getMobNumber" id="getMobNumber"></a><div class="element clickable method public getMobNumber" data-toggle="collapse" data-target=".getMobNumber .collapse">
+<h2>Gets Mobile Number</h2>
+<pre>getMobNumber() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getMobPrefix" id="getMobPrefix"></a><div class="element clickable method public getMobPrefix" data-toggle="collapse" data-target=".getMobPrefix .collapse">
+<h2>Gets Mobile Prefix</h2>
+<pre>getMobPrefix() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getSalutation" id="getSalutation"></a><div class="element clickable method public getSalutation" data-toggle="collapse" data-target=".getSalutation .collapse">
+<h2>Gets Salutation</h2>
+<pre>getSalutation() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getState" id="getState"></a><div class="element clickable method public getState" data-toggle="collapse" data-target=".getState .collapse">
+<h2>Gets State</h2>
+<pre>getState() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getStreet" id="getStreet"></a><div class="element clickable method public getStreet" data-toggle="collapse" data-target=".getStreet .collapse">
+<h2>Gets Street</h2>
+<pre>getStreet() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getTelNumber" id="getTelNumber"></a><div class="element clickable method public getTelNumber" data-toggle="collapse" data-target=".getTelNumber .collapse">
+<h2>Gets Telephone Number</h2>
+<pre>getTelNumber() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getTelPrefix" id="getTelPrefix"></a><div class="element clickable method public getTelPrefix" data-toggle="collapse" data-target=".getTelPrefix .collapse">
+<h2>Gets Telephone Prefix</h2>
+<pre>getTelPrefix() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getTitle" id="getTitle"></a><div class="element clickable method public getTitle" data-toggle="collapse" data-target=".getTitle .collapse">
+<h2>Gets Title</h2>
+<pre>getTitle() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getZipCode" id="getZipCode"></a><div class="element clickable method public getZipCode" data-toggle="collapse" data-target=".getZipCode .collapse">
+<h2>Gets Zip Code</h2>
+<pre>getZipCode() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="setCity" id="setCity"></a><div class="element clickable method public setCity" data-toggle="collapse" data-target=".setCity .collapse">
+<h2>Sets City</h2>
+<pre>setCity(string $city) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$city</h4>
+<code>string</code><p>City</p></div>
+</div></div>
+</div>
+<a name="setCompany" id="setCompany"></a><div class="element clickable method public setCompany" data-toggle="collapse" data-target=".setCompany .collapse">
+<h2>Sets Company</h2>
+<pre>setCompany(string $company) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$company</h4>
+<code>string</code><p>Company Name</p></div>
+</div></div>
+</div>
+<a name="setCountry" id="setCountry"></a><div class="element clickable method public setCountry" data-toggle="collapse" data-target=".setCountry .collapse">
+<h2>Sets Country</h2>
+<pre>setCountry(string $country) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$country</h4>
+<code>string</code><p>Country Name</p></div>
+</div></div>
+</div>
+<a name="setEmail" id="setEmail"></a><div class="element clickable method public setEmail" data-toggle="collapse" data-target=".setEmail .collapse">
+<h2>Sets E-Mail</h2>
+<pre>setEmail(string $email) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>string</code><p>E-Mail Address</p>
+</div>
+</div></div>
+</div>
+<a name="setFaxNumber" id="setFaxNumber"></a><div class="element clickable method public setFaxNumber" data-toggle="collapse" data-target=".setFaxNumber .collapse">
+<h2>Sets Fax Number</h2>
+<pre>setFaxNumber(string $faxNumber) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$faxNumber</h4>
+<code>string</code><p>Fax Number</p></div>
+</div></div>
+</div>
+<a name="setFaxPrefix" id="setFaxPrefix"></a><div class="element clickable method public setFaxPrefix" data-toggle="collapse" data-target=".setFaxPrefix .collapse">
+<h2>Sets Fax Prefix</h2>
+<pre>setFaxPrefix(string $faxPrefix) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$faxPrefix</h4>
+<code>string</code><p>Fax Prefix</p></div>
+</div></div>
+</div>
+<a name="setFirstName" id="setFirstName"></a><div class="element clickable method public setFirstName" data-toggle="collapse" data-target=".setFirstName .collapse">
+<h2>Sets First Name</h2>
+<pre>setFirstName(string $firstName) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$firstName</h4>
+<code>string</code><p>First Name</p></div>
+</div></div>
+</div>
+<a name="setHouseNumber" id="setHouseNumber"></a><div class="element clickable method public setHouseNumber" data-toggle="collapse" data-target=".setHouseNumber .collapse">
+<h2>Sets House Number</h2>
+<pre>setHouseNumber(string $houseNumber) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$houseNumber</h4>
+<code>string</code><p>House Number</p></div>
+</div></div>
+</div>
+<a name="setId" id="setId"></a><div class="element clickable method public setId" data-toggle="collapse" data-target=".setId .collapse">
+<h2>Sets Id</h2>
+<pre>setId(mixed $id) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>mixed</code><p>ID</p></div>
+</div></div>
+</div>
+<a name="setLastName" id="setLastName"></a><div class="element clickable method public setLastName" data-toggle="collapse" data-target=".setLastName .collapse">
+<h2>Sets Last Name</h2>
+<pre>setLastName(string $lastName) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$lastName</h4>
+<code>string</code><p>Last Name</p></div>
+</div></div>
+</div>
+<a name="setMobNumber" id="setMobNumber"></a><div class="element clickable method public setMobNumber" data-toggle="collapse" data-target=".setMobNumber .collapse">
+<h2>Sets Mobile Number</h2>
+<pre>setMobNumber(string $mobNumber) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mobNumber</h4>
+<code>string</code><p>Mobile Number</p></div>
+</div></div>
+</div>
+<a name="setMobPrefix" id="setMobPrefix"></a><div class="element clickable method public setMobPrefix" data-toggle="collapse" data-target=".setMobPrefix .collapse">
+<h2>Sets Mobile Number</h2>
+<pre>setMobPrefix(string $mobPrefix) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mobPrefix</h4>
+<code>string</code><p>Mobile Number Prefix</p></div>
+</div></div>
+</div>
+<a name="setSalutation" id="setSalutation"></a><div class="element clickable method public setSalutation" data-toggle="collapse" data-target=".setSalutation .collapse">
+<h2>Sets Salutation</h2>
+<pre>setSalutation(string $salutation) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$salutation</h4>
+<code>string</code><p>Salutation</p></div>
+</div></div>
+</div>
+<a name="setState" id="setState"></a><div class="element clickable method public setState" data-toggle="collapse" data-target=".setState .collapse">
+<h2>Sets State</h2>
+<pre>setState(string $state) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$state</h4>
+<code>string</code><p>State</p></div>
+</div></div>
+</div>
+<a name="setStreet" id="setStreet"></a><div class="element clickable method public setStreet" data-toggle="collapse" data-target=".setStreet .collapse">
+<h2>Sets Street</h2>
+<pre>setStreet(string $street) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$street</h4>
+<code>string</code><p>Street</p></div>
+</div></div>
+</div>
+<a name="setTelNumber" id="setTelNumber"></a><div class="element clickable method public setTelNumber" data-toggle="collapse" data-target=".setTelNumber .collapse">
+<h2>Sets Telephone Number</h2>
+<pre>setTelNumber(string $telNumber) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$telNumber</h4>
+<code>string</code><p>Telephone Number</p></div>
+</div></div>
+</div>
+<a name="setTelPrefix" id="setTelPrefix"></a><div class="element clickable method public setTelPrefix" data-toggle="collapse" data-target=".setTelPrefix .collapse">
+<h2>Sets Telephone Prefix</h2>
+<pre>setTelPrefix(string $telPrefix) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$telPrefix</h4>
+<code>string</code><p>Telephone Prefix</p></div>
+</div></div>
+</div>
+<a name="setTitle" id="setTitle"></a><div class="element clickable method public setTitle" data-toggle="collapse" data-target=".setTitle .collapse">
+<h2>Sets Title e.g.</h2>
+<pre>setTitle(string $title) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Dr.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$title</h4>
+<code>string</code><p>Title</p></div>
+</div></div>
+</div>
+<a name="setZipCode" id="setZipCode"></a><div class="element clickable method public setZipCode" data-toggle="collapse" data-target=".setZipCode .collapse">
+<h2>Sets Zip Code</h2>
+<pre>setZipCode(string $zipCode) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$zipCode</h4>
+<code>string</code><p>Zip Code</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_city" id="$_city"> </a><div class="element clickable property private $_city" data-toggle="collapse" data-target=".$_city .collapse">
+<h2>$_city</h2>
+<pre>$_city </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_company" id="$_company"> </a><div class="element clickable property private $_company" data-toggle="collapse" data-target=".$_company .collapse">
+<h2>$_company</h2>
+<pre>$_company </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_country" id="$_country"> </a><div class="element clickable property private $_country" data-toggle="collapse" data-target=".$_country .collapse">
+<h2>$_country</h2>
+<pre>$_country </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_email" id="$_email"> </a><div class="element clickable property private $_email" data-toggle="collapse" data-target=".$_email .collapse">
+<h2>$_email</h2>
+<pre>$_email </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_faxNumber" id="$_faxNumber"> </a><div class="element clickable property private $_faxNumber" data-toggle="collapse" data-target=".$_faxNumber .collapse">
+<h2>$_faxNumber</h2>
+<pre>$_faxNumber </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_faxPrefix" id="$_faxPrefix"> </a><div class="element clickable property private $_faxPrefix" data-toggle="collapse" data-target=".$_faxPrefix .collapse">
+<h2>$_faxPrefix</h2>
+<pre>$_faxPrefix </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_firstName" id="$_firstName"> </a><div class="element clickable property private $_firstName" data-toggle="collapse" data-target=".$_firstName .collapse">
+<h2>$_firstName</h2>
+<pre>$_firstName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_houseNumber" id="$_houseNumber"> </a><div class="element clickable property private $_houseNumber" data-toggle="collapse" data-target=".$_houseNumber .collapse">
+<h2>$_houseNumber</h2>
+<pre>$_houseNumber </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_id" id="$_id"> </a><div class="element clickable property private $_id" data-toggle="collapse" data-target=".$_id .collapse">
+<h2>$_id</h2>
+<pre>$_id </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_lastName" id="$_lastName"> </a><div class="element clickable property private $_lastName" data-toggle="collapse" data-target=".$_lastName .collapse">
+<h2>$_lastName</h2>
+<pre>$_lastName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_mobNumber" id="$_mobNumber"> </a><div class="element clickable property private $_mobNumber" data-toggle="collapse" data-target=".$_mobNumber .collapse">
+<h2>$_mobNumber</h2>
+<pre>$_mobNumber </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_mobPrefix" id="$_mobPrefix"> </a><div class="element clickable property private $_mobPrefix" data-toggle="collapse" data-target=".$_mobPrefix .collapse">
+<h2>$_mobPrefix</h2>
+<pre>$_mobPrefix </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_salutation" id="$_salutation"> </a><div class="element clickable property private $_salutation" data-toggle="collapse" data-target=".$_salutation .collapse">
+<h2>$_salutation</h2>
+<pre>$_salutation </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_state" id="$_state"> </a><div class="element clickable property private $_state" data-toggle="collapse" data-target=".$_state .collapse">
+<h2>$_state</h2>
+<pre>$_state </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_street" id="$_street"> </a><div class="element clickable property private $_street" data-toggle="collapse" data-target=".$_street .collapse">
+<h2>$_street</h2>
+<pre>$_street </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_telNumber" id="$_telNumber"> </a><div class="element clickable property private $_telNumber" data-toggle="collapse" data-target=".$_telNumber .collapse">
+<h2>$_telNumber</h2>
+<pre>$_telNumber </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_telPrefix" id="$_telPrefix"> </a><div class="element clickable property private $_telPrefix" data-toggle="collapse" data-target=".$_telPrefix .collapse">
+<h2>$_telPrefix</h2>
+<pre>$_telPrefix </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_title" id="$_title"> </a><div class="element clickable property private $_title" data-toggle="collapse" data-target=".$_title .collapse">
+<h2>$_title</h2>
+<pre>$_title </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_zipCode" id="$_zipCode"> </a><div class="element clickable property private $_zipCode" data-toggle="collapse" data-target=".$_zipCode .collapse">
+<h2>$_zipCode</h2>
+<pre>$_zipCode </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-08-24T13:19:16+02:00.<br></footer></div>
+</div>
+</body>
+</html>

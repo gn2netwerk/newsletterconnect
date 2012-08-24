@@ -4,8 +4,8 @@
  *
  * PHP version 5
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
@@ -57,6 +57,7 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
         include_once 'classes/Data/Result.php';
         include_once 'api.php';
     }
+    include_once 'classes/Exception/MailingService.php';
     include_once 'classes/WebService/Abstract.php';
     include_once 'classes/WebService/Curl.php';
     include_once 'classes/Mailing/List.php';

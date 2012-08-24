@@ -2,10 +2,10 @@
 #require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
 
 /**
- * GN2_Newsletterconnect_OxNewsletterSubscribed
+ * GN2_NewsletterConnect_OxNewsletterSubscribed
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  Release: <package_version>
@@ -16,7 +16,7 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
     private function _getNewsletterConnectUser()
     {
         /* Get existing MailingService */
-        $mailingServiceUser = GN2_Newsletterconnect::getMailingService()->getRecipientByEmail(
+        $mailingServiceUser = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
             $this->getUser()->oxuser__oxusername->rawValue
         );
         return $mailingServiceUser;
@@ -34,14 +34,13 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
     public function subscribe()
     {
         $status = oxConfig::getParameter('status');
-        $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
-        $recipient->setEmail($this->getUser()->oxuser__oxusername->rawValue);
-        $list = GN2_Newsletterconnect::getMailingService()->getMainShopList();
+        $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
+        $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 
         if (!$this->isNewsletter() && $status == 1) {
-            GN2_Newsletterconnect::getMailingService()->subscribeRecipient($list, $recipient);
+            GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient);
         } else if ($status == 0 && $status !== null) {
-            GN2_Newsletterconnect::getMailingService()->unsubscribeRecipient($list, $recipient);
+            GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient);
         }
 
 

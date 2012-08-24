@@ -2,10 +2,10 @@
 require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
 
 /**
- * GN2_Newsletterconnect_OxUser
+ * GN2_NewsletterConnect_OxUser
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  Release: <package_version>
@@ -14,26 +14,34 @@ require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
 class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
 {
     /**
-     * Converts an array of OXID Data into an GN2_NewsletterConnect_Mailing_Recipient Object
-     *
-     * @param string $email    E-Mail Address of the user
-     * @param array  $userInfo OXID User data from the user/register forms
+     * Converts the current oxUser-Object into an GN2_NewsletterConnect_Mailing_Recipient Object
      *
      * @return GN2_NewsletterConnect_Mailing_Recipient
      */
-    protected function _gn2NewsletterConnectOxid2Recipient($email, $userInfo)
+    public function gn2NewsletterConnectOxid2Recipient()
     {
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
+        $recipient->setEmail($this->oxuser__oxusername->rawValue);
 
-        $recipient->setEmail($email);
-        $recipient->setSalutation($userInfo['oxuser__oxsal']);
-        $recipient->setFirstName($userInfo['oxuser__oxfname']);
-        $recipient->setLastName($userInfo['oxuser__oxlname']);
-        $recipient->setCompany($userInfo['oxuser__oxcompany']);
-        $recipient->setStreet($userInfo['oxuser__oxstreet']);
-        $recipient->setHouseNumber($userInfo['oxuser__oxstreetnr']);
-        $recipient->setZipCode($userInfo['oxuser__oxzip']);
-        $recipient->setCity($userInfo['oxuser__oxcity']);
+        $salutation = $this->oxuser__oxsal->rawValue;
+        switch (strtolower($salutation)) {
+        case "mr":
+            $salutation = 'Herr';
+            break;
+        case "mrs":
+        case "miss":
+            $salutation = 'Frau';
+            break;
+        }
+
+        $recipient->setSalutation($salutation);
+        $recipient->setFirstName($this->oxuser__oxfname->rawValue);
+        $recipient->setLastName($this->oxuser__oxlname->rawValue);
+        $recipient->setCompany($this->oxuser__oxcompany->rawValue);
+        $recipient->setStreet($this->oxuser__oxstreet->rawValue);
+        $recipient->setHouseNumber($this->oxuser__oxstreetnr->rawValue);
+        $recipient->setZipCode($this->oxuser__oxzip->rawValue);
+        $recipient->setCity($this->oxuser__oxcity->rawValue);
         $recipient->setCountry(''); // TODO: Resolve
         $recipient->setTelPrefix(''); // TODO: split & save
         $recipient->setTelNumber(''); // TODO: split & save
@@ -48,7 +56,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
     public function setNewsSubscription($blSubscribe, $blSendOptIn)
     {
         /* Get existing MailingService */
-        $mailingService = GN2_Newsletterconnect::getMailingService();
+        $mailingService = GN2_NewsletterConnect::getMailingService();
 
         if ($blSubscribe) {
             /* Our MailingService takes care of this */
@@ -59,8 +67,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
 
             /* Create a recipient from the OXID user-data */
             $email = oxConfig::getParameter('lgn_usr');
-            $userinfo = oxConfig::getParameter('invadr');
-            $newRecipient = $this->_gn2NewsletterConnectOxid2Recipient($email, $userinfo);
+            $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
 
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {

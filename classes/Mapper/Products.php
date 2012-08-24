@@ -4,8 +4,8 @@
  *
  * PHP version 5
  *
- * @category   GN2_Newsletterconnect
- * @package    GN2_Newsletterconnect
+ * @category   GN2_NewsletterConnect
+ * @package    GN2_NewsletterConnect
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
@@ -14,18 +14,18 @@
  */
 
 /**
- * GN2_Newsletterconnect_Mapper_Products - Product Mapper
+ * Product Mapper
  *
- * @category   GN2_Newsletterconnect
- * @package    GN2_Newsletterconnect
+ * @category   GN2_NewsletterConnect
+ * @package    GN2_NewsletterConnect
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
  */
-class GN2_Newsletterconnect_Mapper_Products
-extends GN2_Newsletterconnect_Mapper_Abstract
+class GN2_NewsletterConnect_Mapper_Products
+extends GN2_NewsletterConnect_Mapper_Abstract
 {
     /**
      * Builds the MySQL-Limit, depending on URL parameters.
@@ -112,7 +112,7 @@ extends GN2_Newsletterconnect_Mapper_Abstract
     /**
      * Returns results from the mapper
      *
-     * @return GN2_Newsletterconnect_Data_Result Meta & result data
+     * @return GN2_NewsletterConnect_Data_Result Meta & result data
      */
     public function getResults()
     {
@@ -172,7 +172,7 @@ extends GN2_Newsletterconnect_Mapper_Abstract
             }
         }
 
-        $dataresult = new GN2_Newsletterconnect_Data_Result;
+        $dataresult = new GN2_NewsletterConnect_Data_Result;
         $dataresult->setMeta('rows', $total->fields['rows']);
         $dataresult->setResult($data);
         return $dataresult;

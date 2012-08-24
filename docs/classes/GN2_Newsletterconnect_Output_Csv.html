@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>GN2 NewsletterConnect » \GN2_Newsletterconnect_Output_Csv</title>
+<title>GN2_NewsletterConnect » \GN2_NewsletterConnect_Output_Csv</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -15,12 +15,11 @@
 <body>
 <div class="navbar navbar-fixed-top">
 <div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">GN2 NewsletterConnect</a><div class="nav-collapse"><ul class="nav">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">GN2_NewsletterConnect</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/GN2.html"><i class="icon-folder-open"></i> GN2</a></li>
 </ul>
 </li>
@@ -32,10 +31,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">4</span></a></li>
+                <span class="label label-info">54</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">2</span>
+                <span class="label label-info">12</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -61,7 +60,7 @@
 <li class="method public "><a href="#displayData" title="displayData :: Gets the CSV output, prepared for the browser."><span class="description">Gets the CSV output, prepared for the browser.</span><pre>displayData()</pre></a></li>
 <li class="method public "><a href="#displayLine" title="displayLine :: Displays one CSV line per array entry."><span class="description">Displays one CSV line per array entry.</span><pre>displayLine()</pre></a></li>
 <li class="method public "><a href="#getContentType" title="getContentType :: Gets the output, prepared for the browser."><span class="description">Gets the output, prepared for the browser.</span><pre>getContentType()</pre></a></li>
-<li class="method public inherited"><a href="#getData" title="getData :: Gets the data from the GN2_Newsletterconnect_Data_Result object"><span class="description">Gets the data from the GN2_Newsletterconnect_Data_Result object</span><pre>getData()</pre></a></li>
+<li class="method public inherited"><a href="#getData" title="getData :: Gets the data from the GN2_NewsletterConnect_Data_Result object"><span class="description">Gets the data from the GN2_NewsletterConnect_Data_Result object</span><pre>getData()</pre></a></li>
 <li class="method public inherited"><a href="#setData" title="setData :: Sets the data for the output"><span class="description">Sets the data for the output</span><pre>setData()</pre></a></li>
 <li class="method public inherited"><a href="#show" title="show :: Sets HTTP-Headers and sends output to the browser."><span class="description">Sets HTTP-Headers and sends output to the browser.</span><pre>show()</pre></a></li>
 <li class="nav-header">
@@ -71,18 +70,27 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CGN2_Newsletterconnect_Output_Csv" id="\GN2_Newsletterconnect_Output_Csv"></a><div href="../classes/GN2_Newsletterconnect_Output_Csv.html" class="element class">
-<p class="short_description">GN2_Newsletterconnect_Output_Csv - CSV Output Class</p>
+<a name="%5CGN2_NewsletterConnect_Output_Csv" id="\GN2_NewsletterConnect_Output_Csv"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/GN2_NewsletterConnect_Output_Csv.html">GN2_NewsletterConnect_Output_Csv</a>
+</li>
+</ul>
+<div href="../classes/GN2_NewsletterConnect_Output_Csv.html" class="element class">
+<p class="short_description">CSV Output Class</p>
 <div class="details">
-<p class="long_description"></p>
+<p class="long_description"><p>Can be extended for different output formats.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>category</th>
-<td>GN2_Newsletterconnect</td>
+<td>GN2_NewsletterConnect</td>
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/GN2.Newsletterconnect.Output.html">GN2_Newsletterconnect</a></td>
+<td><a href="../packages/GN2.NewsletterConnect.Output.html">GN2_NewsletterConnect</a></td>
 </tr>
 <tr>
 <th>subpackage</th>
@@ -98,7 +106,7 @@
 </tr>
 <tr>
 <th>version</th>
-<td>Release: &lt;package_version&gt;</td>
+<td>Release: <package_version></td>
 </tr>
 <tr>
 <th>link</th>
@@ -111,7 +119,7 @@
 <h2>Gets the CSV output, prepared for the browser.</h2>
 <pre>displayData() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -122,7 +130,7 @@
 <h2>Displays one CSV line per array entry.</h2>
 <pre>displayLine(array $tree, int $level) : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -139,7 +147,7 @@
 <h2>Gets the output, prepared for the browser.</h2>
 <pre>getContentType() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -147,14 +155,14 @@
 </div></div>
 </div>
 <a name="getData" id="getData"></a><div class="element clickable method public getData" data-toggle="collapse" data-target=".getData .collapse">
-<h2>Gets the data from the GN2_Newsletterconnect_Data_Result object</h2>
+<h2>Gets the data from the GN2_NewsletterConnect_Data_Result object</h2>
 <pre>getData() : <a href="http://php.net/manual/en/class.stdclass.php">\stdClass</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\GN2_Newsletterconnect_Output_Abstract::getData()</td>
+<td>\GN2_NewsletterConnect_Output_Abstract::getData()</td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -163,18 +171,18 @@
 </div>
 <a name="setData" id="setData"></a><div class="element clickable method public setData" data-toggle="collapse" data-target=".setData .collapse">
 <h2>Sets the data for the output</h2>
-<pre>setData(<a href="../classes/GN2_Newsletterconnect_Data_Result.html">\GN2_Newsletterconnect_Data_Result</a> $data) : boolean</pre>
+<pre>setData(<a href="../classes/GN2_NewsletterConnect_Data_Result.html">\GN2_NewsletterConnect_Data_Result</a> $data) : boolean</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\GN2_Newsletterconnect_Output_Abstract::setData()</td>
+<td>\GN2_NewsletterConnect_Output_Abstract::setData()</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$data</h4>
-<code><a href="../classes/GN2_Newsletterconnect_Data_Result.html">\GN2_Newsletterconnect_Data_Result</a></code><p>Meta /p></div>
+<code><a href="../classes/GN2_NewsletterConnect_Data_Result.html">\GN2_NewsletterConnect_Data_Result</a></code><p>Meta /p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>boolean</code></div>
 </div></div>
@@ -183,11 +191,11 @@
 <h2>Sets HTTP-Headers and sends output to the browser.</h2>
 <pre>show() : void</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\GN2_Newsletterconnect_Output_Abstract::show()</td>
+<td>\GN2_NewsletterConnect_Output_Abstract::show()</td>
 </tr></table>
 </div></div>
 </div>
@@ -197,11 +205,11 @@
 <h2>$_data</h2>
 <pre>$_data </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\GN2_Newsletterconnect_Output_Abstract::$$_data</td>
+<td>\GN2_NewsletterConnect_Output_Abstract::$$_data</td>
 </tr></table>
 </div></div>
 </div>
@@ -211,8 +219,8 @@
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-04-04T16:10:19+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-08-24T13:19:16+02:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -4,8 +4,8 @@
  *
  * PHP version 5
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
@@ -15,10 +15,10 @@
 require_once 'copyprotect.php';
 
 /**
- * GN2_Newsletterconnect - Main OXID Module Initialization Class
+ * GN2_NewsletterConnect - Main OXID Module Initialization Class
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  Release: <package_version>
@@ -117,10 +117,10 @@ class GN2_NewsletterConnect
 
 
 /**
- * GN2_Newsletterconnect_Oxoutput - Dummy Class. We're only loading OXOUTPUT as a bootstrap.
+ * GN2_NewsletterConnect_Oxoutput - Dummy Class. We're only loading OXOUTPUT as a bootstrap.
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  Release: <package_version>
@@ -132,5 +132,5 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
 }
 
 if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
-    GN2_Newsletterconnect::main();
+    GN2_NewsletterConnect::main();
 }

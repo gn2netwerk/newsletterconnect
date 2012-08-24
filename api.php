@@ -4,8 +4,8 @@
  *
  * PHP version 5
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
@@ -16,16 +16,16 @@ $er = error_reporting(E_ALL ^E_NOTICE);
 require_once 'copyprotect.php';
 
 /**
- * GN2_Newsletterconnect_Api - Main API Initialization Class
+ * GN2_NewsletterConnect_Api - Main API Initialization Class
  *
- * @category GN2_Newsletterconnect
- * @package  GN2_Newsletterconnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  Release: <package_version>
  * @link     http://www.gn2-netwerk.de/
  */
-class GN2_Newsletterconnect_Api
+class GN2_NewsletterConnect_Api
 {
     /**
      * Initializes the API. Parses URL and starts mapper/output classes.

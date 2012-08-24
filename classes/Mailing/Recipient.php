@@ -4,8 +4,8 @@
  *
  * PHP version 5
  *
- * @category   GN2_Newsletterconnect
- * @package    GN2_Newsletterconnect
+ * @category   GN2_NewsletterConnect
+ * @package    GN2_NewsletterConnect
  * @subpackage Mailing
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
@@ -14,10 +14,10 @@
  */
 
 /**
- * GN2_Newsletterconnect_Mailing_Recipient
+ * Mailing Recipient Entity Class
  *
- * @category   GN2_Newsletterconnect
- * @package    GN2_Newsletterconnect
+ * @category   GN2_NewsletterConnect
+ * @package    GN2_NewsletterConnect
  * @subpackage Mailing
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
