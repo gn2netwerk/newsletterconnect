@@ -97,5 +97,6 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
                 //TODO: Live Exceptions?
             }
         }
+        return true;
     }
 }

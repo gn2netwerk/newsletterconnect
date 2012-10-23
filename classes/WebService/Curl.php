@@ -24,8 +24,8 @@
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
  */
-abstract class GN2_NewsletterConnect_Webservice_Curl
-    extends GN2_NewsletterConnect_Webservice_Abstract
+abstract class GN2_NewsletterConnect_WebService_Curl
+    extends GN2_NewsletterConnect_WebService_Abstract
 {
     /**
      * @var bool Curl Parameter to return response from server or not

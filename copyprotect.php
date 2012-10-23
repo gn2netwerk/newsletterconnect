@@ -64,4 +64,5 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
     include_once 'classes/Mailing/Recipient.php';
     include_once 'classes/MailingService/Interface.php';
     include_once 'classes/MailingService/MailingWork.php';
+
 }

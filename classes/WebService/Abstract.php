@@ -26,7 +26,7 @@
  * @link       http://www.gn2-netwerk.de/
  * @abstract
  */
-abstract class GN2_NewsletterConnect_Webservice_Abstract
+abstract class GN2_NewsletterConnect_WebService_Abstract
 {
     /**
      * @var array $_params Parameters to be sent to the webservice
