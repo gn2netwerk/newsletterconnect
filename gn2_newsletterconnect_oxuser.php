@@ -77,6 +77,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
     {
         /* Get existing MailingService */
         $mailingService = GN2_NewsletterConnect::getMailingService();
+        $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
 
         if ($blSubscribe) {
             /* Our MailingService takes care of this */
@@ -87,7 +88,6 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
 
             /* Create a recipient from the OXID user-data */
             $email = oxConfig::getParameter('lgn_usr');
-            $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
 
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
@@ -95,6 +95,11 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
                 }
             } catch (Exception $e) {
                 //TODO: Live Exceptions?
+            }
+        } else {
+            /* Everywhere but the user page */
+            if (!in_array(oxConfig::getParameter('cl'), array('user', 'register'))) {
+                $mailingService->unsubscribeRecipient($mailingService->getMainShopList(), $newRecipient);
             }
         }
         return true;

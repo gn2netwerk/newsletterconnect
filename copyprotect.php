@@ -17,7 +17,8 @@ $_Z = array(
     '192.168.1.71',
     '127.0.0.1',
     'mailingwork.gn2-dev.de',
-    'localhost'
+    'localhost',
+    'localhost:8888',
 );
 
 if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
