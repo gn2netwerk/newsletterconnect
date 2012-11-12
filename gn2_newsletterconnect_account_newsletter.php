@@ -35,6 +35,7 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
         $mailingServiceUser = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
             $this->getUser()->oxuser__oxusername->rawValue
         );
+
         return $mailingServiceUser;
     }
 

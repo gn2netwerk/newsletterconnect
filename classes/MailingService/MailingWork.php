@@ -373,4 +373,17 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return $recipient;
     }
 
+
+    public function transferOrder($recipient, $basketData, $positions)
+    {
+        $this->_setMailingworkUrl('transferOxidOrder');
+        $this->addParam('subscriberId', $recipient->getId());
+        $this->addParam('orderData', $basketData);
+        $this->addParam('orderPositions', $positions);
+        $recipientResponse = $this->_getDecodedResponse();
+        if ($recipientResponse['error']!==0) {
+            throw new GN2_NewsletterConnect_Exception_MailingService('transferOrder failed: '.$recipientResponse);
+        }
+    }
+
 }
