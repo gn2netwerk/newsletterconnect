@@ -48,6 +48,11 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
     die();
 } else {
     define('GN2_NEWSLETTERCONNECT_LOADED', 1);
+
+    include_once 'classes/Environment/Environment.php';
+    include_once 'classes/Environment/Oxid.php';
+    include_once 'classes/Environment/Oxid44.php';
+
     if (strpos($_SERVER['SCRIPT_NAME'], 'api.php') !== false) {
         include_once 'classes/Mapper/Abstract.php';
         include_once 'classes/Mapper/Categories.php';

@@ -44,6 +44,21 @@ class GN2_NewsletterConnect
     }
 
     /**
+     * getEnvironment
+     * Returns an instance of the current environment
+     *
+     * @return GN2_NewsletterConnect_Environment
+     */
+    public static function getEnvironment()
+    {
+        if (substr(oxconfig::getInstance()->getVersion(), 0, 3) == "4.4") {
+            return new GN2_NewsletterConnect_Environment_Oxid44();
+        } else {
+            return new GN2_NewsletterConnect_Environment_Oxid();
+        }
+    }
+
+    /**
      * looplink($directory);
      * Automatically symlink every file in a specified folder
      * within the module folder to a file with the same path

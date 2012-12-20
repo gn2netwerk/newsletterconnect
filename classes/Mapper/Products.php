@@ -84,6 +84,8 @@ extends GN2_NewsletterConnect_Mapper_Abstract
      */
     protected function getQuery()
     {
+        $env = GN2_NewsletterConnect::getEnvironment();
+
         $qsql = '
         SELECT
             SQL_CALC_FOUND_ROWS
@@ -92,7 +94,7 @@ extends GN2_NewsletterConnect_Mapper_Abstract
         FROM
             oxobject2category as o2c
         LEFT JOIN
-            oxv_oxarticles as a
+            '.$env->getArticleTableName().' as a
         ON
             (a.OXID = o2c.OXOBJECTID)
 

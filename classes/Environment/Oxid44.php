@@ -23,7 +23,7 @@
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
  */
-abstract class GN2_NewsletterConnect_Environment_Oxid44
+class GN2_NewsletterConnect_Environment_Oxid44
 extends GN2_NewsletterConnect_Environment_Oxid
 {
     /**
