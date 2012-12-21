@@ -35,4 +35,14 @@ extends GN2_NewsletterConnect_Environment_Oxid
     {
         return "oxarticles";
     }
+
+    /**
+     * Returns an empty string as article long description
+     *
+     * @return string Emptystring
+     */
+    public function getArticleLongDesc($article)
+    {
+        return '';
+    }
 }

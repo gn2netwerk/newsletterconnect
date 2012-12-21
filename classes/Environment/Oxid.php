@@ -36,4 +36,14 @@ implements GN2_NewsletterConnect_Environment
     {
         return "oxv_oxarticles";
     }
+
+    /**
+     * Returns the article long description
+     *
+     * @return string Emptystring
+     */
+    public function getArticleLongDesc($article)
+    {
+        return $article->getLongDesc();
+    }
 }

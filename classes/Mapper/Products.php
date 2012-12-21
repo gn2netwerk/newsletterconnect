@@ -118,6 +118,7 @@ extends GN2_NewsletterConnect_Mapper_Abstract
      */
     public function getResults()
     {
+        $env = GN2_NewsletterConnect::getEnvironment();
         $qsql = $this->getQuery();
         $rows = oxDb::getDb(true)->Execute($qsql);
 
@@ -138,7 +139,8 @@ extends GN2_NewsletterConnect_Mapper_Abstract
                 $product->artnum = $article->oxarticles__oxartnum->rawValue;
                 $product->url = $article->getLink();
 
-                $product->longdesc = $article->getLongDesc();
+                //$product->longdesc = $article->getLongDesc();
+                $product->longdesc = $env->getArticleLongDesc($article);
                 $product->pictures = array();
                 for ($i=0;$i<12;$i++) {
                     $picture = $article->getPictureUrl($i+1);
