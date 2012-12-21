@@ -51,9 +51,13 @@ class GN2_NewsletterConnect
      */
     public static function getEnvironment()
     {
-        if (substr(oxconfig::getInstance()->getVersion(), 0, 3) == "4.4") {
+        $oxver = substr(oxconfig::getInstance()->getVersion(), 0, 3);
+        $oxver = intval(str_replace('.', '', $oxver));
+
+        switch($oxver){
+        case 44:
             return new GN2_NewsletterConnect_Environment_Oxid44();
-        } else {
+        default:
             return new GN2_NewsletterConnect_Environment_Oxid();
         }
     }
