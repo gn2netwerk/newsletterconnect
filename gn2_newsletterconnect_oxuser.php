@@ -70,10 +70,12 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
      *
      * @param boolean $blSubscribe Subscribe yes/no
      * @param boolean $blSendOptIn Unused in this implementation, inherited from overridden function
+     * @param boolean $$blForceCheckOptIn Unused in this implementation, inherited from overridden function
      *
      * @return void
      */
-    public function setNewsSubscription($blSubscribe, $blSendOptIn)
+    //public function setNewsSubscription($blSubscribe, $blSendOptIn)
+    public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
         /* Get existing MailingService */
         $mailingService = GN2_NewsletterConnect::getMailingService();
