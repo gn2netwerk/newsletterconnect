@@ -85,6 +85,7 @@ class GN2_NewsletterConnect_Api
     oxUtils::getInstance()->stripGpcMagicQuotes();
 }*/
 
+require_once 'gn2_newsletterconnect.php';
 $env = GN2_NewsletterConnect::getEnvironment();
 $env->loadBootstrap();
 
