@@ -37,6 +37,7 @@ class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_pare
     public function gn2NewstterConnect_transferOrder() {
         global $myConfig;
         $items = array();
+        $myConfig = oxConfig::getInstance();
         $oxOrder = $myConfig->getActiveView()->getOrder();
         $oxArticles = $oxOrder->getOrderArticles(true);
 
