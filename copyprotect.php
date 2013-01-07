@@ -52,6 +52,7 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
     include_once 'classes/Environment/Environment.php';
     include_once 'classes/Environment/Oxid.php';
     include_once 'classes/Environment/Oxid44.php';
+    include_once 'classes/Environment/Oxid47.php';
 
     if (strpos($_SERVER['SCRIPT_NAME'], 'api.php') !== false) {
         include_once 'classes/Mapper/Abstract.php';

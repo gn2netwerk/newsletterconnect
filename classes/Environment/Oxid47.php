@@ -12,9 +12,8 @@
  * @version    GIT: <git_id>
  * @link       http://www.gn2-netwerk.de/
  */
-
 /**
- * Environment Interface
+ * Oxid 4.7 specific class
  *
  * @category   GN2_NewsletterConnect
  * @package    GN2_NewsletterConnect
@@ -23,21 +22,27 @@
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
- * @interface
  */
-interface GN2_NewsletterConnect_Environment
+class GN2_NewsletterConnect_Environment_Oxid47
+implements GN2_NewsletterConnect_Environment
 {
     /**
      * Returns the name of the article table
      *
-     * @return GN2_NewsletterConnect_Environment_Oxid Meta & result data
+     * @return string String containing the tablename
      */
-    public function getArticleTableName();
+    public function getArticleTableName()
+    {
+        return "oxv_oxarticles";
+    }
 
     /**
      * Bootstraps the oxis instance
      *
-     * @return GN2_NewsletterConnect_Environment_Oxid Meta & result data
+     * @return void
      */
-    public function loadBootstrap();
+    public function loadBootstrap()
+    {
+        require_once realpath("../..") . "/bootstrap.php";
+    }
 }

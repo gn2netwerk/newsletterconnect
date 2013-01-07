@@ -46,4 +46,29 @@ implements GN2_NewsletterConnect_Environment
     {
         return $article->getLongDesc();
     }
+
+    /**
+     * Bootstraps the oxis instance
+     *
+     * @return void
+     */
+    public function loadBootstrap()
+    {
+
+        if (!function_exists('getShopBasePath')) {
+            /**
+             * Returns OXID base path
+             *
+             * @return string OXID Base Path
+             */
+            function getShopBasePath()
+            {
+                return $_SERVER['DOCUMENT_ROOT'].'/'
+                . dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
+            }
+            include_once getShopBasePath() . 'modules/functions.php';
+            include_once getShopBasePath() . 'core/oxfunctions.php';
+            oxUtils::getInstance()->stripGpcMagicQuotes();
+        }
+    }
 }

@@ -57,6 +57,8 @@ class GN2_NewsletterConnect
         switch($oxver){
         case 44:
             return new GN2_NewsletterConnect_Environment_Oxid44();
+        case 47:
+            return new GN2_NewsletterConnect_Environment_Oxid47();
         default:
             return new GN2_NewsletterConnect_Environment_Oxid();
         }
