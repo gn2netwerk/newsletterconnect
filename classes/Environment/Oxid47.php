@@ -33,7 +33,7 @@ implements GN2_NewsletterConnect_Environment
      */
     public function getArticleTableName()
     {
-        return "oxv_oxarticles";
+        return parent::getArticleTableName();
     }
 
     /**
