@@ -24,18 +24,8 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Environment_Oxid47
-implements GN2_NewsletterConnect_Environment
+extends GN2_NewsletterConnect_Environment_Oxid
 {
-    /**
-     * Returns the name of the article table
-     *
-     * @return string String containing the tablename
-     */
-    public function getArticleTableName()
-    {
-        return parent::getArticleTableName();
-    }
-
     /**
      * Bootstraps the oxis instance
      *

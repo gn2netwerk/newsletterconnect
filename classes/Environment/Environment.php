@@ -35,7 +35,7 @@ interface GN2_NewsletterConnect_Environment
     public function getArticleTableName();
 
     /**
-     * Bootstraps the oxis instance
+     * Bootstraps the oxid instance
      *
      * @return GN2_NewsletterConnect_Environment_Oxid Meta & result data
      */

@@ -48,7 +48,7 @@ implements GN2_NewsletterConnect_Environment
     }
 
     /**
-     * Bootstraps the oxis instance
+     * Bootstraps the oxid instance
      *
      * @return void
      */
