@@ -33,6 +33,6 @@ extends GN2_NewsletterConnect_Environment_Oxid
      */
     public function loadBootstrap()
     {
-        require_once getShopBasePath() . 'bootstrap.php';
+        include_once getShopBasePath().'bootstrap.php';
     }
 }
