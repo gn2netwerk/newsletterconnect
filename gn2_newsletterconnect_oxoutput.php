@@ -107,7 +107,6 @@ class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_pare
                 $basketData,
                 $items
             );
-            die('loooool');
         }
 
     }
