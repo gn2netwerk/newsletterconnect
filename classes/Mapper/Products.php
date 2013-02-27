@@ -25,7 +25,7 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Mapper_Products
-extends GN2_NewsletterConnect_Mapper_Abstract
+    extends GN2_NewsletterConnect_Mapper_Abstract
 {
     /**
      * Builds the MySQL-Limit, depending on URL parameters.
@@ -73,7 +73,7 @@ extends GN2_NewsletterConnect_Mapper_Abstract
             $where .= ' && a.OXID = "'.$this->entity.'" ';
         }
 
-        $where .= ')';
+        $where .= ') && OXTITLE <> ""';
         return $where;
     }
 
@@ -120,16 +120,16 @@ extends GN2_NewsletterConnect_Mapper_Abstract
     {
         $env = GN2_NewsletterConnect::getEnvironment();
         $qsql = $this->getQuery();
-        $rows = oxDb::getDb(true)->Execute($qsql);
+        $rows = oxDb::getDb()->Execute($qsql);
 
-        $total = oxDb::getDb(true)->Execute('SELECT FOUND_ROWS() as rows');
+        $total = oxDb::getDb()->Execute('SELECT FOUND_ROWS() as rows');
 
         $data = array();
         if ($rows != false && $rows->recordCount() > 0) {
             while (!$rows->EOF) {
                 $article = oxNew('oxarticle');
                 $article->disableLazyLoading();
-                $article->load($rows->fields["OXID"]);
+                $article->load($rows->fields[0]);
 
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;

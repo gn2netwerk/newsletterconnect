@@ -51,7 +51,7 @@ class GN2_NewsletterConnect
      */
     public static function getEnvironment()
     {
-        if (file_exists(dirname(__FILE__) . '../../bootstrap.php')){
+        if (file_exists(dirname(__FILE__) . '/../../bootstrap.php')) {
             $env = new GN2_NewsletterConnect_Environment_Oxid47();
             $env->loadBootstrap();
         } else {
