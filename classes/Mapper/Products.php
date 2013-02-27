@@ -92,9 +92,9 @@ extends GN2_NewsletterConnect_Mapper_Abstract
             a.OXID as OXID,
             a.OXTITLE
         FROM
-            oxobject2category as o2c
-        LEFT JOIN
             '.$env->getArticleTableName().' as a
+        LEFT JOIN
+            oxobject2category as o2c
         ON
             (a.OXID = o2c.OXOBJECTID)
 
@@ -141,19 +141,27 @@ extends GN2_NewsletterConnect_Mapper_Abstract
 
                 //$product->longdesc = $article->getLongDesc();
                 $product->longdesc = $env->getArticleLongDesc($article);
+
+                /* Product Pics */
                 $product->pictures = array();
+                $picture = ""; $lastPicture = "";
+
                 for ($i=0;$i<12;$i++) {
+                    $lastPicture = $picture;
                     $picture = $article->getPictureUrl($i+1);
-                    if (strpos($picture, 'nopic.jpg') === false) {
+                    if (strpos($picture, 'nopic.jpg') === false && $lastPicture != $picture) {
                         $product->pictures[] = $picture;
                     }
                 }
 
                 /* Product Thumbnails */
                 $product->thumbnails = array();
+                $picture = ""; $lastPicture = "";
+
                 for ($i=0;$i<12;$i++) {
+                    $lastPicture = $picture;
                     $picture = $article->getThumbnailUrl($i+1);
-                    if (strpos($picture, 'nopic.jpg') === false) {
+                    if (strpos($picture, 'nopic.jpg') === false && $lastPicture != $picture) {
                         $product->thumbnails[] = $picture;
                     }
                 }
