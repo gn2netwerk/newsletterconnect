@@ -28,10 +28,30 @@ require_once 'gn2_newsletterconnect.php';
 class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_parent
 {
     public function __construct() {
+        ob_start(array($this, 'gn2NewstterConnect_outputFilter'));
+        register_shutdown_function('ob_end_flush');
+
         if (oxConfig::getParameter('cl') == 'thankyou') {
             $this->gn2NewstterConnect_transferOrder();
         }
 
+    }
+
+    public function gn2NewstterConnect_outputFilter($output)
+    {
+        $cl = oxConfig::getParameter('cl');
+        if ($cl == 'shop_system') {
+            $version = '<p style="color:#777777">'
+                .'GN2_NewsletterConnect Version: '.file_get_contents(dirname(__FILE__).'/version.php').'</p>';
+            if (isset($_POST['save'])) {
+                $output = str_replace(
+                    'myedit.fnc.value=\'save\'"" >',
+                    'myedit.fnc.value=\'save\'"" >'.$version,
+                    $output
+                );
+            }
+        }
+        return $output;
     }
 
     public function gn2NewstterConnect_transferOrder() {
