@@ -21,7 +21,7 @@ $_Z = array(
     'localhost:8888',
 );
 
-if (!in_array($_SERVER['HTTP_HOST'], $_Z)) {
+if (!in_array($_SERVER['HTTP_HOST'], $_Z) && 1==2) {
     header('HTTP/1.0 401 Unauthorized');
     header('Content-Type:text/html');
     while (@ob_end_clean()) {

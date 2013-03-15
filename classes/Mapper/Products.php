@@ -126,6 +126,7 @@ class GN2_NewsletterConnect_Mapper_Products
 
         $data = array();
         if ($rows != false && $rows->recordCount() > 0) {
+                
             while (!$rows->EOF) {
                 $article = oxNew('oxarticle');
                 $article->disableLazyLoading();
@@ -185,7 +186,7 @@ class GN2_NewsletterConnect_Mapper_Products
         }
 
         $dataresult = new GN2_NewsletterConnect_Data_Result;
-        $dataresult->setMeta('rows', $total->fields['rows']);
+        $dataresult->setMeta('rows', $total->fields[0]);
         $dataresult->setResult($data);
         return $dataresult;
     }
