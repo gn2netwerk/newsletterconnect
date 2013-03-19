@@ -43,6 +43,6 @@ extends GN2_NewsletterConnect_Environment_Oxid
      */
     public function getArticleLongDesc($article)
     {
-        return utf8_encode($article->getArticleLongDesc($article->getId()));
+        return $article->getArticleLongDesc($article->getId());
     }
 }
