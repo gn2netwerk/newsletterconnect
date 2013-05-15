@@ -134,10 +134,10 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
-                $product->title = utf8_encode($article->oxarticles__oxtitle->rawValue);
+                $product->title = $article->oxarticles__oxtitle->rawValue;
                 $product->price = $article->getFPrice();
-                $product->shortdesc = utf8_encode($article->oxarticles__oxshortdesc->rawValue);
-                $product->artnum = utf8_encode($article->oxarticles__oxartnum->rawValue);
+                $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
+                $product->artnum = $article->oxarticles__oxartnum->rawValue;
                 $product->url = $article->getLink();
                 
                 //$product->longdesc = $article->getLongDesc();
