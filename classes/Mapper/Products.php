@@ -100,6 +100,9 @@ class GN2_NewsletterConnect_Mapper_Products
 
         $WHERE$
 
+        GROUP BY
+            a.OXID
+
         ORDER BY
             a.OXTITLE
 
