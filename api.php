@@ -38,7 +38,7 @@ class GN2_NewsletterConnect_Api
         $pattern = '/'.
                    '(.*)\/modules\/gn2_newsletterconnect\/'.
                    '(?P<mapper>products|categories)'.
-                   '\/?(?P<entity>[A-Fa-f0-9?U\.]*)'.
+                   '\/?(?P<entity>[A-Za-z0-9?U\.\-\_]*)'.
                    '(\.(?P<output>json|csv)?)'.
                    '/';
         preg_match($pattern, $subject, $matches);
