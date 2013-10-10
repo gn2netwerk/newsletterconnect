@@ -377,7 +377,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     public function transferOrder($recipient, $basketData, $positions)
     {
         $this->_setMailingworkUrl('transferOxidOrder');
-        $this->addParam('subscriberId', $recipient->getId());
+        $this->addParam('recipientId', $recipient->getId());
         $this->addParam('orderData', $basketData);
         $this->addParam('orderPositions', $positions);
         $recipientResponse = $this->_getDecodedResponse();
