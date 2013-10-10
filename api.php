@@ -1,4 +1,6 @@
 <?php
+if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
+
 /**
  * GN2_NewsletterConnect
  *
@@ -12,8 +14,6 @@
  * @link     http://www.gn2-netwerk.de/
  */
 $er = error_reporting(E_ALL ^E_NOTICE);
-
-require_once 'copyprotect.php';
 
 /**
  * GN2_NewsletterConnect_Api - Main API Initialization Class

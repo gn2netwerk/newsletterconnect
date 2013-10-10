@@ -37,24 +37,13 @@ interface GN2_NewsletterConnect_MailingService_Interface
     public function getLists();
 
     /**
-     * Creates a new list on the MailingService
+     * Creates a new recipient on the MailingService starts OptIn process
      *
-     * @param string $listName List Name
-     *
-     * @abstract
-     * @return mixed
-     */
-    public function createList($listName);
-
-    /**
-     * Creates a new recipient on the MailingServicem starts OptIn process
-     *
-     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
      */
-    public function optInRecipient($list, $recipient);
+    public function optInRecipient($recipient);
 
     /**
      * Subscribes a recipient directly to a mailing list

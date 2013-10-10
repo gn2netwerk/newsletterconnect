@@ -14,8 +14,8 @@ $version = @file_get_contents(dirname(__FILE__).'/version.php');
     'version'       => $version,
     'author'        => 'GN2 netwerk',
     'extend'        => array(
-                        'oxuser'   => 'gn2_newsletterconnect/gn2_newsletterconnect_oxuser',
-                        'account_newsletter'   => 'gn2_newsletterconnect/gn2_newsletterconnect_account_newsletter',
-                        'oxoutput' => 'gn2_newsletterconnect/gn2_newsletterconnect_oxoutput'
+        'oxuser'             => 'gn2_newsletterconnect/gn2_newsletterconnect_oxuser',
+        'account_newsletter' => 'gn2_newsletterconnect/gn2_newsletterconnect_account_newsletter',
+        'thankyou'           => 'gn2_newsletterconnect/gn2_newsletterconnect_thankyou',
     )
 );

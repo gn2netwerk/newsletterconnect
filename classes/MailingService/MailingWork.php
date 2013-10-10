@@ -132,20 +132,19 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $list->setName($listName);
             return $list;
         } else {
-            throw new Exception($list. ' list cannot be created');
+            throw new Exception($listName. ' list cannot be created. Please check your Mailingwork Login details.');
         }
     }
 
     /**
      * Creates a new recipient on the MailingService
      *
-     * @param GN2_NewsletterConnect_Mailing_List      $list      List
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
-    public function optInRecipient($list, $recipient)
+    public function optInRecipient($recipient)
     {
         if (is_object($recipient)) {
             $this->_setMailingworkUrl('optinRecipient');

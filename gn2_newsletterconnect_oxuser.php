@@ -1,4 +1,6 @@
 <?php
+if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
+
 /**
  * GN2_NewsletterConnect
  *
@@ -73,11 +75,8 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
      *
      * @return void
      */
-    //public function setNewsSubscription($blSubscribe, $blSendOptIn)
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
-        require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
-
         /* Get existing MailingService */
         $mailingService = GN2_NewsletterConnect::getMailingService();
         $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
@@ -94,7 +93,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
 
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
-                    $mailingService->optInRecipient($mailingService->getMainShopList(), $newRecipient);
+                    $mailingService->optInRecipient($newRecipient);
                 }
             } catch (Exception $e) {
                 //TODO: Live Exceptions?
@@ -102,7 +101,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
         } else {
             /* Everywhere but the user page */
             if (!in_array(oxConfig::getParameter('cl'), array('user', 'register'))) {
-                $mailingService->unsubscribeRecipient($mailingService->getMainShopList(), $newRecipient);
+                $mailingService->unsubscribeRecipient($newRecipient);
             }
         }
         return true;

@@ -18,7 +18,7 @@ self::$config = array(
     'service_Mailingwork' => array(
         'api_baseurl'      => 'https://login.mailingwork.de/webservice/webservice/json/',
         'api_username'     => 'gn2test',
-        'api_password'     => '1234test%',
+        'api_password'     => 'z7Lgssia3g$qg',
         'api_signupsetup'  => '1', // ID des Anmeldesetups
     )
 );

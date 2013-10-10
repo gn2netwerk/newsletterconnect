@@ -141,7 +141,8 @@ class GN2_NewsletterConnect_Mapper_Products
                 $product->price = $article->getFPrice();
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
                 $product->artnum = $article->oxarticles__oxartnum->rawValue;
-                $product->url = $article->getLink();
+                $link = $article->getLink();
+                $product->url = preg_replace('/\?force_sid.*/', '', $link);
                 
                 //$product->longdesc = $article->getLongDesc();
                 $product->longdesc = utf8_encode($env->getArticleLongDesc($article));

@@ -14,14 +14,14 @@
 ob_start();
 
 $_Z = array(
-    '192.168.1.71',
-    '127.0.0.1',
-    'mailingwork.gn2-dev.de',
     'localhost',
     'localhost:8888',
+    'mos.ce.448',
 );
 
-if (!in_array($_SERVER['HTTP_HOST'], $_Z) && 1==2) {
+$_Q = $_SERVER['REQUEST_URI'];
+
+if (!in_array($_SERVER['HTTP_HOST'], $_Z) && strpos($_Q, '/admin/') === false) {
     header('HTTP/1.0 401 Unauthorized');
     header('Content-Type:text/html');
     while (@ob_end_clean()) {
@@ -37,14 +37,16 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z) && 1==2) {
     $prefix = ($httpport == 443) ? 'https://' : 'http://';
     $prefix .= $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI'];
     $subject = '['.$prefix.'] - gn2_newsletterconnect license';
+    echo '<div style="text-align: center;">';
     echo '<p><img src="http://www.gn2-netwerk.de/img/gn2-netwerk.png"></p>';
-    echo '<div style="margin:10px 50px;font-size:13px;font-family:monospace;">';
-    echo '<p>The gn2_newsletterconnect module '
+    echo '<div style="margin:25px 50px;font-size:13px;font-family:monospace;">';
+    echo '<p>Das gn2_newsletterconnect Modul '
             . '(<strong>modules/gn2_newsletterconnect</strong>) '
-            . 'is only authorized for use on the following hosts:'
+            . 'wurde nur f&uuml;r die folgenden Hosts freigeschalten:'
             . ' [<em>' . implode(', ', $_Z) . '</em>].</p>';
-    echo '<p>Please write to <a href="mailto:kontakt@gn2-netwerk.de?subject='
-            . $subject.'">kontakt@gn2-netwerk.de</a> for license information.</div>';
+    echo '<p>Um weitere Hosts freizuschalten, bitte setzen Sie sich mit uns in Verbindung: <a href="mailto:kontakt@gn2-netwerk.de?subject='
+            . $subject.'">kontakt@gn2-netwerk.de</a>.</div>';
+    echo '</div>';
     die();
 } else {
     define('GN2_NEWSLETTERCONNECT_LOADED', 1);
@@ -72,4 +74,7 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z) && 1==2) {
     include_once 'classes/MailingService/Interface.php';
     include_once 'classes/MailingService/MailingWork.php';
 
+    if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
+        GN2_NewsletterConnect::main();
+    }
 }

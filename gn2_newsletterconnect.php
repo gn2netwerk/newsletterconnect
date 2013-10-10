@@ -12,7 +12,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-require_once 'copyprotect.php';
+require_once 'stub.php';
 
 /**
  * GN2_NewsletterConnect - Main OXID Module Initialization Class
@@ -30,18 +30,6 @@ class GN2_NewsletterConnect
      * @var array Configuration Array
      */
     public static $config = array();
-
-    /**
-     * Starts looplinker
-     *
-     */
-    private function __construct()
-    {
-        $this->looplink('core');
-        $this->looplink('admin');
-        $this->looplink('out');
-        $this->looplink('views');
-    }
 
     /**
      * getEnvironment
@@ -69,60 +57,6 @@ class GN2_NewsletterConnect
                 return new GN2_NewsletterConnect_Environment_Oxid47();
             default:
                 return new GN2_NewsletterConnect_Environment_Oxid();
-        }
-    }
-
-    /**
-     * looplink($directory);
-     * Automatically symlink every file in a specified folder
-     * within the module folder to a file with the same path
-     * in the root OXID directory.
-     *
-     * @param string  $dir    Folder to link
-     * @param boolean $append Prepend module folder to path yes/no
-     *
-     * @return void
-     */
-    function looplink($dir = '',$append=true)
-    {
-        if (isAdmin()) {
-            return true;
-        }
-
-        $me = getCwd();
-        $moduleSlug = '/modules/'.basename(dirname(__FILE__)).'/';
-        if ($append) {
-            $me .= $moduleSlug;
-        }
-        $me .= str_replace(getCwd(), '', $dir);
-
-        if (!file_exists($me)) {
-            return false;
-        }
-
-        if ($handle = opendir($me)) {
-            $files = array();
-
-            while (false !== ($file = readdir($handle))) {
-                $path = $me.'/'. $file;
-                if (filetype($path) == "dir" && $file != "." && $file != "..") {
-                    $this->looplink($path, false);
-                } else if ($file != "." && $file != "..") {
-                    if ( !in_array(
-                        basename($file),
-                        array('.DS_Store','.project','.git','.gitignore')
-                    )
-                    ) {
-                        $src = $path;
-                        $dest = str_replace($moduleSlug, '/', $src);
-
-                        if (!is_link($dest)) {
-                            @symlink($src, $dest);
-                        }
-                    }
-                }
-            }
-            closedir($handle);
         }
     }
 

@@ -1,4 +1,6 @@
 <?php
+if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
+
 /**
  * GN2_NewsletterConnect
  *
@@ -12,11 +14,8 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-require_once 'copyprotect.php';
-require_once 'gn2_newsletterconnect.php';
-
 /**
- * GN2_NewsletterConnect_Oxoutput - Dummy Class. We're only loading OXOUTPUT as a bootstrap.
+ * GN2_NewsletterConnect_ThankYou
  *
  * @category GN2_NewsletterConnect
  * @package  GN2_NewsletterConnect
@@ -25,40 +24,9 @@ require_once 'gn2_newsletterconnect.php';
  * @version  Release: <package_version>
  * @link     http://www.gn2-netwerk.de/
  */
-class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_parent
+class GN2_NewsletterConnect_ThankYou extends GN2_NewsletterConnect_ThankYou_parent
 {
     public function __construct() {
-        ob_start(array($this, 'gn2NewstterConnect_outputFilter'));
-        register_shutdown_function('ob_end_flush');
-
-        if (oxConfig::getParameter('cl') == 'thankyou') {
-            try {
-                $this->gn2NewstterConnect_transferOrder();
-            } catch(Exception $e) {
-                //do nothing
-            }
-        }
-        parent::__construct();
-    }
-
-    public function gn2NewstterConnect_outputFilter($output)
-    {
-        $cl = oxConfig::getParameter('cl');
-        if ($cl == 'shop_system') {
-            $version = '<p style="color:#777777">'
-                .'GN2_NewsletterConnect Version: '.file_get_contents(dirname(__FILE__).'/version.php').'</p>';
-            if (isset($_POST['save'])) {
-                $output = str_replace(
-                    'myedit.fnc.value=\'save\'"" >',
-                    'myedit.fnc.value=\'save\'"" >'.$version,
-                    $output
-                );
-            }
-        }
-        return $output;
-    }
-
-    public function gn2NewstterConnect_transferOrder() {
         global $myConfig;
         $items = array();
         $myConfig = oxConfig::getInstance();
@@ -132,10 +100,6 @@ class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_pare
                 $items
             );
         }
-
+        parent::__construct();
     }
-}
-
-if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
-    GN2_NewsletterConnect::main();
 }
