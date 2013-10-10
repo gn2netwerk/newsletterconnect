@@ -11,7 +11,6 @@
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
-require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
 
 /**
  * GN2_NewsletterConnect_OxUser
@@ -77,6 +76,8 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
     //public function setNewsSubscription($blSubscribe, $blSendOptIn)
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
+        require_once dirname(__FILE__).'/gn2_newsletterconnect_oxoutput.php';
+
         /* Get existing MailingService */
         $mailingService = GN2_NewsletterConnect::getMailingService();
         $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();

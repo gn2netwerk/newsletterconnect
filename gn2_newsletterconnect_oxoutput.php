@@ -32,9 +32,13 @@ class GN2_NewsletterConnect_OxOutput extends GN2_NewsletterConnect_OxOutput_pare
         register_shutdown_function('ob_end_flush');
 
         if (oxConfig::getParameter('cl') == 'thankyou') {
-            $this->gn2NewstterConnect_transferOrder();
+            try {
+                $this->gn2NewstterConnect_transferOrder();
+            } catch(Exception $e) {
+                //do nothing
+            }
         }
-
+        parent::__construct();
     }
 
     public function gn2NewstterConnect_outputFilter($output)
