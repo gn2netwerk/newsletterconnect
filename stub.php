@@ -25,11 +25,6 @@ $_X = array(
 );
 
 $_Y = array(
-    '127.0.0.1',
-    '127.0.0.1:8888',
-    'localhost',
-    'localhost:8888',
-    'oxid.local',
     ##CUSTOM_URLS##
 );
 
