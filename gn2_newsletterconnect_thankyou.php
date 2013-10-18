@@ -1,5 +1,7 @@
 <?php
-if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
+if (!class_exists('GN2_NewsletterConnect')) {
+    include dirname(__FILE__).'/gn2_newsletterconnect.php';
+}
 
 /**
  * GN2_NewsletterConnect
@@ -26,7 +28,12 @@ if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_news
  */
 class GN2_NewsletterConnect_ThankYou extends GN2_NewsletterConnect_ThankYou_parent
 {
-    public function __construct() {
+    /**
+     * Constructor
+     * Transfers current order to MailingService on thank you page
+     */
+    public function __construct()
+    {
         try {
             global $myConfig;
             $items = array();
@@ -57,7 +64,10 @@ class GN2_NewsletterConnect_ThankYou extends GN2_NewsletterConnect_ThankYou_pare
                     $shopCategory = $shopArticle->getCategory();
                     if (is_object($shopCategory)) {
                         $oDb = oxDb::getDb();
-                        $category = $oDb->getOne('select oxtitle from oxcategories where OXID = "'.$shopCategory->oxcategories__oxid->value.'" LIMIT 1');
+                        $category = $oDb->getOne(
+                            'select oxtitle from oxcategories where OXID = "'.
+                            $shopCategory->oxcategories__oxid->value.'" LIMIT 1'
+                        );
                     }
                 }
                 $items[$i]['ItemVariant'] = $category;
@@ -82,7 +92,12 @@ class GN2_NewsletterConnect_ThankYou extends GN2_NewsletterConnect_ThankYou_pare
             $dCountry->load($oxOrder->oxorder__oxdelcountryid->rawValue);
 
             $billCountry = $bCountry->oxcountry__oxisoalpha2->rawValue;
-            $delCountry = ($bCountry->oxcountry__oxisoalpha2->rawValue != "") ? $bCountry->oxcountry__oxisoalpha2->rawValue : $bCountry;
+
+            if ($bCountry->oxcountry__oxisoalpha2->rawValue != "") {
+                $delCountry = $bCountry->oxcountry__oxisoalpha2->rawValue;
+            } else {
+                $delCountry = $bCountry;
+            }
 
             if ($mailingServiceUser !== null) {
 

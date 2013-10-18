@@ -1,6 +1,7 @@
 <?php
-if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
-
+if (!class_exists('GN2_NewsletterConnect')) {
+    include dirname(__FILE__).'/gn2_newsletterconnect.php';
+}
 /**
  * GN2_NewsletterConnect
  *
@@ -26,8 +27,10 @@ if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_news
  */
 class GN2_NewsletterConnect_Newsletter extends GN2_NewsletterConnect_Newsletter_parent
 {
-    /*
+    /**
      * Overwrites the existing OXID newsletter::send()
+     *
+     * @return void
      */
     public function send()
     {

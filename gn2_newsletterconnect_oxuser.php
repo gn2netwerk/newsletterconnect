@@ -1,5 +1,7 @@
 <?php
-if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
+if (!class_exists('GN2_NewsletterConnect')) {
+    include dirname(__FILE__).'/gn2_newsletterconnect.php';
+}
 
 /**
  * GN2_NewsletterConnect
@@ -69,9 +71,9 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
     /**
      * Opts In the recipient
      *
-     * @param boolean $blSubscribe Subscribe yes/no
-     * @param boolean $blSendOptIn Unused in this implementation, inherited from overridden function
-     * @param boolean $$blForceCheckOptIn Unused in this implementation, inherited from overridden function
+     * @param boolean $blSubscribe       Subscribe yes/no
+     * @param boolean $blSendOptIn       Unused in this implementation, inherited from overridden function
+     * @param boolean $blForceCheckOptIn Unused in this implementation, inherited from overridden function
      *
      * @return void
      */

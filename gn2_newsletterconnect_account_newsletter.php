@@ -1,6 +1,7 @@
 <?php
-if (!class_exists('GN2_NewsletterConnect')) include(dirname(__FILE__).'/gn2_newsletterconnect.php');
-
+if (!class_exists('GN2_NewsletterConnect')) {
+    include dirname(__FILE__).'/gn2_newsletterconnect.php';
+}
 /**
  * GN2_NewsletterConnect
  *
