@@ -13,11 +13,28 @@
  */
 ob_start();
 
-$_Z = array(
+$_X = array(
+    'mos.ce.448',
+    'mos.ce.448.utf8',
+    'mos.ce.4512',
+    'mos.ce.4512.utf8',
+    'mos.ce.466',
+    'mos.ce.466.utf8',
+    'mos.ce.477',
+    'mos.ce.477.utf8',
+);
+
+$_Y = array(
+    '127.0.0.1',
+    '127.0.0.1:8888',
     'localhost',
     'localhost:8888',
-    'mos.ce.448',
+    'oxid.local',
+    ##CUSTOM_URLS##
 );
+
+$_Z = array_merge($_X, $_Y);
+
 
 $_Q = $_SERVER['REQUEST_URI'];
 
@@ -35,16 +52,20 @@ if (!in_array($_SERVER['HTTP_HOST'], $_Z) && strpos($_Q, '/admin/') === false) {
     }
 
     $prefix = ($httpport == 443) ? 'https://' : 'http://';
-    $prefix .= $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI'];
-    $subject = '['.$prefix.'] - gn2_newsletterconnect license';
+    $prefix .= rtrim($_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI'], '/');
+    $subject = '[gn2_newsletterconnect] - Lizenz - '.$prefix;
     echo '<div style="text-align: center;">';
-    echo '<p><img src="http://www.gn2-netwerk.de/img/gn2-netwerk.png"></p>';
+    echo '<p>';
+    echo '<img style="margin-right:40px;vertical-align: middle;" src="http://www.gn2-netwerk.de/img/gn2-netwerk.png">';
+    echo '<img style="vertical-align: middle;" src="http://www.gn2-netwerk.de/img/w3work.gif">';
+    echo '</p>';
+
     echo '<div style="margin:25px 50px;font-size:13px;font-family:monospace;">';
     echo '<p>Das gn2_newsletterconnect Modul '
             . '(<strong>modules/gn2_newsletterconnect</strong>) '
-            . 'wurde nur f&uuml;r die folgenden Hosts freigeschalten:'
-            . ' [<em>' . implode(', ', $_Z) . '</em>].</p>';
-    echo '<p>Um weitere Hosts freizuschalten, bitte setzen Sie sich mit uns in Verbindung: <a href="mailto:kontakt@gn2-netwerk.de?subject='
+            . 'wurde nur f&uuml;r die folgenden Hosts freigeschaltet:<br><br>'
+            . ' [<em>' . implode(', ', $_Y) . '</em>].</p>';
+    echo '<p>Um weitere Hosts freizuschalten, setzen Sie sich bitte mit uns in Verbindung: <a href="mailto:kontakt@gn2-netwerk.de?subject='
             . $subject.'">kontakt@gn2-netwerk.de</a>.</div>';
     echo '</div>';
     die();

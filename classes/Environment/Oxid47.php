@@ -27,12 +27,13 @@ class GN2_NewsletterConnect_Environment_Oxid47
 extends GN2_NewsletterConnect_Environment_Oxid
 {
     /**
-     * Bootstraps the oxis instance
+     * Bootstraps the oxid instance
      *
      * @return void
      */
     public function loadBootstrap()
     {
-        include_once dirname(__FILE__) . '/../../../../bootstrap.php';
+        $root = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
+        include_once $root.'/bootstrap.php';
     }
 }
