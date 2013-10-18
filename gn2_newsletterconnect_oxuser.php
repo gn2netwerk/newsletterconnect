@@ -89,19 +89,25 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
             $oNewsSubscription = $this->getNewsSubscription();
 
             /* Create a recipient from the OXID user-data */
-            $email = oxConfig::getParameter('lgn_usr');
+            $email = $oNewsSubscription->oxnewssubscribed__oxemail->value;
+
 
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
                     $mailingService->optInRecipient($newRecipient);
                 }
             } catch (Exception $e) {
-                //TODO: Live Exceptions?
+                /* Do nothing */
             }
         } else {
             /* Everywhere but the user page */
-            if (!in_array(oxConfig::getParameter('cl'), array('user', 'register'))) {
-                $mailingService->unsubscribeRecipient($newRecipient);
+            try {
+                if (!in_array(oxConfig::getParameter('cl'), array('user', 'register'))) {
+                    $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
+                    $mailingService->unsubscribeRecipient($list, $newRecipient);
+                }
+            } catch(Exception $e) {
+                /* Do nothing */
             }
         }
         return true;

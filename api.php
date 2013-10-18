@@ -69,22 +69,6 @@ class GN2_NewsletterConnect_Api
 
 }
 
-//if (!function_exists('getShopBasePath')) {
-    /**
-     * Returns OXID base path
-     *
-     * @return string OXID Base Path
-     */
-    /*function getShopBasePath()
-    {
-        return $_SERVER['DOCUMENT_ROOT'].'/'
-        . dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
-    }
-    include_once getShopBasePath() . 'modules/functions.php';
-    include_once getShopBasePath() . 'core/oxfunctions.php';
-    oxUtils::getInstance()->stripGpcMagicQuotes();
-}*/
-
 require_once 'gn2_newsletterconnect.php';
 $env = GN2_NewsletterConnect::getEnvironment();
 $env->loadBootstrap();

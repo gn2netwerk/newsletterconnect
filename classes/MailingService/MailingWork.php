@@ -100,17 +100,29 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      */
     public function getMainShopList()
     {
-        $lists = $this->getLists();
+        #$lists = $this->getLists();
         $shopUrl = oxConfig::getInstance()->getConfigParam('sShopURL');
 
-        $mainShopList = 'NewsletterConnect: '.$shopUrl.' - Shop';
+        $this->_setMailingworkUrl('getoptinsetups');
+        $setups = $this->_getDecodedResponse();
 
-        foreach ($lists as $k=>$v) {
-            if (strpos($mainShopList, $v->getName()) !== false) {
-                return $lists[$k];
+        $listID = -1;
+        foreach ($setups['result'] as $setup) {
+            if ($setup['id'] == $this->_config['api_signupsetup']) {
+                if (isset($setup['subscriberlists'])) {
+                    $listID = $setup['subscriberlists'][0]['id'];
+                }
             }
         }
-        return $this->createList($mainShopList);
+
+        if ($listID > -1) {
+            $list = new GN2_NewsletterConnect_Mailing_List;
+            $list->setId($listID);
+            return $list;
+        } else {
+            throw new Exception('No lists found in the configured opt-in-setup:'.
+                                ' please check your Mailingwork configuration');
+        }
     }
 
     /**
@@ -159,8 +171,10 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
 
             $this->addParam('fields', $fields);
             $recipientResponse = $this->_getDecodedResponse();
+
             if ($recipientResponse['error']!==0) {
-                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: '.$recipientResponse);
+                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: please check'.
+                'if your optinSetup contains all fields for E-Mail, Salutation, Firstname and Lastname.');
             }
         } else {
             throw new GN2_NewsletterConnect_Exception_MailingService(
@@ -216,19 +230,20 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         if (is_object($recipient)) {
             $recipient = $this->getRecipientByEmail($recipient->getEmail());
             if ($recipient) {
+
                 $this->_setMailingworkUrl('deleteRecipientById');
                 $this->addParam('recipientId', $recipient->getId());
                 $recipientResponse = $this->_getDecodedResponse();
-                //$this->addParam('listId', $list->getId()); //TODO: doesn't exist :-(
+                $this->addParam('listId', $list->getId());
                 if ($recipientResponse['error']!==0) {
                     throw new GN2_NewsletterConnect_Exception_MailingService(
-                        'optInRecipient failed: '.$recipientResponse
+                        'unsubscribeRecipient failed: '.$recipientResponse
                     );
                 }
             }
         } else {
             throw new GN2_NewsletterConnect_Exception_MailingService(
-                'optInRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object'
+                'unsubscribeRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object'
             );
         }
     }
@@ -283,6 +298,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     public function getFieldId($name='')
     {
         $fields = $this->_getFields();
+
         $pos = array_search($name, $fields);
         if ($pos !== false) {
             return $pos;

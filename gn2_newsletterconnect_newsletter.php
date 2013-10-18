@@ -35,7 +35,7 @@ class GN2_NewsletterConnect_Newsletter extends GN2_NewsletterConnect_Newsletter_
         $blSubscribe = oxConfig::getParameter("subscribeStatus");
 
         $oUser = oxNew( 'oxuser' );
-        $oUser->oxuser__oxusername = new oxField($aParams['oxuser__oxusername'], oxField::T_RAW);
+        $oUser->oxuser__oxusername  = new oxField($aParams['oxuser__oxusername'], oxField::T_RAW);
         $oUser->oxuser__oxactive    = new oxField(1, oxField::T_RAW);
         $oUser->oxuser__oxrights    = new oxField('user', oxField::T_RAW);
         $oUser->oxuser__oxshopid    = new oxField($this->getConfig()->getShopId(), oxField::T_RAW);
