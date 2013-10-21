@@ -4,14 +4,12 @@
  * Module information
  */
 
-$version = @file_get_contents(dirname(__FILE__).'/version.php');
-
  $aModule = array(
     'id'            => 'gn2_newsletterconnect',
     'title'         => 'GN2 NewsletterConnect',
     'description'   => '',
     'thumbnail'     => 'gn2_newsletterconnect.jpg',
-    'version'       => $version,
+    'version'       => '##VERSION##',
     'author'        => 'GN2 netwerk',
     'extend'        => array(
         'oxuser'             => 'gn2_newsletterconnect/gn2_newsletterconnect_oxuser',
