@@ -9,7 +9,7 @@
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    GIT: <dd40e72a6254210e3deb026320505751809c835d>
+ * @version    GIT: <git_id>
  * @link       http://www.gn2-netwerk.de/
  */
 
@@ -21,7 +21,7 @@
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <dd40e72a6254210e3deb026320505751809c835d>
+ * @version    Release: <git_id>
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Mapper_Products
