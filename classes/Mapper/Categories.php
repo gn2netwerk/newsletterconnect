@@ -9,7 +9,7 @@
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    GIT: <git_id>
+ * @version    GIT: <dd40e72a6254210e3deb026320505751809c835d>
  * @link       http://www.gn2-netwerk.de/
  */
 
@@ -21,7 +21,7 @@
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <package_version>
+ * @version    Release: <dd40e72a6254210e3deb026320505751809c835d>
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Mapper_Categories
@@ -40,7 +40,7 @@ extends GN2_NewsletterConnect_Mapper_Abstract
         foreach ($tree as $branch) {
             $entry = new stdClass();
             $entry->id = $branch->oxcategories__oxid->rawValue;
-            $entry->name = $branch->oxcategories__oxtitle->rawValue;
+            $entry->name = utf8_encode($branch->oxcategories__oxtitle->rawValue);
             $subcats = $branch->getSubCats();
             if (count($subcats) > 0) {
                 $entry->childElements = $this->_buildtree($subcats);

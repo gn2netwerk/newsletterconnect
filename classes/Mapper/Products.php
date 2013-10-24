@@ -9,7 +9,7 @@
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    GIT: <git_id>
+ * @version    GIT: <dd40e72a6254210e3deb026320505751809c835d>
  * @link       http://www.gn2-netwerk.de/
  */
 
@@ -21,7 +21,7 @@
  * @subpackage Mapper
  * @author     Dave Holloway <dh@gn2-netwerk.de>
  * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <package_version>
+ * @version    Release: <dd40e72a6254210e3deb026320505751809c835d>
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Mapper_Products
@@ -137,10 +137,10 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
-                $product->title = $article->oxarticles__oxtitle->rawValue;
+                $product->title = utf8_encode($article->oxarticles__oxtitle->rawValue);
                 $product->price = $article->getFPrice();
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
-                $product->artnum = $article->oxarticles__oxartnum->rawValue;
+                $product->artnum = utf8_encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
                 
