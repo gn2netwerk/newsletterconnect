@@ -114,7 +114,7 @@ class GN2_NewsletterConnect_Mapper_Products
         return $qsql;
     }
 
-    /**
+	/**
      * Returns results from the mapper
      *
      * @return GN2_NewsletterConnect_Data_Result Meta & result data
@@ -138,7 +138,34 @@ class GN2_NewsletterConnect_Mapper_Products
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
                 $product->title = utf8_encode($article->oxarticles__oxtitle->rawValue);
-                $product->price = $article->getFPrice();
+                
+                $fActPrice =  $article->getFPrice();
+                if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
+                    /*
+                    das Komma, kommt nach dem Punkt
+                    Punkt (Tausender) löschen
+                    Komma (Dezimalstelle) durch Punkt ersetzen
+                     */
+                    if (strpos($fActPrice, ",") > strpos($fActPrice, ".")) {
+                        $fActPrice = str_replace(".", "", $fActPrice);
+                        $fActPrice = str_replace(",", ".", $fActPrice);
+                    } else {
+                        $fActPrice = str_replace(",", "", $fActPrice);
+                    }
+                } else {
+                    /*
+                    wenn nur das Komma vorhanden ist
+                    Komma (Dezimalstelle) durch Punkt ersetzen
+                     */
+                    if (strpos($fActPrice, ",") > 0) {
+                        $fActPrice = str_replace(",", ".", $fActPrice);
+                    }
+                }
+
+                $fActPrice =  floatval($fActPrice);
+                $fActPrice = number_format($fActPrice, 2, ".", "");
+                $product->price = $fActPrice;
+                
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
                 $product->artnum = utf8_encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
@@ -238,6 +265,29 @@ class GN2_NewsletterConnect_Mapper_Products
                 if ($fOrgPrice == null) {
                     $fOrgPrice = $article->getFPrice();
                 }
+                if (strpos($fOrgPrice, ",") > 0 && strpos($fOrgPrice, ".") > 0) {
+                    /*
+                    das Komma, kommt nach dem Punkt
+                    Punkt (Tausender) löschen
+                    Komma (Dezimalstelle) durch Punkt ersetzen
+                     */
+                    if (strpos($fOrgPrice, ",") > strpos($fOrgPrice, ".")) {
+                        $fOrgPrice = str_replace(".", "", $fOrgPrice);
+                        $fOrgPrice = str_replace(",", ".", $fOrgPrice);
+                    } else {
+                        $fOrgPrice = str_replace(",", "", $fOrgPrice);
+                    }
+                } else {
+                    /*
+                    wenn nur das Komma vorhanden ist
+                    Komma (Dezimalstelle) durch Punkt ersetzen
+                     */
+                    if (strpos($fOrgPrice, ",") > 0) {
+                        $fOrgPrice = str_replace(",", ".", $fOrgPrice);
+                    }
+                }
+                $fOrgPrice =  floatval($fOrgPrice);
+                $fOrgPrice = number_format($fOrgPrice, 2, ".", "");
                 $product->orgPrice = $fOrgPrice;
 
                 /*
