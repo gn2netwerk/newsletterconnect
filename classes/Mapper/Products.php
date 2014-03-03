@@ -114,7 +114,7 @@ class GN2_NewsletterConnect_Mapper_Products
         return $qsql;
     }
 
-	/**
+    /**
      * Returns results from the mapper
      *
      * @return GN2_NewsletterConnect_Data_Result Meta & result data
@@ -129,7 +129,7 @@ class GN2_NewsletterConnect_Mapper_Products
 
         $data = array();
         if ($rows != false && $rows->recordCount() > 0) {
-                
+
             while (!$rows->EOF) {
                 $article = oxNew('oxarticle');
                 $article->disableLazyLoading();
@@ -138,12 +138,12 @@ class GN2_NewsletterConnect_Mapper_Products
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
                 $product->title = utf8_encode($article->oxarticles__oxtitle->rawValue);
-                
+
                 $fActPrice =  $article->getFPrice();
                 if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
                     /*
                     das Komma, kommt nach dem Punkt
-                    Punkt (Tausender) löschen
+                    Punkt (Tausender) lï¿½schen
                     Komma (Dezimalstelle) durch Punkt ersetzen
                      */
                     if (strpos($fActPrice, ",") > strpos($fActPrice, ".")) {
@@ -165,12 +165,12 @@ class GN2_NewsletterConnect_Mapper_Products
                 $fActPrice =  floatval($fActPrice);
                 $fActPrice = number_format($fActPrice, 2, ".", "");
                 $product->price = $fActPrice;
-                
+
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
                 $product->artnum = utf8_encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
-                
+
                 //$product->longdesc = $article->getLongDesc();
                 $product->longdesc = utf8_encode($env->getArticleLongDesc($article));
 
@@ -255,7 +255,7 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 $product->inBasketLink = $article->getToBasketLink() . "&amp;am=1";
                 /*
-                Textzusatz ist nötig, da ansonsten kein Artikel
+                Textzusatz ist nï¿½tig, da ansonsten kein Artikel
                 in Warenkorb getan wird.
                 */
 
@@ -268,7 +268,7 @@ class GN2_NewsletterConnect_Mapper_Products
                 if (strpos($fOrgPrice, ",") > 0 && strpos($fOrgPrice, ".") > 0) {
                     /*
                     das Komma, kommt nach dem Punkt
-                    Punkt (Tausender) löschen
+                    Punkt (Tausender) lï¿½schen
                     Komma (Dezimalstelle) durch Punkt ersetzen
                      */
                     if (strpos($fOrgPrice, ",") > strpos($fOrgPrice, ".")) {
@@ -288,7 +288,12 @@ class GN2_NewsletterConnect_Mapper_Products
                 }
                 $fOrgPrice =  floatval($fOrgPrice);
                 $fOrgPrice = number_format($fOrgPrice, 2, ".", "");
-                $product->orgPrice = $fOrgPrice;
+
+                if ($product->price != $fOrgPrice) {
+                    $product->orgPrice = $fOrgPrice;
+                } else {
+                    $product->orgPrice = '';
+                }
 
                 /*
                  * getArticleRatingCount() nicht verwendet,

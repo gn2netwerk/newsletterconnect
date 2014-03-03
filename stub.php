@@ -18,10 +18,12 @@ $_X = array(
     'mos.ce.448.utf8',
     'mos.ce.4512',
     'mos.ce.4512.utf8',
-    'mos.ce.466',
-    'mos.ce.466.utf8',
-    'mos.ce.477',
-    'mos.ce.477.utf8',
+    'mos.ce.468',
+    'mos.ce.468.utf8',
+    'mos.ce.479',
+    'mos.ce.479.utf8',
+    'mos.ce.484',
+    'mos.ce.484.utf8',
 );
 
 $_Y = array(
