@@ -35,6 +35,12 @@ $_Z = array_merge($_X, $_Y);
 
 $_Q = $_SERVER['REQUEST_URI'];
 
+if (strpos($_Q, '/admin/') === false) {
+    if (!function_exists("gzinflate")) {
+        die('[gn2_newsletterconnect] - Bitte aktivieren Sie ZLIB.'); 
+    }
+}
+
 if (!in_array($_SERVER['HTTP_HOST'], $_Z) && strpos($_Q, '/admin/') === false) {
     header('HTTP/1.0 401 Unauthorized');
     header('Content-Type:text/html');
