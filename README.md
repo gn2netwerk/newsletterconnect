@@ -1,12 +1,3 @@
-/**
- * GN2_NewsletterConnect
- * @package gn2_newsletterconnect
- * @copyright GN2 netwerk
- * @link http://www.gn2-netwerk.de/
- * @author Dave Holloway <dh[at]gn2-netwerk[dot]de>
- * @licence GN2 Commercial Addon License
- */
-
  OXID 4.4 + 4.5: Module eintragen
  ================================
 
