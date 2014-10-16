@@ -1,0 +1,8 @@
+{
+  "name": "gn2netwerk/gn2_newsletterconnect",
+  "description": "",
+  "type": "oxid-module",
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}
