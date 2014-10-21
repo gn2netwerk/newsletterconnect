@@ -169,6 +169,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
 
+            if ($this->getFieldId('Gutschein') != "" && $recipient->getVoucher() != "") {
+                $fields[$this->getFieldId('Gutschein')]= $recipient->getVoucher();
+            }
             $this->addParam('fields', $fields);
             $recipientResponse = $this->_getDecodedResponse();
 

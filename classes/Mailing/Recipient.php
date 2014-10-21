@@ -123,6 +123,27 @@ class GN2_NewsletterConnect_Mailing_Recipient
     private $_mobNumber;
 
     /**
+     * @var string Voucher Number
+     */
+    private $_voucher;
+
+    /**
+     * @param mixed $voucher
+     */
+    public function setVoucher($voucher)
+    {
+        $this->_voucher = $voucher;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVoucher()
+    {
+        return $this->_voucher;
+    }
+
+    /**
      * Sets Id
      *
      * @param mixed $id ID

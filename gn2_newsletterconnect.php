@@ -49,7 +49,7 @@ class GN2_NewsletterConnect
             $env->loadBootstrap();
         }
 
-        $oxver = substr(oxconfig::getInstance()->getVersion(), 0, 3);
+        $oxver = substr(oxConfig::getInstance()->getVersion(), 0, 3);
         $oxver = intval(str_replace('.', '', $oxver));
 
         switch($oxver){
@@ -72,7 +72,9 @@ class GN2_NewsletterConnect
     public static function main()
     {
         try {
-            include_once dirname(__FILE__).'/settings.php';
+            $env = self::getEnvironment();
+            self::$config = $env->getModuleConfig();
+
             $newsletterConnect = new self;
         } catch (Exception $e) {
             // TODO: Live ErrorTracking

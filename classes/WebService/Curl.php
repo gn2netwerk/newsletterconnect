@@ -90,8 +90,7 @@ abstract class GN2_NewsletterConnect_WebService_Curl
         $result = curl_exec($ch);
         //echo $this->_url.'<br>';
         //echo $result.'<br><hr>';
-        $error = curl_error($ch);
-
+        //$error = curl_error($ch);
         return $result;
     }
 

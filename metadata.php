@@ -6,15 +6,22 @@
 
  $aModule = array(
     'id'            => 'gn2_newsletterconnect',
-    'title'         => 'GN2 NewsletterConnect',
+    'title'         => 'gn2 :: NewsletterConnect',
     'description'   => '',
-    'thumbnail'     => 'gn2_newsletterconnect.jpg',
+    'thumbnail'     => 'gn2_newsletterconnect.png',
     'version'       => '##VERSION##',
-    'author'        => 'GN2 netwerk',
+    'author'        => 'gn2 netwerk',
     'extend'        => array(
         'oxuser'             => 'gn2_newsletterconnect/gn2_newsletterconnect_oxuser',
         'account_newsletter' => 'gn2_newsletterconnect/gn2_newsletterconnect_account_newsletter',
         'newsletter'         => 'gn2_newsletterconnect/gn2_newsletterconnect_newsletter',
         'thankyou'           => 'gn2_newsletterconnect/gn2_newsletterconnect_thankyou',
-    )
+        'oxvoucher'          => 'gn2_newsletterconnect/gn2_newsletterconnect_oxvoucher',
+    ),
+    'files' => array(
+        'gn2_newsletterconnect_config' => 'gn2_newsletterconnect/gn2_newsletterconnect_config.php',
+     ),
+     'templates' => array(
+         'gn2_newsletterconnect_config.tpl' => 'gn2_newsletterconnect/gn2_newsletterconnect_config.tpl'
+     )
 );
