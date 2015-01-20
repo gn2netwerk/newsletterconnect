@@ -77,18 +77,8 @@ implements GN2_NewsletterConnect_Environment
         $config = oxConfig::getInstance();
         $settings = array();
         $settings['mailingService'] = 'Mailingwork';
-
         $savedSettings = $config->getShopConfVar('config', null, 'module:gn2_newsletterconnect');
-
-        $settings['service_Mailingwork'] = array(
-            'api_baseurl'    => $savedSettings['api_baseurl'],
-            'api_username'   => $savedSettings['api_username'],
-            'api_password'   => $savedSettings['api_password'],
-            'api_signupsetup'=> $savedSettings['api_signupsetup'],
-            'use_vouchers'   => $savedSettings['use_vouchers'],
-            'voucher_series' => $savedSettings['voucher_series'],
-
-        );
+        $settings['service_Mailingwork'] = $savedSettings;
         return $settings;
     }
 }

@@ -66,25 +66,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
         $recipient->setMobNumber(''); // TODO: split & save
 
         $config = gn2_newsletterconnect::getEnvironment()->getModuleConfig();
-        /* If voucher transfer is activated, try and find a voucher and add to recipient. */
-        $voucherSeries = $config['service_Mailingwork']['voucher_series'];
-        if ($voucherSeries != "") {
-            $oDb = oxDb::getDb();
-            $mosMailHash = md5('MOS:'.$recipient->getEmail());
-            $sql = 'SELECT OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "'.mysql_real_escape_string($voucherSeries).'"';
-            $sql .= ' && OXUSERID="'.$mosMailHash.'"';
-            $voucher = $oDb->getOne($sql);
-            if (!$voucher) {
-                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "'.mysql_real_escape_string($voucherSeries).'"';
-                $sql .= ' && OXUSERID="" && OXRESERVED=0';
-                $voucherRow = $oDb->getRow($sql);
-                if ($voucherRow) {
-                   $oDb->execute('UPDATE oxvouchers SET OXUSERID="'.$mosMailHash.'" WHERE OXID="'.$voucherRow[0].'"');
-                   $voucher = $voucherRow[1];
-                }
-            }
-        }
-        $recipient->setVoucher($voucher);
+
         return $recipient;
     }
 

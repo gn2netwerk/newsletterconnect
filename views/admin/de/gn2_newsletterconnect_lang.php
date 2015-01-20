@@ -11,5 +11,6 @@ $aLang = array(
 
    'GN2_NEWSLETTERCONNECT_VOUCHERS'     => 'Gutscheine',
    'GN2_NEWSLETTERCONNECT_VOUCHERSERIES'=> 'Gutscheinserie:',
-   'GN2_NEWSLETTERCONNECT_SAVEVOUCHERS' => 'Gutschein bei der Anmeldung an Mailingwork &uuml;bertragen: '
+   'GN2_NEWSLETTERCONNECT_YOURIP' => 'Ihre IP-Adresse: ',
+   'GN2_NEWSLETTERCONNECT_VOUCHERAPI'   => 'IP-Adressen, die die Gutschein-API aufrufen d&uuml;rfen: <span>(eine pro Zeile)</span>',
 );

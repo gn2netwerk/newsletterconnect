@@ -4,8 +4,10 @@
     .gn2mos { padding: 10px 20px; }
     .gn2mos dl { float:left; width:100%; }
     .gn2mos dt { float:left; clear:left; width:180px; }
+    .gn2mos dt span { font-style:italic;font-weight: normal; display:block; }
     .gn2mos dd { float:left; margin:0 0 10px 10px;}
-    .gn2mos dd input.text { width: 350px; }
+    .gn2mos dd input.text { width: 350px;border:1px solid #cccccc;padding:2px; }
+    .gn2mos dd textarea { width:350px;height:100px; border:1px solid #cccccc;padding:2px; }
 </style>
 
 <div class="gn2mos">
@@ -34,7 +36,10 @@
         <h2>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERS'}]</h2>
 
         <dl>
-            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_SAVEVOUCHERS'}]</dt>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERAPI'}]<span>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_YOURIP'}] [{php}]echo $_SERVER['REMOTE_ADDR'][{/php}]</span></dt>
+            <dd><textarea name="config[api_voucherips]">[{$config.service_Mailingwork.api_voucherips}]</textarea></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERSERIES'}]</dt>
             <dd>
                 <select name="config[voucher_series]">
                     [{foreach from=$voucherSeries key=key item=item}]
