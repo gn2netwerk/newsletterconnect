@@ -128,6 +128,27 @@ class GN2_NewsletterConnect_Mailing_Recipient
     private $_voucher;
 
     /**
+     * @var string Language ISO
+     */
+    private $_language;
+
+    /**
+     * @param string $language
+     */
+    public function setLanguage($language)
+    {
+        $this->_language = $language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->_language;
+    }
+
+    /**
      * @param mixed $voucher
      */
     public function setVoucher($voucher)

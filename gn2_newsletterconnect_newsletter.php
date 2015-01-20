@@ -55,4 +55,5 @@ class GN2_NewsletterConnect_Newsletter extends GN2_NewsletterConnect_Newsletter_
             $this->_iNewsletterStatus = 3;
         }
     }
+
 }

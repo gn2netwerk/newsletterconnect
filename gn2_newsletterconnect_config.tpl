@@ -29,15 +29,25 @@
             <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_PASSWORD'}]</dt>
             <dd><input type="password" name="config[api_password]" class="text" value="[{$config.service_Mailingwork.api_password}]"></dd>
 
-            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNUPSETUP'}]</dt>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNUPSETUP_GENERAL'}]</dt>
             <dd><input type="text" name="config[api_signupsetup]" class="text" value="[{$config.service_Mailingwork.api_signupsetup}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNOFFSETUP_GENERAL'}]</dt>
+            <dd><input type="text" name="config[api_signoffsetup]" class="text" value="[{$config.service_Mailingwork.api_signoffsetup}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNUPSETUP_ACCOUNT'}]</dt>
+            <dd><input type="text" name="config[api_signupsetup_account]" class="text" value="[{$config.service_Mailingwork.api_signupsetup_account}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNOFFSETUP_ACCOUNT'}]</dt>
+            <dd><input type="text" name="config[api_signoffsetup_account]" class="text" value="[{$config.service_Mailingwork.api_signoffsetup_account}]"></dd>
+
         </dl>
 
-        <h2>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERS'}]</h2>
+        <h2>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_CONFIG'}]</h2>
 
         <dl>
-            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERAPI'}]<span>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_YOURIP'}] [{php}]echo $_SERVER['REMOTE_ADDR'][{/php}]</span></dt>
-            <dd><textarea name="config[api_voucherips]">[{$config.service_Mailingwork.api_voucherips}]</textarea></dd>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_IPS'}]<span>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_YOURIP'}] [{php}]echo $_SERVER['REMOTE_ADDR'][{/php}]</span></dt>
+            <dd><textarea name="config[api_ips]">[{$config.service_Mailingwork.api_ips}]</textarea></dd>
 
             <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERSERIES'}]</dt>
             <dd>

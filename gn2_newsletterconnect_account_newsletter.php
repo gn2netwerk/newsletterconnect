@@ -49,6 +49,15 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
      */
     public function isNewsletter()
     {
+        /* Fake-it if the user has just changed their preferences, even with douple optin/outs. */
+        if (!empty($_POST)) {
+            if ($_POST['fnc'] == 'subscribe' && $_POST['status'] == '1') {
+                return true;
+            }
+            if ($_POST['fnc'] == 'subscribe' && $_POST['status'] == '0') {
+                return false;
+            }
+        }
         if ($this->_getNewsletterConnectUser() !== null) {
             return true;
         }
@@ -67,10 +76,11 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
         $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
         $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 
-        if (!$this->isNewsletter() && $status == 1) {
-            GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient);
+        if ($status == 1) {
+            GN2_NewsletterConnect::getMailingService()->optInRecipient($recipient, 'account');
+            /*GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient, 'account');*/
         } else if ($status == 0 && $status !== null) {
-            GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient);
+            GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient, 'account');
         }
 
 

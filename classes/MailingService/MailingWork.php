@@ -156,12 +156,14 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * @return void
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
-    public function optInRecipient($recipient)
+    public function optInRecipient($recipient, $mode = 'general')
     {
         if (is_object($recipient)) {
-            $this->_setMailingworkUrl('optinRecipient');
 
-            $this->addParam('optinSetupId', $this->_config['api_signupsetup']);
+            $optinId = $this->_config['api_signupsetup'];
+            if ($mode == "general") {
+                $optinId = $this->_config['api_signupsetup_account'];
+            }
 
             $fields = array();
             $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
@@ -169,9 +171,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
 
-            if ($this->getFieldId('Gutschein') != "" && $recipient->getVoucher() != "") {
-                $fields[$this->getFieldId('Gutschein')]= $recipient->getVoucher();
-            }
+            $this->_setMailingworkUrl('optInRecipient');
+
+            $this->addParam('optinSetupId', $optinId);
             $this->addParam('fields', $fields);
             $recipientResponse = $this->_getDecodedResponse();
 
@@ -203,6 +205,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
             $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
+            if ($this->getFieldId('Sprache')) {
+                $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+            }
 
             $this->_setMailingworkUrl('createRecipient');
             $this->addParam('listId', $list->getId());
@@ -228,20 +233,30 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * @return void
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
-    public function unsubscribeRecipient($list, $recipient)
+    public function unsubscribeRecipient($list, $recipient, $type='general')
     {
         if (is_object($recipient)) {
             $recipient = $this->getRecipientByEmail($recipient->getEmail());
             if ($recipient) {
 
-                $this->_setMailingworkUrl('deleteRecipientById');
+                $optoutId = $this->_config['api_signoffsetup'];
+                if ($type == 'account') {
+                    $optoutId = $this->_config['api_signoffsetup_account'];
+                }
+
+                $this->_setMailingworkUrl('optoutRecipientById');
+                $this->addParam('optoutSetupId', $optoutId);
                 $this->addParam('recipientId', $recipient->getId());
                 $recipientResponse = $this->_getDecodedResponse();
-                $this->addParam('listId', $list->getId());
+                //$this->addParam('listId', $list->getId());
+
+
                 if ($recipientResponse['error']!==0) {
-                    throw new GN2_NewsletterConnect_Exception_MailingService(
+                    /* Mailingwork returns a bad response. Don't throw exceptions. */
+                    /*
+                     throw new GN2_NewsletterConnect_Exception_MailingService(
                         'unsubscribeRecipient failed: '.$recipientResponse
-                    );
+                    );*/
                 }
             }
         } else {
@@ -273,6 +288,41 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             }
         }
         return $this->_fields;
+    }
+
+    public function updateRecipient($recipient)
+    {
+        $existingRecipient = $this->getRecipientByEmail($recipient->getEmail());
+        if (is_object($existingRecipient)) {
+            $id = $existingRecipient->getId();
+            if ($id) {
+
+                $this->_setMailingworkUrl('getRecipientListsById');
+                $this->addParam('recipientId', $id);
+                $listIds = $this->_getDecodedResponse();
+
+                $fields = array();
+                $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
+                $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
+                $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+                $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
+                $advanced = array();
+                if (isset($listIds['result'][0])) {
+                    $advanced['lists'] = '{'.implode(',' ,$listIds['result'][0]).'}';
+                }
+
+                if ($this->getFieldId('Sprache')) {
+                    $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+                }
+
+                $this->_setMailingworkUrl('updateRecipientById');
+                $this->addParam('recipientId', $id);
+                $this->addParam('fields', $fields);
+                $this->addParam('advanced', $advanced);
+
+                $updateResponse = $this->_getDecodedResponse();
+            }
+        }
     }
 
     /**
