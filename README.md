@@ -32,7 +32,7 @@ Falls schon vorhanden, das gn2_newsletterconnect-Modul deaktivieren und entferne
         - ID des Anmeldesetups (Kundenaccount): 2
         - ID des Abmeldesetups (Kundenaccount): 1
 
-## C) OPTIONAL: Gutscheincodeerweiterung & Unterstützung von Profilmanageränderungen
+## C) OPTIONAL: Gutscheincodeerweiterung
 Falls Mailingwork Gutscheincodes von dem Shop holen soll, müssen die folgenden Schritte durchgeführt werden.
 
 1. Eine Gutscheinserie anlegen: "Shopeinstellungen > Gutscheinserien".
