@@ -45,6 +45,24 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
                             if ($oxid != "") {
                                 $oUser = oxNew('oxuser');
                                 $oUser->load($oxid);
+
+                                $title = $_REQUEST['title'];
+                                switch (strtolower($title)) {
+                                    case "mr":
+                                    case "herr":
+                                        $title = 'MR';
+                                        break;
+                                    case "mrs":
+                                    case "frau":
+                                        $title = 'MRS';
+                                        break;
+                                    default:
+                                        $title = '';
+                                        break;
+                                }
+                                if ($title != "") {
+                                    $oUser->oxuser__oxsal->rawValue = $title;
+                                }
                                 $oUser->oxuser__oxfname->rawValue = $_REQUEST['firstname'];
                                 $oUser->oxuser__oxlname->rawValue = $_REQUEST['lastname'];
                                 if ($oUser->save()) {

@@ -107,10 +107,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $setups = $this->_getDecodedResponse();
 
         $listID = -1;
-        foreach ($setups['result'] as $setup) {
-            if ($setup['id'] == $this->_config['api_signupsetup']) {
-                if (isset($setup['subscriberlists'])) {
-                    $listID = $setup['subscriberlists'][0]['id'];
+        if (is_array($setups['result'])) {
+            foreach ($setups['result'] as $setup) {
+                if ($setup['id'] == $this->_config['api_signupsetup']) {
+                    if (isset($setup['subscriberlists'])) {
+                        $listID = $setup['subscriberlists'][0]['id'];
+                    }
                 }
             }
         }
@@ -161,7 +163,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         if (is_object($recipient)) {
 
             $optinId = $this->_config['api_signupsetup'];
-            if ($mode == "general") {
+            if ($mode == "account") {
                 $optinId = $this->_config['api_signupsetup_account'];
             }
 
@@ -170,7 +172,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
             $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
-
+            if ($this->getFieldId('Sprache')) {
+                $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+            }
             $this->_setMailingworkUrl('optInRecipient');
 
             $this->addParam('optinSetupId', $optinId);

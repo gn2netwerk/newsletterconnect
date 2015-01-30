@@ -10,7 +10,6 @@ Bitte stellen Sie sicher, dass es im Mailingworkaccount ein Signupsetup mit den 
 - Anrede
 - Vorname
 - Nachname
-- Gutschein
 - Sprache
 
 
