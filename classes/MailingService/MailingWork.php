@@ -122,8 +122,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $list->setId($listID);
             return $list;
         } else {
-            throw new Exception('No lists found in the configured opt-in-setup:'.
-                                ' please check your Mailingwork configuration');
+            return null;
+            /*throw new Exception('No lists found in the configured opt-in-setup:'.
+                                ' please check your Mailingwork configuration');*/
         }
     }
 
