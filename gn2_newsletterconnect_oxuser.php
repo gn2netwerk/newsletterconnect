@@ -124,8 +124,10 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
     {
         $blRet = parent::save();
 
-        $recipient = $this->gn2NewsletterConnectOxid2Recipient();
-        GN2_NewsletterConnect::getMailingService()->updateRecipient($recipient);
+        try {
+            $recipient = $this->gn2NewsletterConnectOxid2Recipient();
+            GN2_NewsletterConnect::getMailingService()->updateRecipient($recipient);
+        } catch (Exception $e) {}
 
         return $blRet;
     }

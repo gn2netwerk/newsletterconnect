@@ -288,7 +288,8 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
                     $this->_fields[$field['id']] = $field['name'];
                 }
             } else {
-                throw new GN2_NewsletterConnect_Exception_MailingService('Cannot get MailingWork fields.');
+                //throw new GN2_NewsletterConnect_Exception_MailingService('Cannot get MailingWork fields.');
+                return array();
             }
         }
         return $this->_fields;
