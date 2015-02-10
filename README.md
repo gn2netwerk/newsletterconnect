@@ -1,16 +1,21 @@
 # gn2_newsletterconnect Installation
 
 Systemvoraussetzungen:
-- OXID 4.7+
-- PHP 5.3+
+    - OXID 4.7+
+    - PHP 5.3+
 
 ## A) Mailingwork-Konto einrichten:
 Bitte stellen Sie sicher, dass es im Mailingworkaccount ein Signupsetup mit den folgenden Feldern existiert:
-- E-Mail	
-- Anrede
-- Vorname
-- Nachname
-- Sprache
+    - E-Mail	
+    - Anrede
+    - Vorname
+    - Nachname
+    - Sprache
+
+In den Berechtigungen des Mailingswork-Kontos muss bei Webservice folgendes aktiviert sein:
+    - SOAP Server V3
+    - JSON Rückgabe
+    - XML Rückgabe
 
 
 ## B) gn2_newsletterconnect-Modul installieren
