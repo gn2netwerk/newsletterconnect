@@ -77,7 +77,9 @@ implements GN2_NewsletterConnect_Environment
         $config = oxConfig::getInstance();
         $settings = array();
         $settings['mailingService'] = 'Mailingwork';
-        $savedSettings = $config->getShopConfVar('config', null, 'module:gn2_newsletterconnect');
+        // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
+        $sShopId = oxRegistry::getConfig()->getShopId();
+        $savedSettings = $config->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
         $settings['service_Mailingwork'] = $savedSettings;
         return $settings;
     }

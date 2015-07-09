@@ -9,7 +9,9 @@ class gn2_newsletterconnect_config extends oxAdminView
     {
         $config = $this->getConfig();
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
-        $config->saveShopConfVar('aarr', 'config', $posted, null, 'module:gn2_newsletterconnect');
+        // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
+        $sShopId = $this->getConfig()->getShopId();
+        $config->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
         gn2_newsletterconnect::$config = gn2_newsletterconnect::getEnvironment()->getModuleConfig();
     }
 
