@@ -37,6 +37,16 @@ class GN2_NewsletterConnect_Newsletter extends GN2_NewsletterConnect_Newsletter_
         $aParams  = oxConfig::getParameter("editval");
         $blSubscribe = oxConfig::getParameter("subscribeStatus");
 
+        // Überprüfung, der angegebenen E-Mail Adresse auf Gültigkeit
+        if (!$aParams['oxuser__oxusername']) {
+            oxRegistry::get("oxUtilsView")->addErrorToDisplay('ERROR_MESSAGE_COMPLETE_FIELDS_CORRECTLY');
+            return;
+        } elseif ( !oxRegistry::getUtils()->isValidEmail($aParams['oxuser__oxusername']) ) {
+            // #1052C - eMail validation added
+            oxRegistry::get("oxUtilsView")->addErrorToDisplay('MESSAGE_INVALID_EMAIL');
+            return;
+        }
+
         $oUser = oxNew( 'oxuser' );
         $oUser->oxuser__oxusername  = new oxField($aParams['oxuser__oxusername'], oxField::T_RAW);
         $oUser->oxuser__oxactive    = new oxField(1, oxField::T_RAW);
