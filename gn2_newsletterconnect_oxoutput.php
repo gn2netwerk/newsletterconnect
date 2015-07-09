@@ -8,7 +8,10 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
         $api = $_REQUEST['mos_api'];
         if ($api == 1) {
             $config = oxRegistry::getConfig();
-            $savedSettings = (array)$config->getShopConfVar('config', null, 'module:gn2_newsletterconnect');
+
+            // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
+            $sShopId = oxRegistry::getConfig()->getShopId();
+            $savedSettings = (array)$config->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
 
             if (isset($savedSettings['api_ips'])) {
                 $ips = explode("\n", $savedSettings['api_ips']);
