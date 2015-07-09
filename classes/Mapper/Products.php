@@ -28,6 +28,26 @@ class GN2_NewsletterConnect_Mapper_Products
     extends GN2_NewsletterConnect_Mapper_Abstract
 {
     /**
+     * Get Current Oxid-Version, depending on class / method existence
+     *
+     * @return integer
+     */
+    public function getOxidVersion() {
+        if (class_exists ( "oxconfig")) {
+            if (method_exists (oxconfig, "getInstance") ) {
+                $oxConfig = oxconfig::getInstance();
+            }
+        }
+
+        if (!is_object($oxConfig) ) {
+            $oxConfig = oxRegistry::getConfig();
+        }
+
+        $oxversion = substr($oxConfig->getVersion(), 0, 3);
+        return intval(str_replace('.', '', $oxversion));
+    }
+
+    /**
      * Builds the MySQL-Limit, depending on URL parameters.
      *
      * @todo Maybe restructure to get parameter from api.php?
@@ -35,7 +55,12 @@ class GN2_NewsletterConnect_Mapper_Products
      */
     public function getLimit()
     {
-        $start = intVal(oxConfig::getParameter('start'));
+        $oxver = $this->getOxidVersion();
+        if ($oxver < 49) {
+            $start = intVal(oxConfig::getParameter('start'));
+        } else {
+            $start = intVal(oxRegistry::getConfig()->getRequestParameter('start'));
+        }
         return 'LIMIT '.$start.',50';
     }
 
@@ -50,7 +75,12 @@ class GN2_NewsletterConnect_Mapper_Products
         $where = 'WHERE (1';
 
         /* Fulltext search */
-        $q = mysql_real_escape_string(oxConfig::getParameter('q'));
+        $oxver = $this->getOxidVersion();
+        if ($oxver < 49) {
+            $q = mysql_real_escape_string(oxConfig::getParameter('q'));
+        } else {
+            $q = mysql_real_escape_string(oxRegistry::getConfig()->getRequestParameter('q'));
+        }
         if ($q != '') {
             $where .='
             && (
@@ -62,7 +92,11 @@ class GN2_NewsletterConnect_Mapper_Products
         }
 
         /* Category Search */
-        $cat = oxConfig::getParameter('cat');
+        if ($oxver < 49) {
+            $cat = oxConfig::getParameter('cat');
+        } else {
+            $cat = oxRegistry::getConfig()->getRequestParameter('cat');
+        }
         if ($cat != "") {
             $where .='
             && ( o2c.OXCATNID = "'.$cat.'" )';
@@ -122,6 +156,21 @@ class GN2_NewsletterConnect_Mapper_Products
     public function getResults()
     {
         $env = GN2_NewsletterConnect::getEnvironment();
+
+        // get the current Version of OXID-Shop
+        if (class_exists ( "oxconfig")) {
+            if (method_exists (oxconfig, "getInstance") ) {
+                $oxConfig = oxconfig::getInstance();
+            }
+        }
+
+        if (!is_object($oxConfig) ) {
+            $oxConfig = oxRegistry::getConfig();
+        }
+
+        $oxver = substr($oxConfig->getVersion(), 0, 3);
+        $oxver = intval(str_replace('.', '', $oxver));
+
         $qsql = $this->getQuery();
         $rows = oxDb::getDb()->Execute($qsql);
 
@@ -216,7 +265,25 @@ class GN2_NewsletterConnect_Mapper_Products
                 }
 
                 /* new return values (August 2013) */
-                $product->tags = $article->getTags();
+                /*
+                 * ab oxid 4.9 ist dieser Aufruf nicht mehr gültig
+                 */
+                if ($oxver < 49) {
+                    $product->tags = $article->getTags();
+                } else {
+                    $sTagList = "";
+
+                    $oArticleTagList = oxNew("oxArticleTagList");
+                    $oArticleTagList->load($article->getId());
+                    $oTagSet = $oArticleTagList->get();
+
+                    foreach ($oTagSet as $oTag) {
+                        if ($sTagList != "") { $sTagList .= ", "; }
+                        $sTagList .= $oTag->getTitle();
+                    }
+
+                    $product->tags = $sTagList;
+                }
 
                 $oManufacturer = $article->getManufacturer();
                 $sManufacturer = $oManufacturer->oxmanufacturers__oxtitle->value;
