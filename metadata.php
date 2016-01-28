@@ -16,7 +16,7 @@
         'account_newsletter' => 'gn2_newsletterconnect/gn2_newsletterconnect_account_newsletter',
         'newsletter'         => 'gn2_newsletterconnect/gn2_newsletterconnect_newsletter',
         'thankyou'           => 'gn2_newsletterconnect/gn2_newsletterconnect_thankyou',
-        'oxvoucher'          => 'gn2_newsletterconnect/gn2_newsletterconnect_oxvoucher',
+        // 'oxvoucher'          => 'gn2_newsletterconnect/gn2_newsletterconnect_oxvoucher',
         'oxoutput'           => 'gn2_newsletterconnect/gn2_newsletterconnect_oxoutput',
     ),
     'files' => array(
