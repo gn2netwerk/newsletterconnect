@@ -7,10 +7,10 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
     {
         $api = $_REQUEST['mos_api'];
         if ($api == 1) {
-            $config = oxRegistry::getConfig();
+            $config = GN2_NewsletterConnect::getOXConfig();
 
             // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
-            $sShopId = oxRegistry::getConfig()->getShopId();
+            $sShopId = $config->getShopId();
             $savedSettings = (array)$config->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
 
             if (isset($savedSettings['api_ips'])) {
@@ -25,8 +25,9 @@ class gn2_newsletterconnect_oxoutput extends gn2_newsletterconnect_oxoutput_pare
                         case "getVoucher":
                             $voucherSeries = $savedSettings['voucher_series'];
                             if ($voucherSeries != "") {
+                                $oOXDB = oxNew('oxdb');
                                 $oDb = oxDb::getDb();
-                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "'.mysql_real_escape_string($voucherSeries).'"';
+                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "'.$oOXDB->escapeString($voucherSeries).'"';
                                 $sql .= ' && OXUSERID="" && OXRESERVED=0 && OXTIMESTAMP<>"1984-01-01 08:00:00"';
 
                                 $voucherRow = $oDb->getRow($sql);

@@ -72,7 +72,7 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
      */
     public function subscribe()
     {
-        $status = oxConfig::getParameter('status');
+        $status = GN2_NewsletterConnect::getOXParameter('status');
         $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
         $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 

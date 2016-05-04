@@ -37,9 +37,9 @@ class GN2_NewsletterConnect_ThankYou extends GN2_NewsletterConnect_ThankYou_pare
         try {
             global $myConfig;
             $items = array();
-            $myConfig = oxConfig::getInstance();
+            $myConfig = GN2_NewsletterConnect::getOXConfig();
 
-            $orderId = oxSession::getInstance()->getBasket()->getOrderId();
+            $orderId = GN2_NewsletterConnect::getOXSession()->getBasket()->getOrderId();
             $oxOrder = oxNew('oxorder');
             $oxOrder->load($orderId);
 

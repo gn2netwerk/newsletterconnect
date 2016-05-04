@@ -108,7 +108,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
         } else {
             /* Everywhere but the user page */
             try {
-                if (!in_array(oxConfig::getParameter('cl'), array('account_user', 'user', 'register'))) {
+                if (!in_array(GN2_NewsletterConnect::getOXParameter('cl'), array('account_user', 'user', 'register'))) {
                     $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
                     $mailingService->unsubscribeRecipient($list, $newRecipient);
                 }

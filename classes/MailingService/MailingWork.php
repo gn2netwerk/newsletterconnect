@@ -101,7 +101,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     public function getMainShopList()
     {
         #$lists = $this->getLists();
-        $shopUrl = oxConfig::getInstance()->getConfigParam('sShopURL');
+        //$shopUrl = GN2_NewsletterConnect::getOXConfig()->getConfigParam('sShopURL');
 
         $this->_setMailingworkUrl('getoptinsetups');
         $setups = $this->_getDecodedResponse();

@@ -28,26 +28,6 @@ class GN2_NewsletterConnect_Mapper_Products
     extends GN2_NewsletterConnect_Mapper_Abstract
 {
     /**
-     * Get Current Oxid-Version, depending on class / method existence
-     *
-     * @return integer
-     */
-    public function getOxidVersion() {
-        if (class_exists ( "oxconfig")) {
-            if (method_exists (oxconfig, "getInstance") ) {
-                $oxConfig = oxconfig::getInstance();
-            }
-        }
-
-        if (!is_object($oxConfig) ) {
-            $oxConfig = oxRegistry::getConfig();
-        }
-
-        $oxversion = substr($oxConfig->getVersion(), 0, 3);
-        return intval(str_replace('.', '', $oxversion));
-    }
-
-    /**
      * Builds the MySQL-Limit, depending on URL parameters.
      *
      * @todo Maybe restructure to get parameter from api.php?
@@ -55,12 +35,7 @@ class GN2_NewsletterConnect_Mapper_Products
      */
     public function getLimit()
     {
-        $oxver = $this->getOxidVersion();
-        if ($oxver < 49) {
-            $start = intVal(oxConfig::getParameter('start'));
-        } else {
-            $start = intVal(oxRegistry::getConfig()->getRequestParameter('start'));
-        }
+        $start = intVal(GN2_NewsletterConnect::getOXParameter('start'));
         return 'LIMIT '.$start.',50';
     }
 
@@ -75,12 +50,8 @@ class GN2_NewsletterConnect_Mapper_Products
         $where = 'WHERE (1';
 
         /* Fulltext search */
-        $oxver = $this->getOxidVersion();
-        if ($oxver < 49) {
-            $q = mysql_real_escape_string(oxConfig::getParameter('q'));
-        } else {
-            $q = mysql_real_escape_string(oxRegistry::getConfig()->getRequestParameter('q'));
-        }
+        $oOXDB = oxNew('oxdb');
+        $q =  $oOXDB->escapeString(GN2_NewsletterConnect::getOXParameter('q'));
         if ($q != '') {
             $where .='
             && (
@@ -92,11 +63,7 @@ class GN2_NewsletterConnect_Mapper_Products
         }
 
         /* Category Search */
-        if ($oxver < 49) {
-            $cat = oxConfig::getParameter('cat');
-        } else {
-            $cat = oxRegistry::getConfig()->getRequestParameter('cat');
-        }
+        $cat = GN2_NewsletterConnect::getOXParameter('cat');
         if ($cat != "") {
             $where .='
             && ( o2c.OXCATNID = "'.$cat.'" )';
@@ -156,20 +123,7 @@ class GN2_NewsletterConnect_Mapper_Products
     public function getResults()
     {
         $env = GN2_NewsletterConnect::getEnvironment();
-
-        // get the current Version of OXID-Shop
-        if (class_exists ( "oxconfig")) {
-            if (method_exists (oxconfig, "getInstance") ) {
-                $oxConfig = oxconfig::getInstance();
-            }
-        }
-
-        if (!is_object($oxConfig) ) {
-            $oxConfig = oxRegistry::getConfig();
-        }
-
-        $oxver = substr($oxConfig->getVersion(), 0, 3);
-        $oxver = intval(str_replace('.', '', $oxver));
+        $oxver = GN2_NewsletterConnect::getOXVersion();
 
         $qsql = $this->getQuery();
         $rows = oxDb::getDb()->Execute($qsql);

@@ -31,6 +31,9 @@ class GN2_NewsletterConnect
      */
     public static $config = array();
 
+    private  static $_OxVersion = null;
+    private  static $_OxConfig = null;
+
     /**
      * getEnvironment
      * Returns an instance of the current environment
@@ -49,16 +52,13 @@ class GN2_NewsletterConnect
             $env->loadBootstrap();
         }
 
-        $oxver = substr(oxConfig::getInstance()->getVersion(), 0, 3);
-        $oxver = intval(str_replace('.', '', $oxver));
-
-        switch($oxver){
-        case 44:
-            return new GN2_NewsletterConnect_Environment_Oxid44();
-        case 47:
-            return new GN2_NewsletterConnect_Environment_Oxid47();
-        default:
-            return new GN2_NewsletterConnect_Environment_Oxid();
+        switch(self::getOXVersion()){
+            case 44:
+                return new GN2_NewsletterConnect_Environment_Oxid44();
+            case 47:
+                return new GN2_NewsletterConnect_Environment_Oxid47();
+            default:
+                return new GN2_NewsletterConnect_Environment_Oxid();
         }
     }
 
@@ -81,6 +81,7 @@ class GN2_NewsletterConnect
         }
     }
 
+
     /**
      * Generates the relevant child instance of GN2_NewsletterConnect_MailingService, depending on settings.php
      *
@@ -99,6 +100,53 @@ class GN2_NewsletterConnect
             }
             throw new Exception('gn2_newsletterConnect- Cannot find class:'.$className);
         }
+    }
+
+
+
+    public static function getOXVersion(){
+        if (self::$_OxVersion === null){
+            $oxConfig = self::getOXConfig();
+
+            $sOXVersion = substr($oxConfig->getVersion(), 0, 3);
+            self::$_OxVersion = intval(str_replace('.', '', $sOXVersion));
+        }
+
+        return self::$_OxVersion;
+    }
+
+
+    public static function getOXConfig(){
+        if(self::$_OxConfig === null){
+            if (class_exists ( "oxconfig")) {
+                if (method_exists (oxconfig, "getInstance") ) {
+                    self::$_OxConfig =  oxconfig::getInstance();
+                }
+            }
+
+            self::$_OxConfig = oxRegistry::getConfig();
+        }
+        return self::$_OxConfig;
+    }
+
+
+    public static function getOXParameter($sParameter){
+        if (self::getOXVersion() < 49) {
+            return oxConfig::getParameter($sParameter);
+        } else {
+            return oxRegistry::getConfig()->getRequestParameter($sParameter);
+        }
+
+    }
+
+    public static function getOXSession(){
+        if (class_exists ( "oxsession")) {
+            if (method_exists (oxsession, "getInstance") ) {
+                return  oxSession::getInstance();
+            }
+        }
+
+        return oxRegistry::getSession();
     }
 
 }

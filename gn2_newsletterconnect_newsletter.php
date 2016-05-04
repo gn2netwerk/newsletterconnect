@@ -34,8 +34,8 @@ class GN2_NewsletterConnect_Newsletter extends GN2_NewsletterConnect_Newsletter_
      */
     public function send()
     {
-        $aParams  = oxConfig::getParameter("editval");
-        $blSubscribe = oxConfig::getParameter("subscribeStatus");
+        $aParams  = GN2_NewsletterConnect::getOXParameter("editval");
+        $blSubscribe = GN2_NewsletterConnect::getOXParameter("subscribeStatus");
 
         // Überprüfung, der angegebenen E-Mail Adresse auf Gültigkeit
         if (!$aParams['oxuser__oxusername']) {
