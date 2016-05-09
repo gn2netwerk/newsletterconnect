@@ -124,8 +124,11 @@ class GN2_NewsletterConnect
                 }
             }
 
-            self::$_OxConfig = oxRegistry::getConfig();
+            if(!is_object(self::$_OxConfig)){
+                self::$_OxConfig = oxRegistry::getConfig();
+            }
         }
+
         return self::$_OxConfig;
     }
 
