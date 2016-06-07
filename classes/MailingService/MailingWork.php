@@ -155,17 +155,23 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * Creates a new recipient on the MailingService
      *
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
-     *
+     * @param $mode
+     * @param $dExportOptIn
      * @return void
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
-    public function optInRecipient($recipient, $mode = 'general')
+    public function optInRecipient($recipient, $mode = 'general', $dExportOptIn='')
     {
         if (is_object($recipient)) {
 
-            $optinId = $this->_config['api_signupsetup'];
-            if ($mode == "account") {
-                $optinId = $this->_config['api_signupsetup_account'];
+            //use exportOptIn when available
+            if($dExportOptIn != ''){
+                $optinId = $dExportOptIn;
+            }else{
+                $optinId = $this->_config['api_signupsetup'];
+                if ($mode == "account") {
+                    $optinId = $this->_config['api_signupsetup_account'];
+                }
             }
 
             $fields = array();
@@ -183,7 +189,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $recipientResponse = $this->_getDecodedResponse();
 
             if ($recipientResponse['error']!==0) {
-                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: please check'.
+                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: please check '.
                 'if your optinSetup contains all fields for E-Mail, Salutation, Firstname and Lastname.');
             }
         } else {
@@ -458,6 +464,48 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         if ($recipientResponse['error']!==0) {
             throw new GN2_NewsletterConnect_Exception_MailingService('transferOrder failed: '.$recipientResponse);
         }
+    }
+
+
+    /**
+     * imports recipients
+     * @param $listId The ID of the list you want to import in
+     * @param $recipients array of recipients
+     * @param $mode define import mode (update, replace, add, update_add)
+     * @return array mailing work response (Keys: errorcode,message,result)
+     */
+    public function importRecipients($listId, $recipients, $mode)
+    {
+        $this->_setMailingworkUrl('importRecipients');
+        $this->addParam('listId', $listId);
+        $this->addParam('recipients', $recipients);
+        $this->addParam('mode', $mode);
+        $recipientResponse = $this->_getDecodedResponse();
+
+        return $recipientResponse;
+    }
+
+
+    /**
+     * gets the fields from a recipient object
+     * @param $recipient recipient object
+     * @return array|null
+     */
+    public function getFields($recipient)
+    {
+        if (is_object($recipient)) {
+            $fields = array();
+            $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
+            $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
+            $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+            $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
+            if ($this->getFieldId('Sprache')) {
+                $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+            }
+            return $fields;
+        }
+        
+        return null;
     }
 
 }

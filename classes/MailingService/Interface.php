@@ -83,4 +83,6 @@ interface GN2_NewsletterConnect_MailingService_Interface
      */
     public function getRecipientById($id);
 
+    
+    public function importRecipients($listId, $recipients, $mode);
 }

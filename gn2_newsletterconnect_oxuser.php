@@ -31,12 +31,17 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
     /**
      * Converts the current oxUser-Object into an GN2_NewsletterConnect_Mailing_Recipient Object
      *
+     * @param string|optional $oxuser__oxemail the user e-mail address
      * @return GN2_NewsletterConnect_Mailing_Recipient
      */
-    public function gn2NewsletterConnectOxid2Recipient()
+    public function gn2NewsletterConnectOxid2Recipient($oxuser__oxemail='')
     {
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
-        $recipient->setEmail($this->oxuser__oxusername->rawValue);
+        if($oxuser__oxemail !== ''){
+            $recipient->setEmail($oxuser__oxemail);
+        }else{
+            $recipient->setEmail($this->oxuser__oxusername->rawValue);
+        }
 
         $salutation = $this->oxuser__oxsal->rawValue;
         switch (strtolower($salutation)) {
@@ -100,7 +105,7 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
 
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
-                    $mailingService->optInRecipient($newRecipient);
+                    $mailingService->optInRecipient($newRecipient, 'general', 1);
                 }
             } catch (Exception $e) {
                 /* Do nothing */

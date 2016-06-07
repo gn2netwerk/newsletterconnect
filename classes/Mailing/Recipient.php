@@ -581,4 +581,5 @@ class GN2_NewsletterConnect_Mailing_Recipient
     {
         return $this->_city;
     }
+    
 }

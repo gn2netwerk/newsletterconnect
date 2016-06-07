@@ -61,6 +61,71 @@
 
         <p><button type="submit">[{oxmultilang ident='GENERAL_SAVE'}]</button></p>
     </form>
+
+    </br>
+    <form name="gn2mosformAboExport" id="gn2mosformAboExport" action="[{ $oViewConf->getSelfLink() }]" method="post">
+        [{$oViewConf->getHiddenSid()}]
+        <input type="hidden" name="cl" value="gn2_newsletterconnect_config">
+        <input type="hidden" name="fnc" value="exportSubscribers">
+
+        <h2 title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_TITLE'}]">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_HEADER'}]</h2>
+        <dl>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_TOTAL_SUBSCRIBERS'}]</dt>
+            <dd>[{$totalSubscribers}]</dd>
+            <dd></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OPTIN_SUBSCRIBERS'}]</dt>
+            <dd>[{$activeSubscribers}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="activeSubscription" name="activeSubscription" value="activeSubscription" checked="checked"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_UNCONFIRMED_SUBSCRIBERS'}]</dt>
+            <dd>[{$unconfirmedSubscribers}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="unconfirmedSubscription" name="unconfirmedSubscription" value="unconfirmedSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OPTOUT_SUBSCRIBERS'}]</dt>
+            <dd>[{$inactiveSubscribers}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="inactiveSubscription" name="inactiveSubscription" value="inactiveSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_LISTID'}]</dt>
+            <dd><input type="text" name="export_listId" value=""></dd>
+            <dd></dd>
+        </dl>
+
+
+        <fieldset >
+            <legend>[{oxmultilang ident="GN2_NEWSLETTERCONNECT_IMPORTART_LEGEND" }]</legend>
+            <div>
+                <input type="radio" id="type_add" name="importMode" value="add"> <label for="type_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_DESC" }]</label>
+            </div>
+            <div>&nbsp;</div>
+
+            <div>
+                <input type="radio" id="type_replace" name="importMode" value="replace"> <label for="type_replace">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_DESC" }]</label>
+            </div>
+            <div>&nbsp;</div>
+
+            <div>
+                <input type="radio" id="type_update" name="importMode" value="update"> <label for="type_update">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_DESC" }]</label>
+            </div>
+            <div>&nbsp;</div>
+
+            <div>
+                <input type="radio" id="type_update_add" name="importMode" value="update_add" checked="checked"> <label for="type_update_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_DESC" }]</label>
+            </div>
+
+        </fieldset>
+
+        [{if ($gn2_ExportStatus)}]
+            <p>Export</br> [{$gn2_ExportStatus}]</p>
+        [{/if}]
+        [{if ($gn2_ExportReportData)}]
+            <p>Export</br> [{$gn2_ExportReportData}]</p>
+            </br>
+        [{/if}]
+
+        <p><button title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'}]" type="submit">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'}] </button></p>
+
+    </form>
 </div>
 
 </body>

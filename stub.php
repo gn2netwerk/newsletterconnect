@@ -14,11 +14,14 @@
 ob_start();
 
 define('GN2_NEWSLETTERCONNECT_LOADED', 1);
+define ('EXPORTDIR', 'gn2_newsletterconnect/');
 
 include_once 'classes/Environment/Environment.php';
 include_once 'classes/Environment/Oxid.php';
 include_once 'classes/Environment/Oxid44.php';
 include_once 'classes/Environment/Oxid47.php';
+include_once 'classes/Export/Export.php';
+include_once 'classes/Help/Utilities.php';
 
 if (strpos($_SERVER['SCRIPT_NAME'], 'api.php') !== false) {
     include_once 'classes/Mapper/Abstract.php';

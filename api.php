@@ -76,11 +76,11 @@ $env->loadBootstrap();
 
 $valid = false;
 try {
-    /* Fix for PHP-CGI */
     if(preg_match('/Basic+(.*)$/i', $_SERVER['REDIRECT_HTTP_AUTHORIZATION'], $matches))
     {
         list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6)));
     }
+
     $oUser = oxNew('oxuser');
     $oUser->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
     $oGroups = $oUser->getUserGroups();

@@ -31,9 +31,19 @@ class GN2_NewsletterConnect
      */
     public static $config = array();
 
+    /**
+     * oxid version
+     * @var null
+     */
     private  static $_OxVersion = null;
+
+    /**
+     * oxconfig
+     * @var null
+     */
     private  static $_OxConfig = null;
 
+    
     /**
      * getEnvironment
      * Returns an instance of the current environment
@@ -103,8 +113,12 @@ class GN2_NewsletterConnect
     }
 
 
-
-    public static function getOXVersion(){
+    /**
+     * Get the oxid version
+     * @return int the oxid-version
+     */
+    public static function getOXVersion()
+    {
         if (self::$_OxVersion === null){
             $oxConfig = self::getOXConfig();
 
@@ -116,7 +130,12 @@ class GN2_NewsletterConnect
     }
 
 
-    public static function getOXConfig(){
+    /**
+     * Get oxid config object
+     * @return oxConfig the oxid config object
+     */
+    public static function getOXConfig()
+    {
         if(self::$_OxConfig === null){
             if (class_exists ( "oxconfig")) {
                 if (method_exists (oxconfig, "getInstance") ) {
@@ -128,12 +147,17 @@ class GN2_NewsletterConnect
                 self::$_OxConfig = oxRegistry::getConfig();
             }
         }
-
         return self::$_OxConfig;
     }
 
 
-    public static function getOXParameter($sParameter){
+    /**
+     * Get parameter
+     * @param $sParameter the parameter key
+     * @return mixed
+     */
+    public static function getOXParameter($sParameter)
+    {
         if (self::getOXVersion() < 49) {
             return oxConfig::getParameter($sParameter);
         } else {
@@ -142,7 +166,13 @@ class GN2_NewsletterConnect
 
     }
 
-    public static function getOXSession(){
+
+    /**
+     * Get the current session
+     * @return oxSession
+     */
+    public static function getOXSession()
+    {
         if (class_exists ( "oxsession")) {
             if (method_exists (oxsession, "getInstance") ) {
                 return  oxSession::getInstance();
