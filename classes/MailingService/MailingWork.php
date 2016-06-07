@@ -156,22 +156,16 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      *
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      * @param $mode
-     * @param $dExportOptIn
      * @return void
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
-    public function optInRecipient($recipient, $mode = 'general', $dExportOptIn='')
+    public function optInRecipient($recipient, $mode = 'general')
     {
         if (is_object($recipient)) {
 
-            //use exportOptIn when available
-            if($dExportOptIn != ''){
-                $optinId = $dExportOptIn;
-            }else{
-                $optinId = $this->_config['api_signupsetup'];
-                if ($mode == "account") {
-                    $optinId = $this->_config['api_signupsetup_account'];
-                }
+            $optinId = $this->_config['api_signupsetup'];
+            if ($mode == "account") {
+                $optinId = $this->_config['api_signupsetup_account'];
             }
 
             $fields = array();

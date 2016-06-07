@@ -20,15 +20,6 @@ class GN2_NewsletterConnect_Export{
      */
     private $_sWhereClause = null;
 
-
-    /**
-     * The Anmeldesetup id.
-     * This determines the type of optIn to be used, the Abonnenten-List and so on.
-     * The Id can be created in Mailingworks under the Menu - Setups => Anmeldesetup
-     * @var int
-     */
-    private $_dSetupId;
-
     /**
      * Mailing works service object
      * @var null
@@ -147,54 +138,6 @@ class GN2_NewsletterConnect_Export{
             $ret[] =  $this->_mailingWorks->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue));
         }
         return $ret;
-    }
-
-
-    /**
-     * Export using the OptIn method.
-     * @return array report
-     */
-    private function OptInTransfer()
-    {
-        //try get mailing works object
-        if($this->_mailingWorks === null){
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => ' Mailingworks-Object can not be found.');
-        }
-
-        //get user list
-        $oUserList = oxNew('oxuserlist');
-        $oUserList->selectString($this->_getSubscribersQuery());
-        $TotalSubscribers = $oUserList->count();
-        if (!$TotalSubscribers) {
-            return array("REPORT" => GN2_Utilities::NODATA, "LINK" => null);
-        }
-
-        // we have some value ==> make recipient
-        $counter = 1;
-        $counterTransferred = 0;
-        $bErrorOccurred = false;
-        $sErrorMessages = '';
-        foreach($oUserList as $oUser){
-            $newRecipient = $oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue);
-            /* Get existing MailingService */
-            try{
-                if (!$this->_mailingWorks->getRecipientByEmail($oUser->oxuser__oxemail->rawValue)) {
-                    $this->_mailingWorks->optInRecipient($newRecipient, $mode = 'general', $this->_dSetupId);
-                    $counterTransferred += 1;
-                }
-            }catch (Exception $e) {
-                $bErrorOccurred = true;
-                $sErrorMessages .= 'Transferring ' . $counter . '. subscriber: ' . $e->getMessage() . '</br>';
-            }
-
-            $counter += 1;
-        }
-
-        //return
-        if ($bErrorOccurred){
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => $sErrorMessages);
-        }
-        return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$counterTransferred von $TotalSubscribers subscriber transferred.");
     }
 
 
