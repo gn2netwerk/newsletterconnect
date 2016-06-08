@@ -179,7 +179,8 @@ class GN2_NewsletterConnect_Export{
     {
         $sShopIDClause = $table1 . ".OXSHOPID = '". GN2_Utilities::getShopId() . "'";
         if($this->_sWhereClause === null){
-            return " WHERE $sShopIDClause";
+            //if subscriber type is not chosen, export only the active subscribers
+            return " WHERE $sShopIDClause AND $table1.OXDBOPTIN = 1";
         }
 
         return "$this->_sWhereClause AND $sShopIDClause";
