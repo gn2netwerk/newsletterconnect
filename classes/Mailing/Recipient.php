@@ -133,6 +133,11 @@ class GN2_NewsletterConnect_Mailing_Recipient
     private $_language;
 
     /**
+     * @var integer Oxid newsletter status
+     */
+    private $_dNewsletterStatus;
+
+    /**
      * @param string $language
      */
     public function setLanguage($language)
@@ -580,6 +585,42 @@ class GN2_NewsletterConnect_Mailing_Recipient
     public function getCity()
     {
         return $this->_city;
+    }
+
+    /**
+     * sets the oxid newsletter status
+     * @return int
+     */
+    public function getOxidNewsletterStatus()
+    {
+        //Subscription status: 0 - not subscribed, 1 - subscribed, 2 - not confirmed
+        //OXDBOPTIN, OXSUBSCRIBED & OXUNSUBSCRIBED
+        $ret = $this->_dNewsletterStatus;
+        switch ($this->_dNewsletterStatus) {
+            case 0;
+                $ret = 'OXNOTSUBSCRIBED';
+                break;
+            case 1;
+                $ret = 'OXDBOPTIN';
+                break;
+            case 2;
+                $ret = 'OXSUBSCRIBED';
+                break;
+            case 3;
+                $ret = 'OXUNSUBSCRIBED';
+                break;
+        }
+        return $ret;
+    }
+
+
+    /**
+     * sets the oxid newsletter status
+     * @param $dStatus int
+     */
+    public function setOxidNewsletterStatus($dStatus)
+    {
+        $this->_dNewsletterStatus = $dStatus;
     }
     
 }

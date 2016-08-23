@@ -483,9 +483,10 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * gets the fields from a recipient object
      * @param $recipient recipient object
+     * @param boolean $blExportStatus true to export the oxid newsletter status (Subscription status: 0 - not subscribed, 1 - subscribed, 2 - not confirmed)
      * @return array|null
      */
-    public function getFields($recipient)
+    public function getFields($recipient, $blExportStatus = false)
     {
         if (is_object($recipient)) {
             $fields = array();
@@ -493,8 +494,14 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
             $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
-            if ($this->getFieldId('Sprache')) {
+            if ($this->getFieldId('Sprache') && $recipient->getLanguage() ) {
                 $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+            }
+
+            if($blExportStatus){
+                if ($this->getFieldId('Anmeldestatus')) {
+                    $fields[$this->getFieldId('Anmeldestatus')]  = $recipient->getOxidNewsletterStatus();
+                }
             }
             return $fields;
         }

@@ -38,6 +38,12 @@ class GN2_NewsletterConnect_Export{
      */
     private $_sImportArt;
 
+    /**
+     * true to export the status of the newsletter
+     * @var boolean
+     */
+    private $_blExportStatus;
+
 
     /**
      * GN2_NewsletterConnect_Export constructor.
@@ -78,6 +84,9 @@ class GN2_NewsletterConnect_Export{
 
         //set import art
         $this->_sImportArt = $sImportArt;
+
+        //set export Status flag
+        $this->_blExportStatus = $blExportStatus;
 
         //set mailing works object
         $this->_setMailingWorks();
@@ -135,8 +144,9 @@ class GN2_NewsletterConnect_Export{
     {
         $ret = array();
         foreach($oUserList as $oUser){
-            $ret[] =  $this->_mailingWorks->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue));
+            $ret[] =  $this->_mailingWorks->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
         }
+
         return $ret;
     }
 
@@ -159,13 +169,14 @@ class GN2_NewsletterConnect_Export{
     
     /**
      * Get the select clause
-     * @param string $table1 optional table name
-     * @param string $table2 optional table name
+     * @param string $table1 optional table name (oxnewssubscribed)
+     * @param string $table2 optional table name (oxuser)
      * @return string
      */
     private function _getSelectClause($table1 = 't_n', $table2 = 't_u')
     {
-        return "$table1.OXEMAIL, $table1.OXSAL, $table1.OXFNAME, $table1.OXLNAME, $table2.OXBIRTHDATE ";
+        $sStatusColumn = $this->_blExportStatus? ", $table1.OXDBOPTIN " : '';
+        return "$table1.OXEMAIL, $table1.OXSAL, $table1.OXFNAME, $table1.OXLNAME, $table1.OXUNSUBSCRIBED, $table2.OXBIRTHDATE $sStatusColumn";
     }
 
 
