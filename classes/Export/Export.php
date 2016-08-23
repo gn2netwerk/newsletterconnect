@@ -44,6 +44,37 @@ class GN2_NewsletterConnect_Export{
      */
     private $_blExportStatus;
 
+    /**
+     * builds the list og the import art to be applied once.
+     * The key is the import art to be applied once, while the key is the import art
+     * to be used for subsequent packets
+     * @var array
+     */
+    private $_aImportArtApplyOnce = array('replace' => 'update_add');
+
+    /**
+     * @var array of recipients
+     */
+    private $_aRecipients;
+
+    /**
+     * The method used for the transfer
+     * @var string
+     */
+    private $_sTransferMethod;
+
+    /**
+     * current csv filename plus path
+     * @var null
+     */
+    private $_sFile = null;
+
+    /**
+     * array of the csv file header
+     * @var null
+     */
+    private $_aCsvHeader = null;
+
 
     /**
      * GN2_NewsletterConnect_Export constructor.
@@ -106,7 +137,16 @@ class GN2_NewsletterConnect_Export{
 
 
     /**
-     * transfer subscribers direct to mailing works
+     * Sets the transfer Method
+     * @param $sTransferMethod string transfer Method
+     */
+    public function setTransferMethod($sTransferMethod)
+    {
+        $this->_sTransferMethod = $sTransferMethod;
+    }
+
+    /**
+     * transfer subscribers initializer
      * @return array report
      */
     public function transferData()
@@ -124,14 +164,149 @@ class GN2_NewsletterConnect_Export{
             return array("REPORT" => GN2_Utilities::NODATA, "LINK" => null);
         }
 
-        //export to mailing works
-        $recipients = $this->_getRecipients( $oUserList );
-        $aImportResponse = $this->_mailingWorks->importRecipients( $this->_listId, $recipients, $this->_sImportArt);
-        if ($aImportResponse['error']!==0) {
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => $aImportResponse['message']);
+        //set recipients
+        $this->_setRecipients( $oUserList );
+
+        //transfer using the methos type
+        $sMethodFunction = '_' . $this->_sTransferMethod;
+        return $this->$sMethodFunction();
+    }
+
+
+    /**
+     * Transfers the data in packets with defined interval
+     * @return array Report
+     */
+    private function _packet()
+    {
+        $dTotalSubscribers = count($this->_aRecipients);
+        //divide recipient
+        $aImportResponseContainer = array();
+        $aRecipientParts = array_chunk($this->_aRecipients, 150);
+        $blImportArtAppliedOnce = false;
+        foreach($aRecipientParts as $key => $value){
+            $this->replaceImportArt($blImportArtAppliedOnce);
+            $aImportResponseContainer[] = $this->_mailingWorks->importRecipients( $this->_listId, $value, $this->_sImportArt);
+            $blImportArtAppliedOnce = true;
+            sleep(20);
         }
 
-        return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$TotalSubscribers subscriber(s) transferred/processed.");
+        //calculate error
+        $errorOccurred = false;
+        $errorMessages = '';
+        $chunkIndex = 1;
+        foreach($aImportResponseContainer as $aImportResponse){
+            if ($aImportResponse['error']!==0) {
+                $errorOccurred = true;
+                $errorMessages = '<p>' . $chunkIndex . '. '. $aImportResponse['message'].'</p>';
+            }
+            $chunkIndex ++;
+        }
+
+        if(!$errorOccurred){
+            return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) transferred/processed.");
+        }else{
+            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => $errorMessages);
+        }
+    }
+
+
+    /**
+     * CSV Tranfer methos, the user becomes a csv file that can be imported in mailing works
+     * @return array report
+     */
+    private function _csv()
+    {
+        //generate CSV
+        $iStatus = $this->_generateCsv();
+
+        //create report
+        if($iStatus === GN2_Utilities::SUCCESS){
+            //return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) transferred/processed.");
+            //send file to client
+            $this->_sendFileToClient();
+        }else if ($iStatus === GN2_Utilities::NODATA){
+            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => 'NO DATA FOUND');
+        }else{
+            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => 'NO FILE RESOURCE FOUND');
+        }
+    }
+
+
+    /**
+     * generates the CSV file
+     * @return int
+     */
+    private function _generateCsv()
+    {
+        //write csv to export folder
+        if (count($this->_aRecipients) > 0) {
+            $this->_sFile = GN2_Utilities::getExportFilePath();
+
+            $f = fopen($this->_sFile, 'w');
+
+            if ($f != FALSE) {
+                //add heading
+                if(is_array($this->_aCsvHeader)){
+                    fputcsv($f, $this->_aCsvHeader, ";");
+                }
+
+                foreach ($this->_aRecipients as $line) {
+                    //write line to csv file
+                    fputcsv($f, $line, ";");
+                }
+                fclose($f);
+                return GN2_Utilities::SUCCESS;
+            } else {
+                return GN2_Utilities::NOFILERESOURCE;
+            }
+
+        }
+
+        return GN2_Utilities::NODATA;
+    }
+
+
+    /**
+     * offers the csv file as download to the user
+     */
+    private function _sendFileToClient()
+    {
+        //check if file exist
+        if(file_exists($this->_sFile)){
+            header('Content-type:  application/csv');
+            header('Content-Length: ' . filesize($this->_sFile));
+            header('Content-Disposition: attachment; filename="'. basename($this->_sFile).'"');
+
+            //to get a clean file, clear old outputs
+            ob_clean();
+            flush();
+
+            readfile($this->_sFile);
+
+            //delete from server
+//            if (connection_aborted()) {
+//                unlink($this->_sFile);
+//            }
+
+            unlink($this->_sFile);
+            exit;
+        }
+    }
+
+
+    /**
+     * Replaces the initial import art if necessary
+     * @param $blImportArtAppliedOnce boolean true if the initial import art has been applied once
+     */
+    private function replaceImportArt($blImportArtAppliedOnce)
+    {
+        //import art like replace should only be applied once when we are sending the recipient in packets
+        if($blImportArtAppliedOnce){
+            if(isset($this->_aImportArtApplyOnce[$this->_sImportArt])){
+                $this->_sImportArt = $this->_aImportArtApplyOnce[$this->_sImportArt];
+            }
+        }
     }
 
 
@@ -140,14 +315,20 @@ class GN2_NewsletterConnect_Export{
      * @param $oUserList oxuser list
      * @return array array of the recipients
      */
-    private function _getRecipients($oUserList)
+    private function _setRecipients($oUserList)
     {
-        $ret = array();
+        unset( $this->_aRecipients);
+        unset($this->_aCsvHeader);
+        $this->_aRecipients = array();
+        $this->_aCsvHeader = array();
         foreach($oUserList as $oUser){
-            $ret[] =  $this->_mailingWorks->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+            $this->_aRecipients[] =  $this->_mailingWorks->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
         }
 
-        return $ret;
+        //use one user to get the header
+        $oUser = $oUserList[0];
+        $this->_aCsvHeader = $this->_mailingWorks->getCSVHeader($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+
     }
 
 

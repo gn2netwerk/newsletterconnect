@@ -509,4 +509,48 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return null;
     }
 
+
+    /**
+     * gets the Header from a recipient object for the csv export
+     * @param $recipient recipient object
+     * @param boolean $blExportStatus true to export the oxid newsletter status (Subscription status: 0 - not subscribed, 1 - subscribed, 2 - not confirmed)
+     * @return array|null
+     */
+    public function getCSVHeader($recipient, $blExportStatus = false)
+    {
+        if (is_object($recipient)) {
+            $fields = array();
+
+            if ($recipient->getEmail() ) {
+                $fields[]  = 'E-Mail';
+            }
+
+            if ($recipient->getSalutation() ) {
+                $fields[]  = 'Anrede';
+            }
+
+            if ($recipient->getFirstName() ) {
+                $fields[]  = 'Vorname';
+            }
+
+            if ($recipient->getLastName() ) {
+                $fields[]  = 'Nachname';
+            }
+
+
+            if ($this->getFieldId('Sprache') && $recipient->getLanguage() ) {
+                $fields[]  = 'Sprache';
+            }
+
+            if($blExportStatus){
+                if ($this->getFieldId('Anmeldestatus')) {
+                    $fields[]  = 'Anmeldestatus';
+                }
+            }
+            return $fields;
+        }
+
+        return null;
+    }
+
 }
