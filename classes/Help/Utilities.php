@@ -14,6 +14,13 @@
 class GN2_Utilities{
 
     /**
+     * export directory path
+     * @var null
+     */
+    private static $_exportDirPath = null;
+
+
+    /**
      * oxid export directory - 'export/'
      * @var string
      */
@@ -100,6 +107,16 @@ class GN2_Utilities{
         $sExportDirPath  = self::_getModuleExportPath($sModuleExportDirectory);
         $fileName = self::getFileName($fileSuffix);
         $filePath = $sExportDirPath . $fileName;
+        return $filePath;
+    }
+    
+    public static function getExportFilePath()
+    {
+        $exportPath = trim(self::getExportDirPath(), '/ ');
+        $fileName = trim(self::getFileName(), '/ ');
+
+        $filePath = '/' .$exportPath . '/' .$fileName;
+
         return $filePath;
     }
 
@@ -223,6 +240,33 @@ class GN2_Utilities{
         }
 
         return $str;
+    }
+
+
+    /**
+     * singleton for the export directory
+     * @return null|string
+     */
+    public static function getExportDirPath()
+    {
+        if(self::$_exportDirPath === null){
+            $sExportDir = '/gn2_aboexport/';
+            if (function_exists('posix_getuid')) {
+                $aUserInfo = posix_getpwuid(posix_getuid());
+                self::$_exportDirPath =  $aUserInfo['dir']. $sExportDir;
+            }else{
+                //use shell
+                $sTildeExpanded = hell_exec('echo ~');
+                self::$_exportDirPath =  $sTildeExpanded . $sExportDir;
+            }
+        }
+
+        //create Export folder
+        if(!file_exists(self::$_exportDirPath)){
+            mkdir(self::$_exportDirPath);
+        }
+        return self::$_exportDirPath;
+
     }
 
 }
