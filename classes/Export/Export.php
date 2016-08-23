@@ -85,7 +85,7 @@ class GN2_NewsletterConnect_Export{
      * @param $dListId
      * @param $sImportArt
      */
-    public function __construct($bActiveSubscribers, $bInActiveSubscribers, $bUnconfirmedSubscribers, $dListId, $sImportArt)
+    public function __construct($bActiveSubscribers, $bInActiveSubscribers, $bUnconfirmedSubscribers, $dListId, $sImportArt, $blExportStatus, $dExportNotSubscribed)
     {
 
         if($bActiveSubscribers){
@@ -94,19 +94,27 @@ class GN2_NewsletterConnect_Export{
             }
         }
 
-        if($bInActiveSubscribers){
-            if($this->_sWhereClause === null){
-                $this->_sWhereClause = ' WHERE OXDBOPTIN = 0';
-            }else{
-                $this->_sWhereClause .= ' OR OXDBOPTIN = 0';
-            }
-        }
-
         if($bUnconfirmedSubscribers){
             if($this->_sWhereClause === null){
                 $this->_sWhereClause = ' WHERE OXDBOPTIN = 2';
             }else{
                 $this->_sWhereClause .= ' OR OXDBOPTIN = 2';
+            }
+        }
+
+        if($bInActiveSubscribers){
+            if($this->_sWhereClause === null){
+                $this->_sWhereClause = " WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED != '0000-00-00 00:00:00'";
+            }else{
+                $this->_sWhereClause .= " OR ( OXDBOPTIN = 0 and OXUNSUBSCRIBED != '0000-00-00 00:00:00' )";
+            }
+        }
+
+        if($dExportNotSubscribed){
+            if($this->_sWhereClause === null){
+                $this->_sWhereClause = " WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED = '0000-00-00 00:00:00'";
+            }else{
+                $this->_sWhereClause .= " OR ( OXDBOPTIN = 0 and OXUNSUBSCRIBED = '0000-00-00 00:00:00' )";
             }
         }
 
