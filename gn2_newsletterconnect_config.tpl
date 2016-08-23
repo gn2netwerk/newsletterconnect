@@ -67,6 +67,7 @@
         [{$oViewConf->getHiddenSid()}]
         <input type="hidden" name="cl" value="gn2_newsletterconnect_config">
         <input type="hidden" name="fnc" value="exportSubscribers">
+        <input type="hidden" name="transfermethod" value="packet">
 
         <h2 title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_TITLE'}]">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_HEADER'}]</h2>
         <dl>
@@ -131,7 +132,9 @@
             </br>
         [{/if}]
 
-        <p><button title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'}]" type="submit">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'}] </button></p>
+        <p><button title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'}]" type="submit" onClick="Javascript:document.gn2mosformAboExport.transfermethod.value='packet'"" >[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'}] </button></p>
+        <p><button title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_CSVMETHOD_BUTTON_TITLE'}]" type="submit" onClick="Javascript:document.gn2mosformAboExport.transfermethod.value='csv'"">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_CSVMETHOD_BUTTON'}] </button></p>
+
 
     </form>
 </div>

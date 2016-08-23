@@ -40,6 +40,7 @@ class gn2_newsletterconnect_config extends oxAdminView
         $bExportUnconfirmedSubscriptions = false;
         $bExportInActiveSubscriptions = false;
         $dExportNotSubscribed = false;
+        $sTransferMethod = 'packet';
         //export confirmed subscriptions
         if(! GN2_NewsletterConnect::getOXParameter('activeSubscription')){
             $bExportActiveSubscriptions = false;
@@ -73,6 +74,10 @@ class gn2_newsletterconnect_config extends oxAdminView
             $blExportStatus = true;
         }
 
+        if(GN2_NewsletterConnect::getOXParameter('transfermethod')){
+            $sTransferMethod = GN2_NewsletterConnect::getOXParameter('transfermethod');
+        }
+        
         //call exporter
         $oExporter = new GN2_NewsletterConnect_Export($bExportActiveSubscriptions,
                                                         $bExportInActiveSubscriptions,
@@ -82,6 +87,7 @@ class gn2_newsletterconnect_config extends oxAdminView
                                                         $blExportStatus,
                                                         $dExportNotSubscribed
                                                     );
+        $oExporter->setTransferMethod($sTransferMethod);
         $aReport = $oExporter->transferData();
         if(is_array($aReport)){
             $this->_sExportStatus = GN2_Utilities::translateReport( $aReport['REPORT']); //($aReport);
