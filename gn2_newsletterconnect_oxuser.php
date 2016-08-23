@@ -69,6 +69,20 @@ class GN2_NewsletterConnect_OxUser extends GN2_NewsletterConnect_OxUser_parent
         $recipient->setFaxNumber(''); // TODO: split & save
         $recipient->setMobPrefix(''); // TODO: split & save
         $recipient->setMobNumber(''); // TODO: split & save
+        
+        //set the optin status
+        if(isset($this->oxuser__oxdboptin)){
+            if($this->oxuser__oxdboptin->rawValue == 0 && $this->oxuser__oxunsubscribed->rawValue == '0000-00-00 00:00:00'){
+                //nie angemdeldet
+                $recipient->setOxidNewsletterStatus(0);
+            }elseif($this->oxuser__oxdboptin->rawValue == 0 && $this->oxuser__oxunsubscribed->rawValue != '0000-00-00 00:00:00'){
+                //haben sich mal abgemeldet
+                $recipient->setOxidNewsletterStatus(3);
+            }else{
+                $recipient->setOxidNewsletterStatus($this->oxuser__oxdboptin->rawValue);
+            }
+
+        }
 
         $oUBase = oxNew( 'oxUBase' );
         $langISO = $oUBase->getActiveLangAbbr();

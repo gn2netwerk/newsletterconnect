@@ -3,7 +3,7 @@
 <style type="text/css">
     .gn2mos { padding: 10px 20px; }
     .gn2mos dl { float:left; width:100%; }
-    .gn2mos dt { float:left; clear:left; width:180px; }
+    .gn2mos dt { float:left; clear:left; width:280px; }
     .gn2mos dt span { font-style:italic;font-weight: normal; display:block; }
     .gn2mos dd { float:left; margin:0 0 10px 10px;}
     .gn2mos dd input.text { width: 350px;border:1px solid #cccccc;padding:2px; }
@@ -85,6 +85,14 @@
             <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OPTOUT_SUBSCRIBERS'}]</dt>
             <dd>[{$inactiveSubscribers}]</dd>
             <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="inactiveSubscription" name="inactiveSubscription" value="inactiveSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_NOT_SUBSCRIBERS'}]</dt>
+            <dd>[{$notSubscribed}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="noSubscription" name="noSubscription" value="noSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_OXID_STATUS'}]</dt>
+            <dd>&nbsp;</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE'}]" type="checkbox" id="export_status" name="export_status" value="export_status" ></dd>
 
             <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_LISTID'}]</dt>
             <dd><input type="text" name="export_listId" value=""></dd>

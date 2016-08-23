@@ -39,6 +39,7 @@ class gn2_newsletterconnect_config extends oxAdminView
         $bExportActiveSubscriptions = true;
         $bExportUnconfirmedSubscriptions = false;
         $bExportInActiveSubscriptions = false;
+        $dExportNotSubscribed = false;
         //export confirmed subscriptions
         if(! GN2_NewsletterConnect::getOXParameter('activeSubscription')){
             $bExportActiveSubscriptions = false;
@@ -54,6 +55,11 @@ class gn2_newsletterconnect_config extends oxAdminView
             $bExportInActiveSubscriptions = true;
         }
 
+        //export  unsubscribed user
+        if(GN2_NewsletterConnect::getOXParameter('noSubscription')){
+            $dExportNotSubscribed = true;
+        }
+
         //mailing works signup setup
         $sMosListId = GN2_NewsletterConnect::getOXParameter('export_listId');
 
@@ -61,12 +67,20 @@ class gn2_newsletterconnect_config extends oxAdminView
         $dImportArt = GN2_NewsletterConnect::getOXParameter('importMode');
 
 
+        //get the export status flag
+        $blExportStatus = false;
+        if(GN2_NewsletterConnect::getOXParameter('export_status')){
+            $blExportStatus = true;
+        }
+
         //call exporter
         $oExporter = new GN2_NewsletterConnect_Export($bExportActiveSubscriptions,
                                                         $bExportInActiveSubscriptions,
                                                         $bExportUnconfirmedSubscriptions,
                                                         trim ($sMosListId),
-                                                        trim ($dImportArt)
+                                                        trim ($dImportArt),
+                                                        $blExportStatus,
+                                                        $dExportNotSubscribed
                                                     );
         $aReport = $oExporter->transferData();
         if(is_array($aReport)){
@@ -97,7 +111,8 @@ class gn2_newsletterconnect_config extends oxAdminView
         $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
         $this->_aViewData['activeSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 1');
         $this->_aViewData['unconfirmedSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 2');
-        $this->_aViewData['inactiveSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 0');
+        $this->_aViewData['inactiveSubscribers'] = $this->_CountSubscribers("WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED != '0000-00-00 00:00:00' ");
+        $this->_aViewData['notSubscribed'] = $this->_CountSubscribers("WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED = '0000-00-00 00:00:00' ");
         return parent::render();
     }
 
