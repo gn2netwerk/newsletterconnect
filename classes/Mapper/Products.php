@@ -140,7 +140,7 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
-                $product->title = utf8_encode($article->oxarticles__oxtitle->rawValue);
+                $product->title = GN2_Utilities::MailingWorksUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
 
                 $fActPrice =  $article->getFPrice();
                 if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
@@ -170,12 +170,12 @@ class GN2_NewsletterConnect_Mapper_Products
                 $product->price = $fActPrice;
 
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
-                $product->artnum = utf8_encode($article->oxarticles__oxartnum->rawValue);
+                $product->artnum = GN2_Utilities::MailingWorksUtf8Encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
 
                 //$product->longdesc = $article->getLongDesc();
-                $product->longdesc = utf8_encode($env->getArticleLongDesc($article));
+                $product->longdesc = GN2_Utilities::MailingWorksUtf8Encode($env->getArticleLongDesc($article));
 
                 /* Product Pics */
                 $product->pictures = array();

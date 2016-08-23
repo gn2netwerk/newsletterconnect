@@ -210,4 +210,19 @@ class GN2_Utilities{
         return $ret;
     }
 
+
+    /**
+     * converts given string to utf-8 if necessary
+     * @param $str string str being converted
+     * @return string
+     */
+    public static function MailingWorksUtf8Encode($str)
+    {
+        if (mb_detect_encoding($str, 'UTF-8', true) === false) {
+            $str = utf8_encode($str);
+        }
+
+        return $str;
+    }
+
 }

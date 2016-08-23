@@ -40,7 +40,7 @@ extends GN2_NewsletterConnect_Mapper_Abstract
         foreach ($tree as $branch) {
             $entry = new stdClass();
             $entry->id = $branch->oxcategories__oxid->rawValue;
-            $entry->name = utf8_encode($branch->oxcategories__oxtitle->rawValue);
+            $entry->name = GN2_Utilities::MailingWorksUtf8Encode($branch->oxcategories__oxtitle->rawValue);
             $subcats = $branch->getSubCats();
             if (count($subcats) > 0) {
                 $entry->childElements = $this->_buildtree($subcats);
