@@ -17,14 +17,15 @@ $aLang = array(
     'GN2_NEWSLETTERCONNECT_YOURIP' => 'Ihre IP-Adresse: ',
 
     //export subscribers
-    'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'      => 'Export Abonnenten',
+    'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'      => 'Export Kundendaten',
     'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'=> 'Abonnenten werden direkt zur Mailing-Works Abonnentenliste eingetragen.',
-    'GN2_NEWSLETTERCONNECT_EXPORT_HEADER'       => 'Export Abonnenten',
+    'GN2_NEWSLETTERCONNECT_EXPORT_HEADER'       => 'Export Kundendaten',
     'GN2_NEWSLETTERCONNECT_EXPORT_TITLE'        => 'Exportieren Sie die OXID Newsletter-Abonnenten zur Mailing-Works.',
-    'GN2_NEWSLETTERCONNECT_TOTAL_SUBSCRIBERS'   => 'Gesamtzahl der Abonnenten',
-    'GN2_NEWSLETTERCONNECT_OPTIN_SUBSCRIBERS'   => 'best&auml;tigte Abonnenten',
-    'GN2_NEWSLETTERCONNECT_UNCONFIRMED_SUBSCRIBERS' => 'unbest&auml;tigte Abonnenten',
-    'GN2_NEWSLETTERCONNECT_OPTOUT_SUBSCRIBERS'  => 'inaktive Abonnenten',
+    'GN2_NEWSLETTERCONNECT_TOTAL_SUBSCRIBERS'   => 'Gesamtzahl der Kundendaten',
+    'GN2_NEWSLETTERCONNECT_OPTIN_SUBSCRIBERS'   => 'Kunden mit best&auml;tigtem Abonnement',
+    'GN2_NEWSLETTERCONNECT_UNCONFIRMED_SUBSCRIBERS' => 'Kunden mit unbest&auml;tigtem Abonnement',
+    'GN2_NEWSLETTERCONNECT_OPTOUT_SUBSCRIBERS'  => 'Kunden mit abgemeldetem Abonnement',
+    'GN2_NEWSLETTERCONNECT_NOT_SUBSCRIBERS'  => 'Kunden ohne Abonnement',
     'GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'     => 'zum Export hinzufügen',
     'GN2_NEWSLETTERCONNECT_LISTID'              => 'Abonnenten List-ID',
     'GN2_NEWSLETTERCONNECT_MODE_ADD_LABEL'            => 'Hinzuf&uuml;gen',
@@ -36,5 +37,6 @@ $aLang = array(
     'GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_LABEL'       => 'Aktualisieren und hinzuf&uuml;gen (empfohlen)',
     'GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_DESC'        => 'Vorhandene Abonnenten aktualisieren und neue hinzuf&uuml;gen.</br>(Abonnenten-IDs erhalten)',
     'GN2_NEWSLETTERCONNECT_IMPORTART_LEGEND'            => 'Importart ausw&auml;hlen',
-
+    'GN2_NEWSLETTERCONNECT_EXPORT_OXID_STATUS'          => 'Abonnement-Status exportieren',
+    'GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE'          => 'Das Status zu jedem Benutzer wird exportiert. Dafür muss aber das entsprechende Abonnentenfeld -Anmeldestatus- in Mailworks vorhanden sein. ',
 );
