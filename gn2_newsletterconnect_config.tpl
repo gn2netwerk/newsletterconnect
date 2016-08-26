@@ -96,7 +96,7 @@
             <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE'}]" type="checkbox" id="export_status" name="export_status" value="export_status" ></dd>
 
             <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_LISTID'}]</dt>
-            <dd><input type="text" name="export_listId" value=""></dd>
+            <dd><input type="text" title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_LISTID_TITLE'}]" name="export_listId" value=""></dd>
             <dd></dd>
         </dl>
 

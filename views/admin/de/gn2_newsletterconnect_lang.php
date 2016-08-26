@@ -17,8 +17,8 @@ $aLang = array(
     'GN2_NEWSLETTERCONNECT_YOURIP'                          => 'Ihre IP-Adresse: ',
 
     //export subscribers
-    'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'                   => 'Export Kundendaten',
-    'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'             => 'Abonnenten werden direkt zur Mailing-Works Abonnentenliste eingetragen.',
+    'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'                   => 'Export Kundendaten (Paketweise)',
+    'GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'             => 'Abonnenten werden direkt in der eingegebenen Mailing-Works-Abonnentenliste eingetragen.',
     'GN2_NEWSLETTERCONNECT_EXPORT_HEADER'                   => 'Export Kundendaten',
     'GN2_NEWSLETTERCONNECT_EXPORT_TITLE'                    => 'Exportieren Sie die OXID Newsletter-Abonnenten zur Mailing-Works.',
     'GN2_NEWSLETTERCONNECT_TOTAL_SUBSCRIBERS'               => 'Gesamtzahl der Kundendaten',
@@ -41,4 +41,5 @@ $aLang = array(
     'GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE'               => 'Das Status zu jedem Benutzer wird exportiert. Dafür muss aber das entsprechende Abonnentenfeld -Anmeldestatus- in Mailworks vorhanden sein. ',
     'GN2_NEWSLETTERCONNECT_EXPORT_CSVMETHOD_BUTTON_TITLE'   => 'Export als CSV-Datei. Die CSV-Datei kann wiederum im Mailworks importiert werden',
     'GN2_NEWSLETTERCONNECT_EXPORT_CSVMETHOD_BUTTON'         => 'Export Kundendaten als CSV-Datei',
+    'GN2_NEWSLETTERCONNECT_LISTID_TITLE'                    =>  'Die ID der Mailing-Works-Abonnentenliste. Diese müssen Sie eingeben, wenn Sie paketweise übertragen wollen.',
 );

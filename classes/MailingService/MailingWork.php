@@ -463,9 +463,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
 
     /**
      * imports recipients
-     * @param $listId The ID of the list you want to import in
+     * @param $listId int The ID of the list you want to import in
      * @param $recipients array of recipients
-     * @param $mode define import mode (update, replace, add, update_add)
+     * @param $mode string define import mode (update, replace, add, update_add)
      * @return array mailing work response (Keys: errorcode,message,result)
      */
     public function importRecipients($listId, $recipients, $mode)
@@ -474,6 +474,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $this->addParam('listId', $listId);
         $this->addParam('recipients', $recipients);
         $this->addParam('mode', $mode);
+        $this->addParam('advanced', array ('updateAllFields' => 1,));
         $recipientResponse = $this->_getDecodedResponse();
 
         return $recipientResponse;

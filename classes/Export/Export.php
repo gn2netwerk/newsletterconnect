@@ -22,7 +22,7 @@ class GN2_NewsletterConnect_Export{
 
     /**
      * Mailing works service object
-     * @var null
+     * @var GN2_NewsletterConnect_MailingService_Mailingwork
      */
     private $_mailingWorks = null;
 
@@ -153,6 +153,7 @@ class GN2_NewsletterConnect_Export{
         $this->_sTransferMethod = $sTransferMethod;
     }
 
+
     /**
      * transfer subscribers initializer
      * @return array report
@@ -182,21 +183,26 @@ class GN2_NewsletterConnect_Export{
 
 
     /**
-     * Transfers the data in packets with defined interval
+     * Transfers the data in packets. 
+     * We use this to place import tasks in Mailing works
      * @return array Report
      */
     private function _packet()
     {
+        //remove next line when done with testing
+        //$this->_aRecipients = $this->_getTestRecipients(3200);
+        
         $dTotalSubscribers = count($this->_aRecipients);
         //divide recipient
         $aImportResponseContainer = array();
         $aRecipientParts = array_chunk($this->_aRecipients, 150);
+        $dParts = count($aRecipientParts);
         $blImportArtAppliedOnce = false;
         foreach($aRecipientParts as $key => $value){
             $this->replaceImportArt($blImportArtAppliedOnce);
             $aImportResponseContainer[] = $this->_mailingWorks->importRecipients( $this->_listId, $value, $this->_sImportArt);
             $blImportArtAppliedOnce = true;
-            sleep(20);
+            //sleep(20);
         }
 
         //calculate error
@@ -206,13 +212,13 @@ class GN2_NewsletterConnect_Export{
         foreach($aImportResponseContainer as $aImportResponse){
             if ($aImportResponse['error']!==0) {
                 $errorOccurred = true;
-                $errorMessages = '<p>' . $chunkIndex . '. '. $aImportResponse['message'].'</p>';
+                $errorMessages .= '<p>' . $chunkIndex . '. Paket: '. $aImportResponse['message'].'</p>';
             }
             $chunkIndex ++;
         }
 
         if(!$errorOccurred){
-            return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) transferred/processed.");
+            return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) in $dParts parts transferred. Check Mailing-Works for the final result.");
         }else{
             return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => $errorMessages);
         }
@@ -220,7 +226,7 @@ class GN2_NewsletterConnect_Export{
 
 
     /**
-     * CSV Tranfer methos, the user becomes a csv file that can be imported in mailing works
+     * CSV Transfer methods, the user becomes a csv file that can be imported in mailing works
      * @return array report
      */
     private function _csv()
@@ -385,4 +391,43 @@ class GN2_NewsletterConnect_Export{
 
         return "$this->_sWhereClause AND $sShopIDClause";
     }
+
+
+    /**
+     * Creates and returns test recipients
+     * @param int $dAmount the amount of recipients to create
+     * @return array
+     */
+    private function _getTestRecipients($dAmount = 150)
+    {
+        //gn2Test Account
+        //Abonnentenfelder ID
+        $dSprache = $this->_mailingWorks->getFieldId('Sprache');
+        $dEmail = $this->_mailingWorks->getFieldId('E-Mail');
+        $dAnrede = $this->_mailingWorks->getFieldId('Anrede');
+        $dVorname = $this->_mailingWorks->getFieldId('Vorname');
+        $dNachname = $this->_mailingWorks->getFieldId('Nachname');
+
+        $aRet = array();
+        for($i = 0; $i < $dAmount; $i ++){
+            $sEmail = 'MaxMusterman_' . $i . '@mail.testmail.de';
+            $sSal = ($i % 2)? 'Herr' : 'Frau';
+            $sFirstname = 'Max' . $i;
+            $sSurname = 'MaxMusterman' . $i;
+            $sSprache = ($i % 2)? 'de' : 'en';
+
+            //create the field
+            $aFields = array();
+            $aFields[$dEmail] = $sEmail;
+            $aFields[$dAnrede] = $sSal;
+            $aFields[$dVorname] = $sFirstname;
+            $aFields[$dNachname] = $sSurname;
+            $aFields[$dSprache] = $sSprache;
+            //add to main list
+            $aRet[] = $aFields;
+        }
+
+        return $aRet;
+    }
+
 }
