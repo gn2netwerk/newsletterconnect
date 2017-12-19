@@ -31,6 +31,7 @@ Falls schon vorhanden, das gn2_newsletterconnect-Modul deaktivieren und entferne
         - Mailingwork API-Base-URL: https://login.mailingwork.de/webservice/webservice/json/
         - Benutzername: mailingworkUser
         - Passwort:     mailingworkPasswort
+        (am bestem eigenen Benutzer dafür anlegen)
         - ID des Hauptanmeldesetups: 2
         - ID des Hauptabmeldesetups: 1
         - ID des Anmeldesetups (Kundenaccount): 2
