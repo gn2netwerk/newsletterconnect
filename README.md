@@ -29,13 +29,20 @@ Falls schon vorhanden, das gn2_newsletterconnect-Modul deaktivieren und entferne
     ### Beispieldaten (bitte entsprechend anpassen):
         Allgemein:
         - Mailingwork API-Base-URL: https://login.mailingwork.de/webservice/webservice/json/
+        
         - Benutzername: mailingworkUser
         - Passwort:     mailingworkPasswort
         (am bestem eigenen Benutzer dafür anlegen)
+        
         - ID des Hauptanmeldesetups: 2
         - ID des Hauptabmeldesetups: 1
+        Hauptanmeldesetup heißt: Wenn man sich ohne Kundenaccount anmeldet. Über die Newsletter-Seite oder zum Beispiel im Footer-Formular.
+        
         - ID des Anmeldesetups (Kundenaccount): 2
         - ID des Abmeldesetups (Kundenaccount): 1
+        Anmeldesetup (Kundenaccount) heißt: Wenn man den Newsletter über die Adresseingabe im Checkout oder im Kundenkonto abonniert.
+        
+        Mit den 2 Setups kann man die Kunden theoretisch unterschiedlich gruppieren, z.B. für einen Rabatt-Newsletter nur für Registrierte Shopkunden. Braucht man das nicht, dann für beide das selbe Anmeldesetup verwenden.
 
 ## C) OPTIONAL: Gutscheincodeerweiterung
 Falls Mailingwork Gutscheincodes von dem Shop holen soll, müssen die folgenden Schritte durchgeführt werden.
