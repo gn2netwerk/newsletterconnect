@@ -389,7 +389,7 @@ class GN2_NewsletterConnect_Export{
             return " WHERE $sShopIDClause AND $table1.OXDBOPTIN = 1";
         }
 
-        return "$this->_sWhereClause AND $sShopIDClause";
+        return "($this->_sWhereClause) AND $sShopIDClause";
     }
 
 
