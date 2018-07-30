@@ -1,8 +1,15 @@
 {
   "name": "gn2netwerk/gn2_newsletterconnect",
-  "description": "",
-  "type": "oxid-module",
-  "require": {
-    "composer/installers": "~1.0"
+  "description": "gn2 :: NewsletterConnect",
+  "type": "oxideshop-module",
+  "keywords": ["oxid", "modules", "eShop", "gn2"],
+  "homepage": "http://www.gn2-netwerk.de",
+  "license": ["MIT"],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "oxideshop": {
+      "target-directory": "gn2_newsletterconnect"
+    }
   }
 }
