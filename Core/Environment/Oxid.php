@@ -11,14 +11,6 @@
 
 /**
  * Generic Oxid class
- *
- * @category   GN2_NewsletterConnect
- * @package    GN2_NewsletterConnect
- * @subpackage Environment
- * @author     Heiko Adams <ha@gn2-netwerk.de>
- * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <package_version>
- * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Environment_Oxid
     implements GN2_NewsletterConnect_Environment
@@ -51,23 +43,8 @@ class GN2_NewsletterConnect_Environment_Oxid
      */
     public function loadBootstrap()
     {
-
-        if (!function_exists('getShopBasePath')) {
-            /**
-             * Returns OXID base path
-             *
-             * @return string OXID Base Path
-             */
-            function getShopBasePath()
-            {
-                return $_SERVER['DOCUMENT_ROOT'] . '/'
-                    . dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))) . '/';
-            }
-
-            include_once getShopBasePath() . 'modules/functions.php';
-            include_once getShopBasePath() . 'core/oxfunctions.php';
-            oxUtils::getInstance()->stripGpcMagicQuotes();
-        }
+        $root = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
+        include_once $root . '/bootstrap.php';
     }
 
     public function getModuleConfig()
@@ -81,4 +58,5 @@ class GN2_NewsletterConnect_Environment_Oxid
         $settings['service_Mailingwork'] = $savedSettings;
         return $settings;
     }
+
 }

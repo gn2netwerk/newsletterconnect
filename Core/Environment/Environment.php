@@ -11,15 +11,6 @@
 
 /**
  * Environment Interface
- *
- * @category   GN2_NewsletterConnect
- * @package    GN2_NewsletterConnect
- * @subpackage Environment
- * @author     Heiko Adams <ha@gn2-netwerk.de>
- * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <package_version>
- * @link       http://www.gn2-netwerk.de/
- * @interface
  */
 interface GN2_NewsletterConnect_Environment
 {
@@ -30,10 +21,27 @@ interface GN2_NewsletterConnect_Environment
      */
     public function getArticleTableName();
 
+
+    /**
+     * Returns the article long description
+     *
+     * @param $article
+     * @return string Emptystring
+     */
+    public function getArticleLongDesc($article);
+
+
     /**
      * Bootstraps the oxid instance
      *
      * @return GN2_NewsletterConnect_Environment_Oxid Meta & result data
      */
     public function loadBootstrap();
+
+
+    /**
+     * @return mixed
+     */
+    public function getModuleConfig();
+
 }

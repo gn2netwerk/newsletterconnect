@@ -15,8 +15,7 @@ define('EXPORTDIR', 'gn2_newsletterconnect/');
 
 include_once dirname(__FILE__) . 'Core/Environment/Environment.php';
 include_once dirname(__FILE__) . 'Core/Environment/Oxid.php';
-include_once dirname(__FILE__) . 'Core/Environment/Oxid44.php';
-include_once dirname(__FILE__) . 'Core/Environment/Oxid47.php';
+include_once dirname(__FILE__) . 'Core/Environment/Oxid602.php';
 include_once dirname(__FILE__) . 'Core/Export/Export.php';
 include_once dirname(__FILE__) . 'Core/Help/Utilities.php';
 

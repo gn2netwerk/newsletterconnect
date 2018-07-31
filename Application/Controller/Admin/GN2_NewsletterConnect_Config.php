@@ -44,7 +44,7 @@ class GN2_NewsletterConnect_Config extends oxAdminView
         // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
         $sShopId = $this->getConfig()->getShopId();
         $config->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
-        GN2_NewsletterConnect::$config = gn2_newsletterconnect::getEnvironment()->getModuleConfig();
+        GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getEnvironment()->getModuleConfig();
     }
 
 

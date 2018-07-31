@@ -47,25 +47,20 @@ class GN2_NewsletterConnect
      */
     public static function getEnvironment()
     {
+        $version = self::getOXVersion();
 
-        $root = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
-        if (file_exists($root . '/bootstrap.php')) {
-            $env = new GN2_NewsletterConnect_Environment_Oxid47();
-            $env->loadBootstrap();
-        } else {
-            $env = new GN2_NewsletterConnect_Environment_Oxid();
-            $env->loadBootstrap();
-        }
+        switch ($version) {
+            case 602:
+                return new GN2_NewsletterConnect_Environment_Oxid602();
 
-        switch (self::getOXVersion()) {
-            case 44:
-                return new GN2_NewsletterConnect_Environment_Oxid44();
-            case 47:
-                return new GN2_NewsletterConnect_Environment_Oxid47();
             default:
-                return new GN2_NewsletterConnect_Environment_Oxid();
+                $env = new GN2_NewsletterConnect_Environment_Oxid();
         }
+
+        $env->loadBootstrap();
+        return $env;
     }
+
 
     /**
      * Main bootstrap function
@@ -111,10 +106,21 @@ class GN2_NewsletterConnect
      */
     public static function getOXVersion()
     {
-        if (self::$_OxVersion === null) {
-            $oxConfig = self::getOXConfig();
+        $sOXVersion = "";
 
-            $sOXVersion = substr($oxConfig->getVersion(), 0, 3);
+        if (self::$_OxVersion === null) {
+            if (class_exists(\OxidEsales\Eshop\Core\ShopVersion::class)) {
+                $oVersionObject = oxNew(\OxidEsales\Eshop\Core\ShopVersion::class);
+            }
+
+            if (!$oVersionObject) {
+                $oVersionObject = self::getOXConfig();
+            }
+
+            if (method_exists($oVersionObject, "getVersion")) {
+                $sOXVersion = substr($oVersionObject->getVersion(), 0, 3);
+            }
+
             self::$_OxVersion = intval(str_replace('.', '', $sOXVersion));
         }
 
@@ -129,14 +135,24 @@ class GN2_NewsletterConnect
     public static function getOXConfig()
     {
         if (self::$_OxConfig === null) {
-            if (class_exists("oxconfig")) {
-                if (method_exists(oxconfig, "getInstance")) {
-                    self::$_OxConfig = oxconfig::getInstance();
+            if (!is_object(self::$_OxConfig)) {
+                if (class_exists(\OxidEsales\Eshop\Core\Config::class)) {
+                    self::$_OxConfig = oxNew(\OxidEsales\Eshop\Core\Config::class);
                 }
             }
 
             if (!is_object(self::$_OxConfig)) {
-                self::$_OxConfig = oxRegistry::getConfig();
+                if (class_exists("oxRegistry")) {
+                    if (method_exists(oxRegistry, "getConfig")) {
+                        self::$_OxConfig = oxRegistry::getConfig();
+                    }
+                }
+            }
+
+            if (class_exists("oxconfig")) {
+                if (method_exists(oxconfig, "getInstance")) {
+                    self::$_OxConfig = oxconfig::getInstance();
+                }
             }
         }
         return self::$_OxConfig;
@@ -150,28 +166,48 @@ class GN2_NewsletterConnect
      */
     public static function getOXParameter($sParameter)
     {
-        if (self::getOXVersion() < 49) {
-            return oxConfig::getParameter($sParameter);
-        } else {
-            return oxRegistry::getConfig()->getRequestParameter($sParameter);
+        $oConfig = self::getOXConfig();
+
+        if (class_exists(\OxidEsales\Eshop\Core\Request::class)) {
+            $oRequest = oxNew(\OxidEsales\Eshop\Core\Request::class);
+            return $oRequest->getRequestParameter($sParameter);
         }
 
+        if (method_exists($oConfig, "getRequestParameter")) {
+            return $oConfig->getRequestParameter($sParameter);
+        }
+
+        if (method_exists($oConfig, "getParameter")) {
+            return $oConfig->getParameter($sParameter);
+        }
+
+        return false;
     }
 
 
     /**
      * Get the current session
-     * @return oxSession
+     * @return mixed
      */
     public static function getOXSession()
     {
+        if (class_exists(\OxidEsales\Eshop\Core\Session::class)) {
+            return oxNew(\OxidEsales\Eshop\Core\Session::class);
+        }
+
+        if (class_exists("oxRegistry")) {
+            if (method_exists(oxRegistry, "getSession")) {
+                return oxRegistry::getSession();
+            }
+        }
+
         if (class_exists("oxsession")) {
             if (method_exists(oxsession, "getInstance")) {
                 return oxSession::getInstance();
             }
         }
 
-        return oxRegistry::getSession();
+        return false;
     }
 
 }
