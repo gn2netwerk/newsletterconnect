@@ -1,18 +1,16 @@
 <?php
-if (!class_exists('GN2_NewsletterConnect')) require dirname(__FILE__).'/gn2_newsletterconnect.php';
-
 /**
  * GN2_NewsletterConnect
- *
- * PHP version 5
- *
  * @category GN2_NewsletterConnect
  * @package  GN2_NewsletterConnect
- * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @author   gn2 netwerk <kontakt@gn2.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
+
+if (!class_exists('GN2_NewsletterConnect')) require dirname(__FILE__).'/gn2_newsletterconnect.php';
+
 $er = error_reporting(E_ALL ^E_NOTICE);
 
 /**

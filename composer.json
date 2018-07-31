@@ -1,5 +1,5 @@
 {
-  "name": "gn2netwerk/gn2_newsletterconnect",
+  "name": "gn2/newsletterconnect",
   "description": "gn2 :: NewsletterConnect",
   "type": "oxideshop-module",
   "keywords": ["oxid", "modules", "eShop", "gn2"],
@@ -7,9 +7,14 @@
   "license": ["MIT"],
   "minimum-stability": "dev",
   "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "GN2\\NewsletterConnect\\": "../../../source/modules/gn2/newsletterconnect"
+    }
+  },
   "extra": {
     "oxideshop": {
-      "target-directory": "gn2_newsletterconnect"
+      "target-directory": "gn2/newsletterconnect"
     }
   }
 }

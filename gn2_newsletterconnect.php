@@ -1,12 +1,9 @@
 <?php
 /**
  * GN2_NewsletterConnect
- *
- * PHP version 5
- *
  * @category GN2_NewsletterConnect
  * @package  GN2_NewsletterConnect
- * @author   Dave Holloway <dh@gn2-netwerk.de>
+ * @author   gn2 netwerk <kontakt@gn2.de>
  * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
@@ -16,7 +13,6 @@ require_once 'stub.php';
 
 /**
  * GN2_NewsletterConnect - Main OXID Module Initialization Class
- *
  * @category GN2_NewsletterConnect
  * @package  GN2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
@@ -47,7 +43,6 @@ class GN2_NewsletterConnect
     /**
      * getEnvironment
      * Returns an instance of the current environment
-     *
      * @return GN2_NewsletterConnect_Environment
      */
     public static function getEnvironment()
@@ -74,9 +69,7 @@ class GN2_NewsletterConnect
 
     /**
      * Main bootstrap function
-     *
      * @static
-     *
      * @return void
      */
     public static function main()
@@ -94,7 +87,6 @@ class GN2_NewsletterConnect
 
     /**
      * Generates the relevant child instance of GN2_NewsletterConnect_MailingService, depending on settings.php
-     *
      * @static
      * @return mixed
      * @throws Exception
