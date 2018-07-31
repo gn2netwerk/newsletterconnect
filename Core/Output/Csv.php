@@ -21,7 +21,7 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Output_Csv
-extends GN2_NewsletterConnect_Output_Abstract
+    extends GN2_NewsletterConnect_Output_Abstract
 {
     /**
      * Gets the output, prepared for the browser.
@@ -36,23 +36,24 @@ extends GN2_NewsletterConnect_Output_Abstract
     /**
      * Displays one CSV line per array entry.
      *
-     * @param array $tree  Array of output data.
-     * @param int   $level Level of tree
+     * @param array $tree Array of output data.
+     * @param int $level Level of tree
      *
      * @return string
      */
-    public function displayLine($tree,$level=0)
-    {   $line = '';
+    public function displayLine($tree, $level = 0)
+    {
+        $line = '';
         foreach ($tree as $branch) {
-            $line .= '"'.$level.'";';
+            $line .= '"' . $level . '";';
             $j = 0;
-            foreach ($branch as $k=>$v) {
-                if ($k=='childElements') {
-                    $newlevel = $level+1;
-                    $line .= "\n".$this->displayLine($v, $newlevel);
+            foreach ($branch as $k => $v) {
+                if ($k == 'childElements') {
+                    $newlevel = $level + 1;
+                    $line .= "\n" . $this->displayLine($v, $newlevel);
                     $newline = false;
                 } else {
-                    $line .= '"'.addSlashes($v).'"';
+                    $line .= '"' . addSlashes($v) . '"';
                     if ($j < count($branch)) {
                         $line .= ';';
                     }
@@ -61,7 +62,7 @@ extends GN2_NewsletterConnect_Output_Abstract
                 $j++;
             }
             if ($newline) {
-                $line .="\n";
+                $line .= "\n";
             }
         }
         return $line;

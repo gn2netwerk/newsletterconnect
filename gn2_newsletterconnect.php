@@ -31,15 +31,15 @@ class GN2_NewsletterConnect
      * oxid version
      * @var null
      */
-    private  static $_OxVersion = null;
+    private static $_OxVersion = null;
 
     /**
      * oxconfig
      * @var null
      */
-    private  static $_OxConfig = null;
+    private static $_OxConfig = null;
 
-    
+
     /**
      * getEnvironment
      * Returns an instance of the current environment
@@ -49,7 +49,7 @@ class GN2_NewsletterConnect
     {
 
         $root = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
-        if (file_exists($root.'/bootstrap.php')) {
+        if (file_exists($root . '/bootstrap.php')) {
             $env = new GN2_NewsletterConnect_Environment_Oxid47();
             $env->loadBootstrap();
         } else {
@@ -57,7 +57,7 @@ class GN2_NewsletterConnect
             $env->loadBootstrap();
         }
 
-        switch(self::getOXVersion()){
+        switch (self::getOXVersion()) {
             case 44:
                 return new GN2_NewsletterConnect_Environment_Oxid44();
             case 47:
@@ -95,12 +95,12 @@ class GN2_NewsletterConnect
     {
         if (isset(self::$config['mailingService'])) {
             $key = self::$config['mailingService'];
-            $className = 'GN2_NewsletterConnect_MailingService_'.$key;
+            $className = 'GN2_NewsletterConnect_MailingService_' . $key;
             if (class_exists($className)) {
-                $config = (isset(self::$config['service_'.$key])) ? self::$config['service_'.$key] : array();
+                $config = (isset(self::$config['service_' . $key])) ? self::$config['service_' . $key] : array();
                 return new $className($config);
             }
-            throw new Exception('gn2_newsletterConnect- Cannot find class:'.$className);
+            throw new Exception('gn2_newsletterConnect- Cannot find class:' . $className);
         }
     }
 
@@ -111,7 +111,7 @@ class GN2_NewsletterConnect
      */
     public static function getOXVersion()
     {
-        if (self::$_OxVersion === null){
+        if (self::$_OxVersion === null) {
             $oxConfig = self::getOXConfig();
 
             $sOXVersion = substr($oxConfig->getVersion(), 0, 3);
@@ -128,14 +128,14 @@ class GN2_NewsletterConnect
      */
     public static function getOXConfig()
     {
-        if(self::$_OxConfig === null){
-            if (class_exists ( "oxconfig")) {
-                if (method_exists (oxconfig, "getInstance") ) {
-                    self::$_OxConfig =  oxconfig::getInstance();
+        if (self::$_OxConfig === null) {
+            if (class_exists("oxconfig")) {
+                if (method_exists(oxconfig, "getInstance")) {
+                    self::$_OxConfig = oxconfig::getInstance();
                 }
             }
 
-            if(!is_object(self::$_OxConfig)){
+            if (!is_object(self::$_OxConfig)) {
                 self::$_OxConfig = oxRegistry::getConfig();
             }
         }
@@ -165,9 +165,9 @@ class GN2_NewsletterConnect
      */
     public static function getOXSession()
     {
-        if (class_exists ( "oxsession")) {
-            if (method_exists (oxsession, "getInstance") ) {
-                return  oxSession::getInstance();
+        if (class_exists("oxsession")) {
+            if (method_exists(oxsession, "getInstance")) {
+                return oxSession::getInstance();
             }
         }
 

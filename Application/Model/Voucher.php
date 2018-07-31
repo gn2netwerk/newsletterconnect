@@ -24,7 +24,7 @@ class Voucher extends Voucher_parent
     {
         if (!isAdmin()) {
             $user = $this->getUser();
-            $this->oxvouchers__oxuserid->rawValue = md5("MOS:".$user->oxuser__oxusername->value);
+            $this->oxvouchers__oxuserid->rawValue = md5("MOS:" . $user->oxuser__oxusername->value);
         }
         return parent::save();
     }

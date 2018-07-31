@@ -21,7 +21,7 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Environment_Oxid47
-extends GN2_NewsletterConnect_Environment_Oxid
+    extends GN2_NewsletterConnect_Environment_Oxid
 {
     /**
      * Bootstraps the oxid instance
@@ -31,6 +31,6 @@ extends GN2_NewsletterConnect_Environment_Oxid
     public function loadBootstrap()
     {
         $root = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
-        include_once $root.'/bootstrap.php';
+        include_once $root . '/bootstrap.php';
     }
 }

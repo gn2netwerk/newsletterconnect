@@ -60,8 +60,8 @@ abstract class GN2_NewsletterConnect_WebService_Abstract
     /**
      * Adds a parameter to the webservice parameter list
      *
-     * @param string $key   Key
-     * @param mixed  $value Value
+     * @param string $key Key
+     * @param mixed $value Value
      *
      * @return void
      */

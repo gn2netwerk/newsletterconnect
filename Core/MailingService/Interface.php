@@ -44,7 +44,7 @@ interface GN2_NewsletterConnect_MailingService_Interface
     /**
      * Subscribes a recipient directly to a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_List $list List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
@@ -54,7 +54,7 @@ interface GN2_NewsletterConnect_MailingService_Interface
     /**
      * Unsubscribes a recipient directly from a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_List $list List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
@@ -79,6 +79,6 @@ interface GN2_NewsletterConnect_MailingService_Interface
      */
     public function getRecipientById($id);
 
-    
+
     public function importRecipients($listId, $recipients, $mode);
 }

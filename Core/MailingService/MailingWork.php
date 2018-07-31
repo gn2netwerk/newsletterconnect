@@ -35,7 +35,8 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * @return void
      */
     public function init()
-    {   $this->setPost(true);
+    {
+        $this->setPost(true);
         $this->resetParams();
         $this->addParam('username', $this->_config['api_username']);
         $this->addParam('password', $this->_config['api_password']);
@@ -49,8 +50,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * @return void
      */
     protected function _setMailingworkUrl($param)
-    {   $this->init();
-        $this->setUrl($this->_config['api_baseurl'].$param);
+    {
+        $this->init();
+        $this->setUrl($this->_config['api_baseurl'] . $param);
     }
 
     /**
@@ -76,7 +78,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $listResponse = $this->_getDecodedResponse();
         $lists = array();
 
-        if ($listResponse['error']===0) {
+        if ($listResponse['error'] === 0) {
             foreach ($listResponse['result'] as $listData) {
                 $list = new GN2_NewsletterConnect_Mailing_List;
                 $list->setId($listData['id']);
@@ -136,14 +138,14 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     {
         $this->_setMailingworkUrl('createList');
         $this->addParam('name', $listName);
-        $listResponse =  $this->_getDecodedResponse();
-        if ($listResponse['error']===0) {
+        $listResponse = $this->_getDecodedResponse();
+        if ($listResponse['error'] === 0) {
             $list = new GN2_NewsletterConnect_Mailing_List;
             $list->setId($listResponse['result']);
             $list->setName($listName);
             return $list;
         } else {
-            throw new Exception($listName. ' list cannot be created. Please check your Mailingwork Login details.');
+            throw new Exception($listName . ' list cannot be created. Please check your Mailingwork Login details.');
         }
     }
 
@@ -165,12 +167,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             }
 
             $fields = array();
-            $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
-            $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
-            $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+            $fields[$this->getFieldId('E-Mail')] = $recipient->getEmail();
+            $fields[$this->getFieldId('Anrede')] = $recipient->getSalutation();
+            $fields[$this->getFieldId('Vorname')] = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
             if ($this->getFieldId('Sprache')) {
-                $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+                $fields[$this->getFieldId('Sprache')] = $recipient->getLanguage();
             }
             $this->_setMailingworkUrl('optInRecipient');
 
@@ -178,9 +180,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $this->addParam('fields', $fields);
             $recipientResponse = $this->_getDecodedResponse();
 
-            if ($recipientResponse['error']!==0) {
-                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: please check '.
-                'if your optinSetup contains all fields for E-Mail, Salutation, Firstname and Lastname.');
+            if ($recipientResponse['error'] !== 0) {
+                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: please check ' .
+                    'if your optinSetup contains all fields for E-Mail, Salutation, Firstname and Lastname.');
             }
         } else {
             throw new GN2_NewsletterConnect_Exception_MailingService(
@@ -192,7 +194,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * Subscribes a recipient directly to a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_List $list List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
@@ -202,12 +204,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     {
         if (is_object($recipient)) {
             $fields = array();
-            $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
-            $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
-            $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+            $fields[$this->getFieldId('E-Mail')] = $recipient->getEmail();
+            $fields[$this->getFieldId('Anrede')] = $recipient->getSalutation();
+            $fields[$this->getFieldId('Vorname')] = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
             if ($this->getFieldId('Sprache')) {
-                $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+                $fields[$this->getFieldId('Sprache')] = $recipient->getLanguage();
             }
 
             $this->_setMailingworkUrl('createRecipient');
@@ -215,8 +217,8 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $this->addParam('fields', $fields);
             $recipientResponse = $this->_getDecodedResponse();
 
-            if ($recipientResponse['error']!==0) {
-                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: '.$recipientResponse);
+            if ($recipientResponse['error'] !== 0) {
+                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: ' . $recipientResponse);
             }
         } else {
             throw new GN2_NewsletterConnect_Exception_MailingService(
@@ -228,13 +230,13 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * Unsubscribes a recipient directly from a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List      $list      List Object
+     * @param GN2_NewsletterConnect_Mailing_List $list List Object
      * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
      *
      * @return void
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
-    public function unsubscribeRecipient($list, $recipient, $type='general')
+    public function unsubscribeRecipient($list, $recipient, $type = 'general')
     {
         if (is_object($recipient)) {
             $recipient = $this->getRecipientByEmail($recipient->getEmail());
@@ -252,7 +254,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
                 //$this->addParam('listId', $list->getId());
 
 
-                if ($recipientResponse['error']!==0) {
+                if ($recipientResponse['error'] !== 0) {
                     /* Mailingwork returns a bad response. Don't throw exceptions. */
                     /*
                      throw new GN2_NewsletterConnect_Exception_MailingService(
@@ -279,7 +281,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         if ($this->_fields === null) {
             $this->_setMailingworkUrl('getFields');
             $fieldResponse = $this->_getDecodedResponse();
-            if ($fieldResponse['error']===0) {
+            if ($fieldResponse['error'] === 0) {
                 $this->_fields = array();
                 foreach ($fieldResponse['result'] as $field) {
                     $this->_fields[$field['id']] = $field['name'];
@@ -304,17 +306,17 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
                 $listIds = $this->_getDecodedResponse();
 
                 $fields = array();
-                $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
-                $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
-                $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+                $fields[$this->getFieldId('E-Mail')] = $recipient->getEmail();
+                $fields[$this->getFieldId('Anrede')] = $recipient->getSalutation();
+                $fields[$this->getFieldId('Vorname')] = $recipient->getFirstName();
                 $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
                 $advanced = array();
                 if (isset($listIds['result'][0])) {
-                    $advanced['lists'] = '{'.implode(',' ,$listIds['result'][0]).'}';
+                    $advanced['lists'] = '{' . implode(',', $listIds['result'][0]) . '}';
                 }
 
                 if ($this->getFieldId('Sprache')) {
-                    $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+                    $fields[$this->getFieldId('Sprache')] = $recipient->getLanguage();
                 }
 
                 $this->_setMailingworkUrl('updateRecipientById');
@@ -334,7 +336,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      *
      * @return string Name of field
      */
-    public function getFieldName($id=0)
+    public function getFieldName($id = 0)
     {
         $fields = $this->_getFields();
         if (array_key_exists($id, $fields)) {
@@ -350,7 +352,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      *
      * @return int Id of field
      */
-    public function getFieldId($name='')
+    public function getFieldId($name = '')
     {
         $fields = $this->_getFields();
 
@@ -369,12 +371,13 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
      */
     public function getRecipientByEmail($email)
-    {   $fields = $this->_getFields();
+    {
+        $fields = $this->_getFields();
 
         $this->_setMailingworkUrl('getRecipientIdsByEmail');
         $this->addParam('email', $email);
         $recipientResponse = $this->_getDecodedResponse();
-        if ($recipientResponse['error']===0) {
+        if ($recipientResponse['error'] === 0) {
             if (isset($recipientResponse['result'][0])) {
                 try {
                     $recipient = $this->getRecipientById($recipientResponse['result'][0]);
@@ -399,14 +402,14 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $this->_setMailingworkUrl('getRecipientFieldsById');
         $this->addParam('recipientId', $id);
         $recipientResponse = $this->_getDecodedResponse();
-        if ($recipientResponse['error']===0) {
+        if ($recipientResponse['error'] === 0) {
             $recipient = $this->_mailingworkRecipient2Recipient($recipientResponse['result']);
             if (is_object($recipient)) {
                 $recipient->setId($id);
             }
             return $recipient;
         } else {
-            throw new GN2_NewsletterConnect_Exception_MailingService('Cannot load recipient: '.$id);
+            throw new GN2_NewsletterConnect_Exception_MailingService('Cannot load recipient: ' . $id);
         }
     }
 
@@ -420,23 +423,23 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     protected function _mailingworkRecipient2Recipient($mailingWorkUserFields)
     {
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
-        foreach ($mailingWorkUserFields as $k=>$userField) {
+        foreach ($mailingWorkUserFields as $k => $userField) {
             if (isset($this->_fields[$userField['id']])) {
-                $fieldName  = $this->_fields[$userField['id']];
+                $fieldName = $this->_fields[$userField['id']];
                 $fieldValue = $userField['value'];
                 switch ($fieldName) {
-                case 'E-Mail';
-                    $recipient->setEmail($fieldValue);
-                    break;
-                case 'Anrede';
-                    $recipient->setSalutation($fieldValue);
-                    break;
-                case 'Vorname';
-                    $recipient->setFirstName($fieldValue);
-                    break;
-                case 'Nachname';
-                    $recipient->setLastName($fieldValue);
-                    break;
+                    case 'E-Mail';
+                        $recipient->setEmail($fieldValue);
+                        break;
+                    case 'Anrede';
+                        $recipient->setSalutation($fieldValue);
+                        break;
+                    case 'Vorname';
+                        $recipient->setFirstName($fieldValue);
+                        break;
+                    case 'Nachname';
+                        $recipient->setLastName($fieldValue);
+                        break;
                 }
             }
         }
@@ -451,8 +454,8 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $this->addParam('orderData', $basketData);
         $this->addParam('orderPositions', $positions);
         $recipientResponse = $this->_getDecodedResponse();
-        if ($recipientResponse['error']!==0) {
-            throw new GN2_NewsletterConnect_Exception_MailingService('transferOrder failed: '.$recipientResponse);
+        if ($recipientResponse['error'] !== 0) {
+            throw new GN2_NewsletterConnect_Exception_MailingService('transferOrder failed: ' . $recipientResponse);
         }
     }
 
@@ -470,7 +473,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $this->addParam('listId', $listId);
         $this->addParam('recipients', $recipients);
         $this->addParam('mode', $mode);
-        $this->addParam('advanced', array ('updateAllFields' => 1,));
+        $this->addParam('advanced', array('updateAllFields' => 1,));
         $recipientResponse = $this->_getDecodedResponse();
 
         return $recipientResponse;
@@ -487,22 +490,22 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     {
         if (is_object($recipient)) {
             $fields = array();
-            $fields[$this->getFieldId('E-Mail')]   = $recipient->getEmail();
-            $fields[$this->getFieldId('Anrede')]   = $recipient->getSalutation();
-            $fields[$this->getFieldId('Vorname')]  = $recipient->getFirstName();
+            $fields[$this->getFieldId('E-Mail')] = $recipient->getEmail();
+            $fields[$this->getFieldId('Anrede')] = $recipient->getSalutation();
+            $fields[$this->getFieldId('Vorname')] = $recipient->getFirstName();
             $fields[$this->getFieldId('Nachname')] = $recipient->getLastName();
-            if ($this->getFieldId('Sprache') && $recipient->getLanguage() ) {
-                $fields[$this->getFieldId('Sprache')]  = $recipient->getLanguage();
+            if ($this->getFieldId('Sprache') && $recipient->getLanguage()) {
+                $fields[$this->getFieldId('Sprache')] = $recipient->getLanguage();
             }
 
-            if($blExportStatus){
+            if ($blExportStatus) {
                 if ($this->getFieldId('Anmeldestatus')) {
-                    $fields[$this->getFieldId('Anmeldestatus')]  = $recipient->getOxidNewsletterStatus();
+                    $fields[$this->getFieldId('Anmeldestatus')] = $recipient->getOxidNewsletterStatus();
                 }
             }
             return $fields;
         }
-        
+
         return null;
     }
 
@@ -518,30 +521,30 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         if (is_object($recipient)) {
             $fields = array();
 
-            if ($recipient->getEmail() ) {
-                $fields[]  = 'E-Mail';
+            if ($recipient->getEmail()) {
+                $fields[] = 'E-Mail';
             }
 
-            if ($recipient->getSalutation() ) {
-                $fields[]  = 'Anrede';
+            if ($recipient->getSalutation()) {
+                $fields[] = 'Anrede';
             }
 
-            if ($recipient->getFirstName() ) {
-                $fields[]  = 'Vorname';
+            if ($recipient->getFirstName()) {
+                $fields[] = 'Vorname';
             }
 
-            if ($recipient->getLastName() ) {
-                $fields[]  = 'Nachname';
+            if ($recipient->getLastName()) {
+                $fields[] = 'Nachname';
             }
 
 
-            if ($this->getFieldId('Sprache') && $recipient->getLanguage() ) {
-                $fields[]  = 'Sprache';
+            if ($this->getFieldId('Sprache') && $recipient->getLanguage()) {
+                $fields[] = 'Sprache';
             }
 
-            if($blExportStatus){
+            if ($blExportStatus) {
                 if ($this->getFieldId('Anmeldestatus')) {
-                    $fields[]  = 'Anmeldestatus';
+                    $fields[] = 'Anmeldestatus';
                 }
             }
             return $fields;

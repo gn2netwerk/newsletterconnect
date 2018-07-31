@@ -36,14 +36,14 @@ class GN2_NewsletterConnect_Data_Result
     /**
      * Sets meta data. Expects key/value pairs.
      *
-     * @param string $key   Key
+     * @param string $key Key
      * @param string $value Value
      *
      * @return void
      */
-    public function setMeta($key,$value)
+    public function setMeta($key, $value)
     {
-        if ($key!='' && $value!='') {
+        if ($key != '' && $value != '') {
             $this->_meta[$key] = $value;
         }
     }

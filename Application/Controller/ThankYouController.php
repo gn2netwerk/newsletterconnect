@@ -12,7 +12,7 @@
 namespace GN2\NewsletterConnect\Application\Controller;
 
 if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__).'/gn2_newsletterconnect.php';
+    include dirname(__FILE__) . '/gn2_newsletterconnect.php';
 }
 
 
@@ -59,8 +59,8 @@ class ThankYouController extends ThankYouController_parent
                     if (is_object($shopCategory)) {
                         $oDb = oxDb::getDb();
                         $category = $oDb->getOne(
-                            'select oxtitle from oxcategories where OXID = "'.
-                            $shopCategory->oxcategories__oxid->value.'" LIMIT 1'
+                            'select oxtitle from oxcategories where OXID = "' .
+                            $shopCategory->oxcategories__oxid->value . '" LIMIT 1'
                         );
                     }
                 }

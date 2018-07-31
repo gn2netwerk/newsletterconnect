@@ -9,9 +9,9 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-if (!class_exists('GN2_NewsletterConnect')) require dirname(__FILE__).'/gn2_newsletterconnect.php';
+if (!class_exists('GN2_NewsletterConnect')) require dirname(__FILE__) . '/gn2_newsletterconnect.php';
 
-$er = error_reporting(E_ALL ^E_NOTICE);
+$er = error_reporting(E_ALL ^ E_NOTICE);
 
 /**
  * GN2_NewsletterConnect_Api - Main API Initialization Class
@@ -33,22 +33,22 @@ class GN2_NewsletterConnect_Api
     static public function init()
     {
         $subject = $_SERVER['REQUEST_URI'];
-        $pattern = '/'.
-                   '(.*)\/modules\/gn2_newsletterconnect\/'.
-                   '(?P<mapper>products|categories)'.
-                   '\/?(?P<entity>[A-Za-z0-9?U\.\-\_]*)'.
-                   '(\.(?P<output>json|csv)?)'.
-                   '/';
+        $pattern = '/' .
+            '(.*)\/modules\/gn2_newsletterconnect\/' .
+            '(?P<mapper>products|categories)' .
+            '\/?(?P<entity>[A-Za-z0-9?U\.\-\_]*)' .
+            '(\.(?P<output>json|csv)?)' .
+            '/';
         preg_match($pattern, $subject, $matches);
 
         $prefix = 'gn2_newsletterconnect_';
-        $mapperClass = $prefix.'Mapper_'.ucfirst($matches['mapper']);
+        $mapperClass = $prefix . 'Mapper_' . ucfirst($matches['mapper']);
 
         if (!isset($matches['output'])) {
             $matches['output'] = 'json';
         }
 
-        $outputClass = $prefix.'Output_'.ucfirst($matches['output']);
+        $outputClass = $prefix . 'Output_' . ucfirst($matches['output']);
 
         if (class_exists($mapperClass) && class_exists($outputClass)) {
 
@@ -74,9 +74,8 @@ $env->loadBootstrap();
 
 $valid = false;
 try {
-    if(preg_match('/Basic+(.*)$/i', $_SERVER['REDIRECT_HTTP_AUTHORIZATION'], $matches))
-    {
-        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6)));
+    if (preg_match('/Basic+(.*)$/i', $_SERVER['REDIRECT_HTTP_AUTHORIZATION'], $matches)) {
+        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6)));
     }
 
     $oUser = oxNew('oxuser');
@@ -88,11 +87,10 @@ try {
             $valid = true;
         }
     }
-}
-catch (Exception $e) {
+} catch (Exception $e) {
 }
 
-while ( !$valid ) {
+while (!$valid) {
     header('WWW-Authenticate: Basic realm="NewsletterConnect"');
     header('HTTP/1.0 401 Unauthorized');
     exit;

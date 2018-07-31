@@ -21,7 +21,7 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Environment_Oxid
-implements GN2_NewsletterConnect_Environment
+    implements GN2_NewsletterConnect_Environment
 {
 
     /**
@@ -60,9 +60,10 @@ implements GN2_NewsletterConnect_Environment
              */
             function getShopBasePath()
             {
-                return $_SERVER['DOCUMENT_ROOT'].'/'
-                . dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))).'/';
+                return $_SERVER['DOCUMENT_ROOT'] . '/'
+                    . dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))) . '/';
             }
+
             include_once getShopBasePath() . 'modules/functions.php';
             include_once getShopBasePath() . 'core/oxfunctions.php';
             oxUtils::getInstance()->stripGpcMagicQuotes();

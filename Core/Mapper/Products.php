@@ -32,7 +32,7 @@ class GN2_NewsletterConnect_Mapper_Products
     public function getLimit()
     {
         $start = intVal(GN2_NewsletterConnect::getOXParameter('start'));
-        return 'LIMIT '.$start.',50';
+        return 'LIMIT ' . $start . ',50';
     }
 
     /**
@@ -47,13 +47,13 @@ class GN2_NewsletterConnect_Mapper_Products
 
         /* Fulltext search */
         $oOXDB = oxNew('oxdb');
-        $q =  $oOXDB->escapeString(GN2_NewsletterConnect::getOXParameter('q'));
+        $q = $oOXDB->escapeString(GN2_NewsletterConnect::getOXParameter('q'));
         if ($q != '') {
-            $where .='
+            $where .= '
             && (
-                   ( a.OXTITLE LIKE "%'.$q.'%")
-                || ( a.OXSHORTDESC LIKE "%'.$q.'%")
-                || ( a.OXARTNUM LIKE "%'.$q.'%")
+                   ( a.OXTITLE LIKE "%' . $q . '%")
+                || ( a.OXSHORTDESC LIKE "%' . $q . '%")
+                || ( a.OXARTNUM LIKE "%' . $q . '%")
                )
             ';
         }
@@ -61,13 +61,13 @@ class GN2_NewsletterConnect_Mapper_Products
         /* Category Search */
         $cat = GN2_NewsletterConnect::getOXParameter('cat');
         if ($cat != "") {
-            $where .='
-            && ( o2c.OXCATNID = "'.$cat.'" )';
+            $where .= '
+            && ( o2c.OXCATNID = "' . $cat . '" )';
         }
 
         /* Restrict entity */
         if ($this->entity != "") {
-            $where .= ' && a.OXID = "'.$this->entity.'" ';
+            $where .= ' && a.OXID = "' . $this->entity . '" ';
         }
 
         $where .= ') && OXTITLE <> ""';
@@ -89,7 +89,7 @@ class GN2_NewsletterConnect_Mapper_Products
             a.OXID as OXID,
             a.OXTITLE
         FROM
-            '.$env->getArticleTableName().' as a
+            ' . $env->getArticleTableName() . ' as a
         LEFT JOIN
             oxobject2category as o2c
         ON
@@ -138,7 +138,7 @@ class GN2_NewsletterConnect_Mapper_Products
                 $product->id = $article->oxarticles__oxid->rawValue;
                 $product->title = GN2_Utilities::MailingWorksUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
 
-                $fActPrice =  $article->getFPrice();
+                $fActPrice = $article->getFPrice();
                 if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
                     /*
                     das Komma, kommt nach dem Punkt
@@ -161,7 +161,7 @@ class GN2_NewsletterConnect_Mapper_Products
                     }
                 }
 
-                $fActPrice =  floatval($fActPrice);
+                $fActPrice = floatval($fActPrice);
                 $fActPrice = number_format($fActPrice, 2, ".", "");
                 $product->price = $fActPrice;
 
@@ -175,11 +175,12 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 /* Product Pics */
                 $product->pictures = array();
-                $picture = ""; $lastPicture = "";
+                $picture = "";
+                $lastPicture = "";
 
-                for ($i=0;$i<12;$i++) {
+                for ($i = 0; $i < 12; $i++) {
                     $lastPicture = $picture;
-                    $picture = $article->getPictureUrl($i+1);
+                    $picture = $article->getPictureUrl($i + 1);
                     if (strpos($picture, 'nopic.jpg') === false
                         && $lastPicture != $picture
                     ) {
@@ -189,11 +190,12 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 /* Product Thumbnails */
                 $product->thumbnails = array();
-                $picture = ""; $lastPicture = "";
+                $picture = "";
+                $lastPicture = "";
 
-                for ($i=0;$i<12;$i++) {
+                for ($i = 0; $i < 12; $i++) {
                     $lastPicture = $picture;
-                    $picture = $article->getThumbnailUrl($i+1);
+                    $picture = $article->getThumbnailUrl($i + 1);
                     if (strpos($picture, 'nopic.jpg') === false
                         && $lastPicture != $picture
                     ) {
@@ -228,7 +230,9 @@ class GN2_NewsletterConnect_Mapper_Products
                     $oTagSet = $oArticleTagList->get();
 
                     foreach ($oTagSet as $oTag) {
-                        if ($sTagList != "") { $sTagList .= ", "; }
+                        if ($sTagList != "") {
+                            $sTagList .= ", ";
+                        }
                         $sTagList .= $oTag->getTitle();
                     }
 
@@ -269,7 +273,6 @@ class GN2_NewsletterConnect_Mapper_Products
                 }
 
 
-
                 $product->inBasketLink = $article->getToBasketLink() . "&amp;am=1";
                 /*
                 Textzusatz ist n�tig, da ansonsten kein Artikel
@@ -303,7 +306,7 @@ class GN2_NewsletterConnect_Mapper_Products
                         $fOrgPrice = str_replace(",", ".", $fOrgPrice);
                     }
                 }
-                $fOrgPrice =  floatval($fOrgPrice);
+                $fOrgPrice = floatval($fOrgPrice);
                 $fOrgPrice = number_format($fOrgPrice, 2, ".", "");
 
                 if ($product->price != $fOrgPrice) {

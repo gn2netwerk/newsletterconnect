@@ -22,7 +22,8 @@
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
-class GN2_Utilities{
+class GN2_Utilities
+{
 
     /**
      * export directory path
@@ -41,12 +42,11 @@ class GN2_Utilities{
      * Report constants
      */
     const
-        SUCCESS   = 1
-        ,NODATA = 2
-        ,NOFILERESOURCE = 3
-        ,FAULTY = 4
-        ,EXPORTDIRMISSING = 5
-    ;
+        SUCCESS = 1
+    , NODATA = 2
+    , NOFILERESOURCE = 3
+    , FAULTY = 4
+    , EXPORTDIRMISSING = 5;
 
     /**
      * oxconfig object
@@ -67,29 +67,29 @@ class GN2_Utilities{
     public static function checkExportDir($sModuleExportDirectoryName)
     {
         $ret = array('status' => false,
-                    'ModuleExportDirectoryName' => $sModuleExportDirectoryName,
-                    'ModuleExportDirectoryPath' => null);
-        
-            //if export directory in base shop does not exist, create one
-            $config = self::getOXConfig();
-            $baseDirPlusExport = $config->getConfigParam('sShopDir') . self::$_sOxExportDir;
-            if(! is_dir($baseDirPlusExport)){
+            'ModuleExportDirectoryName' => $sModuleExportDirectoryName,
+            'ModuleExportDirectoryPath' => null);
+
+        //if export directory in base shop does not exist, create one
+        $config = self::getOXConfig();
+        $baseDirPlusExport = $config->getConfigParam('sShopDir') . self::$_sOxExportDir;
+        if (!is_dir($baseDirPlusExport)) {
+            return $ret;
+        }
+
+        //if module export directory does not exist, create one
+        $sExportDirPath = $baseDirPlusExport . $sModuleExportDirectoryName;
+        if (!is_dir($sExportDirPath)) {
+            if (!mkdir($sExportDirPath)) {
                 return $ret;
             }
+        }
 
-            //if module export directory does not exist, create one
-            $sExportDirPath = $baseDirPlusExport. $sModuleExportDirectoryName;
-            if(! is_dir($sExportDirPath)){
-                if(!mkdir($sExportDirPath)){
-                    return $ret;
-                }
-            }
+        //set variable
+        $ret['status'] = true;
+        $ret['ModuleExportDirectoryName'] = $sModuleExportDirectoryName;
+        $ret['ModuleExportDirectoryPath'] = $sExportDirPath;
 
-            //set variable
-            $ret['status'] = true;
-            $ret['ModuleExportDirectoryName'] = $sModuleExportDirectoryName;
-            $ret['ModuleExportDirectoryPath'] = $sExportDirPath;
-        
         return $ret;
     }
 
@@ -115,18 +115,18 @@ class GN2_Utilities{
      */
     public static function getFilePath($sModuleExportDirectory, $fileSuffix = '')
     {
-        $sExportDirPath  = self::_getModuleExportPath($sModuleExportDirectory);
+        $sExportDirPath = self::_getModuleExportPath($sModuleExportDirectory);
         $fileName = self::getFileName($fileSuffix);
         $filePath = $sExportDirPath . $fileName;
         return $filePath;
     }
-    
+
     public static function getExportFilePath()
     {
         $exportPath = trim(self::getExportDirPath(), '/ ');
         $fileName = trim(self::getFileName(), '/ ');
 
-        $filePath = '/' .$exportPath . '/' .$fileName;
+        $filePath = '/' . $exportPath . '/' . $fileName;
 
         return $filePath;
     }
@@ -137,12 +137,12 @@ class GN2_Utilities{
      * @param string $fileSuffix optional suffix to the filename, default is an empty string
      * @return string
      */
-    public static function getFileName($fileSuffix='')
+    public static function getFileName($fileSuffix = '')
     {
         //the filename should be created each time it is called
         list($usec, $sec) = explode(" ", microtime());
-        $sTimestamp =  intval((float)$usec + (float)$sec);
-        $sFilename = $fileSuffix. $sTimestamp . '.csv';
+        $sTimestamp = intval((float)$usec + (float)$sec);
+        $sFilename = $fileSuffix . $sTimestamp . '.csv';
         return $sFilename;
     }
 
@@ -156,7 +156,7 @@ class GN2_Utilities{
         if (file_exists($file)) {
             header('Content-Description: File Transfer');
             header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
@@ -178,7 +178,7 @@ class GN2_Utilities{
         $oConfig = self::getOXConfig();
         $sShopURL = rtrim($oConfig->getConfigParam('sShopURL'), ' /');
 
-        return '<a href="'.$sShopURL.'/' . self::$_sOxExportDir . $sModuleExportDirectoryName . basename($sFile) . '">' . basename($sFile) . ' </a>';
+        return '<a href="' . $sShopURL . '/' . self::$_sOxExportDir . $sModuleExportDirectoryName . basename($sFile) . '">' . basename($sFile) . ' </a>';
     }
 
 
@@ -188,14 +188,14 @@ class GN2_Utilities{
      */
     public static function getOXConfig()
     {
-        if(self::$_OxConfig === null){
-            if (class_exists ( "oxconfig")) {
-                if (method_exists (oxconfig, "getInstance") ) {
-                    self::$_OxConfig =  oxconfig::getInstance();
+        if (self::$_OxConfig === null) {
+            if (class_exists("oxconfig")) {
+                if (method_exists(oxconfig, "getInstance")) {
+                    self::$_OxConfig = oxconfig::getInstance();
                 }
             }
 
-            if(!is_object(self::$_OxConfig)){
+            if (!is_object(self::$_OxConfig)) {
                 self::$_OxConfig = oxRegistry::getConfig();
             }
         }
@@ -220,7 +220,7 @@ class GN2_Utilities{
     public static function translateReport($dReport)
     {
         $ret = 'UNKNOWN STATUS';
-        switch ( $dReport ){
+        switch ($dReport) {
             case   GN2_Utilities::SUCCESS:
                 $ret = '<span style="background-color: forestgreen;"> Successful </span>';
                 break;
@@ -260,20 +260,20 @@ class GN2_Utilities{
      */
     public static function getExportDirPath()
     {
-        if(self::$_exportDirPath === null){
+        if (self::$_exportDirPath === null) {
             $sExportDir = '/gn2_aboexport/';
             if (function_exists('posix_getuid')) {
                 $aUserInfo = posix_getpwuid(posix_getuid());
-                self::$_exportDirPath =  $aUserInfo['dir']. $sExportDir;
-            }else{
+                self::$_exportDirPath = $aUserInfo['dir'] . $sExportDir;
+            } else {
                 //use shell
                 $sTildeExpanded = hell_exec('echo ~');
-                self::$_exportDirPath =  $sTildeExpanded . $sExportDir;
+                self::$_exportDirPath = $sTildeExpanded . $sExportDir;
             }
         }
 
         //create Export folder
-        if(!file_exists(self::$_exportDirPath)){
+        if (!file_exists(self::$_exportDirPath)) {
             mkdir(self::$_exportDirPath);
         }
         return self::$_exportDirPath;

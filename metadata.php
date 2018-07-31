@@ -29,13 +29,13 @@ $sMetadataVersion = '2.0';
  */
 
 $aModule = array(
-    'id'            => 'gn2_newsletterconnect',
-    'title'         => 'gn2 :: NewsletterConnect',
-    'description'   => '',
-    'thumbnail'     => 'gn2_newsletterconnect.png',
-    'version'       => '2.0',
-    'author'        => 'gn2 netwerk',
-    'extend'        => array(
+    'id' => 'gn2_newsletterconnect',
+    'title' => 'gn2 :: NewsletterConnect',
+    'description' => '',
+    'thumbnail' => 'gn2_newsletterconnect.png',
+    'version' => '2.0',
+    'author' => 'gn2 netwerk',
+    'extend' => array(
         \OxidEsales\Eshop\Application\Model\User::class =>
             \GN2\NewsletterConnect\Application\Model\User::class,
 

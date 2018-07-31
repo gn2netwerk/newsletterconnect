@@ -21,7 +21,7 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Mapper_Categories
-extends GN2_NewsletterConnect_Mapper_Abstract
+    extends GN2_NewsletterConnect_Mapper_Abstract
 {
     /**
      * Recursively builds up a tree of categories

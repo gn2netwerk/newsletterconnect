@@ -12,7 +12,7 @@
 namespace GN2\NewsletterConnect\Application\Model;
 
 if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__).'/../../gn2_newsletterconnect.php';
+    include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
 }
 
 
@@ -27,24 +27,24 @@ class User extends User_parent
      * @param string|optional $oxuser__oxemail the user e-mail address
      * @return GN2_NewsletterConnect_Mailing_Recipient
      */
-    public function gn2NewsletterConnectOxid2Recipient($oxuser__oxemail='')
+    public function gn2NewsletterConnectOxid2Recipient($oxuser__oxemail = '')
     {
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
-        if($oxuser__oxemail !== ''){
+        if ($oxuser__oxemail !== '') {
             $recipient->setEmail($oxuser__oxemail);
-        }else{
+        } else {
             $recipient->setEmail($this->oxuser__oxusername->rawValue);
         }
 
         $salutation = $this->oxuser__oxsal->rawValue;
         switch (strtolower($salutation)) {
-        case "mr":
-            $salutation = 'Herr';
-            break;
-        case "mrs":
-        case "miss":
-            $salutation = 'Frau';
-            break;
+            case "mr":
+                $salutation = 'Herr';
+                break;
+            case "mrs":
+            case "miss":
+                $salutation = 'Frau';
+                break;
         }
 
         $recipient->setSalutation($salutation);
@@ -62,22 +62,22 @@ class User extends User_parent
         $recipient->setFaxNumber(''); // TODO: split & save
         $recipient->setMobPrefix(''); // TODO: split & save
         $recipient->setMobNumber(''); // TODO: split & save
-        
+
         //set the optin status
-        if(isset($this->oxuser__oxdboptin)){
-            if($this->oxuser__oxdboptin->rawValue == 0 && $this->oxuser__oxunsubscribed->rawValue == '0000-00-00 00:00:00'){
+        if (isset($this->oxuser__oxdboptin)) {
+            if ($this->oxuser__oxdboptin->rawValue == 0 && $this->oxuser__oxunsubscribed->rawValue == '0000-00-00 00:00:00') {
                 //nie angemdeldet
                 $recipient->setOxidNewsletterStatus(0);
-            }elseif($this->oxuser__oxdboptin->rawValue == 0 && $this->oxuser__oxunsubscribed->rawValue != '0000-00-00 00:00:00'){
+            } elseif ($this->oxuser__oxdboptin->rawValue == 0 && $this->oxuser__oxunsubscribed->rawValue != '0000-00-00 00:00:00') {
                 //haben sich mal abgemeldet
                 $recipient->setOxidNewsletterStatus(3);
-            }else{
+            } else {
                 $recipient->setOxidNewsletterStatus($this->oxuser__oxdboptin->rawValue);
             }
 
         }
 
-        $oUBase = oxNew( 'oxUBase' );
+        $oUBase = oxNew('oxUBase');
         $langISO = $oUBase->getActiveLangAbbr();
         $recipient->setLanguage($langISO);
 
@@ -87,8 +87,8 @@ class User extends User_parent
 
     /**
      * Opts In the recipient
-     * @param boolean $blSubscribe       Subscribe yes/no
-     * @param boolean $blSendOptIn       Unused in this implementation, inherited from overridden function
+     * @param boolean $blSubscribe Subscribe yes/no
+     * @param boolean $blSendOptIn Unused in this implementation, inherited from overridden function
      * @param boolean $blForceCheckOptIn Unused in this implementation, inherited from overridden function
      * @return bool
      */
@@ -123,7 +123,7 @@ class User extends User_parent
                     $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
                     $mailingService->unsubscribeRecipient($list, $newRecipient);
                 }
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 /* Do nothing */
             }
         }
@@ -141,7 +141,8 @@ class User extends User_parent
         try {
             $recipient = $this->gn2NewsletterConnectOxid2Recipient();
             GN2_NewsletterConnect::getMailingService()->updateRecipient($recipient);
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
 
         return $blRet;
     }

@@ -9,7 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-require_once dirname(__FILE__).'/../../../gn2_newsletterconnect.php';
+require_once dirname(__FILE__) . '/../../../gn2_newsletterconnect.php';
 
 /**
  * Class GN2_NewsletterConnect_Config
@@ -61,22 +61,22 @@ class GN2_NewsletterConnect_Config extends oxAdminView
         $dExportNotSubscribed = false;
         $sTransferMethod = 'packet';
         //export confirmed subscriptions
-        if(! GN2_NewsletterConnect::getOXParameter('activeSubscription')){
+        if (!GN2_NewsletterConnect::getOXParameter('activeSubscription')) {
             $bExportActiveSubscriptions = false;
         }
 
         //export unconfirmed subscriptions
-        if(GN2_NewsletterConnect::getOXParameter('unconfirmedSubscription')){
+        if (GN2_NewsletterConnect::getOXParameter('unconfirmedSubscription')) {
             $bExportUnconfirmedSubscriptions = true;
         }
 
         //export inactive subscriptions
-        if(GN2_NewsletterConnect::getOXParameter('inactiveSubscription')){
+        if (GN2_NewsletterConnect::getOXParameter('inactiveSubscription')) {
             $bExportInActiveSubscriptions = true;
         }
 
         //export  unsubscribed user
-        if(GN2_NewsletterConnect::getOXParameter('noSubscription')){
+        if (GN2_NewsletterConnect::getOXParameter('noSubscription')) {
             $dExportNotSubscribed = true;
         }
 
@@ -89,27 +89,27 @@ class GN2_NewsletterConnect_Config extends oxAdminView
 
         //get the export status flag
         $blExportStatus = false;
-        if(GN2_NewsletterConnect::getOXParameter('export_status')){
+        if (GN2_NewsletterConnect::getOXParameter('export_status')) {
             $blExportStatus = true;
         }
 
-        if(GN2_NewsletterConnect::getOXParameter('transfermethod')){
+        if (GN2_NewsletterConnect::getOXParameter('transfermethod')) {
             $sTransferMethod = GN2_NewsletterConnect::getOXParameter('transfermethod');
         }
-        
+
         //call exporter
         $oExporter = new GN2_NewsletterConnect_Export($bExportActiveSubscriptions,
-                                                        $bExportInActiveSubscriptions,
-                                                        $bExportUnconfirmedSubscriptions,
-                                                        trim ($sMosListId),
-                                                        trim ($dImportArt),
-                                                        $blExportStatus,
-                                                        $dExportNotSubscribed
-                                                    );
+            $bExportInActiveSubscriptions,
+            $bExportUnconfirmedSubscriptions,
+            trim($sMosListId),
+            trim($dImportArt),
+            $blExportStatus,
+            $dExportNotSubscribed
+        );
         $oExporter->setTransferMethod($sTransferMethod);
         $aReport = $oExporter->transferData();
-        if(is_array($aReport)){
-            $this->_sExportStatus = GN2_Utilities::translateReport( $aReport['REPORT']); //($aReport);
+        if (is_array($aReport)) {
+            $this->_sExportStatus = GN2_Utilities::translateReport($aReport['REPORT']); //($aReport);
             $this->_sExportReportData = $aReport['LINK'];
         }
     }
@@ -137,7 +137,7 @@ class GN2_NewsletterConnect_Config extends oxAdminView
         //export subscribers
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
         $this->_aViewData['gn2_ExportReportData'] = $this->_sExportReportData;
-        $this->_aViewData['gn2_ExportDir']  = GN2_Utilities::checkExportDir(EXPORTDIR)['status'];
+        $this->_aViewData['gn2_ExportDir'] = GN2_Utilities::checkExportDir(EXPORTDIR)['status'];
         $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
         $this->_aViewData['activeSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 1');
         $this->_aViewData['unconfirmedSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 2');
@@ -158,10 +158,10 @@ class GN2_NewsletterConnect_Config extends oxAdminView
     private function _CountSubscribers($sWhereClause = '')
     {
         //set where clause
-        $sWhere = " OXSHOPID = '". GN2_Utilities::getShopId() . "'";
-        if (trim($sWhereClause) !== ''){
+        $sWhere = " OXSHOPID = '" . GN2_Utilities::getShopId() . "'";
+        if (trim($sWhereClause) !== '') {
             $sWhere = $sWhereClause . ' AND ' . $sWhere;
-        }else{
+        } else {
             $sWhere = ' WHERE ' . $sWhere;
         }
 

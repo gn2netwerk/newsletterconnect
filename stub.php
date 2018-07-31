@@ -11,33 +11,33 @@
 ob_start();
 
 define('GN2_NEWSLETTERCONNECT_LOADED', 1);
-define ('EXPORTDIR', 'gn2_newsletterconnect/');
+define('EXPORTDIR', 'gn2_newsletterconnect/');
 
-include_once dirname(__FILE__).'Core/Environment/Environment.php';
-include_once dirname(__FILE__).'Core/Environment/Oxid.php';
-include_once dirname(__FILE__).'Core/Environment/Oxid44.php';
-include_once dirname(__FILE__).'Core/Environment/Oxid47.php';
-include_once dirname(__FILE__).'Core/Export/Export.php';
-include_once dirname(__FILE__).'Core/Help/Utilities.php';
+include_once dirname(__FILE__) . 'Core/Environment/Environment.php';
+include_once dirname(__FILE__) . 'Core/Environment/Oxid.php';
+include_once dirname(__FILE__) . 'Core/Environment/Oxid44.php';
+include_once dirname(__FILE__) . 'Core/Environment/Oxid47.php';
+include_once dirname(__FILE__) . 'Core/Export/Export.php';
+include_once dirname(__FILE__) . 'Core/Help/Utilities.php';
 
 if (strpos($_SERVER['SCRIPT_NAME'], 'api.php') !== false) {
-    include_once dirname(__FILE__).'Core/Mapper/Abstract.php';
-    include_once dirname(__FILE__).'Core/Mapper/Categories.php';
-    include_once dirname(__FILE__).'Core/Mapper/Products.php';
-    include_once dirname(__FILE__).'Core/Output/Abstract.php';
-    include_once dirname(__FILE__).'Core/Output/Json.php';
-    include_once dirname(__FILE__).'Core/Output/Csv.php';
-    include_once dirname(__FILE__).'Core/Data/Result.php';
+    include_once dirname(__FILE__) . 'Core/Mapper/Abstract.php';
+    include_once dirname(__FILE__) . 'Core/Mapper/Categories.php';
+    include_once dirname(__FILE__) . 'Core/Mapper/Products.php';
+    include_once dirname(__FILE__) . 'Core/Output/Abstract.php';
+    include_once dirname(__FILE__) . 'Core/Output/Json.php';
+    include_once dirname(__FILE__) . 'Core/Output/Csv.php';
+    include_once dirname(__FILE__) . 'Core/Data/Result.php';
     include_once 'api.php';
 }
 
-include_once dirname(__FILE__).'Core/Exception/MailingService.php';
-include_once dirname(__FILE__).'Core/WebService/Abstract.php';
-include_once dirname(__FILE__).'Core/WebService/Curl.php';
-include_once dirname(__FILE__).'Core/Mailing/List.php';
-include_once dirname(__FILE__).'Core/Mailing/Recipient.php';
-include_once dirname(__FILE__).'Core/MailingService/Interface.php';
-include_once dirname(__FILE__).'Core/MailingService/MailingWork.php';
+include_once dirname(__FILE__) . 'Core/Exception/MailingService.php';
+include_once dirname(__FILE__) . 'Core/WebService/Abstract.php';
+include_once dirname(__FILE__) . 'Core/WebService/Curl.php';
+include_once dirname(__FILE__) . 'Core/Mailing/List.php';
+include_once dirname(__FILE__) . 'Core/Mailing/Recipient.php';
+include_once dirname(__FILE__) . 'Core/MailingService/Interface.php';
+include_once dirname(__FILE__) . 'Core/MailingService/MailingWork.php';
 
 if (defined('GN2_NEWSLETTERCONNECT_LOADED')) {
     GN2_NewsletterConnect::main();

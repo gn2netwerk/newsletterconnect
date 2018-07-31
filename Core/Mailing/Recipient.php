@@ -20,7 +20,6 @@
  * @version    Release: <package_version>
  * @link       http://www.gn2-netwerk.de/
  */
-
 class GN2_NewsletterConnect_Mailing_Recipient
 {
     /**
@@ -618,5 +617,5 @@ class GN2_NewsletterConnect_Mailing_Recipient
     {
         $this->_dNewsletterStatus = $dStatus;
     }
-    
+
 }

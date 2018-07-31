@@ -21,7 +21,7 @@
  * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Environment_Oxid44
-extends GN2_NewsletterConnect_Environment_Oxid
+    extends GN2_NewsletterConnect_Environment_Oxid
 {
     /**
      * Returns the Oxid 4.4 specific name of the article table

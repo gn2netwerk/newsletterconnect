@@ -11,7 +11,8 @@
 
 namespace GN2\NewsletterConnect\Core;
 
-require_once(dirname(__FILE__).'/../gn2_newsletterconnect.php');
+require_once(dirname(__FILE__) . '/../gn2_newsletterconnect.php');
+
 use GN2_NewsletterConnect;
 
 /**
@@ -35,7 +36,7 @@ class Output extends Output_parent
 
             if (isset($savedSettings['api_ips'])) {
                 $ips = explode("\n", $savedSettings['api_ips']);
-                foreach ($ips as $k=>$v) {
+                foreach ($ips as $k => $v) {
                     $ips[$k] = trim($v);
                 }
                 if (in_array($_SERVER['REMOTE_ADDR'], $ips) && isset($savedSettings['voucher_series']) && $savedSettings['voucher_series'] != "") {
@@ -47,12 +48,12 @@ class Output extends Output_parent
                             if ($voucherSeries != "") {
                                 $oOXDB = oxNew('oxdb');
                                 $oDb = oxDb::getDb();
-                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "'.$oOXDB->escapeString($voucherSeries).'"';
+                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "' . $oOXDB->escapeString($voucherSeries) . '"';
                                 $sql .= ' && OXUSERID="" && OXRESERVED=0 && OXTIMESTAMP<>"1984-01-01 08:00:00"';
 
                                 $voucherRow = $oDb->getRow($sql);
                                 if ($voucherRow) {
-                                    $oDb->execute('UPDATE oxvouchers SET OXTIMESTAMP="1984-01-01 08:00:00" WHERE OXID="'.$voucherRow[0].'"');
+                                    $oDb->execute('UPDATE oxvouchers SET OXTIMESTAMP="1984-01-01 08:00:00" WHERE OXID="' . $voucherRow[0] . '"');
                                     $voucher = $voucherRow[1];
                                 }
                             }
@@ -62,7 +63,7 @@ class Output extends Output_parent
                             die();
                         case "updateUser":
                             $oDb = oxDb::getDb();
-                            $sql = 'select oxid from oxuser where OXUSERNAME = '.$oDb->quote($_REQUEST['email']).' LIMIT 1';
+                            $sql = 'select oxid from oxuser where OXUSERNAME = ' . $oDb->quote($_REQUEST['email']) . ' LIMIT 1';
                             $oxid = $oDb->getOne($sql);
                             $response = array();
                             $response['msg'] = 'error';

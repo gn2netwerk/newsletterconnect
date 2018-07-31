@@ -12,7 +12,7 @@
 namespace GN2\NewsletterConnect\Application\Controller;
 
 if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__).'/../../gn2_newsletterconnect.php';
+    include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
 }
 
 use GN2_NewsletterConnect;
@@ -73,7 +73,7 @@ class AccountNewsletterController extends AccountNewsletterController_parent
         $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
         $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 
-        if ($list!==null) {
+        if ($list !== null) {
             if ($status == 1) {
                 GN2_NewsletterConnect::getMailingService()->optInRecipient($recipient, 'account');
                 /*GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient, 'account');*/
