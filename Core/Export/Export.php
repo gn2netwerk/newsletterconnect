@@ -11,15 +11,6 @@
 
 /**
  * GN2_NewsletterConnect_Export
- *
- * PHP version 5
- *
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
- * @author   Stanley Agu <st@gn2.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version  GIT: <git_id>
- * @link     http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Export
 {

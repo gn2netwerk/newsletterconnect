@@ -13,14 +13,6 @@
 /**
  * GN2_Utilities class.
  * Holds some general functions
- *
- * PHP version 5
- *
- * @package  GN2_NewsletterConnect
- * @author   Stanley Agu <st@gn2.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version  GIT: <git_id>
- * @link     http://www.gn2-netwerk.de/
  */
 class GN2_Utilities
 {
@@ -121,6 +113,10 @@ class GN2_Utilities
         return $filePath;
     }
 
+
+    /**
+     * @return string
+     */
     public static function getExportFilePath()
     {
         $exportPath = trim(self::getExportDirPath(), '/ ');

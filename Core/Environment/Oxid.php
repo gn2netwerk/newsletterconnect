@@ -47,6 +47,9 @@ class GN2_NewsletterConnect_Environment_Oxid
         include_once $root . '/bootstrap.php';
     }
 
+    /**
+     * @return array|mixed
+     */
     public function getModuleConfig()
     {
         $config = GN2_NewsletterConnect::getOXConfig();

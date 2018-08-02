@@ -11,14 +11,6 @@
 
 /**
  * Curl WebService Implementation
- *
- * @category   GN2_NewsletterConnect
- * @package    GN2_NewsletterConnect
- * @subpackage WebService
- * @author     Dave Holloway <dh@gn2-netwerk.de>
- * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <package_version>
- * @link       http://www.gn2-netwerk.de/
  */
 abstract class GN2_NewsletterConnect_WebService_Curl
     extends GN2_NewsletterConnect_WebService_Abstract

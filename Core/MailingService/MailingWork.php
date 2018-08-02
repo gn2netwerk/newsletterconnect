@@ -11,14 +11,6 @@
 
 /**
  * MailingService implementation for W3Work MailingWork
- *
- * @category   GN2_NewsletterConnect
- * @package    GN2_NewsletterConnect
- * @subpackage MailingService
- * @author     Dave Holloway <dh@gn2-netwerk.de>
- * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <package_version>
- * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_MailingService_Mailingwork
     extends GN2_NewsletterConnect_Webservice_Curl
@@ -274,7 +266,6 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * Gets fields associated with the MailingWork user table
      *
      * @return array Array of id=>field Names
-     * @throws GN2_NewsletterConnect_Exception_MailingService
      */
     private function _getFields()
     {
@@ -294,6 +285,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         return $this->_fields;
     }
 
+    /**
+     * @param $recipient
+     */
     public function updateRecipient($recipient)
     {
         $existingRecipient = $this->getRecipientByEmail($recipient->getEmail());
@@ -447,6 +441,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     }
 
 
+    /**
+     * @param $recipient
+     * @param $basketData
+     * @param $positions
+     * @throws GN2_NewsletterConnect_Exception_MailingService
+     */
     public function transferOrder($recipient, $basketData, $positions)
     {
         $this->_setMailingworkUrl('transferOxidOrder');

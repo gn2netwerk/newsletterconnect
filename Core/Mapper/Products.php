@@ -11,14 +11,6 @@
 
 /**
  * Product Mapper
- *
- * @category   GN2_NewsletterConnect
- * @package    GN2_NewsletterConnect
- * @subpackage Mapper
- * @author     Dave Holloway <dh@gn2-netwerk.de>
- * @license    GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version    Release: <git_id>
- * @link       http://www.gn2-netwerk.de/
  */
 class GN2_NewsletterConnect_Mapper_Products
     extends GN2_NewsletterConnect_Mapper_Abstract
@@ -111,10 +103,12 @@ class GN2_NewsletterConnect_Mapper_Products
         return $qsql;
     }
 
+
     /**
      * Returns results from the mapper
-     *
-     * @return GN2_NewsletterConnect_Data_Result Meta & result data
+     * @return GN2_NewsletterConnect_Data_Result
+     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
+     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
      */
     public function getResults()
     {

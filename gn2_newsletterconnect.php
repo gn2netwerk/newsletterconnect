@@ -161,7 +161,7 @@ class GN2_NewsletterConnect
 
     /**
      * Get parameter
-     * @param $sParameter the parameter key
+     * @param string $sParameter the parameter key
      * @return mixed
      */
     public static function getOXParameter($sParameter)
