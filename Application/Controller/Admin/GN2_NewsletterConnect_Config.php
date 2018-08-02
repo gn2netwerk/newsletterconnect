@@ -19,7 +19,7 @@ class GN2_NewsletterConnect_Config extends oxAdminView
     /**
      * @var string
      */
-    protected $_sThisTemplate = 'GN2_NewsletterConnect_Config.tpl';
+    protected $_sThisTemplate = 'gn2_newsletterconnect_config.tpl';
 
     /**
      * translated export status report, GN2_Utilities

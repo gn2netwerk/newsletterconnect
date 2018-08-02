@@ -61,7 +61,7 @@ $aModule = array(
     ),
 
     'templates' => array(
-        'GN2_NewsletterConnect_Config.tpl' =>
-            'gn2_newsletterconnect/views/admin/tpl/GN2_NewsletterConnect_Config.tpl',
+        'gn2_newsletterconnect_config.tpl' =>
+            'gn2_newsletterconnect/views/admin/tpl/gn2_newsletterconnect_config.tpl',
     ),
 );
