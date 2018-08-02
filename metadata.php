@@ -55,13 +55,13 @@ $aModule = array(
             \GN2\NewsletterConnect\Core\Output::class,
     ),
 
-    'files' => array(
-        'gn2_newsletterconnect_config' =>
-            'gn2/newsletterconnect/Application/Controller/admin/gn2_newsletterconnect_config.php',
+    'controllers' => array(
+        'GN2_NewsletterConnect_Config' =>
+            GN2\NewsletterConnect\Application\Controller\Admin\GN2_NewsletterConnect_Config::class
     ),
 
     'templates' => array(
-        'gn2_newsletterconnect_config.tpl' =>
-            'gn2/newsletterconnect/Application/views/admin/tpl/gn2_newsletterconnect_config.tpl',
+        'GN2_NewsletterConnect_Config.tpl' =>
+            'gn2/newsletterconnect/Application/views/admin/tpl/GN2_NewsletterConnect_Config.tpl',
     ),
 );

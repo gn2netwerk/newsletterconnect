@@ -9,17 +9,21 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Application\Controller\Admin;
+
+use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
+
 require_once dirname(__FILE__) . '/../../../gn2_newsletterconnect.php';
 
 /**
  * Class GN2_NewsletterConnect_Config
  */
-class gn2_newsletterconnect_config extends oxAdminView
+class GN2_NewsletterConnect_Config extends AdminDetailsController
 {
     /**
      * @var string
      */
-    protected $_sThisTemplate = 'gn2_newsletterconnect_config.tpl';
+    protected $_sThisTemplate = 'GN2_NewsletterConnect_Config.tpl';
 
     /**
      * translated export status report, GN2_Utilities
