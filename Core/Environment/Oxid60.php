@@ -12,7 +12,7 @@
 /**
  * Oxid 6.0.2 specific class
  */
-class GN2_NewsletterConnect_Environment_Oxid602
+class GN2_NewsletterConnect_Environment_Oxid60
     extends GN2_NewsletterConnect_Environment_Oxid
 {
 

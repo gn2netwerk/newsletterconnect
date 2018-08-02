@@ -50,11 +50,13 @@ class GN2_NewsletterConnect
         $version = self::getOXVersion();
 
         switch ($version) {
-            case 602:
-                return new GN2_NewsletterConnect_Environment_Oxid602();
+            case 60:
+                $env = new GN2_NewsletterConnect_Environment_Oxid60;
+                break;
 
             default:
-                $env = new GN2_NewsletterConnect_Environment_Oxid();
+                $env = new GN2_NewsletterConnect_Environment_Oxid;
+                break;
         }
 
         $env->loadBootstrap();
