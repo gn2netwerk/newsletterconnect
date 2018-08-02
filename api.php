@@ -67,9 +67,7 @@ class GN2_NewsletterConnect_Api
 
 }
 
-require_once 'gn2_newsletterconnect.php';
 $env = GN2_NewsletterConnect::getEnvironment();
-
 $env->loadBootstrap();
 
 $valid = false;

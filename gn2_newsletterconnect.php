@@ -11,6 +11,7 @@
 
 require_once 'stub.php';
 
+
 /**
  * GN2_NewsletterConnect - Main OXID Module Initialization Class
  * @category GN2_NewsletterConnect
@@ -74,7 +75,6 @@ class GN2_NewsletterConnect
         try {
             $env = self::getEnvironment();
             self::$config = $env->getModuleConfig();
-
             $newsletterConnect = new self;
         } catch (\Exception $e) {
             // TODO: Live ErrorTracking

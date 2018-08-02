@@ -11,9 +11,13 @@
 
 namespace GN2\NewsletterConnect\Application\Controller\Admin;
 
-use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
+//require_once dirname(__FILE__) . '/../../../gn2_newsletterconnect.php';
 
-require_once dirname(__FILE__) . '/../../../gn2_newsletterconnect.php';
+use \OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
+//use \GN2_NewsletterConnect;
+//use \GN2_NewsletterConnect_Export;
+//use \GN2_Utilities;
+
 
 /**
  * Class GN2_NewsletterConnect_Config
@@ -39,8 +43,51 @@ class GN2_NewsletterConnect_Config extends AdminDetailsController
 
 
     /**
+     * @return string
+     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
+     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
+     */
+    function render()
+    {
+        parent::render();
+
+        return "gn2_newsletterconnect_config.tpl";
+    }
+
+
+    /*
+    public function render()
+    {
+        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+        $qsql = 'SELECT OXID,OXSERIENR FROM oxvoucherseries';
+        $rows = $oDb->Execute($qsql);
+        $voucherSeries = array(
+            array('', '--')
+        );
+        while (!$rows->EOF) {
+            $voucherSeries[] = $rows->fields;
+            $rows->moveNext();
+        }
+        $this->_aViewData['voucherSeries'] = $voucherSeries;
+        $this->_aViewData['config'] = gn2_newsletterconnect::$config;
+
+        //export subscribers
+        $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
+        $this->_aViewData['gn2_ExportReportData'] = $this->_sExportReportData;
+        $this->_aViewData['gn2_ExportDir'] = GN2_Utilities::checkExportDir(EXPORTDIR)['status'];
+        $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
+        $this->_aViewData['activeSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 1');
+        $this->_aViewData['unconfirmedSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 2');
+        $this->_aViewData['inactiveSubscribers'] = $this->_CountSubscribers("WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED != '0000-00-00 00:00:00' ");
+        $this->_aViewData['notSubscribed'] = $this->_CountSubscribers("WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED = '0000-00-00 00:00:00' ");
+        return parent::render();
+    }
+*/
+
+    /**
      *
      */
+    /*
     public function save()
     {
         $config = $this->getConfig();
@@ -50,12 +97,13 @@ class GN2_NewsletterConnect_Config extends AdminDetailsController
         $config->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
         GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getEnvironment()->getModuleConfig();
     }
-
+*/
 
     /**
      * invoked to export the oxid newsletter subscribers as csv.
      * This csv file can be imported in the mailing-works
      */
+    /*
     public function exportSubscribers()
     {
         //check configuration
@@ -117,40 +165,7 @@ class GN2_NewsletterConnect_Config extends AdminDetailsController
             $this->_sExportReportData = $aReport['LINK'];
         }
     }
-
-
-    /**
-     * @return string
-     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
-     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
-     */
-    public function render()
-    {
-        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
-        $qsql = 'SELECT OXID,OXSERIENR FROM oxvoucherseries';
-        $rows = $oDb->Execute($qsql);
-        $voucherSeries = array(
-            array('', '--')
-        );
-        while (!$rows->EOF) {
-            $voucherSeries[] = $rows->fields;
-            $rows->moveNext();
-        }
-        $this->_aViewData['voucherSeries'] = $voucherSeries;
-        $this->_aViewData['config'] = gn2_newsletterconnect::$config;
-
-        //export subscribers
-        $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
-        $this->_aViewData['gn2_ExportReportData'] = $this->_sExportReportData;
-        $this->_aViewData['gn2_ExportDir'] = GN2_Utilities::checkExportDir(EXPORTDIR)['status'];
-        $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
-        $this->_aViewData['activeSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 1');
-        $this->_aViewData['unconfirmedSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 2');
-        $this->_aViewData['inactiveSubscribers'] = $this->_CountSubscribers("WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED != '0000-00-00 00:00:00' ");
-        $this->_aViewData['notSubscribed'] = $this->_CountSubscribers("WHERE OXDBOPTIN = 0 and OXUNSUBSCRIBED = '0000-00-00 00:00:00' ");
-        return parent::render();
-    }
-
+*/
 
     /**
      * Gets the number of all or active or inactive subscribers.
@@ -160,6 +175,7 @@ class GN2_NewsletterConnect_Config extends AdminDetailsController
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
      */
+    /*
     private function _CountSubscribers($sWhereClause = '')
     {
         //set where clause
@@ -176,5 +192,6 @@ class GN2_NewsletterConnect_Config extends AdminDetailsController
         $rows = $oDb->Execute($sCountSubscribersQuery);
         return $rows->fields[0];
     }
+    */
 
 }

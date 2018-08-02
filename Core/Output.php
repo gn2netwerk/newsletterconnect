@@ -13,7 +13,7 @@ namespace GN2\NewsletterConnect\Core;
 
 require_once dirname(__FILE__) . '/../gn2_newsletterconnect.php';
 
-use GN2_NewsletterConnect;
+use \GN2_NewsletterConnect;
 
 /**
  * Class Output
@@ -22,19 +22,13 @@ use GN2_NewsletterConnect;
 class Output extends Output_parent
 {
 
-
-
-    // TODO: Core-Ordner: refactoring oxNew() ersetzen
-    // TODO: Core-Ordner: Doc-Blocks für klassen raus, Funktion Doc-Blocks updaten
-
-
-
     /**
      * Output constructor.
      */
     public function __construct()
     {
         $api = $_REQUEST['mos_api'];
+
         if ($api == 1) {
             $config = GN2_NewsletterConnect::getOXConfig();
 

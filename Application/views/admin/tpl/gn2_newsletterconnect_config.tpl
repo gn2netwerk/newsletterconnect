@@ -1,3 +1,7 @@
+
+<h2>TEST</h2>
+
+[{*
 [{include file="headitem.tpl"}]
 
 <style type="text/css">
@@ -141,3 +145,4 @@
 
 </body>
 </html>
+*}]
