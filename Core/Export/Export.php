@@ -138,9 +138,14 @@ class GN2_NewsletterConnect_Export
      */
     private function _setMailingWorks()
     {
-        $mailingService = GN2_NewsletterConnect::getMailingService();
-        if (is_object($mailingService)) {
-            $this->_mailingWorks = $mailingService;
+        try {
+            $mailingService = GN2_NewsletterConnect::getMailingService();
+
+            if (is_object($mailingService)) {
+                $this->_mailingWorks = $mailingService;
+            }
+        } catch (\Exception $e) {
+            /* Do nothing */
         }
     }
 

@@ -39,7 +39,7 @@ class NewsletterController extends NewsletterController_parent
         if (!$aParams['oxuser__oxusername']) {
             Registry::get("oxUtilsView")->addErrorToDisplay('ERROR_MESSAGE_COMPLETE_FIELDS_CORRECTLY');
             return;
-        } elseif (!Registry::getUtils()->isValidEmail($aParams['oxuser__oxusername'])) {
+        } elseif (!oxNew(\OxidEsales\Eshop\Core\MailValidator::class)->isValidEmail($aParams['oxuser__oxusername'])) {
             // #1052C - eMail validation added
             Registry::get("oxUtilsView")->addErrorToDisplay('MESSAGE_INVALID_EMAIL');
             return;

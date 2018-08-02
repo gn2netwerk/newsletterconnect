@@ -117,7 +117,7 @@ class User extends User_parent
                 if (!$mailingService->getRecipientByEmail($email)) {
                     $mailingService->optInRecipient($newRecipient, 'general', 1);
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 /* Do nothing */
             }
         } else {
@@ -127,7 +127,7 @@ class User extends User_parent
                     $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
                     $mailingService->unsubscribeRecipient($list, $newRecipient);
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 /* Do nothing */
             }
         }
@@ -146,7 +146,8 @@ class User extends User_parent
         try {
             $recipient = $this->gn2NewsletterConnectOxid2Recipient();
             GN2_NewsletterConnect::getMailingService()->updateRecipient($recipient);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
+            /* Do nothing */
         }
 
         return $blRet;

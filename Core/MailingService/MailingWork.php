@@ -221,11 +221,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
 
     /**
      * Unsubscribes a recipient directly from a mailing list
-     *
-     * @param GN2_NewsletterConnect_Mailing_List $list List Object
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
-     *
-     * @return void
+     * @param GN2_NewsletterConnect_Mailing_List $list
+     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient
+     * @param string $type
      * @throws GN2_NewsletterConnect_Exception_MailingService
      */
     public function unsubscribeRecipient($list, $recipient, $type = 'general')
@@ -376,7 +374,8 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
                 try {
                     $recipient = $this->getRecipientById($recipientResponse['result'][0]);
                     return $recipient;
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
+                    /* Do nothing */
                 }
             }
         }

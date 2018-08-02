@@ -16,7 +16,7 @@ if (!class_exists('GN2_NewsletterConnect')) {
 }
 
 use \GN2_NewsletterConnect;
-use OxidEsales\Eshop\Application\Model\Country;
+use \OxidEsales\Eshop\Application\Model\Country;
 use \OxidEsales\Eshop\Application\Model\Order;
 use \OxidEsales\Eshop\Application\Model\Article;
 use \OxidEsales\Eshop\Core\DatabaseProvider;
@@ -27,8 +27,9 @@ use \OxidEsales\Eshop\Core\DatabaseProvider;
  */
 class ThankYouController extends ThankYouController_parent
 {
+
     /**
-     * Constructor
+     * ThankYouController constructor.
      * Transfers current order to MailingService on thank you page
      */
     public function __construct()
@@ -62,11 +63,15 @@ class ThankYouController extends ThankYouController_parent
                 if (is_object($shopArticle)) {
                     $shopCategory = $shopArticle->getCategory();
                     if (is_object($shopCategory)) {
-                        $oDb = DatabaseProvider::getDb();
-                        $category = $oDb->getOne(
-                            'select oxtitle from oxcategories where OXID = "' .
-                            $shopCategory->oxcategories__oxid->value . '" LIMIT 1'
-                        );
+                        try {
+                            $oDb = DatabaseProvider::getDb();
+                            $category = $oDb->getOne(
+                                'select oxtitle from oxcategories where OXID = "' .
+                                $shopCategory->oxcategories__oxid->value . '" LIMIT 1'
+                            );
+                        } catch (\Exception $e) {
+                            /* Do nothing */
+                        }
                     }
                 }
                 $items[$i]['ItemVariant'] = $category;
@@ -87,7 +92,7 @@ class ThankYouController extends ThankYouController_parent
 
             $bCountry = oxNew(Country::class);
             $bCountry->load($oxOrder->oxorder__oxbillcountryid->rawValue);
-            $dCountry = oxNew(\OxidEsales\Eshop\Application\Model\Country::class);
+            $dCountry = oxNew(\Country::class);
             $dCountry->load($oxOrder->oxorder__oxdelcountryid->rawValue);
 
             $billCountry = $bCountry->oxcountry__oxisoalpha2->rawValue;
@@ -120,7 +125,7 @@ class ThankYouController extends ThankYouController_parent
                 );
 
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             /* ignore any gn2_newsletterconnect errors. */
         }
         parent::__construct();

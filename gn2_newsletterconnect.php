@@ -74,7 +74,7 @@ class GN2_NewsletterConnect
             self::$config = $env->getModuleConfig();
 
             $newsletterConnect = new self;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // TODO: Live ErrorTracking
         }
     }

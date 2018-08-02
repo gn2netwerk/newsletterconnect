@@ -19,7 +19,7 @@ class GN2_NewsletterConnect_Mapper_Categories
     /**
      * Recursively builds up a tree of categories
      *
-     * @param oxcategorylist $tree OXID CategoryList Object
+     * @param object oxcategorylist $tree OXID CategoryList Object
      *
      * @return array Array containing tree data
      */

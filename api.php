@@ -87,7 +87,8 @@ try {
             $valid = true;
         }
     }
-} catch (Exception $e) {
+} catch (\Exception $e) {
+    /* Do nothing */
 }
 
 while (!$valid) {

@@ -172,7 +172,6 @@ class GN2_NewsletterConnect_Mapper_Products
                 /* Product Pics */
                 $product->pictures = array();
                 $picture = "";
-                $lastPicture = "";
 
                 for ($i = 0; $i < 12; $i++) {
                     $lastPicture = $picture;
@@ -187,7 +186,6 @@ class GN2_NewsletterConnect_Mapper_Products
                 /* Product Thumbnails */
                 $product->thumbnails = array();
                 $picture = "";
-                $lastPicture = "";
 
                 for ($i = 0; $i < 12; $i++) {
                     $lastPicture = $picture;
