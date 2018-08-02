@@ -56,12 +56,12 @@ $aModule = array(
     ),
 
     'controllers' => array(
-        'gn2_newsletterconnect_config' =>
-            GN2\NewsletterConnect\Application\Controller\Admin\GN2_NewsletterConnect_Config::class
+        'newsletterconnect_config' =>
+            \GN2\NewsletterConnect\Application\Controller\Admin\newsletterconnect_config::class,
     ),
 
     'templates' => array(
-        'gn2_newsletterconnect_config.tpl' =>
-            'gn2/newsletterconnect/Application/views/admin/tpl/gn2_newsletterconnect_config.tpl',
+        'newsletterconnect_config.tpl' =>
+            'gn2/newsletterconnect/Application/views/admin/tpl/newsletterconnect_config.tpl',
     ),
 );

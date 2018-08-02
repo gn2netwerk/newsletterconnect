@@ -2,7 +2,7 @@
 <OX>
     <OXMENU id="NAVIGATION_ESHOPADMIN">
         <MAINMENU id="mxshopsett">
-            <SUBMENU id="gn2_newsletterconnect_config" cl="gn2_newsletterconnect_config">
+            <SUBMENU id="newsletterconnect_config" cl="newsletterconnect_config">
             </SUBMENU>
         </MAINMENU>
     </OXMENU>
