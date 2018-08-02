@@ -46,7 +46,7 @@ class GN2_NewsletterConnect_Mapper_Products
         $where = 'WHERE (1';
 
         /* Fulltext search */
-        $oOXDB = oxNew('oxdb');
+        $oOXDB = oxNew(\OxidEsales\Eshop\Core\DatabaseProvider::class);
         $q = $oOXDB->escapeString(GN2_NewsletterConnect::getOXParameter('q'));
         if ($q != '') {
             $where .= '
@@ -122,15 +122,17 @@ class GN2_NewsletterConnect_Mapper_Products
         $oxver = GN2_NewsletterConnect::getOXVersion();
 
         $qsql = $this->getQuery();
-        $rows = oxDb::getDb()->Execute($qsql);
 
-        $total = oxDb::getDb()->Execute('SELECT FOUND_ROWS() as rows');
+        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+
+        $rows = $oDb->Execute($qsql);
+        $total = $oDb->Execute('SELECT FOUND_ROWS() as rows');
 
         $data = array();
         if ($rows != false && $rows->recordCount() > 0) {
 
             while (!$rows->EOF) {
-                $article = oxNew('oxarticle');
+                $article = oxNew(\OxidEsales\Eshop\Application\Model\Article::class);
                 $article->disableLazyLoading();
                 $article->load($rows->fields[0]);
 
@@ -216,28 +218,7 @@ class GN2_NewsletterConnect_Mapper_Products
                         = $attributeEntry;
                 }
 
-                /* new return values (August 2013) */
-                /*
-                 * ab oxid 4.9 ist dieser Aufruf nicht mehr gültig
-                 */
-                if ($oxver < 49) {
-                    $product->tags = $article->getTags();
-                } else {
-                    $sTagList = "";
-
-                    $oArticleTagList = oxNew("oxArticleTagList");
-                    $oArticleTagList->load($article->getId());
-                    $oTagSet = $oArticleTagList->get();
-
-                    foreach ($oTagSet as $oTag) {
-                        if ($sTagList != "") {
-                            $sTagList .= ", ";
-                        }
-                        $sTagList .= $oTag->getTitle();
-                    }
-
-                    $product->tags = $sTagList;
-                }
+                $product->tags = $article->getTags();
 
                 $oManufacturer = $article->getManufacturer();
                 $sManufacturer = $oManufacturer->oxmanufacturers__oxtitle->value;
@@ -250,9 +231,8 @@ class GN2_NewsletterConnect_Mapper_Products
                 $sCategoryIds = $article->getCategoryIds();
                 if (is_array($sCategoryIds)) {
                     foreach ($sCategoryIds as $sCategoryId) {
-                        $oCategory = oxNew("oxcategory");
+                        $oCategory = oxNew(\OxidEsales\Eshop\Application\Model\Category::class);
                         $oCategory->load($sCategoryId);
-
 
                         $sCategory = $oCategory->oxcategories__oxtitle->value;
                         $oCategoryParent = $oCategory->getParentCategory();

@@ -12,9 +12,14 @@
 namespace GN2\NewsletterConnect\Application\Controller;
 
 if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__) . '/gn2_newsletterconnect.php';
+    include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
 }
 
+use \GN2_NewsletterConnect;
+use OxidEsales\Eshop\Application\Model\Country;
+use \OxidEsales\Eshop\Application\Model\Order;
+use \OxidEsales\Eshop\Application\Model\Article;
+use \OxidEsales\Eshop\Core\DatabaseProvider;
 
 /**
  * Class ThankYouController
@@ -34,7 +39,7 @@ class ThankYouController extends ThankYouController_parent
             $myConfig = GN2_NewsletterConnect::getOXConfig();
 
             $orderId = GN2_NewsletterConnect::getOXSession()->getBasket()->getOrderId();
-            $oxOrder = oxNew('oxorder');
+            $oxOrder = oxNew(Order::class);
             $oxOrder->load($orderId);
 
             $oxArticles = $oxOrder->getOrderArticles(true);
@@ -52,12 +57,12 @@ class ThankYouController extends ThankYouController_parent
 
                 // VARIANT
                 $category = '';
-                $shopArticle = oxNew('oxarticle');
+                $shopArticle = oxNew(Article::class);
                 $shopArticle->load($oxArticle->oxorderarticles__oxartid->value);
                 if (is_object($shopArticle)) {
                     $shopCategory = $shopArticle->getCategory();
                     if (is_object($shopCategory)) {
-                        $oDb = oxDb::getDb();
+                        $oDb = DatabaseProvider::getDb();
                         $category = $oDb->getOne(
                             'select oxtitle from oxcategories where OXID = "' .
                             $shopCategory->oxcategories__oxid->value . '" LIMIT 1'
@@ -80,9 +85,9 @@ class ThankYouController extends ThankYouController_parent
                 $this->getUser()->oxuser__oxusername->rawValue
             );
 
-            $bCountry = oxNew('oxcountry');
+            $bCountry = oxNew(Country::class);
             $bCountry->load($oxOrder->oxorder__oxbillcountryid->rawValue);
-            $dCountry = oxNew('oxcountry');
+            $dCountry = oxNew(\OxidEsales\Eshop\Application\Model\Country::class);
             $dCountry->load($oxOrder->oxorder__oxdelcountryid->rawValue);
 
             $billCountry = $bCountry->oxcountry__oxisoalpha2->rawValue;

@@ -78,7 +78,7 @@ try {
         list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6)));
     }
 
-    $oUser = oxNew('oxuser');
+    $oUser = oxNew(\OxidEsales\Eshop\Application\Model\User::class);
     $oUser->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
     $oGroups = $oUser->getUserGroups();
 

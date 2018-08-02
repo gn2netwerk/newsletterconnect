@@ -9,6 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+
 /**
  * Category Mapper
  *
@@ -53,7 +54,7 @@ class GN2_NewsletterConnect_Mapper_Categories
      */
     public function getResults()
     {
-        $oCategoryTree = oxNew('oxcategorylist');
+        $oCategoryTree = oxNew(\OxidEsales\Eshop\Application\Model\CategoryList::class);
         $oCategoryTree->buildTree(null, true, true, true);
         $data = $this->_buildTree($oCategoryTree);
 

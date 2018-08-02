@@ -15,8 +15,9 @@ if (!class_exists('GN2_NewsletterConnect')) {
     include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
 }
 
-use GN2_NewsletterConnect;
-use oxRegistry;
+use \GN2_NewsletterConnect;
+use \OxidEsales\Eshop\Core\Registry;
+use \OxidEsales\Eshop\Core\Field;
 
 
 /**
@@ -36,23 +37,23 @@ class NewsletterController extends NewsletterController_parent
 
         // Überprüfung, der angegebenen E-Mail Adresse auf Gültigkeit
         if (!$aParams['oxuser__oxusername']) {
-            oxRegistry::get("oxUtilsView")->addErrorToDisplay('ERROR_MESSAGE_COMPLETE_FIELDS_CORRECTLY');
+            Registry::get("oxUtilsView")->addErrorToDisplay('ERROR_MESSAGE_COMPLETE_FIELDS_CORRECTLY');
             return;
-        } elseif (!oxRegistry::getUtils()->isValidEmail($aParams['oxuser__oxusername'])) {
+        } elseif (!Registry::getUtils()->isValidEmail($aParams['oxuser__oxusername'])) {
             // #1052C - eMail validation added
-            oxRegistry::get("oxUtilsView")->addErrorToDisplay('MESSAGE_INVALID_EMAIL');
+            Registry::get("oxUtilsView")->addErrorToDisplay('MESSAGE_INVALID_EMAIL');
             return;
         }
 
-        $oUser = oxNew('oxuser');
-        $oUser->oxuser__oxusername = new oxField($aParams['oxuser__oxusername'], oxField::T_RAW);
-        $oUser->oxuser__oxactive = new oxField(1, oxField::T_RAW);
-        $oUser->oxuser__oxrights = new oxField('user', oxField::T_RAW);
-        $oUser->oxuser__oxshopid = new oxField($this->getConfig()->getShopId(), oxField::T_RAW);
-        $oUser->oxuser__oxfname = new oxField($aParams['oxuser__oxfname'], oxField::T_RAW);
-        $oUser->oxuser__oxlname = new oxField($aParams['oxuser__oxlname'], oxField::T_RAW);
-        $oUser->oxuser__oxsal = new oxField($aParams['oxuser__oxsal'], oxField::T_RAW);
-        $oUser->oxuser__oxcountryid = new oxField($aParams['oxuser__oxcountryid'], oxField::T_RAW);
+        $oUser = oxNew(\OxidEsales\Eshop\Application\Model\User::class);
+        $oUser->oxuser__oxusername = new Field($aParams['oxuser__oxusername'], Field::T_RAW);
+        $oUser->oxuser__oxactive = new Field(1, Field::T_RAW);
+        $oUser->oxuser__oxrights = new Field('user', Field::T_RAW);
+        $oUser->oxuser__oxshopid = new Field($this->getConfig()->getShopId(), Field::T_RAW);
+        $oUser->oxuser__oxfname = new Field($aParams['oxuser__oxfname'], Field::T_RAW);
+        $oUser->oxuser__oxlname = new Field($aParams['oxuser__oxlname'], Field::T_RAW);
+        $oUser->oxuser__oxsal = new Field($aParams['oxuser__oxsal'], Field::T_RAW);
+        $oUser->oxuser__oxcountryid = new Field($aParams['oxuser__oxcountryid'], Field::T_RAW);
 
         if ($blSubscribe) {
             $oUser->setNewsSubscription(true, true);

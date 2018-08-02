@@ -176,7 +176,7 @@ class GN2_NewsletterConnect_Export
         }
 
         //get user list
-        $oUserList = oxNew('oxuserlist');
+        $oUserList = oxNew(\OxidEsales\Eshop\Application\Model\UserList::class);
         $oUserList->selectString($this->_getSubscribersQuery());
         $TotalSubscribers = $oUserList->count();
         if (!$TotalSubscribers) {

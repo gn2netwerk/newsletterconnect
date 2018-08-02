@@ -15,6 +15,9 @@ if (!class_exists('GN2_NewsletterConnect')) {
     include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
 }
 
+use \GN2_NewsletterConnect;
+use \GN2_NewsletterConnect_Mailing_Recipient;
+
 
 /**
  * Class User
@@ -77,7 +80,7 @@ class User extends User_parent
 
         }
 
-        $oUBase = oxNew('oxUBase');
+        $oUBase = oxNew(\OxidEsales\Eshop\Application\Controller\FrontendController::class);
         $langISO = $oUBase->getActiveLangAbbr();
         $recipient->setLanguage($langISO);
 
@@ -91,6 +94,7 @@ class User extends User_parent
      * @param boolean $blSendOptIn Unused in this implementation, inherited from overridden function
      * @param boolean $blForceCheckOptIn Unused in this implementation, inherited from overridden function
      * @return bool
+     * @throws \Exception
      */
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
@@ -133,6 +137,7 @@ class User extends User_parent
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     public function save()
     {

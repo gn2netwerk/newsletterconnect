@@ -122,8 +122,9 @@ class GN2_NewsletterConnect_Config extends oxAdminView
      */
     public function render()
     {
+        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
         $qsql = 'SELECT OXID,OXSERIENR FROM oxvoucherseries';
-        $rows = oxDb::getDb()->Execute($qsql);
+        $rows = $oDb->Execute($qsql);
         $voucherSeries = array(
             array('', '--')
         );
@@ -166,8 +167,9 @@ class GN2_NewsletterConnect_Config extends oxAdminView
         }
 
         //send query
+        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
         $sCountSubscribersQuery = 'SELECT count(*) FROM oxnewssubscribed ' . $sWhere;
-        $rows = oxDb::getDb()->Execute($sCountSubscribersQuery);
+        $rows = $oDb->Execute($sCountSubscribersQuery);
         return $rows->fields[0];
     }
 
