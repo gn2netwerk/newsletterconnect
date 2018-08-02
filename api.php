@@ -34,7 +34,7 @@ class GN2_NewsletterConnect_Api
     {
         $subject = $_SERVER['REQUEST_URI'];
         $pattern = '/' .
-            '(.*)\/modules\/gn2_newsletterconnect\/' .
+            '(.*)\/modules\/gn2\/newsletterconnect\/' .
             '(?P<mapper>products|categories)' .
             '\/?(?P<entity>[A-Za-z0-9?U\.\-\_]*)' .
             '(\.(?P<output>json|csv)?)' .

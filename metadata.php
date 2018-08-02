@@ -57,11 +57,11 @@ $aModule = array(
 
     'files' => array(
         'GN2_NewsletterConnect_Config' =>
-            'gn2_newsletterconnect/Application/Controller/admin/GN2_NewsletterConnect_Config.php',
+            'gn2/newsletterconnect/Application/Controller/admin/GN2_NewsletterConnect_Config.php',
     ),
 
     'templates' => array(
         'gn2_newsletterconnect_config.tpl' =>
-            'gn2_newsletterconnect/views/admin/tpl/gn2_newsletterconnect_config.tpl',
+            'gn2/newsletterconnect/views/admin/tpl/gn2_newsletterconnect_config.tpl',
     ),
 );
