@@ -14,7 +14,7 @@ require_once dirname(__FILE__) . '/../../../gn2_newsletterconnect.php';
 /**
  * Class GN2_NewsletterConnect_Config
  */
-class GN2_NewsletterConnect_Config extends oxAdminView
+class gn2_newsletterconnect_config extends oxAdminView
 {
     /**
      * @var string

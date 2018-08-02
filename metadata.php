@@ -56,8 +56,8 @@ $aModule = array(
     ),
 
     'files' => array(
-        'GN2_NewsletterConnect_Config' =>
-            'gn2/newsletterconnect/Application/Controller/admin/GN2_NewsletterConnect_Config.php',
+        'gn2_newsletterconnect_config' =>
+            'gn2/newsletterconnect/Application/Controller/admin/gn2_newsletterconnect_config.php',
     ),
 
     'templates' => array(

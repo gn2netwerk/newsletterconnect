@@ -11,7 +11,7 @@
 
 $aLang = array(
     'charset'                                               => 'UTF-8',
-    'GN2_newsletterConnectConfig' => "NewsletterConnect",
+    'gn2_newsletterconnect_config'                          => "NewsletterConnect",
 
     'GN2_NEWSLETTERCONNECT_MAIN'                            => 'Allgemein',
     'GN2_NEWSLETTERCONNECT_API_BASEURL'                     => 'Mailingwork API-Base-URL',
