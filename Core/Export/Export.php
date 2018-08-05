@@ -174,7 +174,9 @@ class GN2_NewsletterConnect_Export
         //get user list
         $oUserList = oxNew(\OxidEsales\Eshop\Application\Model\UserList::class);
         $oUserList->selectString($this->_getSubscribersQuery());
+
         $TotalSubscribers = $oUserList->count();
+
         if (!$TotalSubscribers) {
             return array("REPORT" => GN2_Utilities::NODATA, "LINK" => null);
         }
@@ -332,7 +334,7 @@ class GN2_NewsletterConnect_Export
 
     /**
      * Get the recipeints for export
-     * @param $oUserList oxuser list
+     * @param $oUserList object oxuser list
      * @return array array of the recipients
      */
     private function _setRecipients($oUserList)
@@ -390,12 +392,20 @@ class GN2_NewsletterConnect_Export
     private function _getWhereClause($table1 = 't_n', $table2 = 't_u')
     {
         $sShopIDClause = $table1 . ".OXSHOPID = '" . GN2_Utilities::getShopId() . "'";
+
         if ($this->_sWhereClause === null) {
             //if subscriber type is not chosen, export only the active subscribers
             return " WHERE $sShopIDClause AND $table1.OXDBOPTIN = 1";
         }
 
-        return "($this->_sWhereClause) AND $sShopIDClause";
+        // Bugfix für Oxid Enterprise Subshops
+        $sWhereClause = strstr(trim($this->_sWhereClause), ' ');
+        $sWhereClause = trim($sWhereClause, " ;,");
+        $sWhereClause = " WHERE ($sWhereClause) AND $sShopIDClause";
+        return $sWhereClause;
+
+        //$sWhereClause = "$this->_sWhereClause AND $sShopIDClause";
+        //return $sWhereClause;
     }
 
 

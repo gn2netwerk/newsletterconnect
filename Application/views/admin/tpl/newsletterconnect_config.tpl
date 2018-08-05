@@ -1,83 +1,144 @@
-[{include file="headitem.tpl" title="GENERAL_ADMIN_TITLE"|oxmultilangassign}]
-<script type="text/javascript">
-<!--
-function editThis( sID )
-{
-    var oTransfer = top.basefrm.edit.document.getElementById( "transfer" );
-    oTransfer.oxid.value = sID;
-    oTransfer.cl.value = top.basefrm.list.sDefClass;
 
-    //forcing edit frame to reload after submit
-    top.forceReloadingEditFrame();
+[{include file="headitem.tpl"}]
 
-    var oSearch = top.basefrm.list.document.getElementById( "search" );
-    oSearch.oxid.value = sID;
-    oSearch.actedit.value = 0;
-    oSearch.submit();
-}
-//-->
-</script>
+<style type="text/css">
+    .gn2mos { padding: 10px 20px; }
+    .gn2mos dl { float:left; width:100%; }
+    .gn2mos dt { float:left; clear:left; width:280px; }
+    .gn2mos dt span { font-style:italic;font-weight: normal; display:block; }
+    .gn2mos dd { float:left; margin:0 0 10px 10px;}
+    .gn2mos dd input.text { width: 350px;border:1px solid #cccccc;padding:2px; }
+    .gn2mos dd textarea { width:350px;height:100px; border:1px solid #cccccc;padding:2px; }
+</style>
 
-[{ if $readonly}]
-    [{assign var="readonly" value="readonly disabled"}]
-[{else}]
-    [{assign var="readonly" value=""}]
-[{/if}]
+<div class="gn2mos">
+    <form name="gn2mosform" id="gn2mosform" action="[{ $oViewConf->getSelfLink() }]" method="post">
+        [{$oViewConf->getHiddenSid()}]
+        <input type="hidden" name="cl" value="newsletterconnect_config">
+        <input type="hidden" name="fnc" value="save">
 
-<form name="transfer" id="transfer" action="[{ $oViewConf->getSelfLink() }]" method="post">
-    [{$oViewConf->getHiddenSid()}]
-    <input type="hidden" name="oxid" value="[{ $oxid }]">
-    <input type="hidden" name="oxidCopy" value="[{ $oxid }]">
-    <input type="hidden" name="cl" value="newsletterconnect_config">
-    <input type="hidden" name="editlanguage" value="[{ $editlanguage }]">
-</form>
+        <h1><img style="width:85px;height:85px;vertical-align: middle;margin-right:30px;" src="../modules/gn2/newsletterconnect/gn2_newsletterconnect.png">gn2 :: NewsletterConnect</h1>
 
-<form name="myedit" id="myedit" action="[{ $oViewConf->getSelfLink() }]" method="post" enctype="multipart/form-data">
-[{ $oViewConf->getHiddenSid() }]
-<input type="hidden" name="cl" value="newsletterconnect_config">
-<input type="hidden" name="fnc" value="">
-<input type="hidden" name="oxid" value="[{ $oxid }]">
-<input type="hidden" name="voxid" value="[{ $oxid }]">
-<input type="hidden" name="oxparentid" value="[{ $oxparentid }]">
-<input type="hidden" name="editval[oxarticles__oxid]" value="[{ $oxid }]">
+        <h2>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_MAIN'}]</h2>
+        <dl>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_BASEURL'}]</dt>
+            <dd><input type="text" name="config[api_baseurl]" class="text" value="[{$config.service_Mailingwork.api_baseurl}]"></dd>
 
-<div style="float:left;padding:0 20px 20px 0">
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_USERNAME'}]</dt>
+            <dd><input type="text" name="config[api_username]" class="text" value="[{$config.service_Mailingwork.api_username}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_PASSWORD'}]</dt>
+            <dd><input type="password" name="config[api_password]" class="text" value="[{$config.service_Mailingwork.api_password}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNUPSETUP_GENERAL'}]</dt>
+            <dd><input type="text" name="config[api_signupsetup]" class="text" value="[{$config.service_Mailingwork.api_signupsetup}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNOFFSETUP_GENERAL'}]</dt>
+            <dd><input type="text" name="config[api_signoffsetup]" class="text" value="[{$config.service_Mailingwork.api_signoffsetup}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNUPSETUP_ACCOUNT'}]</dt>
+            <dd><input type="text" name="config[api_signupsetup_account]" class="text" value="[{$config.service_Mailingwork.api_signupsetup_account}]"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_SIGNOFFSETUP_ACCOUNT'}]</dt>
+            <dd><input type="text" name="config[api_signoffsetup_account]" class="text" value="[{$config.service_Mailingwork.api_signoffsetup_account}]"></dd>
+
+        </dl>
+
+        <h2>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_CONFIG'}]</h2>
+
+        <dl>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_API_IPS'}]<span>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_YOURIP'}] [{php}]echo $_SERVER['REMOTE_ADDR'][{/php}]</span></dt>
+            <dd><textarea name="config[api_ips]">[{$config.service_Mailingwork.api_ips}]</textarea></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_VOUCHERSERIES'}]</dt>
+            <dd>
+                <select name="config[voucher_series]">
+                    [{foreach from=$voucherSeries key=key item=item}]
+                    <option value="[{$item.0}]"[{if $config.service_Mailingwork.voucher_series eq $item.0}] selected="selected"[{/if}]>[{$item.1}]</option>
+                    [{/foreach}]
+                </select>
+            </dd>
+        </dl>
+
+        <p><button type="submit">[{oxmultilang ident='GENERAL_SAVE'}]</button></p>
+    </form>
+
+    </br>
+    <form name="gn2mosformAboExport" id="gn2mosformAboExport" action="[{ $oViewConf->getSelfLink() }]" method="post">
+        [{$oViewConf->getHiddenSid()}]
+        <input type="hidden" name="cl" value="newsletterconnect_config">
+        <input type="hidden" name="fnc" value="exportSubscribers">
+        <input type="hidden" name="transfermethod" value="packet">
+
+        <h2 title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_TITLE'}]">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_HEADER'}]</h2>
+        <dl>
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_TOTAL_SUBSCRIBERS'}]</dt>
+            <dd>[{$totalSubscribers}]</dd>
+            <dd></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OPTIN_SUBSCRIBERS'}]</dt>
+            <dd>[{$activeSubscribers}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="activeSubscription" name="activeSubscription" value="activeSubscription" checked="checked"></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_UNCONFIRMED_SUBSCRIBERS'}]</dt>
+            <dd>[{$unconfirmedSubscribers}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="unconfirmedSubscription" name="unconfirmedSubscription" value="unconfirmedSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OPTOUT_SUBSCRIBERS'}]</dt>
+            <dd>[{$inactiveSubscribers}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="inactiveSubscription" name="inactiveSubscription" value="inactiveSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_NOT_SUBSCRIBERS'}]</dt>
+            <dd>[{$notSubscribed}]</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_CHECKBOX_TITLE'}]" type="checkbox" id="noSubscription" name="noSubscription" value="noSubscription" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_OXID_STATUS'}]</dt>
+            <dd>&nbsp;</dd>
+            <dd><input title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE'}]" type="checkbox" id="export_status" name="export_status" value="export_status" ></dd>
+
+            <dt>[{oxmultilang ident='GN2_NEWSLETTERCONNECT_LISTID'}]</dt>
+            <dd><input type="text" title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_LISTID_TITLE'}]" name="export_listId" value=""></dd>
+            <dd></dd>
+        </dl>
 
 
-[{*
-    <table>
-        <tr>
-            <td class="listheader first" height="15">[{ oxmultilang ident="ARTICLE_MEDIA_TITLE" }] </td>
-            <td class="listheader">[{ oxmultilang ident="ARTICLE_MEDIA_URL" }] </td>
+        <fieldset >
+            <legend>[{oxmultilang ident="GN2_NEWSLETTERCONNECT_IMPORTART_LEGEND" }]</legend>
+            <div>
+                <input type="radio" id="type_add" name="importMode" value="add"> <label for="type_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_DESC" }]</label>
+            </div>
+            <div>&nbsp;</div>
 
-            <td class="listheader">[{ oxmultilang ident="ARTICLE_MEDIA_ONLINE_STATUS" }] </td>
-            <td class="listheader">[{ oxmultilang ident="ARTICLE_MEDIA_DE" }] </td>
-            <td class="listheader">[{ oxmultilang ident="ARTICLE_MEDIA_EN" }] </td>
-            <td class="listheader">[{ oxmultilang ident="ARTICLE_MEDIA_NL" }] </td>
-            <td class="listheader last">[{ oxmultilang ident="ARTICLE_MEDIA_SE" }] </td>
-        </tr>
+            <div>
+                <input type="radio" id="type_replace" name="importMode" value="replace"> <label for="type_replace">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_DESC" }]</label>
+            </div>
+            <div>&nbsp;</div>
 
-        [{foreach from=$mediaUrls item="mediaUrl"}]
-            <tr>
-                <td>[{$mediaUrl->oxmediaurls__oxdesc}]</td>
-                <td>[{$mediaUrl->oxmediaurls__oxurl}]</td>
+            <div>
+                <input type="radio" id="type_update" name="importMode" value="update"> <label for="type_update">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_DESC" }]</label>
+            </div>
+            <div>&nbsp;</div>
 
-                <td><input type="hidden" class="editinput" name="editval[mediaFiles][[{$mediaUrl->oxmediaurls__oxid->value}]][title]" value="[{$mediaUrl->oxmediaurls__oxdesc}]"></td>
-                <td><input type="checkbox" class="editinput" name="editval[mediaFiles][[{$mediaUrl->oxmediaurls__oxid->value}]][active_de]" value="1" [{if $mediaUrl->oxmediaurls__oxactive_de->value}]checked[{/if}] [{$readonly}]></td>
-                <td><input type="checkbox" class="editinput" name="editval[mediaFiles][[{$mediaUrl->oxmediaurls__oxid->value}]][active_en]" value="1" [{if $mediaUrl->oxmediaurls__oxactive_en->value}]checked[{/if}] [{$readonly}]></td>
-                <td><input type="checkbox" class="editinput" name="editval[mediaFiles][[{$mediaUrl->oxmediaurls__oxid->value}]][active_nl]" value="1" [{if $mediaUrl->oxmediaurls__oxactive_nl->value}]checked[{/if}] [{$readonly}]></td>
-                <td><input type="checkbox" class="editinput" name="editval[mediaFiles][[{$mediaUrl->oxmediaurls__oxid->value}]][active_se]" value="1" [{if $mediaUrl->oxmediaurls__oxactive_se->value}]checked[{/if}] [{$readonly}]></td>
-            </tr>
-        [{/foreach}]
-    </table>
+            <div>
+                <input type="radio" id="type_update_add" name="importMode" value="update_add" checked="checked"> <label for="type_update_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_DESC" }]</label>
+            </div>
 
-    <br style="clear:both;margin-bottom:20px;">
-    <input type="submit" class="edittext" name="save" value="[{ oxmultilang ident="ARTICLE_REVIEW_SAVE" }]" onClick="Javascript:document.myedit.fnc.value='save'">
-    *}]
+        </fieldset>
 
+        [{if ($gn2_ExportStatus)}]
+        <p>Export</br> [{$gn2_ExportStatus}]</p>
+        [{/if}]
+        [{if ($gn2_ExportReportData)}]
+        <p>Export</br> [{$gn2_ExportReportData}]</p>
+        </br>
+        [{/if}]
+
+        <p><button title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON_TITLE'}]" type="submit" onClick="Javascript:document.gn2mosformAboExport.transfermethod.value='packet'"" >[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_BUTTON'}] </button></p>
+        <p><button title="[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_CSVMETHOD_BUTTON_TITLE'}]" type="submit" onClick="Javascript:document.gn2mosformAboExport.transfermethod.value='csv'"">[{oxmultilang ident='GN2_NEWSLETTERCONNECT_EXPORT_CSVMETHOD_BUTTON'}] </button></p>
+
+
+    </form>
 </div>
 
-</form>
-
-[{include file="bottomnaviitem.tpl"}]
-[{include file="bottomitem.tpl"}]
+</body>
+</html>
