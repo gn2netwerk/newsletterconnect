@@ -389,7 +389,13 @@ class GN2_NewsletterConnect_Export{
             return " WHERE $sShopIDClause AND $table1.OXDBOPTIN = 1";
         }
 
-        return "($this->_sWhereClause) AND $sShopIDClause";
+        // Bugfix für Oxid Enterprise Subshops
+        $sWhereClause = strstr(trim($this->_sWhereClause), ' ');
+        $sWhereClause = trim($sWhereClause, " ;,");
+        $sWhereClause = " WHERE ($sWhereClause) AND $sShopIDClause";
+        return $sWhereClause;
+
+        //return "($this->_sWhereClause) AND $sShopIDClause";
     }
 
 
