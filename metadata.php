@@ -36,6 +36,9 @@ $aModule = array(
     'version' => '2.0',
     'author' => 'gn2 netwerk',
     'extend' => array(
+        \OxidEsales\Eshop\Application\Component\UserComponent::class =>
+            \GN2\NewsletterConnect\Application\Component\UserComponent::class,
+
         \OxidEsales\Eshop\Application\Model\User::class =>
             \GN2\NewsletterConnect\Application\Model\User::class,
 
@@ -50,6 +53,9 @@ $aModule = array(
 
         \OxidEsales\Eshop\Application\Controller\ThankYouController::class =>
             \GN2\NewsletterConnect\Application\Controller\ThankYouController::class,
+
+        \OxidEsales\Eshop\Application\Controller\UserController::class =>
+            \GN2\NewsletterConnect\Application\Controller\UserController::class,
 
         \OxidEsales\Eshop\Core\Output::class =>
             \GN2\NewsletterConnect\Core\Output::class,

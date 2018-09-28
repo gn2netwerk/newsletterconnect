@@ -125,6 +125,15 @@ class ThankYouController extends ThankYouController_parent
                 );
 
             }
+
+            // Remove Checkbox-Parameter to avoid weird behaviour
+            if (isset($_SESSION['NewsletterConnect_OrderOptIn_Checked'])) {
+                unset($_SESSION['NewsletterConnect_OrderOptIn_Checked']);
+            }
+            if (isset($_SESSION['NewsletterConnect_OrderOptIn_Sent'])) {
+                unset($_SESSION['NewsletterConnect_OrderOptIn_Sent']);
+            }
+
         } catch (\Exception $e) {
             /* ignore any gn2_newsletterconnect errors. */
         }

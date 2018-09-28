@@ -101,21 +101,12 @@ class User extends User_parent
         /* Get existing MailingService */
         $mailingService = GN2_NewsletterConnect::getMailingService();
         $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
+        $email = $newRecipient->getEmail();
 
         if ($blSubscribe) {
-            /* Our MailingService takes care of this */
-            $blSendOptIn = false;
-
-            /* Get user preference */
-            $oNewsSubscription = $this->getNewsSubscription();
-
-            /* Create a recipient from the OXID user-data */
-            $email = $oNewsSubscription->oxnewssubscribed__oxemail->value;
-
-
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
-                    $mailingService->optInRecipient($newRecipient, 'general', 1);
+                    $mailingService->optInRecipient($newRecipient, 'general');
                 }
             } catch (\Exception $e) {
                 /* Do nothing */
@@ -125,7 +116,10 @@ class User extends User_parent
             try {
                 if (!in_array(GN2_NewsletterConnect::getOXParameter('cl'), array('account_user', 'user', 'register'))) {
                     $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
-                    $mailingService->unsubscribeRecipient($list, $newRecipient);
+
+                    if ($mailingService->getRecipientByEmail($email)) {
+                        $mailingService->unsubscribeRecipient($list, $newRecipient);
+                    }
                 }
             } catch (\Exception $e) {
                 /* Do nothing */

@@ -90,7 +90,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      */
     public function getMainShopList()
     {
-        #$lists = $this->getLists();
+        //$lists = $this->getLists();
         //$shopUrl = GN2_NewsletterConnect::getOXConfig()->getConfigParam('sShopURL');
 
         $this->_setMailingworkUrl('getoptinsetups');
@@ -152,6 +152,13 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     public function optInRecipient($recipient, $mode = 'general')
     {
         if (is_object($recipient)) {
+
+            if (!$_SESSION) { session_start(); }
+
+            // Mail nicht versenden falls in dieser Session bereits über den Bestellprozess verschickt wurde
+            if (isset($_SESSION['NewsletterConnect_OrderOptIn_Sent'])) {
+                return;
+            }
 
             $optinId = $this->_config['api_signupsetup'];
             if ($mode == "account") {
@@ -364,22 +371,88 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      */
     public function getRecipientByEmail($email)
     {
-        $fields = $this->_getFields();
+        $recipientId = "";
+        $subscriberListData = $this->getSubscriberListsByEmail($email);
+        $mainShopList = $this->getMainShopList();
+        $mainShopListId = (is_object($mainShopList)) ? $mainShopList->getId() : false;
 
-        $this->_setMailingworkUrl('getRecipientIdsByEmail');
-        $this->addParam('email', $email);
-        $recipientResponse = $this->_getDecodedResponse();
-        if ($recipientResponse['error'] === 0) {
-            if (isset($recipientResponse['result'][0])) {
-                try {
-                    $recipient = $this->getRecipientById($recipientResponse['result'][0]);
-                    return $recipient;
-                } catch (\Exception $e) {
-                    /* Do nothing */
+        // Überprüfe, ob der Kunde in der korrekten Liste eingetragen ist.
+        // Ist der Kunde nicht in der Liste, die dem Anmeldesetup zugewiesen ist, wird der Kunde nicht ausgelesen,
+        // selbst wenn der Kunde in anderen Listen vorhanden ist. Nur die Shop-Liste ist relevant.
+
+        if ($mainShopListId && is_array($subscriberListData)) {
+            foreach( $subscriberListData as $subscriberEntry ) {
+                if (is_array($subscriberEntry['subscriberLists'])) {
+                    if (in_array($mainShopListId, $subscriberEntry['subscriberLists'])) {
+                        $recipientId = $subscriberEntry['recipientId'];
+                        break;
+                    }
                 }
             }
         }
+
+        if ($recipientId != "") {
+            try {
+                $recipient = $this->getRecipientById($recipientId);
+                return $recipient;
+            } catch (Exception $e) {
+            }
+        }
         return null;
+    }
+
+    /**
+     * @param $email
+     * @return array
+     */
+    public function getSubscriberListsByEmail($email)
+    {
+        $this->_setMailingworkUrl('getRecipientIdsByEmail');
+        $this->addParam('email', $email);
+        $recipientResponse = $this->_getDecodedResponse();
+
+        $subscriberLists = array();
+
+        try {
+            if ($recipientResponse['error'] === 0 && is_array($recipientResponse['result'])) {
+                // go through each user-id and collect all subscriber lists
+                foreach ($recipientResponse['result'] as $recipientId) {
+                    if ($recipientId) {
+                        $subscriberLists[] = array(
+                            'recipientId' => $recipientId,
+                            'subscriberLists' => $this->getSubscriberListsByRecipientId($recipientId),
+                        );
+                    }
+                }
+            }
+
+        } catch (Exception $e) {
+        }
+        return $subscriberLists;
+    }
+
+    /**
+     * @param $recipientId
+     * @return array
+     */
+    public function getSubscriberListsByRecipientId($recipientId)
+    {
+        $subscriberListIds = array();
+
+        if ($recipientId) {
+            $this->_setMailingworkUrl('getRecipientListsById');
+            $this->addParam('recipientId', $recipientId);
+            $listIdsResponse = $this->_getDecodedResponse();
+
+            if ($listIdsResponse['error']===0 && is_array($listIdsResponse['result'])) {
+                foreach($listIdsResponse['result'] as $subsciberListData) {
+                    if ($subsciberListData['id'] != "") {
+                        $subscriberListIds[$subsciberListData['id']] = $subsciberListData['id'];
+                    }
+                }
+            }
+        }
+        return $subscriberListIds;
     }
 
     /**
