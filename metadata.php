@@ -18,6 +18,8 @@
         'thankyou'           => 'gn2_newsletterconnect/gn2_newsletterconnect_thankyou',
         // 'oxvoucher'          => 'gn2_newsletterconnect/gn2_newsletterconnect_oxvoucher',
         'oxoutput'           => 'gn2_newsletterconnect/gn2_newsletterconnect_oxoutput',
+        'user'               => 'gn2_newsletterconnect/gn2_newsletterconnect_user',
+        'oxcmp_user'         => 'gn2_newsletterconnect/gn2_newsletterconnect_oxcmp_user',
     ),
     'files' => array(
         'gn2_newsletterconnect_config' => 'gn2_newsletterconnect/gn2_newsletterconnect_config.php',

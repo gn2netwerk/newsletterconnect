@@ -73,14 +73,17 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
     public function subscribe()
     {
         $status = GN2_NewsletterConnect::getOXParameter('status');
-        $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
         $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 
+        $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
+        $email = $recipient->getEmail();
+        $recipientExists = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail($email);
+
         if ($list!==null) {
-            if ($status == 1) {
+            if ($status == 1 && !$recipientExists) {
                 GN2_NewsletterConnect::getMailingService()->optInRecipient($recipient, 'account');
                 /*GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient, 'account');*/
-            } else if ($status == 0 && $status !== null) {
+            } else if ($status == 0 && $status !== null && $recipientExists) {
                 GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient, 'account');
             }
         }
