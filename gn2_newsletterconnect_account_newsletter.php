@@ -49,15 +49,12 @@ class GN2_NewsletterConnect_Account_Newsletter extends GN2_NewsletterConnect_Acc
      */
     public function isNewsletter()
     {
-        /* Fake-it if the user has just changed their preferences, even with douple optin/outs. */
-        if (!empty($_POST)) {
-            if ($_POST['fnc'] == 'subscribe' && $_POST['status'] == '1') {
-                return true;
-            }
-            if ($_POST['fnc'] == 'subscribe' && $_POST['status'] == '0') {
-                return false;
-            }
+        if (!$_SESSION) { session_start(); }
+
+        if (isset($_SESSION['NewsletterConnect_Status'])) {
+            return (bool) $_SESSION['NewsletterConnect_Status'];
         }
+
         if ($this->_getNewsletterConnectUser() !== null) {
             return true;
         }
