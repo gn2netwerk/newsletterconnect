@@ -248,7 +248,9 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     public function unsubscribeRecipient($list, $recipient, $type='general')
     {
         if (is_object($recipient)) {
+            // recipient von mailingwork laden (id notwendig)
             $recipient = $this->getRecipientByEmail($recipient->getEmail());
+
             if ($recipient) {
 
                 $optoutId = $this->_config['api_signoffsetup'];
@@ -497,10 +499,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      */
     protected function _mailingworkRecipient2Recipient($mailingWorkUserFields)
     {
+        $fields = $this->_getFields();
+
         $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
         foreach ($mailingWorkUserFields as $k=>$userField) {
-            if (isset($this->_fields[$userField['id']])) {
-                $fieldName  = $this->_fields[$userField['id']];
+            if (isset($fields[$userField['id']])) {
+                $fieldName  = $fields[$userField['id']];
                 $fieldValue = $userField['value'];
                 switch ($fieldName) {
                 case 'E-Mail';
