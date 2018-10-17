@@ -152,14 +152,6 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     public function optInRecipient($recipient, $mode = 'general')
     {
         if (is_object($recipient)) {
-
-            if (!$_SESSION) { session_start(); }
-
-            // Mail nicht versenden falls in dieser Session bereits über den Bestellprozess verschickt wurde
-            if (isset($_SESSION['NewsletterConnect_OrderOptIn_Sent'])) {
-                return;
-            }
-
             $optinId = $this->_config['api_signupsetup'];
             if ($mode == "account") {
                 $optinId = $this->_config['api_signupsetup_account'];

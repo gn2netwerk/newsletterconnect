@@ -98,6 +98,31 @@ class User extends User_parent
      */
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
+        if (!$_SESSION) { session_start(); }
+
+        /* Figuring out which setup should be used */
+        $cl = GN2_NewsletterConnect::getOXParameter('cl');
+        $mode = 'general';
+
+        switch ($cl) {
+            case 'account_user':
+                $mode = 'account';
+                break;
+            case 'user':
+                $oUser = $this->getUser();
+
+                if (!$oUser || !$oUser->oxuser__oxpassword->value) {
+                    $mode = 'general';
+                } else {
+                    $mode = 'account';
+                }
+                break;
+            case 'register':
+                break;
+            case 'newsletter':
+                break;
+        }
+
         /* Get existing MailingService */
         $mailingService = GN2_NewsletterConnect::getMailingService();
         $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
@@ -106,20 +131,25 @@ class User extends User_parent
         if ($blSubscribe) {
             try {
                 if (!$mailingService->getRecipientByEmail($email)) {
-                    $mailingService->optInRecipient($newRecipient, 'general');
+                    $mailingService->optInRecipient($newRecipient, $mode);
+                }
+
+                if ($cl != 'newsletter') {
+                    $_SESSION['NewsletterConnect_Status'] = 1;
                 }
             } catch (\Exception $e) {
                 /* Do nothing */
             }
         } else {
-            /* Everywhere but the user page */
             try {
-                if (!in_array(GN2_NewsletterConnect::getOXParameter('cl'), array('account_user', 'user', 'register'))) {
-                    $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
+                $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 
-                    if ($mailingService->getRecipientByEmail($email)) {
-                        $mailingService->unsubscribeRecipient($list, $newRecipient);
-                    }
+                if ($mailingService->getRecipientByEmail($email)) {
+                    $mailingService->unsubscribeRecipient($list, $newRecipient, $mode);
+                }
+
+                if ($cl != 'newsletter') {
+                    $_SESSION['NewsletterConnect_Status'] = 0;
                 }
             } catch (\Exception $e) {
                 /* Do nothing */
