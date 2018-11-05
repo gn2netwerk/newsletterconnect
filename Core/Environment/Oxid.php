@@ -43,7 +43,7 @@ class GN2_NewsletterConnect_Environment_Oxid
      */
     public function loadBootstrap()
     {
-        $root = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
+        $root = dirname(__FILE__) . "/../../../../..";
         include_once $root . '/bootstrap.php';
     }
 

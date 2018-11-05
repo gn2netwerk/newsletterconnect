@@ -29,6 +29,19 @@ class ThankYouController extends ThankYouController_parent
 {
 
     /**
+     * @return mixed
+     */
+    public function render()
+    {
+        // Hotfix:
+        // "EXCEPTION_SYSTEMCOMPONENT_TEMPLATENOTFOUND page/checkout/thankyou.tpl"
+        $this->setAdminMode(false);
+
+        $render = parent::render();
+        return $render;
+    }
+
+    /**
      * ThankYouController constructor.
      * Transfers current order to MailingService on thank you page
      */
