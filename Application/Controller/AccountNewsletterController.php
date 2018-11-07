@@ -66,6 +66,8 @@ class AccountNewsletterController extends AccountNewsletterController_parent
      */
     public function subscribe()
     {
+        if (!$_SESSION) { session_start(); }
+
         $status = GN2_NewsletterConnect::getOXParameter('status');
         $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
 
@@ -74,11 +76,17 @@ class AccountNewsletterController extends AccountNewsletterController_parent
         $recipientExists = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail($email);
 
         if ($list !== null) {
-            if ($status == 1 && !$recipientExists) {
-                GN2_NewsletterConnect::getMailingService()->optInRecipient($recipient, 'account');
-                /*GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient, 'account');*/
-            } else if ($status == 0 && $status !== null && $recipientExists) {
-                GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient, 'account');
+            if ($status == 1) {
+                if (!$recipientExists) {
+                    GN2_NewsletterConnect::getMailingService()->optInRecipient($recipient, 'account');
+                    /*GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient, 'account');*/
+                }
+                $_SESSION['NewsletterConnect_Status'] = 1;
+            } else if ($status == 0 && $status !== null) {
+                if ($recipientExists) {
+                    GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient, 'account');
+                }
+                $_SESSION['NewsletterConnect_Status'] = 0;
             }
         }
     }
