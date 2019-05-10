@@ -122,7 +122,7 @@ class GN2_NewsletterConnect
         if (self::$_OxVersion === null){
             $oxConfig = self::getOXConfig();
 
-            $sOXVersion = substr($oxConfig->getVersion(), 0, 3);
+            $sOXVersion = substr($oxConfig->getVersion(), 0, 4);
             self::$_OxVersion = intval(str_replace('.', '', $sOXVersion));
         }
 
