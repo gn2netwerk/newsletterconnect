@@ -1,5 +1,5 @@
 {
-  "name": "gn2netwerk/gn2_newsletterconnect",
+  "name": "gn2/newsletterconnect",
   "description": "gn2 :: NewsletterConnect",
   "type": "oxideshop-module",
   "keywords": ["oxid", "modules", "eShop", "gn2"],

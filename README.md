@@ -1,8 +1,8 @@
-# gn2_newsletterconnect Installation
+# gn2/newsletterconnect Installation
 
 Systemvoraussetzungen:
-    - OXID 4.7+
-    - PHP 5.3+
+    - OXID 6.0+
+    - PHP 7.0+
 
 ## A) Mailingwork-Konto einrichten:
 Bitte stellen Sie sicher, dass es im Mailingworkaccount ein Signupsetup mit den folgenden Feldern existiert:
@@ -18,31 +18,43 @@ In den Berechtigungen des Mailingswork-Kontos muss bei Webservice folgendes akti
     - XML Rückgabe
 
 
-## B) gn2_newsletterconnect-Modul installieren
-Falls schon vorhanden, das gn2_newsletterconnect-Modul deaktivieren und entfernen (alle Dateien in /modules/gn2_newsletterconnect löschen und vorhandene gn2_newsletterconnect OXID Moduleinträge löschen).
+## B) gn2/newsletterconnect-Modul installieren
+Falls schon vorhanden, bitte das vorherige gn2_newsletterconnect-Modul deaktivieren und aus dem Modules-Verzeichnis entfernen.
 
-1. gn2_newsletterconnect herunterladen, entpacken, und in /modules/gn2_newsletterconnect hochladen.
+1. Legen Sie folgende Verzeichnis-Struktur im **Stammverzeichnis** des Shops an:
+   `/packages/gn2/newsletterconnect/`
+   _Hinweis: Das **Stammverzeichnis** ist die oberste Ebene des Shops. Hier befinden sich die Verzeichnisse source und vendor und auch die Datei composer.json._
 
-2. Im OXID-Backend: "Erweiterungen > Module", das NewsletterConnect-Modul aktivieren.
+2. Kopieren Sie alle Dateien von gn2_newsletterconnect in das neu angelegte Verzeichnis.
 
-3. Unter "Shopeinstellungen > NewsletterConnect", das Modul Konfigurieren:
-    ### Beispieldaten (bitte entsprechend anpassen):
-        Allgemein:
-        - Mailingwork API-Base-URL: https://login.mailingwork.de/webservice/webservice/json/
-        
-        - Benutzername: mailingworkUser
-        - Passwort:     mailingworkPasswort
-        (am bestem eigenen Benutzer dafür anlegen)
-        
-        - ID des Hauptanmeldesetups: 2
-        - ID des Hauptabmeldesetups: 1
-        Hauptanmeldesetup heißt: Wenn man sich ohne Kundenaccount anmeldet. Über die Newsletter-Seite oder zum Beispiel im Footer-Formular.
-        
-        - ID des Anmeldesetups (Kundenaccount): 2
-        - ID des Abmeldesetups (Kundenaccount): 1
-        Anmeldesetup (Kundenaccount) heißt: Wenn man den Newsletter über die Adresseingabe im Checkout oder im Kundenkonto abonniert.
-        
-        Mit den 2 Setups kann man die Kunden theoretisch unterschiedlich gruppieren, z.B. für einen Rabatt-Newsletter nur für Registrierte Shopkunden. Braucht man das nicht, dann für beide das selbe Anmeldesetup verwenden.
+3. Führen Sie folgende Befehle über die Kommandozeile (innerhalb ihres Stammverzeichnisses) aus:
+   * `composer config repositories.gn2/newsletterconnect path <shop_directory>/packages/gn2/newsletterconnect`
+   * `composer require gn2/newsletterconnect:*`
+   * `composer update`
+
+4. Im OXID-Backend: "Erweiterungen > Module", das NewsletterConnect-Modul aktivieren.
+
+5. Unter "Shopeinstellungen > NewsletterConnect", das Modul Konfigurieren:
+   **Beispieldaten! Bitte entsprechend anpassen!**
+
+   Allgemein (am besten einen eigenen Benutzer für Newsletterconnect anlegen):
+
+   - Mailingwork API-Base-URL: https://login.mailingwork.de/webservice/webservice/json/
+   - Benutzername: mailingworkUser
+   - Passwort:     mailingworkPasswort
+
+   Hauptanmeldesetup (Wenn man sich ohne Kundenaccount anmeldet. Über die Newsletter-Seite oder zum Beispiel im Footer-Formular. Im Normalfall wird hier für die Anmeldung ein Double-Opt-In verwendet):
+
+   - ID des Hauptanmeldesetups: 2
+   - ID des Hauptabmeldesetups: 1
+
+   Anmeldesetup (Kundenaccount) (Wenn man den Newsletter über die Adresseingabe im Checkout oder im Kundenkonto abonniert. Hier kann für die Anmeldung ein einfaches Opt-In verwendet werden):
+
+   - ID des Anmeldesetups (Kundenaccount): 2
+   - ID des Abmeldesetups (Kundenaccount): 1
+
+
+Mit den 2 Setups kann man die Kunden theoretisch unterschiedlich gruppieren, z.B. für einen Rabatt-Newsletter nur für Registrierte Shopkunden. Braucht man das nicht, dann für beide das selbe Anmeldesetup verwenden.
 
 ## C) OPTIONAL: Gutscheincodeerweiterung
 Falls Mailingwork Gutscheincodes von dem Shop holen soll, müssen die folgenden Schritte durchgeführt werden.
@@ -75,4 +87,4 @@ Das gn2_newsletterconnnect-Modul unterstützt die Übergabe von OXID-Produkten a
 1. Im OXID-Backend unter "Benutzer verwalten > Benutzergruppen" eine neue Gruppe "Newsletter Admin" anlegen.
 2. Unter "Benutzer verwalten > Benutzer" einen neuen Benutzer anlegen und diesen Benutzer der neuen Gruppe zuweisen.
 3. Die Zugangsdaten des neuen Benutzers und die Shop-URL in den OXID-Einstellungen im Mailingworkaccount einpflegen ("Extras > Schnittstellen > OXID").
-4. Die Produktübergabe kann mit der URL http://www.your-oxid-shop.de/modules/gn2_newsletterconnect/products.json getestet werden. Falls die URL nicht funktioniert, muss die RewriteBase in der Datei /modules/gn2_newsletterconnect/.htaccess entsprechend für Ihre Serverkonfiguration angepasst werden.
+4. Die Produktübergabe kann mit der URL http://www.your-oxid-shop.de/modules/gn2/newsletterconnect/products.json getestet werden. Falls die URL nicht funktioniert, muss die RewriteBase in der Datei /modules/gn2_newsletterconnect/.htaccess entsprechend für Ihre Serverkonfiguration angepasst werden.
