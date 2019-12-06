@@ -28,7 +28,7 @@ Falls schon vorhanden, bitte das vorherige gn2_newsletterconnect-Modul deaktivie
 2. Kopieren Sie alle Dateien von gn2_newsletterconnect in das neu angelegte Verzeichnis.
 
 3. Führen Sie folgende Befehle über die Kommandozeile (innerhalb ihres Stammverzeichnisses) aus:
-   * `composer config repositories.gn2/newsletterconnect path <shop_directory>/packages/gn2/newsletterconnect`
+   * `composer config repositories.gn2/newsletterconnect path ./packages/gn2/newsletterconnect`
    * `composer require gn2/newsletterconnect:*`
    * `composer update`
 
