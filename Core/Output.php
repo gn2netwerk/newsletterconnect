@@ -51,7 +51,7 @@ class Output extends Output_parent
                         case "getVoucher":
                             $voucherSeries = $savedSettings['voucher_series'];
                             if ($voucherSeries != "") {
-                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = "' . $oDb->escapeString($voucherSeries) . '"';
+                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = ' . $oDb->quote($voucherSeries);
                                 $sql .= ' && OXUSERID="" && OXRESERVED=0 && OXTIMESTAMP<>"1984-01-01 08:00:00"';
 
                                 $voucherRow = $oDb->getRow($sql);

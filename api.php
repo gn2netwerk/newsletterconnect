@@ -94,6 +94,6 @@ while (!$valid) {
     header('HTTP/1.0 401 Unauthorized');
     exit;
 }
-gn2_newsletterconnect_api::init();
+GN2_NewsletterConnect_Api::init();
 ob_end_flush();
 error_reporting($er);
