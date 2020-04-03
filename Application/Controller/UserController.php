@@ -30,14 +30,13 @@ class UserController extends UserController_parent
      */
     public function isNewsSubscribed()
     {
-        $this->_blNewsSubscribed = false;
-
         if ($this->_blNewsSubscribed === null) {
 
             if (!$_SESSION) { session_start(); }
 
             if (isset($_SESSION['NewsletterConnect_Status'])) {
                 $this->_blNewsSubscribed = (bool) $_SESSION['NewsletterConnect_Status'];
+                return $this->_blNewsSubscribed;
             }
 
             $oUser = $this->getUser();
@@ -48,9 +47,9 @@ class UserController extends UserController_parent
                 $email = $recipient->getEmail();
                 $recipientExists = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail($email);
                 $this->_blNewsSubscribed = (bool) $recipientExists;
+                return $this->_blNewsSubscribed;
             }
 
-            return $this->_blNewsSubscribed;
         }
 
         return parent::isNewsSubscribed();
