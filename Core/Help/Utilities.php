@@ -185,14 +185,26 @@ class GN2_Utilities
     public static function getOXConfig()
     {
         if (self::$_OxConfig === null) {
-            if (class_exists("oxconfig")) {
-                if (method_exists(oxconfig, "getInstance")) {
-                    self::$_OxConfig = oxconfig::getInstance();
+            if (!is_object(self::$_OxConfig)) {
+                if (class_exists(\OxidEsales\Eshop\Core\Config::class)) {
+                    self::$_OxConfig = oxNew(\OxidEsales\Eshop\Core\Config::class);
                 }
             }
 
             if (!is_object(self::$_OxConfig)) {
-                self::$_OxConfig = oxRegistry::getConfig();
+                if (class_exists("oxRegistry")) {
+                    if (method_exists("oxRegistry", "getConfig")) {
+                        self::$_OxConfig = oxRegistry::getConfig();
+                    }
+                }
+            }
+
+            if (!is_object(self::$_OxConfig)) {
+                if (class_exists("oxConfig")) {
+                    if (method_exists("oxConfig", "getInstance")) {
+                        self::$_OxConfig = oxConfig::getInstance();
+                    }
+                }
             }
         }
         return self::$_OxConfig;
