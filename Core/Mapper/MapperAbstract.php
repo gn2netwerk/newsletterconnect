@@ -9,34 +9,36 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Mapper;
+
 /**
  * Abstract data mapper class.
  * Can be extended for different types of mapper.
  */
-abstract class GN2_NewsletterConnect_Mapper_Abstract
+abstract class MapperAbstract
 {
     /**
-     * @var $_entity Unused //TODO: Remove
+     * @var $_entity
      */
     protected $_entity;
 
     /**
      * Returns results from the mapper
      *
-     * @return GN2_NewsletterConnect_Data_Result Meta & result data
+     * @return GN2\NewsletterConnect\Core\Data\Result Meta & result data
      */
     abstract function getResults();
 
     /**
      * Restrict the mapper to one specific entity/id.
      *
-     * @param string $_entity e.g. Record ID
+     * @param string $entity e.g. Record ID
      *
      * @return void
      */
-    public function restrictEntity($_entity)
+    public function restrictEntity($entity)
     {
-        $this->entity = $_entity;
+        $this->_entity = $entity;
     }
 
 }

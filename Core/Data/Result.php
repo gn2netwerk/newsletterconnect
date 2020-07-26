@@ -9,10 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Data;
+
 /**
  * Wrapper class to contain
  */
-class GN2_NewsletterConnect_Data_Result
+class Result
 {
     /**
      * @var array Multidimensional key-value pairs

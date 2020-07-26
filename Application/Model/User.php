@@ -12,7 +12,7 @@
 namespace GN2\NewsletterConnect\Application\Model;
 
 use \GN2_NewsletterConnect;
-use \GN2_NewsletterConnect_Mailing_Recipient;
+use \GN2\NewsletterConnect\Core\Mailing\Recipient;
 
 
 /**
@@ -22,13 +22,13 @@ use \GN2_NewsletterConnect_Mailing_Recipient;
 class User extends User_parent
 {
     /**
-     * Converts the current oxUser-Object into an GN2_NewsletterConnect_Mailing_Recipient Object
+     * Converts the current oxUser-Object into an Recipient Object
      * @param string|optional $oxuser__oxemail the user e-mail address
-     * @return GN2_NewsletterConnect_Mailing_Recipient
+     * @return Recipient
      */
     public function gn2NewsletterConnectOxid2Recipient($oxuser__oxemail = '')
     {
-        $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
+        $recipient = new Recipient;
         if ($oxuser__oxemail !== '') {
             $recipient->setEmail($oxuser__oxemail);
         } else {

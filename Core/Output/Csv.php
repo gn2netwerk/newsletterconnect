@@ -9,11 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Output;
+
 /**
  * CSV Output Class
  */
-class GN2_NewsletterConnect_Output_Csv
-    extends GN2_NewsletterConnect_Output_Abstract
+class Csv extends OutputAbstract
 {
     /**
      * Gets the output, prepared for the browser.

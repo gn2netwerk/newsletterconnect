@@ -9,10 +9,16 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Export;
+
+use \GN2_NewsletterConnect;
+use \GN2\NewsletterConnect\Core\Help\Utilities;
+use \GN2\NewsletterConnect\Core\MailingService\Mailingwork;
+
 /**
- * GN2_NewsletterConnect_Export
+ * GN2_NewsletterConnect Export-Class
  */
-class GN2_NewsletterConnect_Export
+class Export
 {
 
     /**
@@ -23,9 +29,9 @@ class GN2_NewsletterConnect_Export
 
     /**
      * Mailing works service object
-     * @var GN2_NewsletterConnect_MailingService_Mailingwork
+     * @var Mailingwork
      */
-    private $_mailingWorks = null;
+    private $_mailingWork = null;
 
     /**
      * list Id
@@ -78,7 +84,7 @@ class GN2_NewsletterConnect_Export
 
 
     /**
-     * GN2_NewsletterConnect_Export constructor.
+     * Main constructor.
      * Builds the where-clause using the given parameters
      * @param $bActiveSubscribers true if active subscribers are to be exported
      * @param $bInActiveSubscribers true if inactive subscribers are to be exported
@@ -142,7 +148,7 @@ class GN2_NewsletterConnect_Export
             $mailingService = GN2_NewsletterConnect::getMailingService();
 
             if (is_object($mailingService)) {
-                $this->_mailingWorks = $mailingService;
+                $this->_mailingWork = $mailingService;
             }
         } catch (\Exception $e) {
             /* Do nothing */
@@ -167,8 +173,8 @@ class GN2_NewsletterConnect_Export
     public function transferData()
     {
         //try get mailing works object
-        if ($this->_mailingWorks === null) {
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => ' Mailingworks-Object can not be found.');
+        if ($this->_mailingWork === null) {
+            return array("REPORT" => Utilities::FAULTY, "LINK" => ' Mailingworks-Object can not be found.');
         }
 
         //get user list
@@ -178,7 +184,7 @@ class GN2_NewsletterConnect_Export
         $TotalSubscribers = $oUserList->count();
 
         if (!$TotalSubscribers) {
-            return array("REPORT" => GN2_Utilities::NODATA, "LINK" => null);
+            return array("REPORT" => Utilities::NODATA, "LINK" => null);
         }
 
         //set recipients
@@ -208,7 +214,7 @@ class GN2_NewsletterConnect_Export
         $blImportArtAppliedOnce = false;
         foreach ($aRecipientParts as $key => $value) {
             $this->replaceImportArt($blImportArtAppliedOnce);
-            $aImportResponseContainer[] = $this->_mailingWorks->importRecipients($this->_listId, $value, $this->_sImportArt);
+            $aImportResponseContainer[] = $this->_mailingWork->importRecipients($this->_listId, $value, $this->_sImportArt);
             $blImportArtAppliedOnce = true;
             //sleep(20);
         }
@@ -226,9 +232,9 @@ class GN2_NewsletterConnect_Export
         }
 
         if (!$errorOccurred) {
-            return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) in $dParts parts transferred. Check Mailing-Works for the final result.");
+            return array("REPORT" => Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) in $dParts parts transferred. Check Mailing-Works for the final result.");
         } else {
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => $errorMessages);
+            return array("REPORT" => Utilities::FAULTY, "LINK" => $errorMessages);
         }
     }
 
@@ -243,14 +249,14 @@ class GN2_NewsletterConnect_Export
         $iStatus = $this->_generateCsv();
 
         //create report
-        if ($iStatus === GN2_Utilities::SUCCESS) {
-            //return array("REPORT" => GN2_Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) transferred/processed.");
+        if ($iStatus === Utilities::SUCCESS) {
+            //return array("REPORT" => Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) transferred/processed.");
             //send file to client
             $this->_sendFileToClient();
-        } else if ($iStatus === GN2_Utilities::NODATA) {
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => 'NO DATA FOUND');
+        } else if ($iStatus === Utilities::NODATA) {
+            return array("REPORT" => Utilities::FAULTY, "LINK" => 'NO DATA FOUND');
         } else {
-            return array("REPORT" => GN2_Utilities::FAULTY, "LINK" => 'NO FILE RESOURCE FOUND');
+            return array("REPORT" => Utilities::FAULTY, "LINK" => 'NO FILE RESOURCE FOUND');
         }
     }
 
@@ -263,7 +269,7 @@ class GN2_NewsletterConnect_Export
     {
         //write csv to export folder
         if (count($this->_aRecipients) > 0) {
-            $this->_sFile = GN2_Utilities::getExportFilePath();
+            $this->_sFile = Utilities::getExportFilePath();
 
             $f = fopen($this->_sFile, 'w');
 
@@ -278,14 +284,14 @@ class GN2_NewsletterConnect_Export
                     fputcsv($f, $line, ";");
                 }
                 fclose($f);
-                return GN2_Utilities::SUCCESS;
+                return Utilities::SUCCESS;
             } else {
-                return GN2_Utilities::NOFILERESOURCE;
+                return Utilities::NOFILERESOURCE;
             }
 
         }
 
-        return GN2_Utilities::NODATA;
+        return Utilities::NODATA;
     }
 
 
@@ -344,12 +350,12 @@ class GN2_NewsletterConnect_Export
         $this->_aRecipients = array();
         $this->_aCsvHeader = array();
         foreach ($oUserList as $oUser) {
-            $this->_aRecipients[] = $this->_mailingWorks->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+            $this->_aRecipients[] = $this->_mailingWork->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
         }
 
         //use one user to get the header
         $oUser = $oUserList[0];
-        $this->_aCsvHeader = $this->_mailingWorks->getCSVHeader($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+        $this->_aCsvHeader = $this->_mailingWork->getCSVHeader($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
 
     }
 
@@ -391,7 +397,7 @@ class GN2_NewsletterConnect_Export
      */
     private function _getWhereClause($table1 = 't_n', $table2 = 't_u')
     {
-        $sShopIDClause = $table1 . ".OXSHOPID = '" . GN2_Utilities::getShopId() . "'";
+        $sShopIDClause = $table1 . ".OXSHOPID = '" . Utilities::getShopId() . "'";
 
         if ($this->_sWhereClause === null) {
             //if subscriber type is not chosen, export only the active subscribers
@@ -418,11 +424,11 @@ class GN2_NewsletterConnect_Export
     {
         //gn2Test Account
         //Abonnentenfelder ID
-        $dSprache = $this->_mailingWorks->getFieldId('Sprache');
-        $dEmail = $this->_mailingWorks->getFieldId('E-Mail');
-        $dAnrede = $this->_mailingWorks->getFieldId('Anrede');
-        $dVorname = $this->_mailingWorks->getFieldId('Vorname');
-        $dNachname = $this->_mailingWorks->getFieldId('Nachname');
+        $dSprache = $this->_mailingWork->getFieldId('Sprache');
+        $dEmail = $this->_mailingWork->getFieldId('E-Mail');
+        $dAnrede = $this->_mailingWork->getFieldId('Anrede');
+        $dVorname = $this->_mailingWork->getFieldId('Vorname');
+        $dNachname = $this->_mailingWork->getFieldId('Nachname');
 
         $aRet = array();
         for ($i = 0; $i < $dAmount; $i++) {

@@ -9,12 +9,18 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\MailingService;
+
+use \GN2\NewsletterConnect\Core\Mailing\MailingList;
+use \GN2\NewsletterConnect\Core\Mailing\Recipient;
+use \GN2\NewsletterConnect\Core\WebService\Curl;
+
 /**
  * MailingService implementation for W3Work MailingWork
  */
-class GN2_NewsletterConnect_MailingService_Mailingwork
-    extends GN2_NewsletterConnect_Webservice_Curl
-    implements GN2_NewsletterConnect_MailingService_Interface
+class Mailingwork
+    extends Curl
+    implements MailingServiceInterface
 {
     /**
      * @var Set of fields to send to the MailingService
@@ -62,7 +68,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * Gets current lists from the MailingService
      *
      * @abstract
-     * @return array Array of GN2_NewsletterConnect_Mailing_List Objects
+     * @return array Array of MailingList Objects
      */
     public function getLists()
     {
@@ -72,7 +78,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
 
         if ($listResponse['error'] === 0) {
             foreach ($listResponse['result'] as $listData) {
-                $list = new GN2_NewsletterConnect_Mailing_List;
+                $list = new MailingList;
                 $list->setId($listData['id']);
                 $list->setName($listData['name']);
                 $list->setDesc($listData['description']);
@@ -85,7 +91,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * Returns the default shop-list, creating if necessary.
      *
-     * @return GN2_NewsletterConnect_Mailing_List
+     * @return MailingList
      *
      */
     public function getMainShopList()
@@ -108,7 +114,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         }
 
         if ($listID > -1) {
-            $list = new GN2_NewsletterConnect_Mailing_List;
+            $list = new MailingList;
             $list->setId($listID);
             return $list;
         } else {
@@ -132,7 +138,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $this->addParam('name', $listName);
         $listResponse = $this->_getDecodedResponse();
         if ($listResponse['error'] === 0) {
-            $list = new GN2_NewsletterConnect_Mailing_List;
+            $list = new MailingList;
             $list->setId($listResponse['result']);
             $list->setName($listName);
             return $list;
@@ -144,10 +150,10 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * Creates a new recipient on the MailingService
      *
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     * @param Recipient $recipient Recipient Object
      * @param $mode
      * @return void
-     * @throws GN2_NewsletterConnect_Exception_MailingService
+     * @throws Exception
      */
     public function optInRecipient($recipient, $mode = 'general')
     {
@@ -172,12 +178,12 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $recipientResponse = $this->_getDecodedResponse();
 
             if ($recipientResponse['error'] !== 0) {
-                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: please check ' .
+                throw new Exception('optInRecipient failed: please check ' .
                     'if your optinSetup contains all fields for E-Mail, Salutation, Firstname and Lastname.');
             }
         } else {
-            throw new GN2_NewsletterConnect_Exception_MailingService(
-                'optInRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object'
+            throw new Exception(
+                'optInRecipient expects an Recipient object'
             );
         }
     }
@@ -185,11 +191,11 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
     /**
      * Subscribes a recipient directly to a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List $list List Object
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     * @param MailingList $list List Object
+     * @param Recipient $recipient Recipient Object
      *
      * @return void
-     * @throws GN2_NewsletterConnect_Exception_MailingService
+     * @throws Exception
      */
     public function subscribeRecipient($list, $recipient)
     {
@@ -209,21 +215,21 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             $recipientResponse = $this->_getDecodedResponse();
 
             if ($recipientResponse['error'] !== 0) {
-                throw new GN2_NewsletterConnect_Exception_MailingService('optInRecipient failed: ' . $recipientResponse);
+                throw new Exception('optInRecipient failed: ' . $recipientResponse);
             }
         } else {
-            throw new GN2_NewsletterConnect_Exception_MailingService(
-                'optInRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object'
+            throw new Exception(
+                'optInRecipient expects an Recipient object'
             );
         }
     }
 
     /**
      * Unsubscribes a recipient directly from a mailing list
-     * @param GN2_NewsletterConnect_Mailing_List $list
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient
+     * @param MailingList $list
+     * @param Recipient $recipient
      * @param string $type
-     * @throws GN2_NewsletterConnect_Exception_MailingService
+     * @throws Exception
      */
     public function unsubscribeRecipient($list, $recipient, $type = 'general')
     {
@@ -248,14 +254,14 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
                 if ($recipientResponse['error'] !== 0) {
                     /* Mailingwork returns a bad response. Don't throw exceptions. */
                     /*
-                     throw new GN2_NewsletterConnect_Exception_MailingService(
+                     throw new Exception(
                         'unsubscribeRecipient failed: '.$recipientResponse
                     );*/
                 }
             }
         } else {
-            throw new GN2_NewsletterConnect_Exception_MailingService(
-                'unsubscribeRecipient expects an GN2_NewsletterConnect_Mailing_Recipient object'
+            throw new Exception(
+                'unsubscribeRecipient expects an Recipient object'
             );
         }
     }
@@ -277,7 +283,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
                     $this->_fields[$field['id']] = $field['name'];
                 }
             } else {
-                //throw new GN2_NewsletterConnect_Exception_MailingService('Cannot get MailingWork fields.');
+                //throw new Exception('Cannot get MailingWork fields.');
                 return array();
             }
         }
@@ -361,7 +367,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      *
      * @param string $email E-Mail Address
      *
-     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     * @return mixed Recipient or null
      */
     public function getRecipientByEmail($email)
     {
@@ -454,8 +460,8 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      *
      * @param mixed $id ID
      *
-     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
-     * @throws GN2_NewsletterConnect_Exception_MailingService
+     * @return mixed Recipient or null
+     * @throws Exception
      */
     public function getRecipientById($id)
     {
@@ -469,22 +475,22 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
             }
             return $recipient;
         } else {
-            throw new GN2_NewsletterConnect_Exception_MailingService('Cannot load recipient: ' . $id);
+            throw new Exception('Cannot load recipient: ' . $id);
         }
     }
 
     /**
-     * Converts a MailingWork Recipient to a GN2_NewsletterConnect_Mailing_Recipient
+     * Converts a MailingWork Recipient to a Recipient
      *
      * @param array $mailingWorkUserFields MailingWork fields array
      *
-     * @return GN2_NewsletterConnect_Mailing_Recipient
+     * @return Recipient
      */
     protected function _mailingworkRecipient2Recipient($mailingWorkUserFields)
     {
         $fields = $this->_getFields();
 
-        $recipient = new GN2_NewsletterConnect_Mailing_Recipient;
+        $recipient = new Recipient;
         foreach ($mailingWorkUserFields as $k => $userField) {
             if (isset($fields[$userField['id']])) {
                 $fieldName  = $fields[$userField['id']];
@@ -513,7 +519,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
      * @param $recipient
      * @param $basketData
      * @param $positions
-     * @throws GN2_NewsletterConnect_Exception_MailingService
+     * @throws Exception
      */
     public function transferOrder($recipient, $basketData, $positions)
     {
@@ -523,7 +529,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
         $this->addParam('orderPositions', $positions);
         $recipientResponse = $this->_getDecodedResponse();
         if ($recipientResponse['error'] !== 0) {
-            throw new GN2_NewsletterConnect_Exception_MailingService('transferOrder failed: ' . $recipientResponse);
+            throw new Exception('transferOrder failed: ' . $recipientResponse);
         }
     }
 
@@ -580,7 +586,7 @@ class GN2_NewsletterConnect_MailingService_Mailingwork
 
     /**
      * gets the Header from a recipient object for the csv export
-     * @param $recipient recipient object
+     * @param $recipient Recipient object
      * @param boolean $blExportStatus true to export the oxid newsletter status (Subscription status: 0 - not subscribed, 1 - subscribed, 2 - not confirmed)
      * @return array|null
      */

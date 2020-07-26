@@ -9,11 +9,13 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\WebService;
+
 /**
  * Abstract WebService class.
  * Should be extended for different types of WebService.
  */
-abstract class GN2_NewsletterConnect_WebService_Abstract
+abstract class WebServiceAbstract
 {
     /**
      * @var array $_params Parameters to be sent to the webservice

@@ -9,10 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Mailing;
+
 /**
  * Mailing List Entity Class
  */
-class GN2_NewsletterConnect_Mailing_List
+class MailingList
 {
     /**
      * @var List identification ID;

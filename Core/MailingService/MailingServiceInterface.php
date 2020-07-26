@@ -9,24 +9,29 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\MailingService;
+
+use \GN2\NewsletterConnect\Core\Mailing\MailingList;
+use \GN2\NewsletterConnect\Core\Mailing\Recipient;
+
 /**
  * MailingService_Interface
  * Should be implemented for different types of webservice.
  */
-interface GN2_NewsletterConnect_MailingService_Interface
+interface MailingServiceInterface
 {
     /**
      * Gets current lists from the MailingService
      *
      * @abstract
-     * @return array Array of GN2_NewsletterConnect_Mailing_List Objects
+     * @return array Array of MailingList Objects
      */
     public function getLists();
 
     /**
      * Creates a new recipient on the MailingService starts OptIn process
      *
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     * @param Recipient $recipient Recipient Object
      *
      * @return void
      */
@@ -35,8 +40,8 @@ interface GN2_NewsletterConnect_MailingService_Interface
     /**
      * Subscribes a recipient directly to a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List $list List Object
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     * @param MailingList $list List Object
+     * @param Recipient $recipient Recipient Object
      *
      * @return void
      */
@@ -45,8 +50,8 @@ interface GN2_NewsletterConnect_MailingService_Interface
     /**
      * Unsubscribes a recipient directly from a mailing list
      *
-     * @param GN2_NewsletterConnect_Mailing_List $list List Object
-     * @param GN2_NewsletterConnect_Mailing_Recipient $recipient Recipient Object
+     * @param MailingList $list List Object
+     * @param Recipient $recipient Recipient Object
      *
      * @return void
      */
@@ -57,7 +62,7 @@ interface GN2_NewsletterConnect_MailingService_Interface
      *
      * @param string $email E-Mail Address
      *
-     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     * @return mixed Recipient or null
      */
     public function getRecipientByEmail($email);
 
@@ -66,7 +71,7 @@ interface GN2_NewsletterConnect_MailingService_Interface
      *
      * @param mixed $id ID
      *
-     * @return mixed GN2_NewsletterConnect_Mailing_Recipient or null
+     * @return mixed Recipient or null
      */
     public function getRecipientById($id);
 

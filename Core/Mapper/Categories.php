@@ -9,12 +9,16 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Mapper;
+
+use \GN2\NewsletterConnect\Core\Data\Result;
+use \GN2\NewsletterConnect\Core\Help\Utilities;
 
 /**
  * Category Mapper
  */
-class GN2_NewsletterConnect_Mapper_Categories
-    extends GN2_NewsletterConnect_Mapper_Abstract
+class Categories
+    extends MapperAbstract
 {
     /**
      * Recursively builds up a tree of categories
@@ -29,7 +33,7 @@ class GN2_NewsletterConnect_Mapper_Categories
         foreach ($tree as $branch) {
             $entry = new stdClass();
             $entry->id = $branch->oxcategories__oxid->rawValue;
-            $entry->name = GN2_Utilities::MailingWorksUtf8Encode($branch->oxcategories__oxtitle->rawValue);
+            $entry->name = Utilities::MailingWorksUtf8Encode($branch->oxcategories__oxtitle->rawValue);
             $subcats = $branch->getSubCats();
             if (count($subcats) > 0) {
                 $entry->childElements = $this->_buildtree($subcats);
@@ -42,7 +46,7 @@ class GN2_NewsletterConnect_Mapper_Categories
     /**
      * Returns results from the mapper
      *
-     * @return GN2_NewsletterConnect_Data_Result Meta & result data
+     * @return GN2\NewsletterConnect\Core\Data\Result Meta & result data
      */
     public function getResults()
     {
@@ -50,7 +54,7 @@ class GN2_NewsletterConnect_Mapper_Categories
         $oCategoryTree->buildTree(null, true, true, true);
         $data = $this->_buildTree($oCategoryTree);
 
-        $dataresult = new GN2_NewsletterConnect_Data_Result;
+        $dataresult = new Result;
         $dataresult->setResult($data);
 
         return $dataresult;

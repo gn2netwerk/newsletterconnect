@@ -9,11 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\WebService;
+
 /**
  * Curl WebService Implementation
  */
-abstract class GN2_NewsletterConnect_WebService_Curl
-    extends GN2_NewsletterConnect_WebService_Abstract
+abstract class Curl extends WebServiceAbstract
 {
     /**
      * @var bool Curl Parameter to return response from server or not

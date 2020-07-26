@@ -29,8 +29,8 @@ class ThankYouController extends ThankYouController_parent
      */
     public function render()
     {
-        // Hotfix:
-        // "EXCEPTION_SYSTEMCOMPONENT_TEMPLATENOTFOUND page/checkout/thankyou.tpl"
+        // TODO: possibly remove this?
+        // Hotfix: "EXCEPTION_SYSTEMCOMPONENT_TEMPLATENOTFOUND page/checkout/thankyou.tpl"
         $this->setAdminMode(false);
 
         $render = parent::render();
@@ -98,8 +98,9 @@ class ThankYouController extends ThankYouController_parent
             }
 
             /* Get existing MailingService */
+            $oUser = $this->getUser();
             $mailingServiceUser = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
-                $this->getUser()->oxuser__oxusername->rawValue
+                $oUser->oxuser__oxusername->rawValue
             );
 
             $bCountry = oxNew(Country::class);

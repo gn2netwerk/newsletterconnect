@@ -12,9 +12,9 @@
 namespace GN2\NewsletterConnect\Application\Controller;
 
 use \GN2_NewsletterConnect;
+use \OxidEsales\Eshop\Application\Model\User;
 use \OxidEsales\Eshop\Core\Registry;
 use \OxidEsales\Eshop\Core\Field;
-
 
 /**
  * Class NewsletterController
@@ -41,7 +41,7 @@ class NewsletterController extends NewsletterController_parent
             return;
         }
 
-        $oUser = oxNew(\OxidEsales\Eshop\Application\Model\User::class);
+        $oUser = oxNew(User::class);
         $oUser->oxuser__oxusername = new Field($aParams['oxuser__oxusername'], Field::T_RAW);
         $oUser->oxuser__oxactive = new Field(1, Field::T_RAW);
         $oUser->oxuser__oxrights = new Field('user', Field::T_RAW);

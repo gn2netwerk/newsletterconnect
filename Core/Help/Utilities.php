@@ -10,11 +10,13 @@
  */
 
 
+namespace GN2\NewsletterConnect\Core\Help;
+
 /**
- * GN2_Utilities class.
+ * Utilities class.
  * Holds some general functions
  */
-class GN2_Utilities
+class Utilities
 {
 
     /**
@@ -229,16 +231,16 @@ class GN2_Utilities
     {
         $ret = 'UNKNOWN STATUS';
         switch ($dReport) {
-            case   GN2_Utilities::SUCCESS:
+            case Utilities::SUCCESS:
                 $ret = '<span style="background-color: forestgreen;"> Successful </span>';
                 break;
-            case   GN2_Utilities::FAULTY:
+            case Utilities::FAULTY:
                 $ret = '<span style="background-color: red;"> Error occurred (Connection failed, Object not found). check next hint. </span>';
                 break;
-            case   GN2_Utilities::NODATA:
+            case Utilities::NODATA:
                 $ret = '<span style="background-color: orange;"> No Data found </span>';
                 break;
-            case   GN2_Utilities::NOFILERESOURCE:
+            case Utilities::NOFILERESOURCE:
                 $ret = '<span style="background-color: lightgreen;"> File system not found </span>';
                 break;
         }

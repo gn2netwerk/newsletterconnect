@@ -10,6 +10,7 @@
  */
 
 self::$config = array(
+    // TODO: mailingservices komplett entfernen
     'mailingService' => 'Mailingwork',
 
     'service_Mailingwork' => array(

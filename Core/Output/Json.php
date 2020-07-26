@@ -9,10 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Output;
+
 /**
  * JSON Output Class
  */
-class GN2_NewsletterConnect_Output_Json extends GN2_NewsletterConnect_Output_Abstract
+class Json extends OutputAbstract
 {
     /**
      * Gets the output, prepared for the browser.

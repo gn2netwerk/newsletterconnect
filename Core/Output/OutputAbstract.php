@@ -9,14 +9,18 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Output;
+
+use \GN2\NewsletterConnect\Core\Data\Result;
+
 /**
  * Abstract class for data
  * output. Can be extended for different output formats.
  */
-abstract class GN2_NewsletterConnect_Output_Abstract
+abstract class OutputAbstract
 {
     /**
-     * @var $_data GN2_NewsletterConnect_Data_Result Object
+     * @var $_data Result Object
      */
     private $_data;
 
@@ -37,7 +41,7 @@ abstract class GN2_NewsletterConnect_Output_Abstract
     /**
      * Sets the data for the output
      *
-     * @param GN2_NewsletterConnect_Data_Result $data Meta & result data
+     * @param Result $data Meta & result data
      *
      * @return boolean
      */
@@ -51,7 +55,7 @@ abstract class GN2_NewsletterConnect_Output_Abstract
     }
 
     /**
-     * Gets the data from the GN2_NewsletterConnect_Data_Result object
+     * Gets the data from the GN2\NewsletterConnect\Core\Data\Result object
      *
      * @return stdClass Meta & result data
      */

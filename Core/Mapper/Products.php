@@ -9,11 +9,16 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+namespace GN2\NewsletterConnect\Core\Mapper;
+
+use GN2\NewsletterConnect\Core\Data\Result;
+use \GN2\NewsletterConnect\Core\Help\Utilities;
+
 /**
  * Product Mapper
  */
-class GN2_NewsletterConnect_Mapper_Products
-    extends GN2_NewsletterConnect_Mapper_Abstract
+class Products
+    extends MapperAbstract
 {
     /**
      * Builds the MySQL-Limit, depending on URL parameters.
@@ -62,8 +67,8 @@ class GN2_NewsletterConnect_Mapper_Products
         }
 
         /* Restrict entity */
-        if ($this->entity != "") {
-            $entity = $oOXDB->quote($this->entity);
+        if ($this->_entity != "") {
+            $entity = $oOXDB->quote($this->_entity);
             $where .= ' && a.OXID = ' . $entity . ' ';
         }
 
@@ -111,7 +116,7 @@ class GN2_NewsletterConnect_Mapper_Products
 
     /**
      * Returns results from the mapper
-     * @return GN2_NewsletterConnect_Data_Result
+     * @return GN2\NewsletterConnect\Core\Data\Result
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
      */
@@ -134,7 +139,7 @@ class GN2_NewsletterConnect_Mapper_Products
 
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
-                $product->title = GN2_Utilities::MailingWorksUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
+                $product->title = Utilities::MailingWorksUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
 
                 $fActPrice = $article->getFPrice();
                 if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
@@ -164,14 +169,14 @@ class GN2_NewsletterConnect_Mapper_Products
                 $product->price = $fActPrice;
 
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
-                $product->artnum = GN2_Utilities::MailingWorksUtf8Encode($article->oxarticles__oxartnum->rawValue);
+                $product->artnum = Utilities::MailingWorksUtf8Encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
 
                 // TODO
                 //$product->longdesc = $article->getLongDesc();
                 $articleLongDesc = GN2_NewsletterConnect::getArticleLongDesc($article);
-                $product->longdesc = GN2_Utilities::MailingWorksUtf8Encode($articleLongDesc);
+                $product->longdesc = Utilities::MailingWorksUtf8Encode($articleLongDesc);
 
                 /* Product Pics */
                 $product->pictures = array();
@@ -351,7 +356,7 @@ class GN2_NewsletterConnect_Mapper_Products
             }
         }
 
-        $dataResult = new GN2_NewsletterConnect_Data_Result;
+        $dataResult = new Result;
         $dataResult->setMeta('rows', $total);
         $dataResult->setResult($data);
         return $dataResult;

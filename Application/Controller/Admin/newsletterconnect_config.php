@@ -11,10 +11,14 @@
 
 namespace GN2\NewsletterConnect\Application\Controller\Admin;
 
-use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
+use \OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
+use \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use \OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use \OxidEsales\Eshop\Core\DatabaseProvider;
+
 use \GN2_NewsletterConnect;
-use \GN2_NewsletterConnect_Export;
-use \GN2_Utilities;
+use \GN2\NewsletterConnect\Core\Export\Export;
+use \GN2\NewsletterConnect\Core\Help\Utilities;
 
 class newsletterconnect_config extends AdminDetailsController
 {
@@ -25,8 +29,8 @@ class newsletterconnect_config extends AdminDetailsController
     protected $_sThisTemplate = 'newsletterconnect_config.tpl';
 
     /**
-     * translated export status report, GN2_Utilities
-     * @var string
+     * translated export status report
+     * @var Utilities string
      */
     private $_sExportStatus = null;
 
@@ -39,14 +43,14 @@ class newsletterconnect_config extends AdminDetailsController
 
     /**
      * @return string
-     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
-     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function render()
     {
         parent::render();
 
-        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+        $oDb = DatabaseProvider::getDb();
         $rows = $oDb->select("SELECT OXID,OXSERIENR FROM oxvoucherseries");
 
         $voucherSeries = array(
@@ -67,7 +71,7 @@ class newsletterconnect_config extends AdminDetailsController
 
 
         // TODO: EXPORTDIR is not an array! what is "checkExportDir" doing??
-        $this->_aViewData['gn2_ExportDir'] = GN2_Utilities::checkExportDir(EXPORTDIR)['status'];
+        $this->_aViewData['gn2_ExportDir'] = Utilities::checkExportDir(EXPORTDIR)['status'];
 
 
         $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
@@ -87,11 +91,13 @@ class newsletterconnect_config extends AdminDetailsController
     {
         $config = $this->getConfig();
 
-        // TODO
+        // TODO: ...
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
         // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
         $sShopId = $this->getConfig()->getShopId();
         $config->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
+
+        // TODO: what? why?
         GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getModuleConfig();
     }
 
@@ -147,7 +153,7 @@ class newsletterconnect_config extends AdminDetailsController
         }
 
         //call exporter
-        $oExporter = new GN2_NewsletterConnect_Export($bExportActiveSubscriptions,
+        $oExporter = new Export($bExportActiveSubscriptions,
             $bExportInActiveSubscriptions,
             $bExportUnconfirmedSubscriptions,
             trim($sMosListId),
@@ -161,7 +167,7 @@ class newsletterconnect_config extends AdminDetailsController
         $aReport = $oExporter->transferData();
 
         if (is_array($aReport)) {
-            $this->_sExportStatus = GN2_Utilities::translateReport($aReport['REPORT']); //($aReport);
+            $this->_sExportStatus = Utilities::translateReport($aReport['REPORT']); //($aReport);
             $this->_sExportReportData = $aReport['LINK'];
         }
     }
@@ -178,7 +184,7 @@ class newsletterconnect_config extends AdminDetailsController
     private function _CountSubscribers($sWhereClause = '')
     {
         //set where clause
-        $sWhere = " OXSHOPID = '" . GN2_Utilities::getShopId() . "'";
+        $sWhere = " OXSHOPID = '" . Utilities::getShopId() . "'";
         if (trim($sWhereClause) !== '') {
             $sWhere = $sWhereClause . ' AND ' . $sWhere;
         } else {

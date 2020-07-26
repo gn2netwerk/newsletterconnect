@@ -11,6 +11,7 @@
 
 namespace GN2\NewsletterConnect\Application\Controller;
 
+use \Exception;
 use \GN2_NewsletterConnect;
 
 
@@ -23,23 +24,24 @@ class AccountNewsletterController extends AccountNewsletterController_parent
     /**
      * Gets the current user as a recipient object
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     private function _getNewsletterConnectUser()
     {
         /* Get existing MailingService */
-        $mailingServiceUser = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
-            $this->getUser()->oxuser__oxusername->rawValue
-        );
+        $oUser = $this->getUser();
+        $sUserEmail = $oUser->oxuser__oxusername->rawValue;
 
-        return $mailingServiceUser;
+        return GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
+            $sUserEmail
+        );
     }
 
 
     /**
      * Checks if the current recipient is signed up for the newsletter
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function isNewsletter()
     {
@@ -58,13 +60,14 @@ class AccountNewsletterController extends AccountNewsletterController_parent
 
     /**
      * Subscribes a recipient directly, without opt-in
-     * @throws \Exception
+     * @throws Exception
      */
     public function subscribe()
     {
         $mailingService = GN2_NewsletterConnect::getMailingService();
 
-        $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
+        $oUser = $this->getUser();
+        $recipient = $oUser->gn2NewsletterConnectOxid2Recipient();
         $email = $recipient->getEmail();
         $recipientExists = $mailingService->getRecipientByEmail($email);
 

@@ -11,7 +11,7 @@ use \OxidEsales\Eshop\Core\Request;
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
-class GN2_NewsletterConnect extends \OxidEsales\Eshop\Core\Base
+class GN2_NewsletterConnect
 {
     /**
      * @var array Configuration Array
@@ -35,28 +35,27 @@ class GN2_NewsletterConnect extends \OxidEsales\Eshop\Core\Base
 
         // TODO?
         if (strpos($_SERVER['SCRIPT_NAME'], 'api.php') !== false) {
-            include_once dirname(__FILE__) . '/Core/Mapper/Abstract.php';
+            include_once dirname(__FILE__) . '/Core/Mapper/MapperAbstract.php';
             include_once dirname(__FILE__) . '/Core/Mapper/Categories.php';
             include_once dirname(__FILE__) . '/Core/Mapper/Products.php';
-            include_once dirname(__FILE__) . '/Core/Output/Abstract.php';
+            include_once dirname(__FILE__) . '/Core/Output/OutputAbstract.php';
             include_once dirname(__FILE__) . '/Core/Output/Json.php';
             include_once dirname(__FILE__) . '/Core/Output/Csv.php';
             include_once dirname(__FILE__) . '/Core/Data/Result.php';
             include_once 'api.php';
         }
 
-        include_once dirname(__FILE__) . '/Core/Exception/MailingService.php';
-        include_once dirname(__FILE__) . '/Core/WebService/Abstract.php';
+        include_once dirname(__FILE__) . '/Core/WebService/WebServiceAbstract.php';
         include_once dirname(__FILE__) . '/Core/WebService/Curl.php';
-        include_once dirname(__FILE__) . '/Core/Mailing/List.php';
+        include_once dirname(__FILE__) . '/Core/Mailing/MailingList.php';
         include_once dirname(__FILE__) . '/Core/Mailing/Recipient.php';
-        include_once dirname(__FILE__) . '/Core/MailingService/Interface.php';
+        include_once dirname(__FILE__) . '/Core/MailingService/MailingServiceInterface.php';
         include_once dirname(__FILE__) . '/Core/MailingService/MailingWork.php';
     }
 
 
     /**
-     * Generates the relevant child instance of GN2_NewsletterConnect_MailingService, depending on settings.php
+     * Generates the relevant child instance of \GN2\NewsletterConnect\Core\MailingService, depending on settings.php
      * @static
      * @return mixed
      * @throws Exception
@@ -65,7 +64,10 @@ class GN2_NewsletterConnect extends \OxidEsales\Eshop\Core\Base
     {
         if (isset(self::$config['mailingService'])) {
             $key = self::$config['mailingService'];
-            $className = 'GN2_NewsletterConnect_MailingService_' . $key;
+
+            // TODO: maybe without the first slash? this "inclusion" is sloppy anyways
+            $className = '\GN2\NewsletterConnect\Core\MailingService\\' . $key;
+
             if (class_exists($className)) {
                 $config = (isset(self::$config['service_' . $key])) ? self::$config['service_' . $key] : array();
                 return new $className($config);
