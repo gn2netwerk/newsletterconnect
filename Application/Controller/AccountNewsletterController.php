@@ -31,8 +31,9 @@ class AccountNewsletterController extends AccountNewsletterController_parent
         /* Get existing MailingService */
         $oUser = $this->getUser();
         $sUserEmail = $oUser->oxuser__oxusername->rawValue;
+        $mailingService = GN2_NewsletterConnect::getMailingService();
 
-        return GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
+        return $mailingService->getRecipientByEmail(
             $sUserEmail
         );
     }

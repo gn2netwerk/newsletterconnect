@@ -28,6 +28,7 @@ class NewsletterController extends NewsletterController_parent
      */
     public function send()
     {
+        $oConfig = GN2_NewsletterConnect::getOXConfig();
         $aParams = GN2_NewsletterConnect::getOXParameter("editval");
         $blSubscribe = GN2_NewsletterConnect::getOXParameter("subscribeStatus");
 
@@ -45,7 +46,7 @@ class NewsletterController extends NewsletterController_parent
         $oUser->oxuser__oxusername = new Field($aParams['oxuser__oxusername'], Field::T_RAW);
         $oUser->oxuser__oxactive = new Field(1, Field::T_RAW);
         $oUser->oxuser__oxrights = new Field('user', Field::T_RAW);
-        $oUser->oxuser__oxshopid = new Field($this->getConfig()->getShopId(), Field::T_RAW);
+        $oUser->oxuser__oxshopid = new Field($oConfig->getShopId(), Field::T_RAW);
         $oUser->oxuser__oxfname = new Field($aParams['oxuser__oxfname'], Field::T_RAW);
         $oUser->oxuser__oxlname = new Field($aParams['oxuser__oxlname'], Field::T_RAW);
         $oUser->oxuser__oxsal = new Field($aParams['oxuser__oxsal'], Field::T_RAW);

@@ -98,8 +98,10 @@ class ThankYouController extends ThankYouController_parent
             }
 
             /* Get existing MailingService */
+            $mailingService = GN2_NewsletterConnect::getMailingService();
             $oUser = $this->getUser();
-            $mailingServiceUser = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail(
+
+            $mailingServiceUser = $mailingService->getRecipientByEmail(
                 $oUser->oxuser__oxusername->rawValue
             );
 
@@ -131,7 +133,7 @@ class ThankYouController extends ThankYouController_parent
                     'productCount' => $count,
                 );
 
-                GN2_NewsletterConnect::getMailingService()->transferOrder(
+                $mailingService->transferOrder(
                     $mailingServiceUser,
                     $basketData,
                     $items

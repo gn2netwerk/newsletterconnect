@@ -89,13 +89,14 @@ class newsletterconnect_config extends AdminDetailsController
      */
     public function save()
     {
-        $config = $this->getConfig();
+        // todo: config should be the same everywhere..
+        $oConfig = $this->getConfig();
 
         // TODO: ...
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
         // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
-        $sShopId = $this->getConfig()->getShopId();
-        $config->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
+        $sShopId = $oConfig->getShopId();
+        $oConfig->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
 
         // TODO: what? why?
         GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getModuleConfig();

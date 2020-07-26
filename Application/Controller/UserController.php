@@ -36,12 +36,13 @@ class UserController extends UserController_parent
             }
 
             $oUser = $this->getUser();
+            $mailingService = GN2_NewsletterConnect::getMailingService();
 
             if ($oUser) {
                 // ziehe aktuellen Status von Mailingwork - benötigt Single-OptIn für Anmeldesetup (Kundenaccount)
                 $recipient = $oUser->gn2NewsletterConnectOxid2Recipient();
                 $email = $recipient->getEmail();
-                $recipientExists = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail($email);
+                $recipientExists = $mailingService->getRecipientByEmail($email);
                 $this->_blNewsSubscribed = (bool) $recipientExists;
                 return $this->_blNewsSubscribed;
             }

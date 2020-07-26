@@ -218,7 +218,8 @@ class Utilities
      */
     public static function getShopId()
     {
-        return self::getOXConfig()->getShopId();
+        $oConfig = self::getOXConfig();
+        return $oConfig->getShopId();
     }
 
 
