@@ -27,7 +27,7 @@ class Output extends Output_parent
      */
     public function __construct()
     {
-        $api = $_REQUEST['mos_api'];
+        $api = GN2_NewsletterConnect::getOXParameter('mos_api');
 
         if ($api == 1) {
             $config = GN2_NewsletterConnect::getOXConfig();
@@ -46,7 +46,7 @@ class Output extends Output_parent
 
                     $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
 
-                    $mode = $_REQUEST['mode'];
+                    $mode = GN2_NewsletterConnect::getOXParameter('mode');
                     switch ($mode) {
                         case "getVoucher":
                             $voucherSeries = $savedSettings['voucher_series'];
@@ -65,7 +65,8 @@ class Output extends Output_parent
                             ));
                             die();
                         case "updateUser":
-                            $sql = 'select oxid from oxuser where OXUSERNAME = ' . $oDb->quote($_REQUEST['email']) . ' LIMIT 1';
+                            $email = GN2_NewsletterConnect::getOXParameter('email');
+                            $sql = 'select oxid from oxuser where OXUSERNAME = ' . $oDb->quote($email) . ' LIMIT 1';
                             $oxid = $oDb->getOne($sql);
                             $response = array();
                             $response['msg'] = 'error';
@@ -73,7 +74,7 @@ class Output extends Output_parent
                                 $oUser = oxNew(\OxidEsales\Eshop\Application\Model\User::class);
                                 $oUser->load($oxid);
 
-                                $title = $_REQUEST['title'];
+                                $title = GN2_NewsletterConnect::getOXParameter('title');
                                 switch (strtolower($title)) {
                                     case "mr":
                                     case "herr":
@@ -90,8 +91,8 @@ class Output extends Output_parent
                                 if ($title != "") {
                                     $oUser->oxuser__oxsal->rawValue = $title;
                                 }
-                                $oUser->oxuser__oxfname->rawValue = $_REQUEST['firstname'];
-                                $oUser->oxuser__oxlname->rawValue = $_REQUEST['lastname'];
+                                $oUser->oxuser__oxfname->rawValue = GN2_NewsletterConnect::getOXParameter('firstname');
+                                $oUser->oxuser__oxlname->rawValue = GN2_NewsletterConnect::getOXParameter('lastname');
                                 if ($oUser->save()) {
                                     $response['msg'] = 'ok';
                                 }

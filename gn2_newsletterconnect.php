@@ -174,7 +174,14 @@ class GN2_NewsletterConnect
 
         if (class_exists(\OxidEsales\Eshop\Core\Request::class)) {
             $oRequest = oxNew(\OxidEsales\Eshop\Core\Request::class);
-            return $oRequest->getRequestParameter($sParameter);
+
+            if (method_exists($oRequest, "getRequestEscapedParameter")) {
+                return $oRequest->getRequestEscapedParameter($sParameter);
+            }
+
+            if (method_exists($oRequest, "getRequestParameter")) {
+                return $oRequest->getRequestParameter($sParameter);
+            }
         }
 
         if (method_exists($oConfig, "getRequestParameter")) {
@@ -208,6 +215,79 @@ class GN2_NewsletterConnect
         if (class_exists("oxsession")) {
             if (method_exists(oxsession, "getInstance")) {
                 return oxSession::getInstance();
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @param $sName
+     * @return bool
+     */
+    public static function getOXSessionVariable($sName)
+    {
+        $oSession = self::getOXSession();
+
+        if (is_object($oSession)) {
+            if (method_exists($oSession, "getVariable")) {
+                $oSession->getVariable($sName);
+                return true;
+            }
+
+            if (method_exists($oSession, "getVar")) {
+                $oSession->getVar($sName);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @param $sName
+     * @param $sValue
+     * @return bool
+     */
+    public static function setOXSessionVariable($sName, $sValue)
+    {
+        $oSession = self::getOXSession();
+
+        if (is_object($oSession)) {
+            if (method_exists($oSession, "setVariable")) {
+                $oSession->setVariable($sName, $sValue);
+                return true;
+            }
+
+            if (method_exists($oSession, "setVar")) {
+                $oSession->setVar($sName, $sValue);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @param $sName
+     * @return bool
+     */
+    public static function deleteOXSessionVariable($sName)
+    {
+        $oSession = self::getOXSession();
+
+        if (is_object($oSession)) {
+            if (method_exists($oSession, "deleteVariable")) {
+                $oSession->deleteVariable($sName);
+                return true;
+            }
+
+            if (method_exists($oSession, "delVar")) {
+                $oSession->delVar($sName);
+                return true;
             }
         }
 

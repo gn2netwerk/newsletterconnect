@@ -32,10 +32,10 @@ class UserController extends UserController_parent
     {
         if ($this->_blNewsSubscribed === null) {
 
-            if (!$_SESSION) { session_start(); }
+            //$bSessionStatus = GN2_NewsletterConnect::getOXSessionVariable('NewsletterConnect_Status');
 
-            if (isset($_SESSION['NewsletterConnect_Status'])) {
-                $this->_blNewsSubscribed = (bool) $_SESSION['NewsletterConnect_Status'];
+            if (isset($bSessionStatus)) {
+                $this->_blNewsSubscribed = (bool) $bSessionStatus;
                 return $this->_blNewsSubscribed;
             }
 

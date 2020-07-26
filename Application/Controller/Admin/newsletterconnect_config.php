@@ -83,6 +83,8 @@ class newsletterconnect_config extends AdminDetailsController
     public function save()
     {
         $config = $this->getConfig();
+
+        // TODO
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
         // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
         $sShopId = $this->getConfig()->getShopId();

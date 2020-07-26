@@ -16,6 +16,7 @@ if (!class_exists('GN2_NewsletterConnect')) {
 }
 
 use \GN2_NewsletterConnect;
+use \OxidEsales\Eshop\Core\Registry;
 
 
 /**
@@ -30,14 +31,9 @@ class UserComponent extends UserComponent_parent
      */
     public function login()
     {
-        if (!$_SESSION) { session_start(); }
-
-        // Remove Checkbox-Parameter to avoid weird behaviour
-        if (isset($_SESSION['NewsletterConnect_Status'])) {
-            unset($_SESSION['NewsletterConnect_Status']);
-        }
-
-        return parent::login();
+        $response = parent::login();
+        //GN2_NewsletterConnect::deleteOXSessionVariable('NewsletterConnect_Status');
+        return $response;
     }
 
     /**
@@ -45,33 +41,8 @@ class UserComponent extends UserComponent_parent
      */
     public function logout()
     {
-        if (!$_SESSION) { session_start(); }
-
-        // Remove Checkbox-Parameter to avoid weird behaviour
-        if (isset($_SESSION['NewsletterConnect_Status'])) {
-            unset($_SESSION['NewsletterConnect_Status']);
-        }
-
+        //GN2_NewsletterConnect::deleteOXSessionVariable('NewsletterConnect_Status');
         return parent::logout();
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function createUser()
-    {
-        $response = parent::createUser();
-        return $response;
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function _changeUser_noRedirect()
-    {
-        $response = parent::_changeUser_noRedirect();
-        return $response;
     }
 
 }

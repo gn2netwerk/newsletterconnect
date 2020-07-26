@@ -98,8 +98,6 @@ class User extends User_parent
      */
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
-        if (!$_SESSION) { session_start(); }
-
         /* Figuring out which setup should be used */
         $cl = GN2_NewsletterConnect::getOXParameter('cl');
         $mode = 'general';
@@ -135,7 +133,7 @@ class User extends User_parent
                 }
 
                 if ($cl != 'newsletter') {
-                    $_SESSION['NewsletterConnect_Status'] = 1;
+                    //GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 1);
                 }
             } catch (\Exception $e) {
                 /* Do nothing */
@@ -149,7 +147,7 @@ class User extends User_parent
                 }
 
                 if ($cl != 'newsletter') {
-                    $_SESSION['NewsletterConnect_Status'] = 0;
+                    //GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 0);
                 }
             } catch (\Exception $e) {
                 /* Do nothing */

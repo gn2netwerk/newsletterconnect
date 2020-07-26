@@ -52,7 +52,10 @@ class ThankYouController extends ThankYouController_parent
             $items = array();
             $myConfig = GN2_NewsletterConnect::getOXConfig();
 
-            $orderId = GN2_NewsletterConnect::getOXSession()->getBasket()->getOrderId();
+            $oSession = GN2_NewsletterConnect::getOXSession();
+            $oBasket = $oSession->getBasket();
+            $orderId = $oBasket->getOrderId();
+
             $oxOrder = oxNew(Order::class);
             $oxOrder->load($orderId);
 
@@ -105,7 +108,7 @@ class ThankYouController extends ThankYouController_parent
 
             $bCountry = oxNew(Country::class);
             $bCountry->load($oxOrder->oxorder__oxbillcountryid->rawValue);
-            $dCountry = oxNew(\Country::class);
+            $dCountry = oxNew(Country::class);
             $dCountry->load($oxOrder->oxorder__oxdelcountryid->rawValue);
 
             $billCountry = $bCountry->oxcountry__oxisoalpha2->rawValue;

@@ -29,7 +29,7 @@ Falls schon vorhanden, bitte das vorherige gn2_newsletterconnect-Modul deaktivie
 
 3. Führen Sie folgende Befehle über die Kommandozeile (innerhalb ihres Stammverzeichnisses) aus:
    * `composer config repositories.gn2/newsletterconnect path ./packages/gn2/newsletterconnect`
-   * `composer require gn2/newsletterconnect:*`
+   * `composer require gn2/newsletterconnect:dev-master`
    * `composer update`
 
 4. Im OXID-Backend: "Erweiterungen > Module", das NewsletterConnect-Modul aktivieren.
@@ -48,7 +48,7 @@ Falls schon vorhanden, bitte das vorherige gn2_newsletterconnect-Modul deaktivie
    - ID des Hauptanmeldesetups: 2
    - ID des Hauptabmeldesetups: 1
 
-   Anmeldesetup (Kundenaccount) (Wenn man den Newsletter über die Adresseingabe im Checkout oder im Kundenkonto abonniert. Hier kann für die Anmeldung ein einfaches Opt-In verwendet werden):
+   Anmeldesetup (Kundenaccount) (Wenn man den Newsletter im 1. Bestellschritt (Adresseingabe) oder im Kundenkonto abonniert. Hier kann für die Anmeldung ein einfaches Opt-In verwendet werden):
 
    - ID des Anmeldesetups (Kundenaccount): 2
    - ID des Abmeldesetups (Kundenaccount): 1
