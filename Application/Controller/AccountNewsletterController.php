@@ -11,10 +11,6 @@
 
 namespace GN2\NewsletterConnect\Application\Controller;
 
-if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
-}
-
 use \GN2_NewsletterConnect;
 
 
@@ -66,23 +62,25 @@ class AccountNewsletterController extends AccountNewsletterController_parent
      */
     public function subscribe()
     {
-        $status = GN2_NewsletterConnect::getOXParameter('status');
-        $list = GN2_NewsletterConnect::getMailingService()->getMainShopList();
+        $mailingService = GN2_NewsletterConnect::getMailingService();
 
         $recipient = $this->getUser()->gn2NewsletterConnectOxid2Recipient();
         $email = $recipient->getEmail();
-        $recipientExists = GN2_NewsletterConnect::getMailingService()->getRecipientByEmail($email);
+        $recipientExists = $mailingService->getRecipientByEmail($email);
+
+        $list = $mailingService->getMainShopList();
+        $status = GN2_NewsletterConnect::getOXParameter('status');
 
         if ($list !== null) {
             if ($status == 1) {
                 if (!$recipientExists) {
-                    GN2_NewsletterConnect::getMailingService()->optInRecipient($recipient, 'account');
-                    /*GN2_NewsletterConnect::getMailingService()->subscribeRecipient($list, $recipient, 'account');*/
+                    $mailingService->optInRecipient($recipient, 'account');
+                    /*$mailingService->subscribeRecipient($list, $recipient, 'account');*/
                 }
                 GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 1);
             } else if ($status == 0 && $status !== null) {
                 if ($recipientExists) {
-                    GN2_NewsletterConnect::getMailingService()->unsubscribeRecipient($list, $recipient, 'account');
+                    $mailingService->unsubscribeRecipient($list, $recipient, 'account');
                 }
                 GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 0);
             }

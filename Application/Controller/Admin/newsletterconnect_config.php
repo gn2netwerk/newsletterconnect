@@ -11,8 +11,6 @@
 
 namespace GN2\NewsletterConnect\Application\Controller\Admin;
 
-require_once dirname(__FILE__) . '/../../../gn2_newsletterconnect.php';
-
 use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
 use \GN2_NewsletterConnect;
 use \GN2_NewsletterConnect_Export;
@@ -66,7 +64,12 @@ class newsletterconnect_config extends AdminDetailsController
         //export subscribers
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
         $this->_aViewData['gn2_ExportReportData'] = $this->_sExportReportData;
+
+
+        // TODO: EXPORTDIR is not an array! what is "checkExportDir" doing??
         $this->_aViewData['gn2_ExportDir'] = GN2_Utilities::checkExportDir(EXPORTDIR)['status'];
+
+
         $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
         $this->_aViewData['activeSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 1');
         $this->_aViewData['unconfirmedSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 2');
@@ -89,7 +92,7 @@ class newsletterconnect_config extends AdminDetailsController
         // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
         $sShopId = $this->getConfig()->getShopId();
         $config->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
-        GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getEnvironment()->getModuleConfig();
+        GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getModuleConfig();
     }
 
 

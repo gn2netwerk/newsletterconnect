@@ -9,6 +9,8 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
+
+//TODO: bootstrap
 if (!class_exists('GN2_NewsletterConnect')) require dirname(__FILE__) . '/gn2_newsletterconnect.php';
 
 $er = error_reporting(E_ALL ^ E_NOTICE);
@@ -67,6 +69,8 @@ class GN2_NewsletterConnect_Api
 
 }
 
+
+// TODO
 $env = GN2_NewsletterConnect::getEnvironment();
 $env->loadBootstrap();
 

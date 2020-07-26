@@ -11,10 +11,6 @@
 
 namespace GN2\NewsletterConnect\Application\Controller;
 
-if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
-}
-
 use \GN2_NewsletterConnect;
 use \OxidEsales\Eshop\Application\Model\Country;
 use \OxidEsales\Eshop\Application\Model\Order;

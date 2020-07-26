@@ -78,7 +78,7 @@ class GN2_NewsletterConnect_Mapper_Products
      */
     protected function getQuery()
     {
-        $env = GN2_NewsletterConnect::getEnvironment();
+        $articleTable = GN2_NewsletterConnect::getArticleTableName();
 
         $qsql = '
         SELECT
@@ -86,7 +86,7 @@ class GN2_NewsletterConnect_Mapper_Products
             a.OXID as OXID,
             a.OXTITLE
         FROM
-            ' . $env->getArticleTableName() . ' as a
+            ' . $articleTable . ' as a
         LEFT JOIN
             oxobject2category as o2c
         ON
@@ -117,9 +117,6 @@ class GN2_NewsletterConnect_Mapper_Products
      */
     public function getResults()
     {
-        $env = GN2_NewsletterConnect::getEnvironment();
-        $oxver = GN2_NewsletterConnect::getOXVersion();
-
         $qsql = $this->getQuery();
 
         $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
@@ -171,8 +168,10 @@ class GN2_NewsletterConnect_Mapper_Products
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
 
+                // TODO
                 //$product->longdesc = $article->getLongDesc();
-                $product->longdesc = GN2_Utilities::MailingWorksUtf8Encode($env->getArticleLongDesc($article));
+                $articleLongDesc = GN2_NewsletterConnect::getArticleLongDesc($article);
+                $product->longdesc = GN2_Utilities::MailingWorksUtf8Encode($articleLongDesc);
 
                 /* Product Pics */
                 $product->pictures = array();

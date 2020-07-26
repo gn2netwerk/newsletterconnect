@@ -1,4 +1,7 @@
 <?php
+
+use \OxidEsales\Eshop\Core\Request;
+
 /**
  * GN2_NewsletterConnect
  * @category GN2_NewsletterConnect
@@ -8,77 +11,47 @@
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
-
-require_once 'stub.php';
-
-
-/**
- * GN2_NewsletterConnect - Main OXID Module Initialization Class
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
- * @author   Dave Holloway <dh@gn2-netwerk.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version  Release: <package_version>
- * @link     http://www.gn2-netwerk.de/
- */
-class GN2_NewsletterConnect
+class GN2_NewsletterConnect extends \OxidEsales\Eshop\Core\Base
 {
     /**
      * @var array Configuration Array
      */
     public static $config = array();
 
-    /**
-     * oxid version
-     * @var null
-     */
-    private static $_OxVersion = null;
 
     /**
-     * oxconfig
-     * @var null
+     * Constructor.
      */
-    private static $_OxConfig = null;
-
-
-    /**
-     * getEnvironment
-     * Returns an instance of the current environment
-     * @return GN2_NewsletterConnect_Environment
-     */
-    public static function getEnvironment()
+    public function __construct()
     {
-        $version = self::getOXVersion();
 
-        switch ($version) {
-            case 60:
-                $env = new GN2_NewsletterConnect_Environment_Oxid60;
-                break;
+        // TODO: this may be useless.. and wrong folder anyways.
+        define('EXPORTDIR', 'gn2_newsletterconnect/');
 
-            default:
-                $env = new GN2_NewsletterConnect_Environment_Oxid;
-                break;
+
+        // TODO: maybe useless include because of class-autoloader?
+        include_once dirname(__FILE__) . '/Core/Export/Export.php';
+        include_once dirname(__FILE__) . '/Core/Help/Utilities.php';
+
+        // TODO?
+        if (strpos($_SERVER['SCRIPT_NAME'], 'api.php') !== false) {
+            include_once dirname(__FILE__) . '/Core/Mapper/Abstract.php';
+            include_once dirname(__FILE__) . '/Core/Mapper/Categories.php';
+            include_once dirname(__FILE__) . '/Core/Mapper/Products.php';
+            include_once dirname(__FILE__) . '/Core/Output/Abstract.php';
+            include_once dirname(__FILE__) . '/Core/Output/Json.php';
+            include_once dirname(__FILE__) . '/Core/Output/Csv.php';
+            include_once dirname(__FILE__) . '/Core/Data/Result.php';
+            include_once 'api.php';
         }
 
-        $env->loadBootstrap();
-        return $env;
-    }
-
-
-    /**
-     * Main bootstrap function
-     * @static
-     * @return void
-     */
-    public static function main()
-    {
-        try {
-            $env = self::getEnvironment();
-            self::$config = $env->getModuleConfig();
-            $newsletterConnect = new self;
-        } catch (\Exception $e) {
-            // TODO: Live ErrorTracking
-        }
+        include_once dirname(__FILE__) . '/Core/Exception/MailingService.php';
+        include_once dirname(__FILE__) . '/Core/WebService/Abstract.php';
+        include_once dirname(__FILE__) . '/Core/WebService/Curl.php';
+        include_once dirname(__FILE__) . '/Core/Mailing/List.php';
+        include_once dirname(__FILE__) . '/Core/Mailing/Recipient.php';
+        include_once dirname(__FILE__) . '/Core/MailingService/Interface.php';
+        include_once dirname(__FILE__) . '/Core/MailingService/MailingWork.php';
     }
 
 
@@ -99,67 +72,8 @@ class GN2_NewsletterConnect
             }
             throw new Exception('gn2_newsletterConnect- Cannot find class:' . $className);
         }
-    }
 
-
-    /**
-     * Get the oxid version
-     * @return int the oxid-version
-     */
-    public static function getOXVersion()
-    {
-        $sOXVersion = "";
-
-        if (self::$_OxVersion === null) {
-            if (class_exists(\OxidEsales\Eshop\Core\ShopVersion::class)) {
-                $oVersionObject = oxNew(\OxidEsales\Eshop\Core\ShopVersion::class);
-            }
-
-            if (!$oVersionObject) {
-                $oVersionObject = self::getOXConfig();
-            }
-
-            if (method_exists($oVersionObject, "getVersion")) {
-                $sOXVersion = substr($oVersionObject->getVersion(), 0, 3);
-            }
-
-            self::$_OxVersion = intval(str_replace('.', '', $sOXVersion));
-        }
-
-        return self::$_OxVersion;
-    }
-
-
-    /**
-     * Get oxid config object
-     * @return oxConfig the oxid config object
-     */
-    public static function getOXConfig()
-    {
-        if (self::$_OxConfig === null) {
-            if (!is_object(self::$_OxConfig)) {
-                if (class_exists(\OxidEsales\Eshop\Core\Config::class)) {
-                    self::$_OxConfig = oxNew(\OxidEsales\Eshop\Core\Config::class);
-                }
-            }
-
-            if (!is_object(self::$_OxConfig)) {
-                if (class_exists("oxRegistry")) {
-                    if (method_exists("oxRegistry", "getConfig")) {
-                        self::$_OxConfig = oxRegistry::getConfig();
-                    }
-                }
-            }
-
-            if (!is_object(self::$_OxConfig)) {
-                if (class_exists("oxConfig")) {
-                    if (method_exists("oxConfig", "getInstance")) {
-                        self::$_OxConfig = oxConfig::getInstance();
-                    }
-                }
-            }
-        }
-        return self::$_OxConfig;
+        // TODO: not returning anything is mailingservice can't be detected...
     }
 
 
@@ -167,13 +81,14 @@ class GN2_NewsletterConnect
      * Get parameter
      * @param string $sParameter the parameter key
      * @return mixed
+     *
+     * TODO
      */
     public static function getOXParameter($sParameter)
     {
-        $oConfig = self::getOXConfig();
+        $oRequest = oxNew(Request::class);
 
         if (class_exists(\OxidEsales\Eshop\Core\Request::class)) {
-            $oRequest = oxNew(\OxidEsales\Eshop\Core\Request::class);
 
             if (method_exists($oRequest, "getRequestEscapedParameter")) {
                 return $oRequest->getRequestEscapedParameter($sParameter);
@@ -184,12 +99,16 @@ class GN2_NewsletterConnect
             }
         }
 
-        if (method_exists($oConfig, "getRequestParameter")) {
-            return $oConfig->getRequestParameter($sParameter);
-        }
+        if (class_exists(\OxidEsales\EshopCommunity\Core\Registry::class)) {
+            $oConfig = \OxidEsales\EshopCommunity\Core\Registry::getConfig();
 
-        if (method_exists($oConfig, "getParameter")) {
-            return $oConfig->getParameter($sParameter);
+            if (method_exists($oConfig, "getRequestParameter")) {
+                return $oConfig->getRequestParameter($sParameter);
+            }
+
+            if (method_exists($oConfig, "getParameter")) {
+                return $oConfig->getParameter($sParameter);
+            }
         }
 
         return false;
@@ -199,6 +118,8 @@ class GN2_NewsletterConnect
     /**
      * Get the current session
      * @return mixed
+     *
+     * TODO
      */
     public static function getOXSession()
     {
@@ -225,6 +146,8 @@ class GN2_NewsletterConnect
     /**
      * @param $sName
      * @return bool
+     *
+     * TODO
      */
     public static function getOXSessionVariable($sName)
     {
@@ -250,6 +173,8 @@ class GN2_NewsletterConnect
      * @param $sName
      * @param $sValue
      * @return bool
+     *
+     * TODO
      */
     public static function setOXSessionVariable($sName, $sValue)
     {
@@ -274,6 +199,8 @@ class GN2_NewsletterConnect
     /**
      * @param $sName
      * @return bool
+     *
+     * TODO
      */
     public static function deleteOXSessionVariable($sName)
     {
@@ -292,6 +219,42 @@ class GN2_NewsletterConnect
         }
 
         return false;
+    }
+
+
+    /**
+     * Returns the name of the article table
+     *
+     * @return string String containing the tablename
+     */
+    public static function getArticleTableName()
+    {
+        return "oxv_oxarticles_de";
+    }
+
+    /**
+     * Returns the article long description
+     *
+     * @return string Emptystring
+     */
+    public static function getArticleLongDesc($article)
+    {
+        return $article->getLongDesc();
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public static function getModuleConfig()
+    {
+        $config = GN2_NewsletterConnect::getOXConfig();
+        $settings = array();
+        $settings['mailingService'] = 'Mailingwork';
+        // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
+        $sShopId = $config->getShopId();
+        $savedSettings = $config->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
+        $settings['service_Mailingwork'] = $savedSettings;
+        return $settings;
     }
 
 }

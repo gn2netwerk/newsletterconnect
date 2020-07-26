@@ -1,7 +1,17 @@
 <?php
+/**
+ * GN2_NewsletterConnect
+ * @category GN2_NewsletterConnect
+ * @package  GN2_NewsletterConnect
+ * @author   gn2 netwerk <kontakt@gn2.de>
+ * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @version  GIT: <git_id>
+ * @link     http://www.gn2-netwerk.de/
+ */
+
 $aLang = array(
     'charset'                                               => 'UTF-8',
-    'gn2_newsletterconnect_config'                          => "NewsletterConnect",
+    'newsletterconnect_config'                              => "NewsletterConnect",
 
     'GN2_NEWSLETTERCONNECT_MAIN'                            => 'General',
     'GN2_NEWSLETTERCONNECT_API_BASEURL'                     => 'Mailingwork API-Base-URL',

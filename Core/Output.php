@@ -11,8 +11,6 @@
 
 namespace GN2\NewsletterConnect\Core;
 
-require_once dirname(__FILE__) . '/../gn2_newsletterconnect.php';
-
 use \GN2_NewsletterConnect;
 
 /**
@@ -46,6 +44,7 @@ class Output extends Output_parent
 
                     $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
 
+                    // TODO: multishop support may be not given..?
                     $mode = GN2_NewsletterConnect::getOXParameter('mode');
                     switch ($mode) {
                         case "getVoucher":

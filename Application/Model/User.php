@@ -11,10 +11,6 @@
 
 namespace GN2\NewsletterConnect\Application\Model;
 
-if (!class_exists('GN2_NewsletterConnect')) {
-    include dirname(__FILE__) . '/../../gn2_newsletterconnect.php';
-}
-
 use \GN2_NewsletterConnect;
 use \GN2_NewsletterConnect_Mailing_Recipient;
 
