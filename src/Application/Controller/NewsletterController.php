@@ -15,6 +15,7 @@ use \GN2_NewsletterConnect;
 use \OxidEsales\Eshop\Application\Model\User;
 use \OxidEsales\Eshop\Core\Registry;
 use \OxidEsales\Eshop\Core\Field;
+use OxidEsales\Eshop\Core\Request;
 
 /**
  * Class NewsletterController
@@ -28,9 +29,10 @@ class NewsletterController extends NewsletterController_parent
      */
     public function send()
     {
-        $oConfig = GN2_NewsletterConnect::getOXConfig();
-        $aParams = GN2_NewsletterConnect::getOXParameter("editval");
-        $blSubscribe = GN2_NewsletterConnect::getOXParameter("subscribeStatus");
+        $oConfig = Registry::getConfig();
+
+        $aParams = Registry::get(Request::class)->getRequestEscapedParameter("editval");
+        $blSubscribe = Registry::get(Request::class)->getRequestEscapedParameter("subscribeStatus");
 
         // Überprüfung, der angegebenen E-Mail Adresse auf Gültigkeit
         if (!$aParams['oxuser__oxusername']) {

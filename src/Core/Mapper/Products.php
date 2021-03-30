@@ -13,6 +13,8 @@ namespace GN2\NewsletterConnect\Core\Mapper;
 
 use GN2\NewsletterConnect\Core\Data\Result;
 use \GN2\NewsletterConnect\Core\Help\Utilities;
+use OxidEsales\Eshop\Core\Registry;
+use OxidEsales\Eshop\Core\Request;
 
 /**
  * Product Mapper
@@ -28,7 +30,7 @@ class Products
      */
     public function getLimit()
     {
-        $start = intVal(GN2_NewsletterConnect::getOXParameter('start'));
+        $start = intVal(Registry::get(Request::class)->getRequestEscapedParameter('start'));
         return 'LIMIT ' . $start . ',50';
     }
 
@@ -44,7 +46,7 @@ class Products
 
         /* Fulltext search */
         $oOXDB = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
-        $q = GN2_NewsletterConnect::getOXParameter('q');
+        $q = Registry::get(Request::class)->getRequestEscapedParameter('q');
 
         if ($q != '') {
             $q = $oOXDB->quote("%" . $q . "%");
@@ -59,7 +61,7 @@ class Products
         }
 
         /* Category Search */
-        $cat = GN2_NewsletterConnect::getOXParameter('cat');
+        $cat = Registry::get(Request::class)->getRequestEscapedParameter('cat');
         if ($cat != "") {
             $cat = $oOXDB->quote($cat);
             $where .= '
@@ -139,7 +141,7 @@ class Products
 
                 $product = new stdClass;
                 $product->id = $article->oxarticles__oxid->rawValue;
-                $product->title = Utilities::MailingWorksUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
+                $product->title = Utilities::MailingWorkUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
 
                 $fActPrice = $article->getFPrice();
                 if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
@@ -169,14 +171,12 @@ class Products
                 $product->price = $fActPrice;
 
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
-                $product->artnum = Utilities::MailingWorksUtf8Encode($article->oxarticles__oxartnum->rawValue);
+                $product->artnum = Utilities::MailingWorkUtf8Encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
 
-                // TODO
-                //$product->longdesc = $article->getLongDesc();
-                $articleLongDesc = GN2_NewsletterConnect::getArticleLongDesc($article);
-                $product->longdesc = Utilities::MailingWorksUtf8Encode($articleLongDesc);
+                $articleLongDesc = $article->getLongDesc();
+                $product->longdesc = Utilities::MailingWorkUtf8Encode($articleLongDesc);
 
                 /* Product Pics */
                 $product->pictures = array();

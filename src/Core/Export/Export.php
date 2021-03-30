@@ -14,6 +14,7 @@ namespace GN2\NewsletterConnect\Core\Export;
 use \GN2_NewsletterConnect;
 use \GN2\NewsletterConnect\Core\Help\Utilities;
 use \GN2\NewsletterConnect\Core\MailingService\Mailingwork;
+use \OxidEsales\Eshop\Core\Registry;
 
 /**
  * GN2_NewsletterConnect Export-Class
@@ -135,14 +136,14 @@ class Export
         $this->_blExportStatus = $blExportStatus;
 
         //set mailing works object
-        $this->_setMailingWorks();
+        $this->_setMailingWork();
     }
 
 
     /**
      * sets the mailing works service object
      */
-    private function _setMailingWorks()
+    private function _setMailingWork()
     {
         try {
             $mailingService = GN2_NewsletterConnect::getMailingService();
@@ -397,7 +398,9 @@ class Export
      */
     private function _getWhereClause($table1 = 't_n', $table2 = 't_u')
     {
-        $sShopIDClause = $table1 . ".OXSHOPID = '" . Utilities::getShopId() . "'";
+        $oConfig = Registry::getConfig();
+
+        $sShopIDClause = $table1 . ".OXSHOPID = '" . $oConfig->getShopId() . "'";
 
         if ($this->_sWhereClause === null) {
             //if subscriber type is not chosen, export only the active subscribers

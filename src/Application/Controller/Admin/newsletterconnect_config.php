@@ -19,6 +19,8 @@ use \OxidEsales\Eshop\Core\DatabaseProvider;
 use \GN2_NewsletterConnect;
 use \GN2\NewsletterConnect\Core\Export\Export;
 use \GN2\NewsletterConnect\Core\Help\Utilities;
+use OxidEsales\Eshop\Core\Registry;
+use OxidEsales\Eshop\Core\Request;
 
 class newsletterconnect_config extends AdminDetailsController
 {
@@ -69,10 +71,8 @@ class newsletterconnect_config extends AdminDetailsController
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
         $this->_aViewData['gn2_ExportReportData'] = $this->_sExportReportData;
 
-
-        // TODO: EXPORTDIR is not an array! what is "checkExportDir" doing??
-        $this->_aViewData['gn2_ExportDir'] = Utilities::checkExportDir(EXPORTDIR)['status'];
-
+        $aExportDir = Utilities::checkExportDir();
+        $this->_aViewData['gn2_ExportDir'] = $aExportDir['status'];
 
         $this->_aViewData['totalSubscribers'] = $this->_CountSubscribers();
         $this->_aViewData['activeSubscribers'] = $this->_CountSubscribers('WHERE OXDBOPTIN = 1');
@@ -89,8 +89,7 @@ class newsletterconnect_config extends AdminDetailsController
      */
     public function save()
     {
-        // todo: config should be the same everywhere..
-        $oConfig = $this->getConfig();
+        $oConfig = Registry::getConfig();
 
         // TODO: ...
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
@@ -116,41 +115,43 @@ class newsletterconnect_config extends AdminDetailsController
         $dExportNotSubscribed = false;
         $sTransferMethod = 'packet';
 
+        $oRequest = Registry::get(Request::class);
+
         //export confirmed subscriptions
-        if (!GN2_NewsletterConnect::getOXParameter('activeSubscription')) {
+        if (!$oRequest->getRequestEscapedParameter('activeSubscription')) {
             $bExportActiveSubscriptions = false;
         }
 
         //export unconfirmed subscriptions
-        if (GN2_NewsletterConnect::getOXParameter('unconfirmedSubscription')) {
+        if ($oRequest->getRequestEscapedParameter('unconfirmedSubscription')) {
             $bExportUnconfirmedSubscriptions = true;
         }
 
         //export inactive subscriptions
-        if (GN2_NewsletterConnect::getOXParameter('inactiveSubscription')) {
+        if ($oRequest->getRequestEscapedParameter('inactiveSubscription')) {
             $bExportInActiveSubscriptions = true;
         }
 
         //export  unsubscribed user
-        if (GN2_NewsletterConnect::getOXParameter('noSubscription')) {
+        if ($oRequest->getRequestEscapedParameter('noSubscription')) {
             $dExportNotSubscribed = true;
         }
 
         //mailing works signup setup
-        $sMosListId = GN2_NewsletterConnect::getOXParameter('export_listId');
+        $sMosListId = $oRequest->getRequestEscapedParameter('export_listId');
 
         //get import art
-        $dImportArt = GN2_NewsletterConnect::getOXParameter('importMode');
+        $dImportArt = $oRequest->getRequestEscapedParameter('importMode');
 
 
         //get the export status flag
         $blExportStatus = false;
-        if (GN2_NewsletterConnect::getOXParameter('export_status')) {
+        if ($oRequest->getRequestEscapedParameter('export_status')) {
             $blExportStatus = true;
         }
 
-        if (GN2_NewsletterConnect::getOXParameter('transfermethod')) {
-            $sTransferMethod = GN2_NewsletterConnect::getOXParameter('transfermethod');
+        if ($oRequest->getRequestEscapedParameter('transfermethod')) {
+            $sTransferMethod = $oRequest->getRequestEscapedParameter('transfermethod');
         }
 
         //call exporter
@@ -184,8 +185,10 @@ class newsletterconnect_config extends AdminDetailsController
      */
     private function _CountSubscribers($sWhereClause = '')
     {
+        $oConfig = Registry::getConfig();
+
         //set where clause
-        $sWhere = " OXSHOPID = '" . Utilities::getShopId() . "'";
+        $sWhere = " OXSHOPID = '" . $oConfig->getShopId() . "'";
         if (trim($sWhereClause) !== '') {
             $sWhere = $sWhereClause . ' AND ' . $sWhere;
         } else {

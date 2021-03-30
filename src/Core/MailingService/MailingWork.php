@@ -14,6 +14,7 @@ namespace GN2\NewsletterConnect\Core\MailingService;
 use \GN2\NewsletterConnect\Core\Mailing\MailingList;
 use \GN2\NewsletterConnect\Core\Mailing\Recipient;
 use \GN2\NewsletterConnect\Core\WebService\Curl;
+use \OxidEsales\Eshop\Core\Registry;
 
 /**
  * MailingService implementation for W3Work MailingWork
@@ -97,7 +98,7 @@ class Mailingwork
     public function getMainShopList()
     {
         //$lists = $this->getLists();
-        //$oConfig = GN2_NewsletterConnect::getOXConfig();
+        //$oConfig = Registry::getConfig();
         //$shopUrl = $oConfig->getConfigParam('sShopURL');
 
         $this->_setMailingworkUrl('getoptinsetups');

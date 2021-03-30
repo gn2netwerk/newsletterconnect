@@ -42,9 +42,6 @@ $aModule = array(
         \OxidEsales\Eshop\Application\Model\User::class =>
             \GN2\NewsletterConnect\Application\Model\User::class,
 
-        //\OxidEsales\Eshop\Application\Model\Voucher::class =>
-        //    \GN2\NewsletterConnect\Application\Model\Voucher::class,
-
         \OxidEsales\Eshop\Application\Controller\AccountNewsletterController::class =>
             \GN2\NewsletterConnect\Application\Controller\AccountNewsletterController::class,
 
@@ -70,4 +67,8 @@ $aModule = array(
         'newsletterconnect_config.tpl' =>
             'gn2/newsletterconnect/Application/views/admin/tpl/newsletterconnect_config.tpl',
     ),
+
+    // TODO: onActivate: copy htaccess from vendor folder
+    // TODO: export-dir working?
+
 );

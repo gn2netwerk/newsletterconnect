@@ -11,10 +11,6 @@
 
 namespace GN2\NewsletterConnect\Application\Component;
 
-use \GN2_NewsletterConnect;
-use \OxidEsales\Eshop\Core\Registry;
-
-
 /**
  * Class AccountNewsletterController
  * @package GN2\NewsletterConnect\Application\Controller
@@ -28,7 +24,10 @@ class UserComponent extends UserComponent_parent
     public function login()
     {
         $response = parent::login();
-        //GN2_NewsletterConnect::deleteOXSessionVariable('NewsletterConnect_Status');
+
+        //$oSession = oxNew(\OxidEsales\Eshop\Core\Session::class);
+        //$oSession->deleteVariable('NewsletterConnect_Status');
+
         return $response;
     }
 
@@ -37,7 +36,9 @@ class UserComponent extends UserComponent_parent
      */
     public function logout()
     {
-        //GN2_NewsletterConnect::deleteOXSessionVariable('NewsletterConnect_Status');
+        //$oSession = oxNew(\OxidEsales\Eshop\Core\Session::class);
+        //$oSession->deleteVariable('NewsletterConnect_Status');
+
         return parent::logout();
     }
 

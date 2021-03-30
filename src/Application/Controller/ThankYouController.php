@@ -44,11 +44,9 @@ class ThankYouController extends ThankYouController_parent
     public function __construct()
     {
         try {
-            global $myConfig;
             $items = array();
-            $myConfig = GN2_NewsletterConnect::getOXConfig();
 
-            $oSession = GN2_NewsletterConnect::getOXSession();
+            $oSession = oxNew(\OxidEsales\Eshop\Core\Session::class);
             $oBasket = $oSession->getBasket();
             $orderId = $oBasket->getOrderId();
 

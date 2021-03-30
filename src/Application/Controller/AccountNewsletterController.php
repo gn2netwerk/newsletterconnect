@@ -13,6 +13,9 @@ namespace GN2\NewsletterConnect\Application\Controller;
 
 use \Exception;
 use \GN2_NewsletterConnect;
+use OxidEsales\Eshop\Core\Registry;
+use OxidEsales\Eshop\Core\Request;
+use OxidEsales\Eshop\Core\Session;
 
 
 /**
@@ -46,7 +49,8 @@ class AccountNewsletterController extends AccountNewsletterController_parent
      */
     public function isNewsletter()
     {
-        $bSessionStatus = GN2_NewsletterConnect::getOXSessionVariable('NewsletterConnect_Status');
+        $oSession = oxNew(Session::class);
+        $bSessionStatus = $oSession->getVariable('NewsletterConnect_Status');
 
         if (isset($bSessionStatus)) {
             return (bool) $bSessionStatus;
@@ -73,7 +77,7 @@ class AccountNewsletterController extends AccountNewsletterController_parent
         $recipientExists = $mailingService->getRecipientByEmail($email);
 
         $list = $mailingService->getMainShopList();
-        $status = GN2_NewsletterConnect::getOXParameter('status');
+        $status = Registry::get(Request::class)->getRequestEscapedParameter('status');
 
         if ($list !== null) {
             if ($status == 1) {

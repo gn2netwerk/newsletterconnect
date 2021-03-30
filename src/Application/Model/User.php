@@ -13,6 +13,8 @@ namespace GN2\NewsletterConnect\Application\Model;
 
 use \GN2_NewsletterConnect;
 use \GN2\NewsletterConnect\Core\Mailing\Recipient;
+use OxidEsales\Eshop\Core\Registry;
+use OxidEsales\Eshop\Core\Request;
 
 
 /**
@@ -95,7 +97,7 @@ class User extends User_parent
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
         /* Figuring out which setup should be used */
-        $cl = GN2_NewsletterConnect::getOXParameter('cl');
+        $cl = Registry::get(Request::class)->getRequestEscapedParameter('cl');
         $mode = 'general';
 
         switch ($cl) {

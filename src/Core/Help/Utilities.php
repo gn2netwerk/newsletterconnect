@@ -12,6 +12,8 @@
 
 namespace GN2\NewsletterConnect\Core\Help;
 
+use OxidEsales\Eshop\Core\Registry;
+
 /**
  * Utilities class.
  * Holds some general functions
@@ -58,15 +60,16 @@ class Utilities
      *                  ModuleExportDirectoryName = Name of the Module export directory,
      *                  ModuleExportDirectoryPath = the path to the export directory or null if not ascertained
      */
-    public static function checkExportDir($sModuleExportDirectoryName)
+    public static function checkExportDir($sModuleExportDirectoryName = "export")
     {
         $ret = array('status' => false,
             'ModuleExportDirectoryName' => $sModuleExportDirectoryName,
             'ModuleExportDirectoryPath' => null);
 
         //if export directory in base shop does not exist, create one
-        $config = self::getOXConfig();
-        $baseDirPlusExport = $config->getConfigParam('sShopDir') . self::$_sOxExportDir;
+        $oConfig = Registry::getConfig();
+        $baseDirPlusExport = rtrim($oConfig->getConfigParam('sShopDir'), " /") . "/" . ltrim($sModuleExportDirectoryName, " /");
+
         if (!is_dir($baseDirPlusExport)) {
             return $ret;
         }
@@ -173,53 +176,10 @@ class Utilities
      */
     public static function createLink($sFile, $sModuleExportDirectoryName)
     {
-        $oConfig = self::getOXConfig();
+        $oConfig = Registry::getConfig();
         $sShopURL = rtrim($oConfig->getConfigParam('sShopURL'), ' /');
 
         return '<a href="' . $sShopURL . '/' . self::$_sOxExportDir . $sModuleExportDirectoryName . basename($sFile) . '">' . basename($sFile) . ' </a>';
-    }
-
-
-    /**
-     * gets the oxconfig object
-     * @return null|oxConfig
-     */
-    public static function getOXConfig()
-    {
-        if (self::$_OxConfig === null) {
-            if (!is_object(self::$_OxConfig)) {
-                if (class_exists(\OxidEsales\Eshop\Core\Config::class)) {
-                    self::$_OxConfig = oxNew(\OxidEsales\Eshop\Core\Config::class);
-                }
-            }
-
-            if (!is_object(self::$_OxConfig)) {
-                if (class_exists("oxRegistry")) {
-                    if (method_exists("oxRegistry", "getConfig")) {
-                        self::$_OxConfig = oxRegistry::getConfig();
-                    }
-                }
-            }
-
-            if (!is_object(self::$_OxConfig)) {
-                if (class_exists("oxConfig")) {
-                    if (method_exists("oxConfig", "getInstance")) {
-                        self::$_OxConfig = oxConfig::getInstance();
-                    }
-                }
-            }
-        }
-        return self::$_OxConfig;
-    }
-
-
-    /**
-     * @return int shop id
-     */
-    public static function getShopId()
-    {
-        $oConfig = self::getOXConfig();
-        return $oConfig->getShopId();
     }
 
 
@@ -255,7 +215,7 @@ class Utilities
      * @param $str string str being converted
      * @return string
      */
-    public static function MailingWorksUtf8Encode($str)
+    public static function MailingWorkUtf8Encode($str)
     {
         if (mb_detect_encoding($str, 'UTF-8', true) === false) {
             $str = utf8_encode($str);

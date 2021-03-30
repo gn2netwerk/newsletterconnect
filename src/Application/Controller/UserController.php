@@ -27,8 +27,8 @@ class UserController extends UserController_parent
     public function isNewsSubscribed()
     {
         if ($this->_blNewsSubscribed === null) {
-
-            //$bSessionStatus = GN2_NewsletterConnect::getOXSessionVariable('NewsletterConnect_Status');
+            //$oSession = oxNew(\OxidEsales\Eshop\Core\Session::class);
+            //$bSessionStatus = $oSession->getVariable('NewsletterConnect_Status');
 
             if (isset($bSessionStatus)) {
                 $this->_blNewsSubscribed = (bool) $bSessionStatus;
