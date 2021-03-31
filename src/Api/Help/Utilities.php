@@ -9,8 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-
-namespace GN2\NewsletterConnect\Core\Help;
+namespace GN2\NewsletterConnect\Api\Help;
 
 use OxidEsales\Eshop\Core\Registry;
 
@@ -26,7 +25,6 @@ class Utilities
      * @var null
      */
     private static $_exportDirPath = null;
-
 
     /**
      * oxid export directory - 'export/'
@@ -45,11 +43,16 @@ class Utilities
     , EXPORTDIRMISSING = 5;
 
     /**
-     * oxconfig object
-     * @var null
+     * @return array
      */
-    private static $_OxConfig = null;
+    public static function getConfig()
+    {
+        $oConfig = Registry::getConfig();
 
+        // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
+        $sShopId = $oConfig->getShopId();
+        return (array) $oConfig->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
+    }
 
     /**
      * check if the export and module export directory exists.
@@ -110,7 +113,7 @@ class Utilities
      * @param string $fileSuffix optional suffix to the filename, default is an empty string
      * @return string
      */
-    public static function getFilePath($sModuleExportDirectory, $fileSuffix = '')
+    public static function getFilePath($sModuleExportDirectory, $fileSuffix = ''): string
     {
         $sExportDirPath = self::_getModuleExportPath($sModuleExportDirectory);
         $fileName = self::getFileName($fileSuffix);
@@ -232,15 +235,8 @@ class Utilities
     public static function getExportDirPath()
     {
         if (self::$_exportDirPath === null) {
-            $sExportDir = '/gn2_aboexport/';
-            if (function_exists('posix_getuid')) {
-                $aUserInfo = posix_getpwuid(posix_getuid());
-                self::$_exportDirPath = $aUserInfo['dir'] . $sExportDir;
-            } else {
-                //use shell
-                $sTildeExpanded = hell_exec('echo ~');
-                self::$_exportDirPath = $sTildeExpanded . $sExportDir;
-            }
+            $oConfig = Registry::getConfig();
+            self::$_exportDirPath = rtrim($oConfig->getConfigParam('sShopDir'), "/") . "/export/gn2_newsletterconnect/";
         }
 
         //create Export folder

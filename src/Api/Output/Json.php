@@ -9,7 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\Output;
+namespace GN2\NewsletterConnect\Api\Output;
 
 /**
  * JSON Output Class

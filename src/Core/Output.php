@@ -11,13 +11,13 @@
 
 namespace GN2\NewsletterConnect\Core;
 
-use \GN2_NewsletterConnect;
+use GN2\NewsletterConnect\Api\Help\Utilities;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
 /**
  * Class Output
- * @package GN2\NewsletterConnect\Core
+ * @package GN2\NewsletterConnect\Api
  */
 class Output extends Output_parent
 {
@@ -30,11 +30,7 @@ class Output extends Output_parent
         $api = Registry::get(Request::class)->getRequestEscapedParameter('mos_api');
 
         if ($api == 1) {
-            $oConfig = Registry::getConfig();
-
-            // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
-            $sShopId = $oConfig->getShopId();
-            $savedSettings = (array)$oConfig->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
+            $savedSettings = Utilities::getConfig();
 
             if (isset($savedSettings['api_ips'])) {
                 $ips = explode("\n", $savedSettings['api_ips']);

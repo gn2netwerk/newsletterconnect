@@ -12,7 +12,7 @@
 namespace GN2\NewsletterConnect\Application\Controller;
 
 use \Exception;
-use \GN2_NewsletterConnect;
+use GN2\NewsletterConnect\Api\WebService\WebService;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\Session;
@@ -31,12 +31,11 @@ class AccountNewsletterController extends AccountNewsletterController_parent
      */
     private function _getNewsletterConnectUser()
     {
-        /* Get existing MailingService */
         $oUser = $this->getUser();
         $sUserEmail = $oUser->oxuser__oxusername->rawValue;
-        $mailingService = GN2_NewsletterConnect::getMailingService();
+        $oWebService = oxNew( WebService::class );
 
-        return $mailingService->getRecipientByEmail(
+        return $oWebService->getRecipientByEmail(
             $sUserEmail
         );
     }
@@ -69,28 +68,29 @@ class AccountNewsletterController extends AccountNewsletterController_parent
      */
     public function subscribe()
     {
-        $mailingService = GN2_NewsletterConnect::getMailingService();
+        $oWebService = oxNew( WebService::class );
 
         $oUser = $this->getUser();
         $recipient = $oUser->gn2NewsletterConnectOxid2Recipient();
         $email = $recipient->getEmail();
-        $recipientExists = $mailingService->getRecipientByEmail($email);
+        $recipientExists = $oWebService->getRecipientByEmail($email);
 
-        $list = $mailingService->getMainShopList();
+        $list = $oWebService->getMainShopList();
         $status = Registry::get(Request::class)->getRequestEscapedParameter('status');
+        $oSession = oxNew(Session::class);
 
         if ($list !== null) {
             if ($status == 1) {
                 if (!$recipientExists) {
-                    $mailingService->optInRecipient($recipient, 'account');
-                    /*$mailingService->subscribeRecipient($list, $recipient, 'account');*/
+                    $oWebService->optInRecipient($recipient, 'account');
+                    /*$oWebService->subscribeRecipient($list, $recipient, 'account');*/
                 }
-                GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 1);
+                $oSession->setVariable('NewsletterConnect_Status', 1);
             } else if ($status == 0 && $status !== null) {
                 if ($recipientExists) {
-                    $mailingService->unsubscribeRecipient($list, $recipient, 'account');
+                    $oWebService->unsubscribeRecipient($list, $recipient, 'account');
                 }
-                GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 0);
+                $oSession->setVariable('NewsletterConnect_Status', 0);
             }
         }
     }

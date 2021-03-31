@@ -11,8 +11,8 @@
 
 namespace GN2\NewsletterConnect\Application\Controller;
 
-use \GN2_NewsletterConnect;
 use \OxidEsales\Eshop\Application\Model\User;
+use OxidEsales\Eshop\Core\MailValidator;
 use \OxidEsales\Eshop\Core\Registry;
 use \OxidEsales\Eshop\Core\Field;
 use OxidEsales\Eshop\Core\Request;
@@ -38,7 +38,7 @@ class NewsletterController extends NewsletterController_parent
         if (!$aParams['oxuser__oxusername']) {
             Registry::get("oxUtilsView")->addErrorToDisplay('ERROR_MESSAGE_COMPLETE_FIELDS_CORRECTLY');
             return;
-        } elseif (!oxNew(\OxidEsales\Eshop\Core\MailValidator::class)->isValidEmail($aParams['oxuser__oxusername'])) {
+        } elseif (!oxNew(MailValidator::class)->isValidEmail($aParams['oxuser__oxusername'])) {
             // #1052C - eMail validation added
             Registry::get("oxUtilsView")->addErrorToDisplay('MESSAGE_INVALID_EMAIL');
             return;

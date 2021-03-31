@@ -43,7 +43,7 @@ class GN2_NewsletterConnect_Api
             '/';
         preg_match($pattern, $subject, $matches);
 
-        $prefix = '\GN2\NewsletterConnect\Core\\';
+        $prefix = '\GN2\NewsletterConnect\Api\\';
         $mapperClass = $prefix . 'Mapper\\' . ucfirst(strtolower($matches['mapper']));
 
         if (!isset($matches['output'])) {

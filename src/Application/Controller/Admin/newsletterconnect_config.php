@@ -16,9 +16,8 @@ use \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use \OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use \OxidEsales\Eshop\Core\DatabaseProvider;
 
-use \GN2_NewsletterConnect;
-use \GN2\NewsletterConnect\Core\Export\Export;
-use \GN2\NewsletterConnect\Core\Help\Utilities;
+use \GN2\NewsletterConnect\Api\Export\Export;
+use \GN2\NewsletterConnect\Api\Help\Utilities;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
@@ -65,7 +64,8 @@ class newsletterconnect_config extends AdminDetailsController
         }
 
         $this->_aViewData['voucherSeries'] = $voucherSeries;
-        $this->_aViewData['config'] = GN2_NewsletterConnect::$config;
+
+        $this->_aViewData['config'] = Utilities::getConfig();
 
         //export subscribers
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
@@ -93,12 +93,10 @@ class newsletterconnect_config extends AdminDetailsController
 
         // TODO: ...
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
+
         // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
         $sShopId = $oConfig->getShopId();
         $oConfig->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
-
-        // TODO: what? why?
-        GN2_NewsletterConnect::$config = GN2_NewsletterConnect::getModuleConfig();
     }
 
 

@@ -70,5 +70,7 @@ $aModule = array(
 
     // TODO: onActivate: copy htaccess from vendor folder
     // TODO: export-dir working?
+    // TODO: save config -> shop-id anstaendig verwenden - onActivate routine
+    // TODO: config $config.service_Mailingwork.api_baseurl -> service entfernen
 
 );

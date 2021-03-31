@@ -9,10 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\Mapper;
+namespace GN2\NewsletterConnect\Api\Mapper;
 
-use \GN2\NewsletterConnect\Core\Data\Result;
-use \GN2\NewsletterConnect\Core\Help\Utilities;
+use \GN2\NewsletterConnect\Api\Data\Result;
+use \GN2\NewsletterConnect\Api\Help\Utilities;
+use OxidEsales\Eshop\Application\Model\CategoryList;
+use stdClass;
 
 /**
  * Category Mapper
@@ -46,12 +48,14 @@ class Categories
     /**
      * Returns results from the mapper
      *
-     * @return GN2\NewsletterConnect\Core\Data\Result Meta & result data
+     * @return Result Meta & result data
      */
     public function getResults()
     {
-        $oCategoryTree = oxNew(\OxidEsales\Eshop\Application\Model\CategoryList::class);
-        $oCategoryTree->buildTree(null, true, true, true);
+        $oCategoryTree = oxNew(CategoryList::class);
+        //$oCategoryTree->buildTree(null, true, true, true);
+        $oCategoryTree->loadList();
+
         $data = $this->_buildTree($oCategoryTree);
 
         $dataresult = new Result;

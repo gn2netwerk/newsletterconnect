@@ -9,19 +9,17 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\MailingService;
+namespace GN2\NewsletterConnect\Api\WebService;
 
-use \GN2\NewsletterConnect\Core\Mailing\MailingList;
-use \GN2\NewsletterConnect\Core\Mailing\Recipient;
-use \GN2\NewsletterConnect\Core\WebService\Curl;
-use \OxidEsales\Eshop\Core\Registry;
+use Exception;
+use GN2\NewsletterConnect\Api\Help\Utilities;
+use \GN2\NewsletterConnect\Api\Mailing\MailingList;
+use \GN2\NewsletterConnect\Api\Mailing\Recipient;
 
 /**
  * MailingService implementation for W3Work MailingWork
  */
-class Mailingwork
-    extends Curl
-    implements MailingServiceInterface
+class WebService extends Curl
 {
     /**
      * @var Set of fields to send to the MailingService
@@ -35,10 +33,17 @@ class Mailingwork
      */
     public function init()
     {
+        $this->_setConfig();
         $this->setPost(true);
         $this->resetParams();
         $this->addParam('username', $this->_config['api_username']);
         $this->addParam('password', $this->_config['api_password']);
+    }
+
+    protected function _setConfig()
+    {
+        $aConfig = Utilities::getConfig();
+        $this->_config = $aConfig;
     }
 
     /**
@@ -132,7 +137,7 @@ class Mailingwork
      * @param string $listName List Name
      *
      * @return mixed
-     * @throws Exception
+     * @throws \Exception
      */
     public function createList($listName)
     {
@@ -155,7 +160,7 @@ class Mailingwork
      * @param Recipient $recipient Recipient Object
      * @param $mode
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function optInRecipient($recipient, $mode = 'general')
     {
@@ -197,7 +202,7 @@ class Mailingwork
      * @param Recipient $recipient Recipient Object
      *
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function subscribeRecipient($list, $recipient)
     {
@@ -231,7 +236,7 @@ class Mailingwork
      * @param MailingList $list
      * @param Recipient $recipient
      * @param string $type
-     * @throws Exception
+     * @throws \Exception
      */
     public function unsubscribeRecipient($list, $recipient, $type = 'general')
     {
@@ -249,17 +254,18 @@ class Mailingwork
                 $this->_setMailingworkUrl('optoutRecipientById');
                 $this->addParam('optoutSetupId', $optoutId);
                 $this->addParam('recipientId', $recipient->getId());
-                $recipientResponse = $this->_getDecodedResponse();
                 //$this->addParam('listId', $list->getId());
 
+                $recipientResponse = $this->_getDecodedResponse();
 
+                /*
                 if ($recipientResponse['error'] !== 0) {
-                    /* Mailingwork returns a bad response. Don't throw exceptions. */
-                    /*
+                    // Mailingwork returns a bad response. Don't throw exceptions.
                      throw new Exception(
                         'unsubscribeRecipient failed: '.$recipientResponse
-                    );*/
+                    );
                 }
+                */
             }
         } else {
             throw new Exception(
@@ -463,7 +469,7 @@ class Mailingwork
      * @param mixed $id ID
      *
      * @return mixed Recipient or null
-     * @throws Exception
+     * @throws \Exception
      */
     public function getRecipientById($id)
     {
@@ -521,7 +527,7 @@ class Mailingwork
      * @param $recipient
      * @param $basketData
      * @param $positions
-     * @throws Exception
+     * @throws \Exception
      */
     public function transferOrder($recipient, $basketData, $positions)
     {
@@ -628,5 +634,17 @@ class Mailingwork
 
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -11,10 +11,13 @@
 
 namespace GN2\NewsletterConnect\Application\Model;
 
-use \GN2_NewsletterConnect;
-use \GN2\NewsletterConnect\Core\Mailing\Recipient;
+use Exception;
+use GN2\NewsletterConnect\Api\WebService\WebService;
+use \GN2\NewsletterConnect\Api\Mailing\Recipient;
+use OxidEsales\Eshop\Application\Controller\FrontendController;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
+use OxidEsales\Eshop\Core\Session;
 
 
 /**
@@ -25,7 +28,7 @@ class User extends User_parent
 {
     /**
      * Converts the current oxUser-Object into an Recipient Object
-     * @param string|optional $oxuser__oxemail the user e-mail address
+     * @param string $oxuser__oxemail the user e-mail address
      * @return Recipient
      */
     public function gn2NewsletterConnectOxid2Recipient($oxuser__oxemail = '')
@@ -78,7 +81,7 @@ class User extends User_parent
 
         }
 
-        $oUBase = oxNew(\OxidEsales\Eshop\Application\Controller\FrontendController::class);
+        $oUBase = oxNew(FrontendController::class);
         $langISO = $oUBase->getActiveLangAbbr();
         $recipient->setLanguage($langISO);
 
@@ -92,7 +95,7 @@ class User extends User_parent
      * @param boolean $blSendOptIn Unused in this implementation, inherited from overridden function
      * @param boolean $blForceCheckOptIn Unused in this implementation, inherited from overridden function
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function setNewsSubscription($blSubscribe, $blSendOptIn, $blForceCheckOptIn = false)
     {
@@ -107,9 +110,7 @@ class User extends User_parent
             case 'user':
                 $oUser = $this->getUser();
 
-                if (!$oUser || !$oUser->oxuser__oxpassword->value) {
-                    $mode = 'general';
-                } else {
+                if ($oUser && !empty($oUser->oxuser__oxpassword->value)) {
                     $mode = 'account';
                 }
                 break;
@@ -119,36 +120,36 @@ class User extends User_parent
                 break;
         }
 
-        /* Get existing MailingService */
-        $mailingService = GN2_NewsletterConnect::getMailingService();
+        $oWebService = oxNew( WebService::class );
         $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
         $email = $newRecipient->getEmail();
+        $oSession = oxNew(Session::class);
 
         if ($blSubscribe) {
             try {
-                if (!$mailingService->getRecipientByEmail($email)) {
-                    $mailingService->optInRecipient($newRecipient, $mode);
+                if (!$oWebService->getRecipientByEmail($email)) {
+                    $oWebService->optInRecipient($newRecipient, $mode);
                 }
 
                 if ($cl != 'newsletter') {
-                    //GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 1);
+                    //$oSession->setVariable('NewsletterConnect_Status', 1);
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 /* Do nothing */
             }
         } else {
             try {
 
-                $list = $mailingService->getMainShopList();
+                $list = $oWebService->getMainShopList();
 
-                if ($mailingService->getRecipientByEmail($email)) {
-                    $mailingService->unsubscribeRecipient($list, $newRecipient, $mode);
+                if ($oWebService->getRecipientByEmail($email)) {
+                    $oWebService->unsubscribeRecipient($list, $newRecipient, $mode);
                 }
 
                 if ($cl != 'newsletter') {
-                    //GN2_NewsletterConnect::setOXSessionVariable('NewsletterConnect_Status', 0);
+                    //$oSession->setVariable('NewsletterConnect_Status', 0);
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 /* Do nothing */
             }
         }
@@ -158,7 +159,7 @@ class User extends User_parent
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function save()
     {
@@ -166,9 +167,9 @@ class User extends User_parent
 
         try {
             $recipient = $this->gn2NewsletterConnectOxid2Recipient();
-            $mailingService = GN2_NewsletterConnect::getMailingService();
-            $mailingService->updateRecipient($recipient);
-        } catch (\Exception $e) {
+            $oWebService = oxNew( WebService::class );
+            $oWebService->updateRecipient($recipient);
+        } catch (Exception $e) {
             /* Do nothing */
         }
 

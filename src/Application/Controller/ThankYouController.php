@@ -11,11 +11,13 @@
 
 namespace GN2\NewsletterConnect\Application\Controller;
 
-use \GN2_NewsletterConnect;
+use Exception;
+use GN2\NewsletterConnect\Api\WebService\WebService;
 use \OxidEsales\Eshop\Application\Model\Country;
 use \OxidEsales\Eshop\Application\Model\Order;
 use \OxidEsales\Eshop\Application\Model\Article;
 use \OxidEsales\Eshop\Core\DatabaseProvider;
+use OxidEsales\Eshop\Core\Session;
 
 /**
  * Class ThankYouController
@@ -25,28 +27,15 @@ class ThankYouController extends ThankYouController_parent
 {
 
     /**
-     * @return mixed
-     */
-    public function render()
-    {
-        // TODO: possibly remove this?
-        // Hotfix: "EXCEPTION_SYSTEMCOMPONENT_TEMPLATENOTFOUND page/checkout/thankyou.tpl"
-        $this->setAdminMode(false);
-
-        $render = parent::render();
-        return $render;
-    }
-
-    /**
      * ThankYouController constructor.
-     * Transfers current order to MailingService on thank you page
+     * Transfers current order to WebService on thank you page
      */
     public function __construct()
     {
         try {
             $items = array();
 
-            $oSession = oxNew(\OxidEsales\Eshop\Core\Session::class);
+            $oSession = oxNew(Session::class);
             $oBasket = $oSession->getBasket();
             $orderId = $oBasket->getOrderId();
 
@@ -79,7 +68,7 @@ class ThankYouController extends ThankYouController_parent
                                 'select oxtitle from oxcategories where OXID = "' .
                                 $shopCategory->oxcategories__oxid->value . '" LIMIT 1'
                             );
-                        } catch (\Exception $e) {
+                        } catch (Exception $e) {
                             /* Do nothing */
                         }
                     }
@@ -95,11 +84,10 @@ class ThankYouController extends ThankYouController_parent
                 $i++;
             }
 
-            /* Get existing MailingService */
-            $mailingService = GN2_NewsletterConnect::getMailingService();
+            $oWebService = oxNew( WebService::class );
             $oUser = $this->getUser();
 
-            $mailingServiceUser = $mailingService->getRecipientByEmail(
+            $oWebServiceUser = $oWebService->getRecipientByEmail(
                 $oUser->oxuser__oxusername->rawValue
             );
 
@@ -116,7 +104,7 @@ class ThankYouController extends ThankYouController_parent
                 $delCountry = $bCountry;
             }
 
-            if ($mailingServiceUser !== null) {
+            if ($oWebServiceUser !== null) {
 
                 $count = 0;
                 foreach ($items as $item) {
@@ -131,14 +119,14 @@ class ThankYouController extends ThankYouController_parent
                     'productCount' => $count,
                 );
 
-                $mailingService->transferOrder(
-                    $mailingServiceUser,
+                $oWebService->transferOrder(
+                    $oWebServiceUser,
                     $basketData,
                     $items
                 );
 
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             /* ignore any gn2_newsletterconnect errors. */
         }
         parent::__construct();

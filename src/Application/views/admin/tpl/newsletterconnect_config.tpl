@@ -1,4 +1,3 @@
-
 [{include file="headitem.tpl"}]
 
 <style type="text/css">
@@ -12,7 +11,7 @@
 </style>
 
 <div class="gn2mos">
-    <form name="gn2mosform" id="gn2mosform" action="[{ $oViewConf->getSelfLink() }]" method="post">
+    <form name="gn2mosform" id="gn2mosform" action="[{$oViewConf->getSelfLink()}]" method="post">
         [{$oViewConf->getHiddenSid()}]
         <input type="hidden" name="cl" value="newsletterconnect_config">
         <input type="hidden" name="fnc" value="save">
@@ -64,7 +63,7 @@
     </form>
 
     </br>
-    <form name="gn2mosformAboExport" id="gn2mosformAboExport" action="[{ $oViewConf->getSelfLink() }]" method="post">
+    <form name="gn2mosformAboExport" id="gn2mosformAboExport" action="[{$oViewConf->getSelfLink()}]" method="post">
         [{$oViewConf->getHiddenSid()}]
         <input type="hidden" name="cl" value="newsletterconnect_config">
         <input type="hidden" name="fnc" value="exportSubscribers">
@@ -103,24 +102,24 @@
 
 
         <fieldset >
-            <legend>[{oxmultilang ident="GN2_NEWSLETTERCONNECT_IMPORTART_LEGEND" }]</legend>
+            <legend>[{oxmultilang ident="GN2_NEWSLETTERCONNECT_IMPORTART_LEGEND"}]</legend>
             <div>
-                <input type="radio" id="type_add" name="importMode" value="add"> <label for="type_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_DESC" }]</label>
+                <input type="radio" id="type_add" name="importMode" value="add"> <label for="type_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_LABEL"}] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_ADD_DESC"}]</label>
             </div>
             <div>&nbsp;</div>
 
             <div>
-                <input type="radio" id="type_replace" name="importMode" value="replace"> <label for="type_replace">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_DESC" }]</label>
+                <input type="radio" id="type_replace" name="importMode" value="replace"> <label for="type_replace">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_LABEL"}] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_REPLACE_DESC"}]</label>
             </div>
             <div>&nbsp;</div>
 
             <div>
-                <input type="radio" id="type_update" name="importMode" value="update"> <label for="type_update">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_DESC" }]</label>
+                <input type="radio" id="type_update" name="importMode" value="update"> <label for="type_update">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_LABEL"}] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_DESC"}]</label>
             </div>
             <div>&nbsp;</div>
 
             <div>
-                <input type="radio" id="type_update_add" name="importMode" value="update_add" checked="checked"> <label for="type_update_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_LABEL" }] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_DESC" }]</label>
+                <input type="radio" id="type_update_add" name="importMode" value="update_add" checked="checked"> <label for="type_update_add">[{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_LABEL"}] </br> [{oxmultilang ident="GN2_NEWSLETTERCONNECT_MODE_UPDATE_ADD_DESC"}]</label>
             </div>
 
         </fieldset>

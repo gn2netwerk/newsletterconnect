@@ -9,12 +9,17 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\Mapper;
+namespace GN2\NewsletterConnect\Api\Mapper;
 
-use GN2\NewsletterConnect\Core\Data\Result;
-use \GN2\NewsletterConnect\Core\Help\Utilities;
+use GN2\NewsletterConnect\Api\Data\Result;
+use \GN2\NewsletterConnect\Api\Help\Utilities;
+use OxidEsales\Eshop\Application\Model\Article;
+use OxidEsales\Eshop\Application\Model\Category;
+use OxidEsales\Eshop\Core\DatabaseProvider;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
+use OxidEsales\Eshop\Core\TableViewNameGenerator;
+use stdClass;
 
 /**
  * Product Mapper
@@ -45,7 +50,7 @@ class Products
         $where = 'WHERE (1';
 
         /* Fulltext search */
-        $oOXDB = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+        $oOXDB = DatabaseProvider::getDb();
         $q = Registry::get(Request::class)->getRequestEscapedParameter('q');
 
         if ($q != '') {
@@ -85,7 +90,8 @@ class Products
      */
     protected function getQuery()
     {
-        $articleTable = GN2_NewsletterConnect::getArticleTableName();
+        $viewNameGenerator = Registry::get(TableViewNameGenerator::class);
+        $articleTable = $viewNameGenerator->getViewName('oxarticles');
 
         $qsql = '
         SELECT
@@ -118,7 +124,7 @@ class Products
 
     /**
      * Returns results from the mapper
-     * @return GN2\NewsletterConnect\Core\Data\Result
+     * @return \GN2\NewsletterConnect\Api\Data\Result
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
      */
@@ -126,7 +132,7 @@ class Products
     {
         $qsql = $this->getQuery();
 
-        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+        $oDb = DatabaseProvider::getDb();
 
         $rows = $oDb->select($qsql);
         $total = $oDb->select('SELECT FOUND_ROWS() as rows');
@@ -135,11 +141,11 @@ class Products
         if ($rows != false && $rows->count() > 0) {
 
             while (!$rows->EOF) {
-                $article = oxNew(\OxidEsales\Eshop\Application\Model\Article::class);
+                $article = oxNew(Article::class);
                 $article->disableLazyLoading();
                 $article->load($rows->fields[0]);
 
-                $product = new stdClass;
+                $product = new stdClass();
                 $product->id = $article->oxarticles__oxid->rawValue;
                 $product->title = Utilities::MailingWorkUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
 
@@ -234,7 +240,7 @@ class Products
                 $sCategoryIds = $article->getCategoryIds();
                 if (is_array($sCategoryIds)) {
                     foreach ($sCategoryIds as $sCategoryId) {
-                        $oCategory = oxNew(\OxidEsales\Eshop\Application\Model\Category::class);
+                        $oCategory = oxNew(Category::class);
                         $oCategory->load($sCategoryId);
 
                         $sCategory = $oCategory->oxcategories__oxtitle->value;

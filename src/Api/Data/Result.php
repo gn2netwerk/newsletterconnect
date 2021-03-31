@@ -9,7 +9,9 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\Data;
+namespace GN2\NewsletterConnect\Api\Data;
+
+use stdClass;
 
 /**
  * Wrapper class to contain
@@ -60,7 +62,7 @@ class Result
      */
     public function get()
     {
-        $result = new stdClass;
+        $result = new stdClass();
         $result->meta = $this->_meta;
         $result->results = $this->_data;
         return $result;

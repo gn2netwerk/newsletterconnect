@@ -9,14 +9,28 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\WebService;
+namespace GN2\NewsletterConnect\Api\WebService;
 
 /**
- * Abstract WebService class.
- * Should be extended for different types of WebService.
+ * Curl WebService Implementation
  */
-abstract class WebServiceAbstract
+abstract class Curl
 {
+    /**
+     * @var bool Curl Parameter to return response from server or not
+     */
+    private $_returnTransfer = true;
+
+    /**
+     * @var bool Curl Parameter GET/POST
+     */
+    private $_post = false;
+
+    /**
+     * @var null URL to the WebService
+     */
+    private $_url = null;
+
     /**
      * @var array $_params Parameters to be sent to the webservice
      */
@@ -28,22 +42,71 @@ abstract class WebServiceAbstract
     protected $_config = array();
 
     /**
-     * Sets configuration settings and starts init()
-     *
-     * @param array $config Configuration array
-     *
-     * @return void
+     * Starts init()
      */
-    public function __construct($config = array())
+    public function __construct()
     {
-        if (is_array($config)) {
-            $this->_config = $config;
-        }
         $this->init();
     }
 
     /**
+     * Sets the curl mode to post or get
+     *
+     * @param bool $post True/False
+     *
+     * @return void
+     */
+    protected function setPost($post = false)
+    {
+        if ($post === true) {
+            $this->_post = true;
+        } else {
+            $this->_post = false;
+        }
+    }
+
+    /**
+     * Sets the API-Url
+     *
+     * @param string $url API-Url
+     *
+     * @return void
+     */
+    final public function setUrl($url)
+    {
+        $this->_url = $url;
+    }
+
+    /**
+     * Contacts the webservice, sets parameters and returns response
+     *
+     * @return string API-Response
+     */
+    final public function getResponse()
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->_url);
+        if ($this->_returnTransfer) {
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, $this->_returnTransfer);
+        }
+
+        $query = http_build_query($this->_params);
+        //echo $this->_url."&".$query."<br><br>";
+
+        if ($this->_post) {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+        }
+        $result = curl_exec($ch);
+        //echo $this->_url.'<br>';
+        //echo $result.'<br><hr>';
+        //$error = curl_error($ch);
+        return $result;
+    }
+
+    /**
      * General initialization function to cleanup/prepare the params array
+     * Sets configuration settings
      *
      * @abstract
      * @return void

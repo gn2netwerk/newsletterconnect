@@ -9,11 +9,10 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Core\Export;
+namespace GN2\NewsletterConnect\Api\Export;
 
-use \GN2_NewsletterConnect;
-use \GN2\NewsletterConnect\Core\Help\Utilities;
-use \GN2\NewsletterConnect\Core\MailingService\Mailingwork;
+use \GN2\NewsletterConnect\Api\Help\Utilities;
+use \GN2\NewsletterConnect\Api\WebService\WebService;
 use \OxidEsales\Eshop\Core\Registry;
 
 /**
@@ -29,10 +28,10 @@ class Export
     private $_sWhereClause = null;
 
     /**
-     * Mailing works service object
-     * @var Mailingwork
+     * Mailingwork service object
+     * @var WebService
      */
-    private $_mailingWork = null;
+    private $_webService = null;
 
     /**
      * list Id
@@ -136,20 +135,20 @@ class Export
         $this->_blExportStatus = $blExportStatus;
 
         //set mailing works object
-        $this->_setMailingWork();
+        $this->_setMailingService();
     }
 
 
     /**
      * sets the mailing works service object
      */
-    private function _setMailingWork()
+    private function _setMailingService()
     {
         try {
-            $mailingService = GN2_NewsletterConnect::getMailingService();
+            $oWebService = oxNew( WebService::class );
 
-            if (is_object($mailingService)) {
-                $this->_mailingWork = $mailingService;
+            if (is_object($oWebService)) {
+                $this->_webService = $oWebService;
             }
         } catch (\Exception $e) {
             /* Do nothing */
@@ -173,9 +172,9 @@ class Export
      */
     public function transferData()
     {
-        //try get mailing works object
-        if ($this->_mailingWork === null) {
-            return array("REPORT" => Utilities::FAULTY, "LINK" => ' Mailingworks-Object can not be found.');
+        //try get webservice object
+        if ($this->_webService === null) {
+            return array("REPORT" => Utilities::FAULTY, "LINK" => ' Webservice-Object can not be found.');
         }
 
         //get user list
@@ -199,7 +198,7 @@ class Export
 
     /**
      * Transfers the data in packets.
-     * We use this to place import tasks in Mailing works
+     * We use this to place import tasks in Mailingwork
      * @return array Report
      */
     private function _packet()
@@ -215,7 +214,7 @@ class Export
         $blImportArtAppliedOnce = false;
         foreach ($aRecipientParts as $key => $value) {
             $this->replaceImportArt($blImportArtAppliedOnce);
-            $aImportResponseContainer[] = $this->_mailingWork->importRecipients($this->_listId, $value, $this->_sImportArt);
+            $aImportResponseContainer[] = $this->_webService->importRecipients($this->_listId, $value, $this->_sImportArt);
             $blImportArtAppliedOnce = true;
             //sleep(20);
         }
@@ -233,7 +232,7 @@ class Export
         }
 
         if (!$errorOccurred) {
-            return array("REPORT" => Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) in $dParts parts transferred. Check Mailing-Works for the final result.");
+            return array("REPORT" => Utilities::SUCCESS, "LINK" => "$dTotalSubscribers subscriber(s) in $dParts parts transferred. Check Mailingwork for the final result.");
         } else {
             return array("REPORT" => Utilities::FAULTY, "LINK" => $errorMessages);
         }
@@ -241,7 +240,7 @@ class Export
 
 
     /**
-     * CSV Transfer methods, the user becomes a csv file that can be imported in mailing works
+     * CSV Transfer methods, the user becomes a csv file that can be imported in mailingwork
      * @return array report
      */
     private function _csv()
@@ -256,9 +255,9 @@ class Export
             $this->_sendFileToClient();
         } else if ($iStatus === Utilities::NODATA) {
             return array("REPORT" => Utilities::FAULTY, "LINK" => 'NO DATA FOUND');
-        } else {
-            return array("REPORT" => Utilities::FAULTY, "LINK" => 'NO FILE RESOURCE FOUND');
         }
+
+        return array("REPORT" => Utilities::FAULTY, "LINK" => 'NO FILE RESOURCE FOUND');
     }
 
 
@@ -342,7 +341,6 @@ class Export
     /**
      * Get the recipeints for export
      * @param $oUserList object oxuser list
-     * @return array array of the recipients
      */
     private function _setRecipients($oUserList)
     {
@@ -351,13 +349,12 @@ class Export
         $this->_aRecipients = array();
         $this->_aCsvHeader = array();
         foreach ($oUserList as $oUser) {
-            $this->_aRecipients[] = $this->_mailingWork->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+            $this->_aRecipients[] = $this->_webService->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
         }
 
         //use one user to get the header
         $oUser = $oUserList[0];
-        $this->_aCsvHeader = $this->_mailingWork->getCSVHeader($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
-
+        $this->_aCsvHeader = $this->_webService->getCSVHeader($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
     }
 
 
@@ -396,7 +393,7 @@ class Export
      * @param string $table2 optional table name
      * @return string where clause
      */
-    private function _getWhereClause($table1 = 't_n', $table2 = 't_u')
+    private function _getWhereClause($table1 = 't_n')
     {
         $oConfig = Registry::getConfig();
 
@@ -427,11 +424,11 @@ class Export
     {
         //gn2Test Account
         //Abonnentenfelder ID
-        $dSprache = $this->_mailingWork->getFieldId('Sprache');
-        $dEmail = $this->_mailingWork->getFieldId('E-Mail');
-        $dAnrede = $this->_mailingWork->getFieldId('Anrede');
-        $dVorname = $this->_mailingWork->getFieldId('Vorname');
-        $dNachname = $this->_mailingWork->getFieldId('Nachname');
+        $dSprache = $this->_webService->getFieldId('Sprache');
+        $dEmail = $this->_webService->getFieldId('E-Mail');
+        $dAnrede = $this->_webService->getFieldId('Anrede');
+        $dVorname = $this->_webService->getFieldId('Vorname');
+        $dNachname = $this->_webService->getFieldId('Nachname');
 
         $aRet = array();
         for ($i = 0; $i < $dAmount; $i++) {

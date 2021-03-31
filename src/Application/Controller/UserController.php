@@ -11,7 +11,7 @@
 
 namespace GN2\NewsletterConnect\Application\Controller;
 
-use \GN2_NewsletterConnect;
+use GN2\NewsletterConnect\Api\WebService\WebService;
 
 
 /**
@@ -36,13 +36,13 @@ class UserController extends UserController_parent
             }
 
             $oUser = $this->getUser();
-            $mailingService = GN2_NewsletterConnect::getMailingService();
+            $oWebService = oxNew( WebService::class );
 
             if ($oUser) {
                 // ziehe aktuellen Status von Mailingwork - benötigt Single-OptIn für Anmeldesetup (Kundenaccount)
                 $recipient = $oUser->gn2NewsletterConnectOxid2Recipient();
                 $email = $recipient->getEmail();
-                $recipientExists = $mailingService->getRecipientByEmail($email);
+                $recipientExists = $oWebService->getRecipientByEmail($email);
                 $this->_blNewsSubscribed = (bool) $recipientExists;
                 return $this->_blNewsSubscribed;
             }
