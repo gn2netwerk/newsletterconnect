@@ -28,14 +28,14 @@ $sMetadataVersion = '2.0';
  * Module information
  */
 
-$aModule = array(
+$aModule = [
     'id' => 'gn2_newsletterconnect',
     'title' => 'gn2 :: NewsletterConnect',
     'description' => '',
     'thumbnail' => 'gn2_newsletterconnect.png',
     'version' => '##VERSION##',
     'author' => 'gn2 netwerk',
-    'extend' => array(
+    'extend' => [
         \OxidEsales\Eshop\Application\Component\UserComponent::class =>
             \GN2\NewsletterConnect\Application\Component\UserComponent::class,
 
@@ -56,21 +56,26 @@ $aModule = array(
 
         \OxidEsales\Eshop\Core\Output::class =>
             \GN2\NewsletterConnect\Core\Output::class,
-    ),
+    ],
 
-    'controllers' => array(
+    'controllers' => [
         'newsletterconnect_config' =>
             \GN2\NewsletterConnect\Application\Controller\Admin\newsletterconnect_config::class,
-    ),
+    ],
 
-    'templates' => array(
+    'templates' => [
         'newsletterconnect_config.tpl' =>
             'gn2/newsletterconnect/Application/views/admin/tpl/newsletterconnect_config.tpl',
-    ),
+    ],
+
+    'events' => [
+        'onActivate' => '\Gn2\NewsletterConnect\Core\Events::onActivate',
+        'onDeactivate' => '\Gn2\NewsletterConnect\Core\Events::onDeactivate',
+    ],
 
     // TODO: onActivate: copy htaccess from vendor folder
     // TODO: export-dir working?
     // TODO: save config -> shop-id anstaendig verwenden - onActivate routine
     // TODO: config $config.service_Mailingwork.api_baseurl -> service entfernen
 
-);
+];
