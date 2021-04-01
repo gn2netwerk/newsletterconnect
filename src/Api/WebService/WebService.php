@@ -42,7 +42,7 @@ class WebService extends Curl
 
     protected function _setConfig()
     {
-        $aConfig = Utilities::getConfig();
+        $aConfig = Utilities::getApiConfig();
         $this->_config = $aConfig;
     }
 

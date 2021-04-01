@@ -65,7 +65,7 @@ class newsletterconnect_config extends AdminDetailsController
 
         $this->_aViewData['voucherSeries'] = $voucherSeries;
 
-        $this->_aViewData['config'] = Utilities::getConfig();
+        $this->_aViewData['config'] = Utilities::getApiConfig();
 
         //export subscribers
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
@@ -94,9 +94,7 @@ class newsletterconnect_config extends AdminDetailsController
         // TODO: ...
         $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
 
-        // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
-        $sShopId = $oConfig->getShopId();
-        $oConfig->saveShopConfVar('aarr', 'config_' . $sShopId, $posted, null, 'module:gn2_newsletterconnect');
+        $oConfig->saveShopConfVar('aarr', 'config', $posted, $oConfig->getShopId(), 'module:gn2_newsletterconnect');
     }
 
 

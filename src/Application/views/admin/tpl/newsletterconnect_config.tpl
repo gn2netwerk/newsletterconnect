@@ -21,25 +21,25 @@
         <h2>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_MAIN'}]</h2>
         <dl>
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_BASEURL'}]</dt>
-            <dd><input type="text" name="config[api_baseurl]" class="text" value="[{$config.service_Mailingwork.api_baseurl}]"></dd>
+            <dd><input type="text" name="config[api_baseurl]" class="text" value="[{$config.api_baseurl}]"></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_USERNAME'}]</dt>
-            <dd><input type="text" name="config[api_username]" class="text" value="[{$config.service_Mailingwork.api_username}]"></dd>
+            <dd><input type="text" name="config[api_username]" class="text" value="[{$config.api_username}]"></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_PASSWORD'}]</dt>
-            <dd><input type="password" name="config[api_password]" class="text" value="[{$config.service_Mailingwork.api_password}]"></dd>
+            <dd><input type="password" name="config[api_password]" class="text" value="[{$config.api_password}]"></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_SIGNUPSETUP_GENERAL'}]</dt>
-            <dd><input type="text" name="config[api_signupsetup]" class="text" value="[{$config.service_Mailingwork.api_signupsetup}]"></dd>
+            <dd><input type="text" name="config[api_signupsetup]" class="text" value="[{$config.api_signupsetup}]"></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_SIGNOFFSETUP_GENERAL'}]</dt>
-            <dd><input type="text" name="config[api_signoffsetup]" class="text" value="[{$config.service_Mailingwork.api_signoffsetup}]"></dd>
+            <dd><input type="text" name="config[api_signoffsetup]" class="text" value="[{$config.api_signoffsetup}]"></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_SIGNUPSETUP_ACCOUNT'}]</dt>
-            <dd><input type="text" name="config[api_signupsetup_account]" class="text" value="[{$config.service_Mailingwork.api_signupsetup_account}]"></dd>
+            <dd><input type="text" name="config[api_signupsetup_account]" class="text" value="[{$config.api_signupsetup_account}]"></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_SIGNOFFSETUP_ACCOUNT'}]</dt>
-            <dd><input type="text" name="config[api_signoffsetup_account]" class="text" value="[{$config.service_Mailingwork.api_signoffsetup_account}]"></dd>
+            <dd><input type="text" name="config[api_signoffsetup_account]" class="text" value="[{$config.api_signoffsetup_account}]"></dd>
 
         </dl>
 
@@ -47,13 +47,13 @@
 
         <dl>
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_API_IPS'}]<span>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_YOURIP'}] [{php}]echo $_SERVER['REMOTE_ADDR'][{/php}]</span></dt>
-            <dd><textarea name="config[api_ips]">[{$config.service_Mailingwork.api_ips}]</textarea></dd>
+            <dd><textarea name="config[api_ips]">[{$config.api_ips}]</textarea></dd>
 
             <dt>[{oxmultilang ident='Gn2_NEWSLETTERCONNECT_VOUCHERSERIES'}]</dt>
             <dd>
                 <select name="config[voucher_series]">
                     [{foreach from=$voucherSeries key=key item=item}]
-                    <option value="[{$item.0}]"[{if $config.service_Mailingwork.voucher_series eq $item.0}] selected="selected"[{/if}]>[{$item.1}]</option>
+                    <option value="[{$item.0}]"[{if $config.voucher_series eq $item.0}] selected="selected"[{/if}]>[{$item.1}]</option>
                     [{/foreach}]
                 </select>
             </dd>

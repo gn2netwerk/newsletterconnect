@@ -45,14 +45,10 @@ class Utilities
     /**
      * @return array
      */
-    public static function getConfig()
+    public static function getApiConfig()
     {
         $oConfig = Registry::getConfig();
-
-        // Kristian Berger: Erweiterung der Config Einstellungen um akt. Shop Id (für Multishops notwendig)
-        $sShopId = $oConfig->getShopId();
-
-        return (array) $oConfig->getShopConfVar('config_' . $sShopId, null, 'module:gn2_newsletterconnect');
+        return (array) $oConfig->getShopConfVar('config', $oConfig->getShopId(), 'module:gn2_newsletterconnect');
     }
 
     /**

@@ -30,7 +30,7 @@ class Output extends Output_parent
         $api = Registry::get(Request::class)->getRequestEscapedParameter('mos_api');
 
         if ($api == 1) {
-            $savedSettings = Utilities::getConfig();
+            $savedSettings = Utilities::getApiConfig();
 
             if (isset($savedSettings['api_ips'])) {
                 $ips = explode("\n", $savedSettings['api_ips']);

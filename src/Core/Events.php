@@ -28,30 +28,8 @@ class Events
      */
     public static function onActivate()
     {
-        /*
-         config_oxbaseshop -> config_1
-
-         config_x -> config
-
-         $config.service_Mailingwork.api_baseurl -> $config.api_baseurl
-
-         INSERT INTO `oxconfig` (`OXID`, `OXSHOPID`, `OXMODULE`, `OXVARNAME`, `OXVARTYPE`, `OXVARVALUE`, `OXTIMESTAMP`) VALUES
-         ('3cdaf7ea724f3fdf2c90160f45abe1dd', 'oxbaseshop', 'module:gn2_newsletterconnect', 'config_oxbaseshop', 'aarr', 0x4dba8e247f475c3c5c1799128f795657e7410dde964bc9fb2ebf4aadcd317f70df238c430281a967930a72cbfb36463ef861b490a75a27a22ef1c625c23e02889afc5d5eef687c0db6b701655fd4298338bc1aa5c93e418e8540c7140a472328a58bcb0a6e759a90bc32b654e94894b0727b680f64c16ae30dfc865aa425f0a28f8dd83dbd1091196993bab92b8062a6970497ccd6f1f98dbf8e31da8c62a2513e4c5f4050515ad4e5a5c1f481b9460a0bcf72fa40e18f3f5ce5288ab8f3c0078d0f09409facc2b17de2401ec9f6a35c1e8274e06edc770a39e4fb8455aec84f42ba58b23adea1028c576f871cef7440c15249257562494130806b4559b009aa48352adf3cab37238ca2ab474ff42539333418e260bbf0c3e08d8dd549ff19074d9312a94cae7f910dd331d49090124085327dc7ccfada06f39a02dd2eec6bbf4415df6d996b0cf6b717ce274ab3086f6270b96252808a3900836fc12b3f663afc56366fd92f4ff0a3acda4b567725a2cb, '2019-08-06 21:23:21');
-         */
-
-        /*
-        $oDb = DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC);
-
-        $test = $oDb->select("SELECT * FROM `oxconfig` WHERE oxmodule = :oxmodule AND oxvartype like 'config_' ", [ ':oxmodule' => 'module:gn2_newsletterconnect' ]);
-
-        echo "<pre>";
-        print_r( $test );
-        echo "</pre>";
-
-        die();
-        */
-
-
+        self::_rebuildOxConfigVars();
+        self::_copyHtaccess();
     }
 
     /**
@@ -59,7 +37,61 @@ class Events
      */
     public static function onDeactivate()
     {
+        // nothing to do here
+    }
 
+    private static function _rebuildOxConfigVars()
+    {
+        $oConfig = Registry::getConfig();
+        $oDb = DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC);
+
+        // refactoring all old configurations into the cleaned-up format
+        $aOldConfigs = $oDb->getAll("SELECT `OXID`, `OXSHOPID`, `OXMODULE`, `OXVARNAME` FROM `oxconfig` WHERE `OXMODULE` = 'module:gn2_newsletterconnect' AND `OXVARNAME` like 'config_%' ORDER BY `OXTIMESTAMP` ASC");
+
+        if ($aOldConfigs > 0) {
+            $aNewConfigs = array();
+
+            foreach ($aOldConfigs as $aOldConfig) {
+
+                // extract the shop id from OXVARNAME. don't use the OXSHOPID
+                // in most shops the varname is "config_1", "config_oxbaseshop" or simply "config"
+                $aVarNameParts = explode("_", $aOldConfig['OXVARNAME']);
+
+                if (array_key_exists(1, $aVarNameParts)) {
+                    // if the value is config_1, config_2.. take this value
+                    // if the value is config_oxbaseshop, then take shop-id 1 instead
+                    $sShopId = (intval($aVarNameParts[1]) < 1) ? 1 : $aVarNameParts[1];
+                } else {
+                    // if the value is config, then take the oxshopid
+                    $sShopId = $aOldConfig['OXSHOPID'];
+                }
+
+                // get config value. it hasn't changed since oxid 4
+                $aConfigValue = (array) $oConfig->getShopConfVar($aOldConfig['OXVARNAME'], $aOldConfig['OXSHOPID'], $aOldConfig['OXMODULE']);
+
+                // collect the new config for later
+                // if there are more configs with the same shop-id, it will take the newest config based on its timestamp
+                $aNewConfigs[$sShopId] = [
+                    'OXSHOPID' => $sShopId,
+                    'OXMODULE' => $aOldConfig['OXMODULE'],
+                    'OXVARNAME' => 'config',
+                    'OXVARVALUE' => $aConfigValue,
+                ];
+
+                // delete old entry
+                $sDelete = "DELETE FROM `oxconfig` WHERE `OXID` = '" . $aOldConfig['OXID'] . "';";
+                $oDb->execute($sDelete);
+            }
+
+            foreach($aNewConfigs as $aNewConfig) {
+                $oConfig->saveShopConfVar('aarr', $aNewConfig['OXVARNAME'], $aNewConfig['OXVARVALUE'], $aNewConfig['OXSHOPID'], $aNewConfig['OXMODULE']);
+            }
+        }
+    }
+
+    private static function _copyHtaccess()
+    {
+        // TODO
     }
 
 }
