@@ -4,7 +4,11 @@ Satisfy Any
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /modules/gn2/newsletterconnect/
+
 RewriteCond %{REQUEST_URI} !^.*(.jpg|.png|.gif)
 RewriteCond %{REQUEST_URI} (\/modules\/gn2\/newsletterconnect\/)
-RewriteRule (.*)$ api.php?%{QUERY_STRING} [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+RewriteRule (.*)$ public/api.php?%{QUERY_STRING} [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+RewriteCond %{REQUEST_URI} (\/modules\/gn2\/newsletterconnect\/api.php)
+RewriteRule (.*)$ public/api.php?%{QUERY_STRING} [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 </IfModule>
