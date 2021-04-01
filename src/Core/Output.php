@@ -11,7 +11,7 @@
 
 namespace Gn2\NewsletterConnect\Core;
 
-use Gn2\NewsletterConnect\Api\Help\Utilities;
+use Gn2\NewsletterConnect\Core\Api\Help\Utilities;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 

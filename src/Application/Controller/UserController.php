@@ -11,7 +11,7 @@
 
 namespace Gn2\NewsletterConnect\Application\Controller;
 
-use Gn2\NewsletterConnect\Api\WebService\WebService;
+use Gn2\NewsletterConnect\Core\Api\WebService\WebService;
 
 
 /**

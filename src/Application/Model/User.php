@@ -12,8 +12,8 @@
 namespace Gn2\NewsletterConnect\Application\Model;
 
 use Exception;
-use Gn2\NewsletterConnect\Api\WebService\WebService;
-use \Gn2\NewsletterConnect\Api\Mailing\Recipient;
+use Gn2\NewsletterConnect\Core\Api\WebService\WebService;
+use \Gn2\NewsletterConnect\Core\Api\Mailing\Recipient;
 use OxidEsales\Eshop\Application\Controller\FrontendController;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;

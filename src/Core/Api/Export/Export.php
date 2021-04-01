@@ -9,10 +9,10 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Export;
+namespace Gn2\NewsletterConnect\Core\Api\Export;
 
-use \Gn2\NewsletterConnect\Api\Help\Utilities;
-use \Gn2\NewsletterConnect\Api\WebService\WebService;
+use \Gn2\NewsletterConnect\Core\Api\Help\Utilities;
+use \Gn2\NewsletterConnect\Core\Api\WebService\WebService;
 use \OxidEsales\Eshop\Core\Registry;
 
 /**

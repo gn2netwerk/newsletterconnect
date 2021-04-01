@@ -9,9 +9,9 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Output;
+namespace Gn2\NewsletterConnect\Core\Api\Output;
 
-use \Gn2\NewsletterConnect\Api\Data\Result;
+use \Gn2\NewsletterConnect\Core\Api\Data\Result;
 
 /**
  * Abstract class for data
@@ -55,7 +55,7 @@ abstract class OutputAbstract
     }
 
     /**
-     * Gets the data from the Gn2\NewsletterConnect\Api\Data\Result object
+     * Gets the data from the Gn2\NewsletterConnect\Core\Api\Data\Result object
      *
      * @return \stdClass Meta & result data
      */

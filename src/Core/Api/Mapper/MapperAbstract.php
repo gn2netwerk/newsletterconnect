@@ -9,7 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Mapper;
+namespace Gn2\NewsletterConnect\Core\Api\Mapper;
 
 /**
  * Abstract data mapper class.
@@ -25,7 +25,7 @@ abstract class MapperAbstract
     /**
      * Returns results from the mapper
      *
-     * @return \Gn2\NewsletterConnect\Api\Data\Result Meta & result data
+     * @return \Gn2\NewsletterConnect\Core\Api\Data\Result Meta & result data
      */
     abstract function getResults();
 

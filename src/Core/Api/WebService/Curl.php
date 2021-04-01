@@ -9,7 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\WebService;
+namespace Gn2\NewsletterConnect\Core\Api\WebService;
 
 /**
  * Curl WebService Implementation

@@ -16,8 +16,8 @@ use \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use \OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use \OxidEsales\Eshop\Core\DatabaseProvider;
 
-use \Gn2\NewsletterConnect\Api\Export\Export;
-use \Gn2\NewsletterConnect\Api\Help\Utilities;
+use \Gn2\NewsletterConnect\Core\Api\Export\Export;
+use \Gn2\NewsletterConnect\Core\Api\Help\Utilities;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 

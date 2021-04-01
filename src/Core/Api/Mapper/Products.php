@@ -9,10 +9,10 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Mapper;
+namespace Gn2\NewsletterConnect\Core\Api\Mapper;
 
-use Gn2\NewsletterConnect\Api\Data\Result;
-use \Gn2\NewsletterConnect\Api\Help\Utilities;
+use Gn2\NewsletterConnect\Core\Api\Data\Result;
+use \Gn2\NewsletterConnect\Core\Api\Help\Utilities;
 use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Core\DatabaseProvider;
@@ -124,7 +124,7 @@ class Products
 
     /**
      * Returns results from the mapper
-     * @return \Gn2\NewsletterConnect\Api\Data\Result
+     * @return \Gn2\NewsletterConnect\Core\Api\Data\Result
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
      */

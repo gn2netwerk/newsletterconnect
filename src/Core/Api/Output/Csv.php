@@ -9,7 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Output;
+namespace Gn2\NewsletterConnect\Core\Api\Output;
 
 /**
  * CSV Output Class

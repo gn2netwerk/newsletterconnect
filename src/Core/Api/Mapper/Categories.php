@@ -9,10 +9,10 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Mapper;
+namespace Gn2\NewsletterConnect\Core\Api\Mapper;
 
-use \Gn2\NewsletterConnect\Api\Data\Result;
-use \Gn2\NewsletterConnect\Api\Help\Utilities;
+use \Gn2\NewsletterConnect\Core\Api\Data\Result;
+use \Gn2\NewsletterConnect\Core\Api\Help\Utilities;
 use OxidEsales\Eshop\Application\Model\CategoryList;
 use stdClass;
 

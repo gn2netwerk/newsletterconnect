@@ -12,7 +12,7 @@
 namespace Gn2\NewsletterConnect\Application\Controller;
 
 use \Exception;
-use Gn2\NewsletterConnect\Api\WebService\WebService;
+use Gn2\NewsletterConnect\Core\Api\WebService\WebService;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\Session;

@@ -13,9 +13,12 @@
 
 namespace Gn2\NewsletterConnect\Core;
 
+use Exception;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\DatabaseProvider;
 use OxidEsales\Eshop\Core\DbMetaDataHandler;
+use OxidEsales\Eshop\Core\ViewConfig;
+use OxidEsales\Facts\Facts;
 
 /**
  * Class Events
@@ -30,6 +33,7 @@ class Events
     {
         self::_rebuildOxConfigVars();
         self::_copyHtaccess();
+        self::_clearCache();
     }
 
     /**
@@ -89,9 +93,48 @@ class Events
         }
     }
 
+    /**
+     * @throws \OxidEsales\EshopCommunity\Core\Exception\FileException
+     */
     private static function _copyHtaccess()
     {
-        // TODO
+        $oViewConfig = oxNew(ViewConfig::class);
+        $oFacts = new Facts();
+
+        $sModulePath = $oViewConfig->getModulePath('gn2_newsletterconnect');
+        $sModuleFile = rtrim($sModulePath, " /") . "/.htaccess";
+
+        $sVendorPath = $oFacts->getVendorPath();
+        $sVendorFile = rtrim($sVendorPath, " /") . "/gn2/newsletterconnect/src/.htaccess";
+
+        $bReturn = false;
+
+        if (file_exists($sVendorFile)) {
+            $bReturn = copy($sVendorFile, $sModuleFile);
+        }
+
+        if (!$bReturn) {
+            throw new Exception("The htaccess file of the module could not be copied correctly. Please check if the following file is existent and up-to-date: /source/modules/gn2/newsletterconnect/.htaccess");
+        }
+    }
+
+    /**
+     *
+     */
+    private static function _clearCache()
+    {
+        $oUtils = Registry::getUtils();
+        $sCacheDir = $oUtils->getCacheFilePath(null, true);
+        $aDir = glob($sCacheDir . '*');
+
+        if (is_array($aDir)) {
+            $aDir = preg_grep("/c_fieldnames_|c_tbdsc_|_allfields_/", $aDir);
+            foreach ($aDir as $iKey => $sData) {
+                if (!is_dir($sData)) {
+                    @unlink($sData);
+                }
+            }
+        }
     }
 
 }

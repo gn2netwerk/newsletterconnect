@@ -9,7 +9,7 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\Help;
+namespace Gn2\NewsletterConnect\Core\Api\Help;
 
 use OxidEsales\Eshop\Core\Registry;
 

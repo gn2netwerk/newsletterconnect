@@ -9,12 +9,12 @@
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace Gn2\NewsletterConnect\Api\WebService;
+namespace Gn2\NewsletterConnect\Core\Api\WebService;
 
 use Exception;
-use Gn2\NewsletterConnect\Api\Help\Utilities;
-use \Gn2\NewsletterConnect\Api\Mailing\MailingList;
-use \Gn2\NewsletterConnect\Api\Mailing\Recipient;
+use Gn2\NewsletterConnect\Core\Api\Help\Utilities;
+use \Gn2\NewsletterConnect\Core\Api\Mailing\MailingList;
+use \Gn2\NewsletterConnect\Core\Api\Mailing\Recipient;
 
 /**
  * MailingService implementation for W3Work MailingWork
