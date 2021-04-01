@@ -59,13 +59,13 @@ $aModule = [
     ],
 
     'controllers' => [
-        'newsletterconnect_config' =>
-            \Gn2\NewsletterConnect\Application\Controller\Admin\newsletterconnect_config::class,
+        'admin_newsletterconnect' =>
+            \Gn2\NewsletterConnect\Application\Controller\Admin\AdminNewsletterConnectController::class,
     ],
 
     'templates' => [
-        'newsletterconnect_config.tpl' =>
-            'gn2/newsletterconnect/Application/views/admin/tpl/newsletterconnect_config.tpl',
+        'admin_newsletterconnect.tpl' =>
+            'gn2/newsletterconnect/Application/views/admin/tpl/admin_newsletterconnect.tpl',
     ],
 
     'events' => [
@@ -74,6 +74,7 @@ $aModule = [
     ],
 
     // TODO: importMode von Exporter prüfen
-    // TODO: Sprachdatei checken, Backend-Help buttons, zb. für Gn2_NEWSLETTERCONNECT_OXID_STATUS_TITLE
+    // TODO: Sprachdatei checken, Backend-Help buttons, zb. für GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE
+    // TODO: public/api.php und Output.php vereinheitlichen?
 
 ];

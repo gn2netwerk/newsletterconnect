@@ -11,8 +11,12 @@
 
 /**
  * API-Aufrufe sehen folgendermaßen aus:
- * https://www.domain.tld/modules/gn2/newsletterconnect/products/05848170643ab0deb9914566391c0c63.json
+ *
+ * https://www.domain.tld/modules/gn2/newsletterconnect/categories.json
  * https://www.domain.tld/modules/gn2/newsletterconnect/categories/oia9ff5c96f1f29d527b61202ece0829.json
+ *
+ * https://www.domain.tld/modules/gn2/newsletterconnect/products.json
+ * https://www.domain.tld/modules/gn2/newsletterconnect/products/05848170643ab0deb9914566391c0c63.json
  *
  * Die Authentifikationsdaten gehören zu einem Oxid-Admin der Nutzergruppe "Newsletter Admin".
  * Wie in der Installationsanleitung des Moduls beschrieben.

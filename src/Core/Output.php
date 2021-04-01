@@ -24,6 +24,8 @@ class Output extends Output_parent
 
     /**
      * Output constructor.
+     * Handles profile manager requests:
+     * https://www.domain.tld/?mos_api=1&mode=updateUser&email=bodo@mail.gn2-dev.de&firstname=Bodo&lastname=Ballerboehme
      */
     public function __construct()
     {
@@ -37,6 +39,8 @@ class Output extends Output_parent
                 foreach ($ips as $k => $v) {
                     $ips[$k] = trim($v);
                 }
+
+                // TODO: updateUser is only possible, if voucher_series is selected??
                 if (in_array($_SERVER['REMOTE_ADDR'], $ips) && isset($savedSettings['voucher_series']) && $savedSettings['voucher_series'] != "") {
                     header('Content-Type:application/javascript');
 

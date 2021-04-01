@@ -21,13 +21,13 @@ use \Gn2\NewsletterConnect\Core\Api\Help\Utilities;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
-class newsletterconnect_config extends AdminDetailsController
+class AdminNewsletterConnectController extends AdminDetailsController
 {
 
     /**
      * @var string
      */
-    protected $_sThisTemplate = 'newsletterconnect_config.tpl';
+    protected $_sThisTemplate = 'admin_newsletterconnect.tpl';
 
     /**
      * translated export status report
@@ -90,11 +90,8 @@ class newsletterconnect_config extends AdminDetailsController
     public function save()
     {
         $oConfig = Registry::getConfig();
-
-        // TODO: ...
-        $posted = $_REQUEST['config']; // we're not using oxConfig::getRequestParameter here. We know what we're doing.
-
-        $oConfig->saveShopConfVar('aarr', 'config', $posted, $oConfig->getShopId(), 'module:gn2_newsletterconnect');
+        $aParam = Registry::get(Request::class)->getRequestEscapedParameter('config');
+        $oConfig->saveShopConfVar('aarr', 'config', $aParam, $oConfig->getShopId(), 'module:gn2_newsletterconnect');
     }
 
 
