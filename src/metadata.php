@@ -1,9 +1,9 @@
 <?php
 /**
- * GN2_NewsletterConnect
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * Gn2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  *
@@ -37,30 +37,30 @@ $aModule = [
     'author' => 'gn2 netwerk',
     'extend' => [
         \OxidEsales\Eshop\Application\Component\UserComponent::class =>
-            \GN2\NewsletterConnect\Application\Component\UserComponent::class,
+            \Gn2\NewsletterConnect\Application\Component\UserComponent::class,
 
         \OxidEsales\Eshop\Application\Model\User::class =>
-            \GN2\NewsletterConnect\Application\Model\User::class,
+            \Gn2\NewsletterConnect\Application\Model\User::class,
 
         \OxidEsales\Eshop\Application\Controller\AccountNewsletterController::class =>
-            \GN2\NewsletterConnect\Application\Controller\AccountNewsletterController::class,
+            \Gn2\NewsletterConnect\Application\Controller\AccountNewsletterController::class,
 
         \OxidEsales\Eshop\Application\Controller\NewsletterController::class =>
-            \GN2\NewsletterConnect\Application\Controller\NewsletterController::class,
+            \Gn2\NewsletterConnect\Application\Controller\NewsletterController::class,
 
         \OxidEsales\Eshop\Application\Controller\ThankYouController::class =>
-            \GN2\NewsletterConnect\Application\Controller\ThankYouController::class,
+            \Gn2\NewsletterConnect\Application\Controller\ThankYouController::class,
 
         \OxidEsales\Eshop\Application\Controller\UserController::class =>
-            \GN2\NewsletterConnect\Application\Controller\UserController::class,
+            \Gn2\NewsletterConnect\Application\Controller\UserController::class,
 
         \OxidEsales\Eshop\Core\Output::class =>
-            \GN2\NewsletterConnect\Core\Output::class,
+            \Gn2\NewsletterConnect\Core\Output::class,
     ],
 
     'controllers' => [
         'newsletterconnect_config' =>
-            \GN2\NewsletterConnect\Application\Controller\Admin\newsletterconnect_config::class,
+            \Gn2\NewsletterConnect\Application\Controller\Admin\newsletterconnect_config::class,
     ],
 
     'templates' => [

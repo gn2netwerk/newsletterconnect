@@ -1,22 +1,22 @@
 <?php
 /**
- * GN2_NewsletterConnect
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
+ * Gn2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
  * @author   gn2 netwerk <kontakt@gn2.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Api\Export;
+namespace Gn2\NewsletterConnect\Api\Export;
 
-use \GN2\NewsletterConnect\Api\Help\Utilities;
-use \GN2\NewsletterConnect\Api\WebService\WebService;
+use \Gn2\NewsletterConnect\Api\Help\Utilities;
+use \Gn2\NewsletterConnect\Api\WebService\WebService;
 use \OxidEsales\Eshop\Core\Registry;
 
 /**
- * GN2_NewsletterConnect Export-Class
+ * Gn2_NewsletterConnect Export-Class
  */
 class Export
 {

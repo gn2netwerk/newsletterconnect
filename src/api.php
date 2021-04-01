@@ -1,31 +1,31 @@
 <?php
 /**
- * GN2_NewsletterConnect
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
+ * Gn2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
  * @author   gn2 netwerk <kontakt@gn2.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
 
 
 //TODO: bootstrap
-if (!class_exists('GN2_NewsletterConnect')) require dirname(__FILE__) . '/gn2_newsletterconnect.php';
+if (!class_exists('Gn2_NewsletterConnect')) require dirname(__FILE__) . '/gn2_newsletterconnect.php';
 
 $er = error_reporting(E_ALL ^ E_NOTICE);
 
 /**
- * GN2_NewsletterConnect_Api - Main API Initialization Class
+ * Gn2_NewsletterConnect_Api - Main API Initialization Class
  *
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
  * @author   Dave Holloway <dh@gn2-netwerk.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  Release: <package_version>
  * @link     http://www.gn2-netwerk.de/
  */
-class GN2_NewsletterConnect_Api
+class Gn2_NewsletterConnect_Api
 {
     /**
      * Initializes the API. Parses URL and starts mapper/output classes.
@@ -43,7 +43,7 @@ class GN2_NewsletterConnect_Api
             '/';
         preg_match($pattern, $subject, $matches);
 
-        $prefix = '\GN2\NewsletterConnect\Api\\';
+        $prefix = '\Gn2\NewsletterConnect\Api\\';
         $mapperClass = $prefix . 'Mapper\\' . ucfirst(strtolower($matches['mapper']));
 
         if (!isset($matches['output'])) {
@@ -71,7 +71,7 @@ class GN2_NewsletterConnect_Api
 
 
 // TODO
-$env = GN2_NewsletterConnect::getEnvironment();
+$env = Gn2_NewsletterConnect::getEnvironment();
 $env->loadBootstrap();
 
 $valid = false;
@@ -98,6 +98,6 @@ while (!$valid) {
     header('HTTP/1.0 401 Unauthorized');
     exit;
 }
-GN2_NewsletterConnect_Api::init();
+Gn2_NewsletterConnect_Api::init();
 ob_end_flush();
 error_reporting($er);

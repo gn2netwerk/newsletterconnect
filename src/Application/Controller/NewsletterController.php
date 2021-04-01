@@ -1,15 +1,15 @@
 <?php
 /**
- * GN2_NewsletterConnect
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
+ * Gn2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
  * @author   gn2 netwerk <kontakt@gn2.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Application\Controller;
+namespace Gn2\NewsletterConnect\Application\Controller;
 
 use \OxidEsales\Eshop\Application\Model\User;
 use OxidEsales\Eshop\Core\MailValidator;
@@ -19,7 +19,7 @@ use OxidEsales\Eshop\Core\Request;
 
 /**
  * Class NewsletterController
- * @package GN2\NewsletterConnect\Application\Controller
+ * @package Gn2\NewsletterConnect\Application\Controller
  */
 class NewsletterController extends NewsletterController_parent
 {

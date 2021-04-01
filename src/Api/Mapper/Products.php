@@ -1,18 +1,18 @@
 <?php
 /**
- * GN2_NewsletterConnect
- * @category GN2_NewsletterConnect
- * @package  GN2_NewsletterConnect
+ * Gn2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
  * @author   gn2 netwerk <kontakt@gn2.de>
- * @license  GN2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
  * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
 
-namespace GN2\NewsletterConnect\Api\Mapper;
+namespace Gn2\NewsletterConnect\Api\Mapper;
 
-use GN2\NewsletterConnect\Api\Data\Result;
-use \GN2\NewsletterConnect\Api\Help\Utilities;
+use Gn2\NewsletterConnect\Api\Data\Result;
+use \Gn2\NewsletterConnect\Api\Help\Utilities;
 use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Core\DatabaseProvider;
@@ -124,7 +124,7 @@ class Products
 
     /**
      * Returns results from the mapper
-     * @return \GN2\NewsletterConnect\Api\Data\Result
+     * @return \Gn2\NewsletterConnect\Api\Data\Result
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseConnectionException
      * @throws \OxidEsales\Eshop\Core\Exception\DatabaseErrorException
      */
