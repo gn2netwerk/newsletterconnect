@@ -73,9 +73,7 @@ $aModule = [
         'onDeactivate' => '\Gn2\NewsletterConnect\Core\Events::onDeactivate',
     ],
 
-    // TODO: onActivate: copy htaccess from vendor folder
-    // TODO: export-dir working?
-    // TODO: save config -> shop-id anstaendig verwenden - onActivate routine
-    // TODO: config $config.service_Mailingwork.api_baseurl -> service entfernen
+    // TODO: importMode von Exporter prüfen
+    // TODO: Sprachdatei checken, Backend-Help buttons, zb. für Gn2_NEWSLETTERCONNECT_OXID_STATUS_TITLE
 
 ];

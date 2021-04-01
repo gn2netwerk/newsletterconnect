@@ -11,6 +11,7 @@ Bitte stellen Sie sicher, dass es im Mailingworkaccount ein Signupsetup mit den 
     - Vorname
     - Nachname
     - Sprache
+    - Anmeldestatus (optional)
 
 In den Berechtigungen des Mailingswork-Kontos muss bei Webservice folgendes aktiviert sein:
     - SOAP Server V3

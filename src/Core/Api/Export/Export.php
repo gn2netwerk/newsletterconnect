@@ -13,6 +13,7 @@ namespace Gn2\NewsletterConnect\Core\Api\Export;
 
 use \Gn2\NewsletterConnect\Core\Api\Help\Utilities;
 use \Gn2\NewsletterConnect\Core\Api\WebService\WebService;
+use OxidEsales\Eshop\Application\Model\UserList;
 use \OxidEsales\Eshop\Core\Registry;
 
 /**
@@ -92,7 +93,7 @@ class Export
      * @param $dListId
      * @param $sImportArt
      */
-    public function __construct($bActiveSubscribers, $bInActiveSubscribers, $bUnconfirmedSubscribers, $dListId, $sImportArt, $blExportStatus, $dExportNotSubscribed)
+    public function __construct($bActiveSubscribers, $bInActiveSubscribers, $bUnconfirmedSubscribers, $dListId, $sImportArt, $blExportStatus, $dExportNotSubscribed, $sTransferMethod)
     {
 
         if ($bActiveSubscribers) {
@@ -125,24 +126,27 @@ class Export
             }
         }
 
-        //set the list ID
+        // set the list ID
         $this->_listId = $dListId;
 
-        //set import art
+        // set import art
         $this->_sImportArt = $sImportArt;
 
-        //set export Status flag
+        // set export Status flag
         $this->_blExportStatus = $blExportStatus;
 
-        //set mailing works object
-        $this->_setMailingService();
+        // set transfer method
+        $this->_sTransferMethod = $sTransferMethod;
+
+        // set mailing works object
+        $this->_setWebService();
     }
 
 
     /**
      * sets the mailing works service object
      */
-    private function _setMailingService()
+    private function _setWebService()
     {
         try {
             $oWebService = oxNew( WebService::class );
@@ -157,28 +161,18 @@ class Export
 
 
     /**
-     * Sets the transfer Method
-     * @param $sTransferMethod string transfer Method
-     */
-    public function setTransferMethod($sTransferMethod)
-    {
-        $this->_sTransferMethod = $sTransferMethod;
-    }
-
-
-    /**
      * transfer subscribers initializer
      * @return array report
      */
     public function transferData()
     {
-        //try get webservice object
+        // try get webservice object
         if ($this->_webService === null) {
             return array("REPORT" => Utilities::FAULTY, "LINK" => ' Webservice-Object can not be found.');
         }
 
-        //get user list
-        $oUserList = oxNew(\OxidEsales\Eshop\Application\Model\UserList::class);
+        // get user list
+        $oUserList = oxNew(UserList::class);
         $oUserList->selectString($this->_getSubscribersQuery());
 
         $TotalSubscribers = $oUserList->count();
@@ -187,12 +181,14 @@ class Export
             return array("REPORT" => Utilities::NODATA, "LINK" => null);
         }
 
-        //set recipients
+        // set recipients
         $this->_setRecipients($oUserList);
 
-        //transfer using the methos type
-        $sMethodFunction = '_' . $this->_sTransferMethod;
-        return $this->$sMethodFunction();
+        if ($this->_sTransferMethod == "csv") {
+            return self::_csv();
+        } else {
+            return self::_packet();
+        }
     }
 
 
@@ -203,15 +199,14 @@ class Export
      */
     private function _packet()
     {
-        //remove next line when done with testing
-        //$this->_aRecipients = $this->_getTestRecipients(3200);
-
         $dTotalSubscribers = count($this->_aRecipients);
+
         //divide recipient
         $aImportResponseContainer = array();
         $aRecipientParts = array_chunk($this->_aRecipients, 150);
         $dParts = count($aRecipientParts);
         $blImportArtAppliedOnce = false;
+
         foreach ($aRecipientParts as $key => $value) {
             $this->replaceImportArt($blImportArtAppliedOnce);
             $aImportResponseContainer[] = $this->_webService->importRecipients($this->_listId, $value, $this->_sImportArt);
@@ -267,9 +262,9 @@ class Export
      */
     private function _generateCsv()
     {
-        //write csv to export folder
+        // write csv to export folder
         if (count($this->_aRecipients) > 0) {
-            $this->_sFile = Utilities::getExportFilePath();
+            $this->_sFile = Utilities::generateExportFilePath(true, "gn2_newsletterconnect_");
 
             $f = fopen($this->_sFile, 'w');
 
@@ -348,6 +343,7 @@ class Export
         unset($this->_aCsvHeader);
         $this->_aRecipients = array();
         $this->_aCsvHeader = array();
+
         foreach ($oUserList as $oUser) {
             $this->_aRecipients[] = $this->_webService->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
         }
@@ -412,44 +408,6 @@ class Export
 
         //$sWhereClause = "$this->_sWhereClause AND $sShopIDClause";
         //return $sWhereClause;
-    }
-
-
-    /**
-     * Creates and returns test recipients
-     * @param int $dAmount the amount of recipients to create
-     * @return array
-     */
-    private function _getTestRecipients($dAmount = 150)
-    {
-        //gn2Test Account
-        //Abonnentenfelder ID
-        $dSprache = $this->_webService->getFieldId('Sprache');
-        $dEmail = $this->_webService->getFieldId('E-Mail');
-        $dAnrede = $this->_webService->getFieldId('Anrede');
-        $dVorname = $this->_webService->getFieldId('Vorname');
-        $dNachname = $this->_webService->getFieldId('Nachname');
-
-        $aRet = array();
-        for ($i = 0; $i < $dAmount; $i++) {
-            $sEmail = 'MaxMusterman_' . $i . '@mail.testmail.de';
-            $sSal = ($i % 2) ? 'Herr' : 'Frau';
-            $sFirstname = 'Max' . $i;
-            $sSurname = 'MaxMusterman' . $i;
-            $sSprache = ($i % 2) ? 'de' : 'en';
-
-            //create the field
-            $aFields = array();
-            $aFields[$dEmail] = $sEmail;
-            $aFields[$dAnrede] = $sSal;
-            $aFields[$dVorname] = $sFirstname;
-            $aFields[$dNachname] = $sSurname;
-            $aFields[$dSprache] = $sSprache;
-            //add to main list
-            $aRet[] = $aFields;
-        }
-
-        return $aRet;
     }
 
 }

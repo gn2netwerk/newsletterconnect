@@ -35,7 +35,7 @@ class Categories
         foreach ($tree as $branch) {
             $entry = new stdClass();
             $entry->id = $branch->oxcategories__oxid->rawValue;
-            $entry->name = Utilities::MailingWorkUtf8Encode($branch->oxcategories__oxtitle->rawValue);
+            $entry->name = Utilities::Utf8Encode($branch->oxcategories__oxtitle->rawValue);
             $subcats = $branch->getSubCats();
             if (count($subcats) > 0) {
                 $entry->childElements = $this->_buildtree($subcats);

@@ -27,12 +27,6 @@ class Utilities
     private static $_exportDirPath = null;
 
     /**
-     * oxid export directory - 'export/'
-     * @var string
-     */
-    private static $_sOxExportDir = 'export/';
-
-    /**
      * Report constants
      */
     const
@@ -52,93 +46,58 @@ class Utilities
     }
 
     /**
-     * check if the export and module export directory exists.
-     * it creates the module export directory if it does not exist.
-     * The module export directory is a subdirectory to the oxid export directory
-     * @param $sModuleExportDirectoryName
-     * @return array - status = true if all the operations were successful,
-     *                  ModuleExportDirectoryName = Name of the Module export directory,
-     *                  ModuleExportDirectoryPath = the path to the export directory or null if not ascertained
+     * singleton for the export directory
+     * @return null|string
      */
-    public static function checkExportDir($sModuleExportDirectoryName = "export")
+    public static function getExportDir($bAbsolute = false)
     {
-        $ret = array('status' => false,
-            'ModuleExportDirectoryName' => $sModuleExportDirectoryName,
-            'ModuleExportDirectoryPath' => null);
+        $sRelativePath = "export/gn2_newsletterconnect/";
 
-        //if export directory in base shop does not exist, create one
         $oConfig = Registry::getConfig();
-        $baseDirPlusExport = rtrim($oConfig->getConfigParam('sShopDir'), " /") . "/" . ltrim($sModuleExportDirectoryName, " /");
+        $sAbsolutePath = rtrim($oConfig->getConfigParam('sShopDir'), " /") . "/" . trim($sRelativePath, " /") . "/";
 
-        if (!is_dir($baseDirPlusExport)) {
-            return $ret;
+        // create export folder if necessary
+        if (!file_exists($sAbsolutePath)) {
+            mkdir($sAbsolutePath);
         }
 
-        //if module export directory does not exist, create one
-        $sExportDirPath = $baseDirPlusExport . $sModuleExportDirectoryName;
-        if (!is_dir($sExportDirPath)) {
-            if (!mkdir($sExportDirPath)) {
-                return $ret;
-            }
+        if ($bAbsolute) {
+            return $sAbsolutePath;
         }
 
-        //set variable
-        $ret['status'] = true;
-        $ret['ModuleExportDirectoryName'] = $sModuleExportDirectoryName;
-        $ret['ModuleExportDirectoryPath'] = $sExportDirPath;
-
-        return $ret;
+        return $sRelativePath;
     }
-
 
     /**
-     * gets the export path for the calling module.
-     * this calls the function -@see checkExportDir- to create the directory if it does not exist.
-     * @param $sModuleExportDirectoryName the export directory name
-     * @return string the path of the export directory
+     * check if the export and module export directory exists.
+     * @return bool
      */
-    public static function _getModuleExportPath($sModuleExportDirectoryName)
+    public static function checkExportDir()
     {
-        $moduleExportParameters = self::checkExportDir($sModuleExportDirectoryName);
-        return $moduleExportParameters['ModuleExportDirectoryPath'];
+        $sExportDir = self::getExportDir(true);
+        return is_dir($sExportDir) && file_exists($sExportDir);
     }
-
 
     /**
      * creates the file path
-     * @param $sModuleExportDirectory the export directory
+     * @param bool $bAbsolute
      * @param string $fileSuffix optional suffix to the filename, default is an empty string
      * @return string
      */
-    public static function getFilePath($sModuleExportDirectory, $fileSuffix = ''): string
+    public static function generateExportFilePath($bAbsolute = false, $fileSuffix = '')
     {
-        $sExportDirPath = self::_getModuleExportPath($sModuleExportDirectory);
-        $fileName = self::getFileName($fileSuffix);
-        $filePath = $sExportDirPath . $fileName;
-        return $filePath;
+        $sExportDirPath = self::getExportDir($bAbsolute);
+        $fileName = self::generateFileName($fileSuffix);
+
+        return $sExportDirPath . $fileName;
     }
-
-
-    /**
-     * @return string
-     */
-    public static function getExportFilePath()
-    {
-        $exportPath = trim(self::getExportDirPath(), '/ ');
-        $fileName = trim(self::getFileName(), '/ ');
-
-        $filePath = '/' . $exportPath . '/' . $fileName;
-
-        return $filePath;
-    }
-
 
     /**
      * creates|returns the CSV filename
      * @param string $fileSuffix optional suffix to the filename, default is an empty string
      * @return string
      */
-    public static function getFileName($fileSuffix = '')
+    public static function generateFileName($fileSuffix = '')
     {
         //the filename should be created each time it is called
         list($usec, $sec) = explode(" ", microtime());
@@ -146,42 +105,6 @@ class Utilities
         $sFilename = $fileSuffix . $sTimestamp . '.csv';
         return $sFilename;
     }
-
-
-    /**
-     * sends the csv to the client
-     * @param $file the file path
-     */
-    public static function sendToClient($file)
-    {
-        if (file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            readfile($file);
-            exit;
-        }
-    }
-
-
-    /**
-     * creates a download link to the given file
-     * @param $sFile the file - filename with path
-     * @param $sModuleExportDirectoryName the module export directory path with backslash ending
-     * @return string a href link to the file for download
-     */
-    public static function createLink($sFile, $sModuleExportDirectoryName)
-    {
-        $oConfig = Registry::getConfig();
-        $sShopURL = rtrim($oConfig->getConfigParam('sShopURL'), ' /');
-
-        return '<a href="' . $sShopURL . '/' . self::$_sOxExportDir . $sModuleExportDirectoryName . basename($sFile) . '">' . basename($sFile) . ' </a>';
-    }
-
 
     /**
      * Translates the given report
@@ -209,39 +132,18 @@ class Utilities
         return $ret;
     }
 
-
     /**
      * converts given string to utf-8 if necessary
      * @param $str string str being converted
      * @return string
      */
-    public static function MailingWorkUtf8Encode($str)
+    public static function Utf8Encode($str)
     {
         if (mb_detect_encoding($str, 'UTF-8', true) === false) {
             $str = utf8_encode($str);
         }
 
         return $str;
-    }
-
-
-    /**
-     * singleton for the export directory
-     * @return null|string
-     */
-    public static function getExportDirPath()
-    {
-        if (self::$_exportDirPath === null) {
-            $oConfig = Registry::getConfig();
-            self::$_exportDirPath = rtrim($oConfig->getConfigParam('sShopDir'), "/") . "/export/gn2_newsletterconnect/";
-        }
-
-        //create Export folder
-        if (!file_exists(self::$_exportDirPath)) {
-            mkdir(self::$_exportDirPath);
-        }
-        return self::$_exportDirPath;
-
     }
 
 }

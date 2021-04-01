@@ -147,7 +147,7 @@ class Products
 
                 $product = new stdClass();
                 $product->id = $article->oxarticles__oxid->rawValue;
-                $product->title = Utilities::MailingWorkUtf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
+                $product->title = Utilities::Utf8Encode($article->oxarticles__oxtitle->rawValue);//utf8_encode($article->oxarticles__oxtitle->rawValue);
 
                 $fActPrice = $article->getFPrice();
                 if (strpos($fActPrice, ",") > 0 && strpos($fActPrice, ".") > 0) {
@@ -177,12 +177,12 @@ class Products
                 $product->price = $fActPrice;
 
                 $product->shortdesc = $article->oxarticles__oxshortdesc->rawValue;
-                $product->artnum = Utilities::MailingWorkUtf8Encode($article->oxarticles__oxartnum->rawValue);
+                $product->artnum = Utilities::Utf8Encode($article->oxarticles__oxartnum->rawValue);
                 $link = $article->getLink();
                 $product->url = preg_replace('/\?force_sid.*/', '', $link);
 
                 $articleLongDesc = $article->getLongDesc();
-                $product->longdesc = Utilities::MailingWorkUtf8Encode($articleLongDesc);
+                $product->longdesc = Utilities::Utf8Encode($articleLongDesc);
 
                 /* Product Pics */
                 $product->pictures = array();

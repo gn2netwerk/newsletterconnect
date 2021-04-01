@@ -104,68 +104,35 @@ class newsletterconnect_config extends AdminDetailsController
      */
     public function exportSubscribers()
     {
-        //check configuration
-        $bExportActiveSubscriptions = true;
-        $bExportUnconfirmedSubscriptions = false;
-        $bExportInActiveSubscriptions = false;
-        $dExportNotSubscribed = false;
-        $sTransferMethod = 'packet';
-
         $oRequest = Registry::get(Request::class);
 
-        //export confirmed subscriptions
-        if (!$oRequest->getRequestEscapedParameter('activeSubscription')) {
-            $bExportActiveSubscriptions = false;
-        }
+        // collect variables
+        $bExportActiveSubscriptions = ($oRequest->getRequestEscapedParameter('activeSubscription')) ? true : false;
+        $bExportUnconfirmedSubscriptions = ($oRequest->getRequestEscapedParameter('unconfirmedSubscription')) ? true : false;
+        $bExportInActiveSubscriptions = ($oRequest->getRequestEscapedParameter('inactiveSubscription')) ? true : false;
+        $dExportNotSubscribed = ($oRequest->getRequestEscapedParameter('noSubscription')) ? true : false;
+        $sTransferMethod = ($oRequest->getRequestEscapedParameter('transfermethod') == "csv") ? 'csv' : 'packet';
 
-        //export unconfirmed subscriptions
-        if ($oRequest->getRequestEscapedParameter('unconfirmedSubscription')) {
-            $bExportUnconfirmedSubscriptions = true;
-        }
-
-        //export inactive subscriptions
-        if ($oRequest->getRequestEscapedParameter('inactiveSubscription')) {
-            $bExportInActiveSubscriptions = true;
-        }
-
-        //export  unsubscribed user
-        if ($oRequest->getRequestEscapedParameter('noSubscription')) {
-            $dExportNotSubscribed = true;
-        }
-
-        //mailing works signup setup
         $sMosListId = $oRequest->getRequestEscapedParameter('export_listId');
-
-        //get import art
         $dImportArt = $oRequest->getRequestEscapedParameter('importMode');
 
+        $blExportStatus = ($oRequest->getRequestEscapedParameter('export_status')) ? true : false;
 
-        //get the export status flag
-        $blExportStatus = false;
-        if ($oRequest->getRequestEscapedParameter('export_status')) {
-            $blExportStatus = true;
-        }
-
-        if ($oRequest->getRequestEscapedParameter('transfermethod')) {
-            $sTransferMethod = $oRequest->getRequestEscapedParameter('transfermethod');
-        }
-
-        //call exporter
+        // call exporter
         $oExporter = new Export($bExportActiveSubscriptions,
             $bExportInActiveSubscriptions,
             $bExportUnconfirmedSubscriptions,
             trim($sMosListId),
             trim($dImportArt),
             $blExportStatus,
-            $dExportNotSubscribed
+            $dExportNotSubscribed,
+            $sTransferMethod
         );
-
-        $oExporter->setTransferMethod($sTransferMethod);
 
         $aReport = $oExporter->transferData();
 
         if (is_array($aReport)) {
-            $this->_sExportStatus = Utilities::translateReport($aReport['REPORT']); //($aReport);
+            $this->_sExportStatus = Utilities::translateReport($aReport['REPORT']);
             $this->_sExportReportData = $aReport['LINK'];
         }
     }
