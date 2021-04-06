@@ -345,12 +345,12 @@ class Export
         $this->_aCsvHeader = array();
 
         foreach ($oUserList as $oUser) {
-            $this->_aRecipients[] = $this->_webService->getFields($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+            $this->_aRecipients[] = $this->_webService->getFields($oUser->generateRecipientObject($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
         }
 
         //use one user to get the header
         $oUser = $oUserList[0];
-        $this->_aCsvHeader = $this->_webService->getCSVHeader($oUser->gn2NewsletterConnectOxid2Recipient($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
+        $this->_aCsvHeader = $this->_webService->getCSVHeader($oUser->generateRecipientObject($oUser->oxuser__oxemail->rawValue), $this->_blExportStatus);
     }
 
 

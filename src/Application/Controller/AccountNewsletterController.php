@@ -71,7 +71,7 @@ class AccountNewsletterController extends AccountNewsletterController_parent
         $oWebService = oxNew( WebService::class );
 
         $oUser = $this->getUser();
-        $recipient = $oUser->gn2NewsletterConnectOxid2Recipient();
+        $recipient = $oUser->generateRecipientObject();
         $email = $recipient->getEmail();
         $recipientExists = $oWebService->getRecipientByEmail($email);
 

@@ -383,6 +383,12 @@ class WebService extends Curl
     {
         $recipientId = "";
         $subscriberListData = $this->getSubscriberListsByEmail($email);
+
+        //$this->_setMailingworkUrl('GetOptins');
+        //$this->addParam('ListId', 1);
+        //$this->addParam('Type', "all");
+        //$response = $this->_getDecodedResponse();
+
         $mainShopList = $this->getMainShopList();
         $mainShopListId = (is_object($mainShopList)) ? $mainShopList->getId() : false;
 

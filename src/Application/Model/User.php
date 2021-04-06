@@ -28,14 +28,14 @@ class User extends User_parent
 {
     /**
      * Converts the current oxUser-Object into an Recipient Object
-     * @param string $oxuser__oxemail the user e-mail address
+     * @param string $sEmail the user e-mail address
      * @return Recipient
      */
-    public function gn2NewsletterConnectOxid2Recipient($oxuser__oxemail = '')
+    public function generateRecipientObject($sEmail = '')
     {
         $recipient = new Recipient;
-        if ($oxuser__oxemail !== '') {
-            $recipient->setEmail($oxuser__oxemail);
+        if ($sEmail !== '') {
+            $recipient->setEmail($sEmail);
         } else {
             $recipient->setEmail($this->oxuser__oxusername->rawValue);
         }
@@ -111,6 +111,8 @@ class User extends User_parent
 
                 if ($oUser && !empty($oUser->oxuser__oxpassword->value)) {
                     $mode = 'account';
+                } else {
+                    $mode = 'general';
                 }
                 break;
             case 'register':
@@ -121,7 +123,7 @@ class User extends User_parent
         }
 
         $oWebService = oxNew( WebService::class );
-        $newRecipient = $this->gn2NewsletterConnectOxid2Recipient();
+        $newRecipient = $this->generateRecipientObject();
         $email = $newRecipient->getEmail();
         $oSession = oxNew(Session::class);
 
@@ -166,7 +168,7 @@ class User extends User_parent
         $blRet = parent::save();
 
         try {
-            $recipient = $this->gn2NewsletterConnectOxid2Recipient();
+            $recipient = $this->generateRecipientObject();
             $oWebService = oxNew( WebService::class );
             $oWebService->updateRecipient($recipient);
         } catch (Exception $e) {

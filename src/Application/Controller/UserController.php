@@ -22,6 +22,14 @@ class UserController extends UserController_parent
 {
 
     /**
+     * TODO: getRecipientIdsByEmail gibt nur bestätigte Abonnenten zurück. Wir bräuchten noch eine Abfrage, ob der
+     * Nutzer registriert, aber die Optin Mail noch nicht bestätigt hat. GetOptIns funktioniert, gibt aber nur die
+     * bestätigten zurück:
+     * //$this->_setMailingworkUrl('GetOptins');
+     * //$this->addParam('ListId', 1);
+     * //$this->addParam('Type', "all");
+     * //$response = $this->_getDecodedResponse();
+     *
      * @return bool
      */
     public function isNewsSubscribed()
@@ -40,7 +48,7 @@ class UserController extends UserController_parent
 
             if ($oUser) {
                 // ziehe aktuellen Status von Mailingwork - benötigt Single-OptIn für Anmeldesetup (Kundenaccount)
-                $recipient = $oUser->gn2NewsletterConnectOxid2Recipient();
+                $recipient = $oUser->generateRecipientObject();
                 $email = $recipient->getEmail();
                 $recipientExists = $oWebService->getRecipientByEmail($email);
                 $this->_blNewsSubscribed = (bool) $recipientExists;
