@@ -4,7 +4,6 @@
  * @category Gn2_NewsletterConnect
  * @package  Gn2_NewsletterConnect
  * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  *
  * Credits:
@@ -37,7 +36,7 @@ $aModule = [
     'title' => 'gn2 :: NewsletterConnect',
     'description' => '',
     'thumbnail' => 'gn2_newsletterconnect.png',
-    'version' => '##VERSION##',
+    'version' => '3.0.0',
     'author' => 'gn2 netwerk',
     'extend' => [
         \OxidEsales\Eshop\Application\Component\UserComponent::class =>

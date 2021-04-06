@@ -5,7 +5,6 @@
  * @package  Gn2_NewsletterConnect
  * @author   gn2 netwerk <kontakt@gn2.de>
  * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
- * @version  GIT: <git_id>
  * @link     http://www.gn2-netwerk.de/
  */
 

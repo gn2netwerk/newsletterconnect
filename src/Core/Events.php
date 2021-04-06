@@ -1,14 +1,11 @@
 <?php
 /**
- * This Software is the property of OXID eSales and is protected
- * by copyright law.
- *
- * Any unauthorized use of this software will be prosecuted by
- * civil and criminal law.
- *
- * @link      http://www.oxid-esales.com
- * @copyright (C) OXID eSales AG 2003-2017
- * @version   OXID eSales Visual CMS
+ * Gn2_NewsletterConnect
+ * @category Gn2_NewsletterConnect
+ * @package  Gn2_NewsletterConnect
+ * @author   gn2 netwerk <kontakt@gn2.de>
+ * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
+ * @link     http://www.gn2-netwerk.de/
  */
 
 namespace Gn2\NewsletterConnect\Core;
