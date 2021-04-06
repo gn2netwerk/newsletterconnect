@@ -104,16 +104,16 @@ class Utilities
         $ret = 'UNKNOWN STATUS';
         switch ($dReport) {
             case Utilities::SUCCESS:
-                $ret = '<span style="background-color: forestgreen;"> Successful </span>';
+                $ret = '<span style="color: forestgreen;"> Successful </span>';
                 break;
             case Utilities::FAULTY:
-                $ret = '<span style="background-color: red;"> Error occurred (Connection failed, Object not found). check next hint. </span>';
+                $ret = '<span style="color: red;"> Error occurred (Connection failed, Object not found). check next hint. </span>';
                 break;
             case Utilities::NODATA:
-                $ret = '<span style="background-color: orange;"> No Data found </span>';
+                $ret = '<span style="color: orange;"> No Data found </span>';
                 break;
             case Utilities::NOFILERESOURCE:
-                $ret = '<span style="background-color: lightgreen;"> File system not found </span>';
+                $ret = '<span style="color: lightgreen;"> File system not found </span>';
                 break;
         }
 
