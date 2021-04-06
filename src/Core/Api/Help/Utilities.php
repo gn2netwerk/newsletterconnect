@@ -21,25 +21,14 @@ class Utilities
 {
 
     /**
-     * export directory path
-     * @var null
-     */
-    private static $_exportDirPath = null;
-
-    /**
      * Report constants
      */
-    const
-        SUCCESS = 1
-    , NODATA = 2
-    , NOFILERESOURCE = 3
-    , FAULTY = 4
-    , EXPORTDIRMISSING = 5;
+    const SUCCESS = 1, NODATA = 2, NOFILERESOURCE = 3, FAULTY = 4, EXPORTDIRMISSING = 5;
 
     /**
      * @return array
      */
-    public static function getApiConfig()
+    public static function getSettings()
     {
         $oConfig = Registry::getConfig();
         return (array) $oConfig->getShopConfVar('config', $oConfig->getShopId(), 'module:gn2_newsletterconnect');
@@ -137,13 +126,40 @@ class Utilities
      * @param $str string str being converted
      * @return string
      */
-    public static function Utf8Encode($str)
+    public static function utf8Encode($str)
     {
         if (mb_detect_encoding($str, 'UTF-8', true) === false) {
             $str = utf8_encode($str);
         }
 
         return $str;
+    }
+
+    /**
+     * Prüfe ob die aktuelle IP für die API authorisiert ist
+     * @return bool
+     */
+    public static function isIpAuthorized()
+    {
+        $aSettings = self::getSettings();
+        $sIpAddress = $_SERVER['REMOTE_ADDR'];
+
+
+        if (isset($aSettings['api_ips'])) {
+            // Formatiere die Liste
+            $aAuthorizedIps = explode("\n", $aSettings['api_ips']);
+
+            foreach ($aAuthorizedIps as $k => $v) {
+                $aAuthorizedIps[$k] = trim($v);
+            }
+
+            // Checke, ob die aktuelle IP in der Liste ist
+            if (in_array($sIpAddress, $aAuthorizedIps)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

@@ -12,6 +12,8 @@
 namespace Gn2\NewsletterConnect\Core;
 
 use Gn2\NewsletterConnect\Core\Api\Help\Utilities;
+use OxidEsales\Eshop\Application\Model\User;
+use OxidEsales\Eshop\Core\DatabaseProvider;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
@@ -32,50 +34,55 @@ class Output extends Output_parent
         $api = Registry::get(Request::class)->getRequestEscapedParameter('mos_api');
 
         if ($api == 1) {
-            $savedSettings = Utilities::getApiConfig();
+            if (Utilities::isIpAuthorized()) {
+                $oDb = DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC);
+                $oConfig = Registry::getConfig();
 
-            if (isset($savedSettings['api_ips'])) {
-                $ips = explode("\n", $savedSettings['api_ips']);
-                foreach ($ips as $k => $v) {
-                    $ips[$k] = trim($v);
-                }
+                $sMode = Registry::get(Request::class)->getRequestEscapedParameter('mode');
+                
+                switch ($sMode) {
+                    case "getVoucher":
+                        $aSettings = Utilities::getSettings();
+                        $voucherSeries = $aSettings['voucher_series'];
+                        $voucherNr = "";
 
-                // TODO: updateUser is only possible, if voucher_series is selected??
-                if (in_array($_SERVER['REMOTE_ADDR'], $ips) && isset($savedSettings['voucher_series']) && $savedSettings['voucher_series'] != "") {
-                    header('Content-Type:application/javascript');
+                        if ($voucherSeries != "") {
+                            $sql = 'SELECT `OXID`, `OXVOUCHERNR` FROM `oxvouchers` 
+                                    WHERE `OXVOUCHERSERIEID` = ' . $oDb->quote($voucherSeries) . '
+                                        AND `OXUSERID` = "" AND `OXRESERVED` = 0 AND `OXTIMESTAMP` <> "1984-01-01 08:00:00"';
 
-                    $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+                            $voucherRow = $oDb->getRow($sql);
 
-                    // TODO: multishop support may be not given..?
-                    $mode = Registry::get(Request::class)->getRequestEscapedParameter('mode');
-                    switch ($mode) {
-                        case "getVoucher":
-                            $voucherSeries = $savedSettings['voucher_series'];
-                            if ($voucherSeries != "") {
-                                $sql = 'SELECT OXID, OXVOUCHERNR FROM oxvouchers WHERE OXVOUCHERSERIEID = ' . $oDb->quote($voucherSeries);
-                                $sql .= ' && OXUSERID="" && OXRESERVED=0 && OXTIMESTAMP<>"1984-01-01 08:00:00"';
-
-                                $voucherRow = $oDb->getRow($sql);
-                                if ($voucherRow) {
-                                    $oDb->execute('UPDATE oxvouchers SET OXTIMESTAMP="1984-01-01 08:00:00" WHERE OXID="' . $voucherRow[0] . '"');
-                                    $voucher = $voucherRow[1];
-                                }
+                            if ($voucherRow) {
+                                $oDb->execute('UPDATE `oxvouchers` SET `OXTIMESTAMP` = "1984-01-01 08:00:00" WHERE `OXID` = ' . $oDb->quote($voucherRow['OXID']));
+                                $voucherNr = $voucherRow['OXVOUCHERNR'];
                             }
-                            echo json_encode(array(
-                                'voucher' => $voucher
-                            ));
-                            die();
-                        case "updateUser":
-                            $email = Registry::get(Request::class)->getRequestEscapedParameter('email');
-                            $sql = 'select oxid from oxuser where OXUSERNAME = ' . $oDb->quote($email) . ' LIMIT 1';
+                        }
+
+                        header('Content-Type:application/javascript');
+                        echo json_encode(array(
+                            'voucher' => $voucherNr
+                        ));
+                        die();
+
+                    case "updateUser":
+                        $response = array();
+                        $response['msg'] = 'error';
+
+                        $email = Registry::get(Request::class)->getRequestEscapedParameter('email');
+
+                        if ($email != "") {
+                            $sql = 'SELECT `OXID` FROM `oxuser` WHERE `OXUSERNAME` = ' . $oDb->quote($email) . ' 
+                                    AND `OXSHOPID` = ' . $oDb->quote($oConfig->getShopId()) . ' LIMIT 1';
+
                             $oxid = $oDb->getOne($sql);
-                            $response = array();
-                            $response['msg'] = 'error';
+
                             if ($oxid != "") {
-                                $oUser = oxNew(\OxidEsales\Eshop\Application\Model\User::class);
+                                $oUser = oxNew(User::class);
                                 $oUser->load($oxid);
 
                                 $title = Registry::get(Request::class)->getRequestEscapedParameter('title');
+
                                 switch (strtolower($title)) {
                                     case "mr":
                                     case "herr":
@@ -89,22 +96,43 @@ class Output extends Output_parent
                                         $title = '';
                                         break;
                                 }
+
                                 if ($title != "") {
                                     $oUser->oxuser__oxsal->rawValue = $title;
                                 }
+
                                 $oUser->oxuser__oxfname->rawValue = Registry::get(Request::class)->getRequestEscapedParameter('firstname');
                                 $oUser->oxuser__oxlname->rawValue = Registry::get(Request::class)->getRequestEscapedParameter('lastname');
+
                                 if ($oUser->save()) {
                                     $response['msg'] = 'ok';
                                 }
                             }
-                            echo json_encode($response);
+                        }
 
-                            die();
-                    }
+                        header('Content-Type:application/javascript');
+                        echo json_encode($response);
+                        die();
+
+                    default:
+                        // error: mode not found
+                        header('Content-Type:application/javascript');
+                        echo json_encode(array(
+                            'msg' => 'error'
+                        ));
+                        die();
                 }
+            } else {
+                // error: not authorized
+                header('Content-Type:application/javascript');
+                echo json_encode(array(
+                    'msg' => 'error'
+                ));
+                die();
             }
         }
+
         parent::__construct();
     }
+
 }

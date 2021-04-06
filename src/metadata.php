@@ -14,6 +14,10 @@
  * @author Kristian Berger <kristian.berger@sellando.de>
  * @author Heiko Adams <ha@gn2-netwerk.de>
  * @author Joachim Dörr <mail@joachim-doerr.com>
+ *
+ * TODO: Sprachdatei checken, Backend-Help buttons, zb. für GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE
+ * TODO: eigenes apilog/errorlog? Fehlerhafte An/Abmeldungen ($recipientResponse) sammeln.
+ * TODO: public/api.php und Output.php zusammenführen?
  */
 
 
@@ -72,9 +76,5 @@ $aModule = [
         'onActivate' => '\Gn2\NewsletterConnect\Core\Events::onActivate',
         'onDeactivate' => '\Gn2\NewsletterConnect\Core\Events::onDeactivate',
     ],
-
-    // TODO: importMode von Exporter prüfen
-    // TODO: Sprachdatei checken, Backend-Help buttons, zb. für GN2_NEWSLETTERCONNECT_OXID_STATUS_TITLE
-    // TODO: public/api.php und Output.php vereinheitlichen?
 
 ];

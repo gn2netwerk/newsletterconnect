@@ -101,7 +101,6 @@ class User extends User_parent
     {
         /* Figuring out which setup should be used */
         $cl = Registry::get(Request::class)->getRequestEscapedParameter('cl');
-        $mode = 'general';
 
         switch ($cl) {
             case 'account_user':
@@ -115,8 +114,9 @@ class User extends User_parent
                 }
                 break;
             case 'register':
-                break;
             case 'newsletter':
+            default:
+                $mode = 'general';
                 break;
         }
 

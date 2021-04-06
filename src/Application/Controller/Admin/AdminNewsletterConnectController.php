@@ -65,7 +65,7 @@ class AdminNewsletterConnectController extends AdminDetailsController
 
         $this->_aViewData['voucherSeries'] = $voucherSeries;
 
-        $this->_aViewData['config'] = Utilities::getApiConfig();
+        $this->_aViewData['config'] = Utilities::getSettings();
 
         //export subscribers
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;

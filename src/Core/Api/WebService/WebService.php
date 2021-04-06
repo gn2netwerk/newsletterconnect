@@ -42,7 +42,7 @@ class WebService extends Curl
 
     protected function _setConfig()
     {
-        $aConfig = Utilities::getApiConfig();
+        $aConfig = Utilities::getSettings();
         $this->_config = $aConfig;
     }
 
@@ -165,9 +165,10 @@ class WebService extends Curl
     public function optInRecipient($recipient, $mode = 'general')
     {
         if (is_object($recipient)) {
-            $optinId = $this->_config['api_signupsetup'];
             if ($mode == "account") {
                 $optinId = $this->_config['api_signupsetup_account'];
+            } else {
+                $optinId = $this->_config['api_signupsetup'];
             }
 
             $fields = array();
@@ -178,6 +179,7 @@ class WebService extends Curl
             if ($this->getFieldId('Sprache')) {
                 $fields[$this->getFieldId('Sprache')] = $recipient->getLanguage();
             }
+
             $this->_setMailingworkUrl('optInRecipient');
 
             $this->addParam('optinSetupId', $optinId);
@@ -186,7 +188,7 @@ class WebService extends Curl
 
             if ($recipientResponse['error'] !== 0) {
                 throw new Exception('optInRecipient failed: please check ' .
-                    'if your optinSetup contains all fields for E-Mail, Salutation, Firstname and Lastname.');
+                    'if your optinSetup contains all fields for E-Mail, Salutation, Firstname, Lastname, Language.');
             }
         } else {
             throw new Exception(
