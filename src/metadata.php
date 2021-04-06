@@ -77,4 +77,12 @@ $aModule = [
         'onDeactivate' => '\Gn2\NewsletterConnect\Core\Events::onDeactivate',
     ],
 
+    'blocks' => [
+        [
+            'template'  => 'form/fieldset/order_newsletter.tpl',
+            'block'     => 'user_billing_newsletter',
+            'file'      => 'Application/views/frontend/blocks/order_newsletter.tpl',
+        ],
+    ],
+
 ];
