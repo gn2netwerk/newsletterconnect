@@ -40,6 +40,29 @@ class AdminNewsletterConnectController extends AdminDetailsController
      */
     private $_sExportReportData = null;
 
+    /**
+     * resume export
+     * @var string
+     */
+    private $_sResumeExport = null;
+
+    /**
+     * list id
+     * @var string
+     */
+    private $_sExportListId = '';
+
+    /**
+     * import mode
+     * @var string
+     */
+    private $_sImportMode = '';
+
+    /**
+     * first run
+     * @var bool
+     */
+    private $_sFirstRun = '';
 
     /**
      * @return string
@@ -69,6 +92,10 @@ class AdminNewsletterConnectController extends AdminDetailsController
         //export subscribers
         $this->_aViewData['gn2_ExportStatus'] = $this->_sExportStatus;
         $this->_aViewData['gn2_ExportReportData'] = $this->_sExportReportData;
+        $this->_aViewData['gn2_ResumeExport'] = $this->_sResumeExport;
+        $this->_aViewData['gn2_ListId'] = $this->_sExportListId;
+        $this->_aViewData['gn2_ImportMode'] = $this->_sImportMode;
+        $this->_aViewData['gn2_FirstRun'] = $this->_sFirstRun;
 
         $aExportDir = Utilities::checkExportDir();
         $this->_aViewData['gn2_ExportDir'] = $aExportDir['status'];
@@ -107,7 +134,7 @@ class AdminNewsletterConnectController extends AdminDetailsController
         $bExportUnconfirmedSubscriptions = ($oRequest->getRequestEscapedParameter('unconfirmedSubscription')) ? true : false;
         $bExportInActiveSubscriptions = ($oRequest->getRequestEscapedParameter('inactiveSubscription')) ? true : false;
         $dExportNotSubscribed = ($oRequest->getRequestEscapedParameter('noSubscription')) ? true : false;
-        $sTransferMethod = ($oRequest->getRequestEscapedParameter('transfermethod') == "csv") ? 'csv' : 'packet';
+        $sTransferMethod = $oRequest->getRequestEscapedParameter('transfermethod');
 
         $sMosListId = $oRequest->getRequestEscapedParameter('export_listId');
         $dImportArt = $oRequest->getRequestEscapedParameter('importMode');
@@ -130,6 +157,10 @@ class AdminNewsletterConnectController extends AdminDetailsController
         if (is_array($aReport)) {
             $this->_sExportStatus = Utilities::translateReport($aReport['REPORT']);
             $this->_sExportReportData = $aReport['LINK'];
+            $this->_sExportListId = $sMosListId;
+            $this->_sResumeExport = $aReport['RESUME'] ?? '';
+            $this->_sFirstRun = $aReport['FIRSTRUN'] ?? '0';
+            $this->_sImportMode = trim($dImportArt) ?? '';
         }
     }
 

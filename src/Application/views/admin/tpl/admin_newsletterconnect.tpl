@@ -87,6 +87,25 @@
         </p>
     </form>
 
+    [{if $gn2_ResumeExport}]
+
+    <form name="gn2mosformAboExport" id="gn2mosformAboExport" action="[{$oViewConf->getSelfLink()}]" method="post">
+        [{$oViewConf->getHiddenSid()}]
+        <input type="hidden" name="cl" value="admin_newsletterconnect">
+        <input type="hidden" name="fnc" value="exportSubscribers">
+        <input type="hidden" name="transfermethod" value="packetCSV">
+        <input type="hidden" name="export_listId" value="[{$gn2_ListId}]">
+        <input type="hidden" name="importMode" value="[{$gn2_ImportMode}]">
+        <input type="hidden" name="filename" value="[{$gn2_ResumeExport}]">
+        <input type="hidden" name="firstRun" value="[{$gn2_FirstRun}]">
+    </form>
+    <script>
+         window.setTimeout(function () {
+             document.getElementById("gn2mosformAboExport").submit();
+         }, 5000)
+    </script>
+    [{else}]
+
     </br>
     <form name="gn2mosformAboExport" id="gn2mosformAboExport" action="[{$oViewConf->getSelfLink()}]" method="post">
         [{$oViewConf->getHiddenSid()}]
@@ -164,6 +183,9 @@
         </p>
 
     </form>
+
+    [{/if}]
+
 </div>
 
 </body>
