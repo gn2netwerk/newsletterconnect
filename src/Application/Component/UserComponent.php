@@ -1,11 +1,7 @@
 <?php
 /**
- * Gn2_NewsletterConnect
- * @category Gn2_NewsletterConnect
- * @package  Gn2_NewsletterConnect
- * @author   gn2 netwerk <kontakt@gn2.de>
- * @license  Gn2 Commercial Addon License http://www.gn2-netwerk.de/
- * @link     http://www.gn2-netwerk.de/
+ * @copyright   (c) gn2
+ * @link        https://www.gn2.de/
  */
 
 namespace Gn2\NewsletterConnect\Application\Component;
