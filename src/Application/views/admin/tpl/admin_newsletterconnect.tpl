@@ -26,7 +26,7 @@
         <input type="hidden" name="cl" value="admin_newsletterconnect">
         <input type="hidden" name="fnc" value="save">
 
-        <h1><img style="width:85px;height:85px;vertical-align: middle;margin-right:30px;" src="../modules/gn2/newsletterconnect/gn2_newsletterconnect.png">gn2 :: NewsletterConnect</h1>
+        <h1><img style="width:85px;height:85px;vertical-align: middle;margin-right:30px;" src="../modules/gn2/newsletterconnect/logo.png">gn2 :: NewsletterConnect</h1>
 
         [{if $gn2_ExportStatus || $gn2_ExportReportData}]
             <div class="notice">

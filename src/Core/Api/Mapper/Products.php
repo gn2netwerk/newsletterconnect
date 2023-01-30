@@ -130,7 +130,7 @@ class Products
         $oDb = DatabaseProvider::getDb();
 
         $rows = $oDb->select($qsql);
-        $total = $oDb->select('SELECT FOUND_ROWS() as rows');
+        $total = $oDb->getOne('SELECT FOUND_ROWS()');
 
         $data = array();
         if ($rows != false && $rows->count() > 0) {
