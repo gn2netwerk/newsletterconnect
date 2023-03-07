@@ -22,21 +22,17 @@ class ThankYouController extends ThankYouController_parent
 {
 
     /**
-     * ThankYouController constructor.
-     * Transfers current order to WebService on thank you page
+     * Executes parent::init(),
+     * transfers current order to WebService on thank you page
      */
-    public function __construct()
+    public function init()
     {
+        parent::init();
+
         try {
             $items = array();
 
-            $oSession = oxNew(Session::class);
-            $oBasket = $oSession->getBasket();
-            $orderId = $oBasket->getOrderId();
-
-            $oxOrder = oxNew(Order::class);
-            $oxOrder->load($orderId);
-
+            $oxOrder = $this->getOrder();
             $oxArticles = $oxOrder->getOrderArticles(true);
 
             $i = 0;
@@ -54,6 +50,7 @@ class ThankYouController extends ThankYouController_parent
                 $category = '';
                 $shopArticle = oxNew(Article::class);
                 $shopArticle->load($oxArticle->oxorderarticles__oxartid->value);
+
                 if (is_object($shopArticle)) {
                     $shopCategory = $shopArticle->getCategory();
                     if (is_object($shopCategory)) {
@@ -124,6 +121,6 @@ class ThankYouController extends ThankYouController_parent
         } catch (Exception $e) {
             /* ignore any gn2_newsletterconnect errors. */
         }
-        parent::__construct();
     }
+
 }
