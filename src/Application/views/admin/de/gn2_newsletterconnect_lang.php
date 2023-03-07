@@ -8,6 +8,9 @@ $aLang = array(
     'charset'                                               => 'UTF-8',
     'admin_newsletterconnect'                               => "NewsletterConnect",
 
+    'SHOP_MODULE_GROUP_newsletterconnect_main'              => 'Einstellungen',
+    'SHOP_MODULE_config'                                    => 'Bitte bearbeiten Sie die Einstellungen unter: <br><strong style="white-space: nowrap">ESHOP ADMIN > Shopeinstellungen > NewsletterConnect</strong>',
+
     'GN2_NEWSLETTERCONNECT_API_CONFIG'                      => 'API-Konfiguration',
 
     'GN2_NEWSLETTERCONNECT_API_BASEURL'                     => 'Mailingwork Webservice-URL',

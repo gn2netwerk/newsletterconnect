@@ -80,4 +80,8 @@ $aModule = [
         ],
     ],
 
+    'settings'    => [
+        [ 'group' => 'newsletterconnect_main', 'name' => 'config', 'type' => 'aarr' ]
+    ],
+
 ];
