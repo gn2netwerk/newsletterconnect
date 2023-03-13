@@ -29,7 +29,7 @@ $aModule = [
     'title'         => 'gn2 :: NewsletterConnect',
     'description'   => 'Anbindung an Mailingwork API',
     'thumbnail'     => 'logo.png',
-    'version'       => '3.3.0',
+    'version'       => '3.3.1',
     'author'        => 'gn2',
     'url'           => 'https://www.gn2.de',
     'email'         => 'kontakt@gn2.de',
@@ -81,7 +81,7 @@ $aModule = [
     ],
 
     'settings'    => [
-        [ 'group' => 'newsletterconnect_main', 'name' => 'config', 'type' => 'aarr' ]
+        [ 'name' => 'config', 'type' => 'aarr' ]
     ],
 
 ];
